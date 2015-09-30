@@ -1,0 +1,82 @@
+aside, article, section, header, footer, nav {
+  display: block;
+}
+
+html, body, div, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+
+.clearfix:after {
+    clear:both;
+}
+
+.board-container{
+  width: 80%;
+  margin: auto;
+}
+
+.top-row{
+  float: left;
+  height: 100px;
+}
+
+.mid-row{
+  float: left;
+  height: 493px;
+}
+
+.bottom-row{
+  float: left;
+  height: 100px;
+}
+
+.corner-game-square{
+  float: left;
+  height: 96px;
+  width: 96px;
+  border: 2px solid black;
+}
+
+.game-square{
+  float: left;
+}
+
+.top .square, .bottom .square{
+  float: left;
+  height: 96px;
+  width: 53px;
+  border: 2px solid black;
+  border-left: none;
+}
+
+.left-game-squares{
+  float: left;
+}
+
+.left .square, .right .square{
+  height: 53px;
+  width: 96px;
+  border: 2px solid black;
+  border-top: none;
+}
+
+.left{
+
+}
+
+.middle-board{
+  float: left;
+  height: 493px;
+  width: 493px;
+}
+
+.right-game-squares{
+  float: left;
+}
