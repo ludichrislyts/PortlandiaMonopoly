@@ -229,10 +229,10 @@ var deeds[15] = {name: "PORTLAND STREETCAR",
 
 //St. James Place
 var deeds[16] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
-                  rent: [],
+                  price: 180,
+                  mortgage_value: 90,
+                  house_cost: 100,
+                  rent: [14, 70, 200, 550, 750, 950],
                   group_id: 6,
                   owned: 0,
                   monopoly: false,
@@ -240,7 +240,112 @@ var deeds[16] = {name: "",
                   type: ""
                 };
 
-var deeds[] = {name: "",
+//Community Chest
+var deeds[17] = {name: "",
+                  price: ,
+                  mortgage_value: ,
+                  house_cost: ,
+                  rent: [],
+                  group_id: ,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Tennessee Avenue
+var deeds[18] = {name: "",
+                  price: 180,
+                  mortgage_value: 90,
+                  house_cost: 100,
+                  rent: [14, 70, 200, 550, 750, 950],
+                  group_id: 6,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//New York
+var deeds[19] = {name: "",
+                  price: 200,
+                  mortgage_value: 100,
+                  house_cost: 100,
+                  rent: [16, 80, 220, 600, 800, 1000],
+                  group_id: 6,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Free Parking
+var deeds[20] = {name: "",
+                  price: ,
+                  mortgage_value: ,
+                  house_cost: ,
+                  rent: [],
+                  group_id: 0,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Kentucky Avenue
+var deeds[21] = {name: "",
+                  price: 220,
+                  mortgage_value: 110,
+                  house_cost: 150,
+                  rent: [18, 90, 250, 700, 875, 1050],
+                  group_id: 7,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Chance
+var deeds[22] = {name: "",
+                  price: ,
+                  mortgage_value: ,
+                  house_cost: ,
+                  rent: [],
+                  group_id: ,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Indiana Avenue
+var deeds[23] = {name: "",
+                  price: 220,
+                  mortgage_value: 110,
+                  house_cost: 150,
+                  rent: [18, 90, 250, 700, 875, 1050],
+                  group_id: 7,
+                  owned: 0,
+                  monopoly: false,
+                  multiplier: 0,
+                  type: ""
+                };
+
+//Illinois Avenue
+var deeds[24] = {name: "",
+price: ,
+mortgage_value: ,
+house_cost: ,
+rent: [],
+group_id: 7,
+owned: 0,
+monopoly: false,
+multiplier: 0,
+type: ""
+};
+
+//B & O Railroad
+var deeds[25] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -252,7 +357,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Atlantic Avenue
+var deeds[26] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -264,7 +370,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Ventnor Avenue
+var deeds[27] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -276,7 +383,21 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Water Works
+var deeds[28] = {name: "",
+price: ,
+mortgage_value: ,
+house_cost: ,
+rent: [], //rent = 4 times dice roll if one owned or 10 times if both are owned
+group_id: ,
+owned: 0,
+monopoly: false,
+multiplier: 0,
+type: ""
+};
+
+//Marvin Gardens
+var deeds[29] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -288,7 +409,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Go To Jail
+var deeds[30] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -300,7 +422,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Pacific Avenue
+var deeds[31] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -312,7 +435,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//North Carolina Avenue
+var deeds[32] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -324,7 +448,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Community Chest
+var deeds[33] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -336,7 +461,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Pennsylvania Avenue
+var deeds[34] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -348,7 +474,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Short Line Railroad
+var deeds[35] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -360,7 +487,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Chance
+var deeds[36] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -372,7 +500,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Park Place
+var deeds[37] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -384,7 +513,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
+//Luxury Tax
+var deeds[38] = {name: "",
 price: ,
 mortgage_value: ,
 house_cost: ,
@@ -396,115 +526,8 @@ multiplier: 0,
 type: ""
 };
 
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
-price: ,
-mortgage_value: ,
-house_cost: ,
-rent: [],
-group_id: ,
-owned: 0,
-monopoly: false,
-multiplier: 0,
-type: ""
-};
-
-var deeds[] = {name: "",
+//Boardwalk
+var deeds[39] = {name: "",
             price: ,
             mortgage_value: ,
             house_cost: ,
