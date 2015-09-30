@@ -38,11 +38,38 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                          });
      factory.playerName = null;
   };
-  // type = property or action (chance or community chest)
-  factory.addPropCard = function(player, card){
-
+  //moves player and returns the new postiton
+  factory.movePlayer = function(player){
+    var position = player.position + diceRoll();
+    if (if position > 39){ // 40 == GO
+      var offset = position - 40;
+      player.position = position;
+    }else{
+      player.position = position;
+    }
+    return player.position;
   }
 
+
+
+  // check if a property is owned
+  factory.isOwned = function(deed){
+    if(deed.owned === 0){
+      return 0;
+    }else{
+      return deed.owned;
+    }
+  }
+
+  // returns true if player has enough money to buy a deed,
+  // false if not
+  factory.canBuy = function(player, deed){
+    if (player.money < deed.price){
+      return false;
+    }else{
+      return true;
+    }
+  }
   factory.actionCard = function(player, card){
     if (card.kind === 'card'){ // get outta jail card
       if(card.value[0] = 0){
@@ -69,10 +96,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }
   }
 
+  // returns 0 if not owned, or player ID if owned
 
 
-  factory.addPropertyCard = function(player, card){
-    if()
+  // returns 0
+  factory.addDeedCard = function(player, deed){
+    if(deed.type === 'company'){
+      if(this.owned(deed) === 0){//
+        if
+      }
+    }
     player.money -+ card.price;
 
   }
