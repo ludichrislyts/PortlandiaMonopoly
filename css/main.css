@@ -7,6 +7,10 @@ html, body, div, h1, h2, h3, p, ul, li {
   padding: 0;
 }
 
+body{
+  font-size: 10px;
+}
+
 .clearfix:before,
 .clearfix:after {
     content:"";
@@ -20,28 +24,26 @@ html, body, div, h1, h2, h3, p, ul, li {
 .board-container{
   width: 80%;
   margin: auto;
+  overflow: scroll;
 }
 
-.top-row{
+.top-row, .mid-row, {
   float: left;
-  height: 100px;
 }
 
-.mid-row{
+{
   float: left;
-  height: 493px;
 }
 
 .bottom-row{
   float: left;
-  height: 100px;
 }
 
 .corner-game-square{
   float: left;
-  height: 96px;
-  width: 96px;
-  border: 2px solid black;
+  height: 9.6em;
+  width: 9.6em;
+  border: .1em solid black;
 }
 
 .game-square{
@@ -50,10 +52,11 @@ html, body, div, h1, h2, h3, p, ul, li {
 
 .top .square, .bottom .square{
   float: left;
-  height: 96px;
-  width: 53px;
-  border: 2px solid black;
+  height: 9.6em;
+  width: 5.3em;
+  border: .1em solid black;
   border-left: none;
+  position: relative;
 }
 
 .left-game-squares{
@@ -61,10 +64,11 @@ html, body, div, h1, h2, h3, p, ul, li {
 }
 
 .left .square, .right .square{
-  height: 53px;
-  width: 96px;
-  border: 2px solid black;
+  height: 5.3em;
+  width: 9.6em;
+  border: .1em solid black;
   border-top: none;
+  position: relative;
 }
 
 .left{
@@ -73,10 +77,20 @@ html, body, div, h1, h2, h3, p, ul, li {
 
 .middle-board{
   float: left;
-  height: 493px;
-  width: 493px;
+  height: 48.5em;
+  width: 48.5em;
 }
 
 .right-game-squares{
   float: left;
+}
+
+.Connecticut{
+  position: absolute;
+  text-align: center;
+  border-top: .1em solid black;
+  width: 5.3em;
+  top: 0px;
+  left: 0px;
+  background:rgba(128,204,255,0.7);
 }
