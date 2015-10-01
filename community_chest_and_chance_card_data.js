@@ -20,7 +20,7 @@ community_chest_data[4] = {text: "PORTLAND ARTS TAX" subtext: "PAY $50", kind: "
 community_chest_data[5] = {text: "GET OUT OF PORTLAND SATURDAY MARKET, FREE", subtext: "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", kind: "card", value: [0]}; //Get out of jail free – this card may be kept until needed, or sold
 community_chest_data[6] = {text: "WIN A SOCCERT TOURNAMENT AT DELTA PARK", subtext: "COLLECT $45", kind: "money", value[45]}; //From sale of stock you get $45
 community_chest_data[7] = {text: "SELL YOUR FAMILY PASS TO THE OREGON ZOO", subtext: "COLLECT $100", kind: "money", value[100]}; //You inherit $100
-community_chest_data[8] = {text: "GO TO PORTLAND SATURDAY MARKET", subtext: "GO DIRECT TO PORTLAND SATURDAY MARKET - DO NOT PASS GO - DO NOT COLLECT $200", kind: "go", value: [10]}; //Go to jail – go directly to jail – Do not pass Go, do not collect $200
+community_chest_data[8] = {text: "GO TO PORTLAND SATURDAY MARKET", subtext: "DO NOT PASS GO - DO NOT COLLECT $200", kind: "go", value: [10]}; //Go to jail – go directly to jail – Do not pass Go, do not collect $200
 community_chest_data[9] = {text: "BRING OUT OF TOWN FAMILY TO MULTNOMAH FALLS", subtext: "COLLECT $100", kind: "money", value[100]}; //Life Insurance Matures – collect $100
 community_chest_data[10] = {text: "VISIT THE PAUL BUNYAN STATUE AND FIND SOMEONE'S LUNCH MONEY", subtext: "COLLECT $10", kind: "money", value[10]}; //You have won second prize in a beauty contest– collect $10
 community_chest_data[11] = {text: "WIN THE PORTLAND MARATHON", subtext: "COLLECT $100", kind: "money", value[100]}; //Xmas Fund matures - Receive $100
@@ -40,15 +40,15 @@ chance_data[4] = {text: "TRAFFIC JAM!", subtext: "ADVANCE TOKEN TO THE NEAREST M
 chance_data[5] = {text: "YOU HAVE PRODUCTS TO SELL AND STORIES TO TELL", subtext: "ADVANCE TOKEN TO BRANDLIVE", kind: "go", value: [11]}; //Advance to St. Charles Place – if you pass Go, collect $200
 chance_data[6] = {text: "EXPERIENCE PORTLAND'S FIRST ROSE GARDEN", subtext: "COLLECT $50 AT PENINSULA PARK", kind: "money", value: [50]}; //Bank pays you dividend of $50
 chance_data[7] = {text: "GET OUT OF PORTLAND SATURDAY MARKET, FREE", subtext: "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", kind: "card", value: [0]}; //Get out of Jail free – this card may be kept until needed, or traded/sold
-chance_data[8] = {text: "", subtext: "", kind: "", value: []}; //Go back 3 spaces
-chance_data[9] = {text: "", subtext: "", kind: "", value: []};"Go directly to Portland Saturday Market – do not pass Go, do not collect $200"; //Go directly to Jail – do not pass Go, do not collect $200
-chance_data[10] = {text: "", subtext: "", kind: "", value: []};"Pay Portland's Leaf Cleaning Fee - for each house pay $25 – for each hotel $100"; //Make general repairs on all your property – for each house pay $25 – for each hotel $100
-chance_data[11] = {text: "", subtext: "", kind: "", value: []}; //Pay poor tax of $15
-chance_data[12] = {text: "", subtext: "", kind: "", value: []}; //Take a trip to Reading Railroad – if you pass Go collect $200
-chance_data[13] = {text: "", subtext: "", kind: "", value: []}; //Take a walk on the Boardwalk – advance token to Boardwalk
-chance_data[14] = {text: "", subtext: "", kind: "", value: []}; //You have been elected chairman of the board – pay each player $50
-chance_data[15] = {text: "", subtext: "", kind: "", value: []}; //Your building loan matures – collect $150
-chance_data[16] = {text: "", subtext: "", kind: "", value: []}; //You have won a crossword competition - collect $100
+chance_data[8] = {text: "GET ON THE WRONG BUS", subtext: "GO BACK 3 SPACES", kind: "card", value: [-3]}; //Go back 3 spaces
+chance_data[9] = {text: "GO DIRECTLY TO PORTLAND SATURDAY MARKET", subtext: "DO NOT PASS GO - DO NOT COLLECT $200", kind: "go", value: [10]}; //Go directly to Jail – do not pass Go, do not collect $200
+chance_data[10] = {text: "PAY PORTLAND'S LEAF CLEANING FEE", subtext: "FOR EACH HOUSE PAY $25 - FOR EACH HOTEL $100", kind: "ASSESS", value: [-25, -100]}; //Make general repairs on all your property – for each house pay $25 – for each hotel $100
+chance_data[11] = {text: "EXPERIENCE THE HAWTHORNE DISTRICT", subtext: "PAY $15 FOR COFFEE", kind: "money", value: [-15]}; //Pay poor tax of $15
+chance_data[12] = {text: "TAKE A TRIP ON THE MAX", subtext: "IF YOU PASS GO COLLECT $200", kind: "go", value: [5]}; //Take a trip to Reading Railroad – if you pass Go collect $200
+chance_data[13] = {text: "LEARN TO BUILD COMPUTERS", subtext: "ADVANCE TOKEN TO FREE GEEK", kind: "go", value: [39]}; //Take a walk on the Boardwalk – advance token to Boardwalk
+chance_data[14] = {text: "HOST AN EVENT AT POWELL'S CITY OF BOOKS", subtext: "PAY EACH PLAYER $50", kind: "card", value: [-50]}; //when kind === card, if value is not zero, then we are paying or collecting money from each player-------You have been elected chairman of the board – pay each player $50
+chance_data[15] = {text: "SELL LOCALLY GROWN VEGETABLES AT THE PORTLAND FARMERS MARKET", subtext: "COLLECT $150", kind: "money", value: [150]}; //Your building loan matures – collect $150
+chance_data[16] = {text: "WIN SECOND PLACE IN PORTLAND'S BEARD COMPETITION", subtext: "COLLECT $100", kind: "money", value: [100]}; //You have won a crossword competition - collect $100
 
 
 // TYPE
