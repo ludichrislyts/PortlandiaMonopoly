@@ -1,5 +1,4 @@
-portlandiaMonopoly.factory('DeedsFactory', function DeedsFactory(){
-  var factory = {};
+
 //house_cost: if house_cost === 0, you can't build houses on the deed
 //              else each house costs $50 on the first side of the board,
 //              $100 on the 2nd side,
@@ -25,6 +24,10 @@ portlandiaMonopoly.factory('DeedsFactory', function DeedsFactory(){
 //************************************************************************
 //owned: 0 means unowned, 1 means player 1 owns it, 2 means player 2 owns it, etc.
 //************************************************************************
+
+portlandiaMonopoly.factory('DeedsFactory', function DeedsFactory(){
+var factory = {};
+
 factory.deeds = [];
 
 //Go
@@ -37,7 +40,7 @@ factory.deeds[0] = {name: "G0",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""  //company, sport, or train
+                  type: ""  //company, sport, train
                 };
 
 //Mediterranean Avenue
@@ -55,9 +58,9 @@ factory.deeds[1] = {name: "JAMA SOFTWARE",
 
 //Community Chest
 factory.deeds[2] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
                   group_id: 0,
                   owned: 0,
@@ -81,11 +84,11 @@ factory.deeds[3] = {name: "ALTSOURCE",
 
 //Income Tax
 factory.deeds[4] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
-                  group_id: ,
+                  group_id: 0,
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
@@ -120,9 +123,9 @@ factory.deeds[6] = {name: "ZAPPROVED",
 
 //Chance
 factory.deeds[7] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
                   group_id: 0,
                   owned: 0,
@@ -159,11 +162,11 @@ factory.deeds[9] = {name: "THE DYRT",
 
 //Jail
 factory.deeds[10] = {name: "PORTLAND SATURDAY MARKET",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
-                  group_id: ,
+                  group_id: 0,
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
@@ -209,7 +212,7 @@ factory.deeds[13] = {name: "THINKSHOUT",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                  };
 
 //Virginia Avenue
@@ -222,7 +225,7 @@ factory.deeds[14] = {name: "ACQUIA",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Pennsylvania Railroad
@@ -248,16 +251,16 @@ factory.deeds[16] = {name: "NOTION",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Community Chest
 factory.deeds[17] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
-                  group_id: ,
+                  group_id: 0,
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
@@ -274,7 +277,7 @@ factory.deeds[18] = {name: "ARUBA NETWORKS",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //New York
@@ -287,14 +290,14 @@ factory.deeds[19] = {name: "RENTRAK",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Free Parking
-factory.deeds[20] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+factory.deeds[20] = {name: "WASHINGTON PARK",
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
                   group_id: 0,
                   owned: 0,
@@ -313,16 +316,16 @@ factory.deeds[21] = {name: "RADAR",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Chance
 factory.deeds[22] = {name: "",
-                  price: ,
-                  mortgage_value: ,
-                  house_cost: ,
+                  price: 0,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
-                  group_id: ,
+                  group_id: 0,
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
@@ -339,7 +342,7 @@ factory.deeds[23] = {name: "CHIRPIFY",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Illinois Avenue
@@ -352,7 +355,7 @@ factory.deeds[24] = {name: "IOVATION",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //B & O Railroad
@@ -378,7 +381,7 @@ factory.deeds[26] = {name: "METAL TOAD",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Ventnor Avenue
@@ -391,7 +394,7 @@ factory.deeds[27] = {name: "WEBTRENDS",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Water Works
@@ -417,7 +420,7 @@ factory.deeds[29] = {name: "APPNEXUS",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Go To Jail
@@ -443,7 +446,7 @@ factory.deeds[31] = {name: "CROWDCOMPASS",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //North Carolina Avenue
@@ -456,7 +459,7 @@ factory.deeds[32] = {name: "JIVE SOFTWARE",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Community Chest
@@ -482,7 +485,7 @@ factory.deeds[34] = {name: "PUPPET LABS",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Short Line Railroad
@@ -521,14 +524,14 @@ factory.deeds[37] = {name: "NEW RELIC",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
 
 //Luxury Tax
-factory.deeds[38] = {name: "",
+factory.deeds[38] = {name: "VOODOO DOUGHNUTS",
                   price: 0,
-                  mortgage_value: ,
-                  house_cost: ,
+                  mortgage_value: 0,
+                  house_cost: 0,
                   rent: [],
                   group_id: 0,
                   owned: 0,
@@ -547,5 +550,7 @@ factory.deeds[39] = {name: "FREE GEEK",
                   owned: 0,
                   monopoly: false,
                   multiplier: 0,
-                  type: ""
+                  type: "company"
                 };
+
+});

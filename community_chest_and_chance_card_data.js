@@ -25,43 +25,44 @@ community_chest_data[9] = {text: "BRING OUT OF TOWN FAMILY TO MULTNOMAH FALLS", 
 community_chest_data[10] = {text: "VISIT THE PAUL BUNYAN STATUE AND FIND SOMEONE'S LUNCH MONEY", subtext: "COLLECT $10", kind: "money", value[10]}; //You have won second prize in a beauty contest– collect $10
 community_chest_data[11] = {text: "WIN THE PORTLAND MARATHON", subtext: "COLLECT $100", kind: "money", value[100]}; //Xmas Fund matures - Receive $100
 community_chest_data[12] = {text: "PORTLAND'S SCHOOL BOND PASSES!", subtext: "PAY $40 PER HOUSE, $115 PER HOTEL", kind: "assess", value[-40, -115]}; //You are assessed for street repairs – $40 per house, $115 per hotel
-community_chest_data[13] = {text: "", subtext: "", kind: "money", value[200]}; //Bank error in your favor – collect $200
+community_chest_data[13] = {text: "HOST A TOUR THRU WASHINGTON PARK", subtext: "COLLECT $200", kind: "money", value[200]}; //Bank error in your favor – collect $200
 community_chest_data[14] = {text: "FIND HAIR IN YOUR FOOD CART LUNCH", subtext: "COLLECT $20", kind: "money", value[20]}; //Income Tax refund – collect $20
 community_chest_data[15] = {text: "PLAN AN EVENT AT OAKS AMUSEMENT PARK", subtext: "COLLECT $10 FROM EACH PLAYER", kind: "card", value[10]}; //when kind === card, if value is not zero, then we are paying or collecting money from each player-------It is your birthday Collect $10 from each player
 community_chest_data[16] = {text: "VISIT PORTLAND ART MUSEUM", subtext: "PAY $50", kind: "money", value: [50]}; //Pay School Fees of $50
 
 
 //Chance
-chance_data[0] = "Advance to Go (Collect $200)"; //Advance to Go (Collect $200)
-chance_data[1] = ""; //Advance to Illinois Ave.
-chance_data[2] = ""; //Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.
-chance_data[3] = ""; //Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank. (There are two of these.)
-chance_data[4] = ""; //Advance to St. Charles Place – if you pass Go, collect $200
-chance_data[5] = ""; //Bank pays you dividend of $50
-chance_data[6] = ""; //Get out of Jail free – this card may be kept until needed, or traded/sold
-chance_data[7] = ""; //Go back 3 spaces
-chance_data[8] = "Go directly to Portland Saturday Market – do not pass Go, do not collect $200"; //Go directly to Jail – do not pass Go, do not collect $200
-chance_data[9] = "Pay Portland's Leaf Cleaning Fee - for each house pay $25 – for each hotel $100"; //Make general repairs on all your property – for each house pay $25 – for each hotel $100
-chance_data[10] = ""; //Pay poor tax of $15
-chance_data[11] = ""; //Take a trip to Reading Railroad – if you pass Go collect $200
-chance_data[12] = ""; //Take a walk on the Boardwalk – advance token to Boardwalk
-chance_data[13] = ""; //You have been elected chairman of the board – pay each player $50
-chance_data[14] = ""; //Your building loan matures – collect $150
-chance_data[15] = ""; //You have won a crossword competition - collect $100
+chance_data[0] = {text: "ADVANCE TO GO", subtext: "(COLLECT $200)", kind: "go", value: [0]}; //Advance to Go (Collect $200)
+chance_data[1] = {text: "IOVATION NEEDS YOU!", subtext: "ADVANCE TOKEN TO IOVATION", kind: "go", value, [24]}; //Advance to Illinois Ave.
+chance_data[2] = {text: "MARCH MADNESS!", subtext: "ADVANCE TOKEN TO THE NEAREAST SPORTS TEAM. IF UNOWNED, YOU MAY BUY IT FROM THE PORTLAND BUREAU OF PLANNING AND SUSTAINABILITY. IF OWNED, THROW DICE AND PAY OWNER 10 TIMES THE AMOUNT THROWN.", kind: "go", value: [12, 28]}; //Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.
+chance_data[3] = {text: "TRAFFIC JAM!", subtext: "ADVANCE TOKEN TO THE NEAREST MASS TRANSIT AND PAY OWNER TWICE THE RENTAL TO WHICH HE/SHE IS OTHERWISE ENTITLED. IF MASS TRANSIT IS UNOWNED, YOU MAY BUY IT FROM THE PORTLAND BUREAU OF PLANNING AND SUSTAINABILITY", kind: "go", value: [5, 15, 25, 35]}; //Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank. (There are two of these.)
+chance_data[4] = {text: "TRAFFIC JAM!", subtext: "ADVANCE TOKEN TO THE NEAREST MASS TRANSIT AND PAY OWNER TWICE THE RENTAL TO WHICH HE/SHE IS OTHERWISE ENTITLED. IF MASS TRANSIT IS UNOWNED, YOU MAY BUY IT FROM THE PORTLAND BUREAU OF PLANNING AND SUSTAINABILITY", kind: "go", value: [5, 15, 25, 35]}; //Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank. (There are two of these.)
+chance_data[5] = {text: "YOU HAVE PRODUCTS TO SELL AND STORIES TO TELL", subtext: "ADVANCE TOKEN TO BRANDLIVE", kind: "go", value: [11]}; //Advance to St. Charles Place – if you pass Go, collect $200
+chance_data[6] = {text: "EXPERIENCE PORTLAND'S FIRST ROSE GARDEN", subtext: "COLLECT $50 AT PENINSULA PARK", kind: "money", value: [50]}; //Bank pays you dividend of $50
+chance_data[7] = {text: "GET OUT OF PORTLAND SATURDAY MARKET, FREE", subtext: "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", kind: "card", value: [0]}; //Get out of Jail free – this card may be kept until needed, or traded/sold
+chance_data[8] = {text: "", subtext: "", kind: "", value: []}; //Go back 3 spaces
+chance_data[9] = {text: "", subtext: "", kind: "", value: []};"Go directly to Portland Saturday Market – do not pass Go, do not collect $200"; //Go directly to Jail – do not pass Go, do not collect $200
+chance_data[10] = {text: "", subtext: "", kind: "", value: []};"Pay Portland's Leaf Cleaning Fee - for each house pay $25 – for each hotel $100"; //Make general repairs on all your property – for each house pay $25 – for each hotel $100
+chance_data[11] = {text: "", subtext: "", kind: "", value: []}; //Pay poor tax of $15
+chance_data[12] = {text: "", subtext: "", kind: "", value: []}; //Take a trip to Reading Railroad – if you pass Go collect $200
+chance_data[13] = {text: "", subtext: "", kind: "", value: []}; //Take a walk on the Boardwalk – advance token to Boardwalk
+chance_data[14] = {text: "", subtext: "", kind: "", value: []}; //You have been elected chairman of the board – pay each player $50
+chance_data[15] = {text: "", subtext: "", kind: "", value: []}; //Your building loan matures – collect $150
+chance_data[16] = {text: "", subtext: "", kind: "", value: []}; //You have won a crossword competition - collect $100
 
 
-TYPE
-VALUE
-HOLD
-
-
-move:
-go -
-market - kind: "go", value: [10]
-get out of market free: kind: "card"
-illinois
-st. charles - kind: "go", value: [11]
-utility - kind: "go", value: [12, 28]
-railroad - kind: "go", value: [5, 15, 25, 35]
-bank pays $50 - kind: "money", value: [50]
-go back three spaces: kind: "go", value: [-3]
+// TYPE
+// VALUE
+// HOLD
+//
+//
+// move:
+// go -
+// market - kind: "go", value: [10]
+// get out of market free: kind: "card"
+// illinois
+// st. charles - kind: "go", value: [11]
+// utility - kind: "go", value: [12, 28]
+// railroad - kind: "go", value: [5, 15, 25, 35]
+// bank pays $50 - kind: "money", value: [50]
+// go back three spaces: kind: "go", value: [-3]
