@@ -1,0 +1,1 @@
+var portlandiaMonopoly = angular.module('portlandiaMonopoly', ['ui.router']);
