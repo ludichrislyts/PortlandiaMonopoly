@@ -38,17 +38,58 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                          });
      factory.playerName = null;
   };
-  // type = property or action (chance or community chest)
-  factory.addPropCard = function(player, card){
-
+  //moves player and returns the new postiton
+  // sends player to market if position = 30 (go to market)
+  factory.movePlayer = function(player){
+    var position = player.position + diceRoll();
+    if (if position > 39){ // 40 == GO
+      player.money += 200; // passed go
+      var offset = position - 40;
+      player.position = position;
+    }else if(position == 30){//go to market square
+      player.position = 10;
+      player.inMarket = true;
+    }
+    return player.position;
   }
 
+
+
+  // returns a deed if found at the position, null if no deeds found
+  // if player position == go to market, set value
+  factory.checkSpace = function(playerPosition){
+    for(var i = 0; i < factory.deeds.length; i++){
+      if(deeds[i] === playerPosition && deeds[i] != null){
+        return deeds[i];
+      }else if(playerPosition === 30){
+
+      }
+    }return null;
+  }
+
+  // check if a property is owned
+  factory.isOwned = function(deed){
+    if(deed.owned === 0){
+      return 0;
+    }else{
+      return deed.owned;
+    }
+  }
+  // returns true if player has enough money to buy a deed,
+  // false if not
+  factory.canBuy = function(player, deed){
+    if (player.money < deed.price){
+      return false;
+    }else{
+      return true;
+    }
+  }
   factory.actionCard = function(player, card){
     if (card.kind === 'card'){ // get outta jail card
       if(card.value[0] = 0){
         player.getOutFree += 1; // player might get more than 1
       }else{ // player must pay each player $, or player receives $ from other players
-        for(i = 0; i < factory.players; i++ ){
+        for(var i = 0; i < factory.players; i++ ){
           if(player.id === factory.players[i].id){
             continue;
           }else{
@@ -69,10 +110,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }
   }
 
+  // returns 0 if not owned, or player ID if owned
 
 
-  factory.addPropertyCard = function(player, card){
-    if()
+  // returns 0
+  factory.addDeedCard = function(player, deed){
+    if(deed.type === 'company'){
+      if(this.owned(deed) === 0){//
+        if
+      }
+    }
     player.money -+ card.price;
 
   }
