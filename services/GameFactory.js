@@ -85,7 +85,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }else{
       return true;
     }
-  },
+  };
+  // action card - kind: card- get out of jail free
+  //                            Pay or collect money from every player
+  //                     money - collect or pay money
+  //                     assess- pay money per upgrade on properties
   factory.actionCard = function(player, card){
     if (card.kind === 'card'){ // get outta jail card
       if(card.value[0] = 0){
@@ -104,13 +108,14 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       player.money =+ card.value[0];
     } else if(card.kind === 'assess'){
       player.money -= ((player.houses * card.value[0]) + (player.hotels * card.value[1]));
-    }else{// it's a move card
-    if(card.value < 0){
-      player.position -= 3; // go back 3 spaces card
-    }else{
-      player.position = card.value;
+      }else{// it's a move card
+      if(card.value < 0){
+        player.position -= 3; // go back 3 spaces card
+      }else{
+        player.position = card.value;
+      }
     }
-  },
+  };
 
   // returns 0 if not owned, or player ID if owned
 
@@ -120,10 +125,14 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     if(deed.type === 'company'){
       if(this.owned(deed) === 0){//
         if(true){
+          return;
+        }
+        return;
       }
     }
-    player.money -+ card.price;
+    player.money -+ deed.price;
 
-  },
+  };
+  return factory;
 
 });
