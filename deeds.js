@@ -1,3 +1,5 @@
+portlandiaMonopoly.factory('DeedsFactory', function DeedsFactory(){
+  var factory = {};
 //house_cost: if house_cost === 0, you can't build houses on the deed
 //              else each house costs $50 on the first side of the board,
 //              $100 on the 2nd side,
@@ -23,10 +25,10 @@
 //************************************************************************
 //owned: 0 means unowned, 1 means player 1 owns it, 2 means player 2 owns it, etc.
 //************************************************************************
-var deeds = [];
+factory.deeds = [];
 
 //Go
-deeds[0] = {name: "G0",
+factory.deeds[0] = {name: "G0",
                   price: 0,
                   mortgage_value: 0,
                   house_cost: 0,
@@ -39,7 +41,7 @@ deeds[0] = {name: "G0",
                 };
 
 //Mediterranean Avenue
-deeds[1] = {name: "JAMA SOFTWARE",
+factory.deeds[1] = {name: "JAMA SOFTWARE",
                   price: 60,
                   mortgage_value: 30,
                   house_cost: 50,
@@ -52,7 +54,7 @@ deeds[1] = {name: "JAMA SOFTWARE",
                 };
 
 //Community Chest
-deeds[2] = {name: "",
+factory.deeds[2] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -65,7 +67,7 @@ deeds[2] = {name: "",
                 };
 
 //Baltic Avenue
-deeds[3] = {name: "ALTSOURCE",
+factory.deeds[3] = {name: "ALTSOURCE",
                   price: 60,
                   mortgage_value: 30,
                   house_cost: 50,
@@ -78,7 +80,7 @@ deeds[3] = {name: "ALTSOURCE",
                 };
 
 //Income Tax
-deeds[4] = {name: "",
+factory.deeds[4] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -91,7 +93,7 @@ deeds[4] = {name: "",
                 };
 
 //Reading Railroad
-deeds[5] = {name: "MAX",
+factory.deeds[5] = {name: "MAX",
                   price: 200,
                   mortgage_value: 100,
                   house_cost: 0,
@@ -104,7 +106,7 @@ deeds[5] = {name: "MAX",
                 };
 
 //Oriental Avenue
-deeds[6] = {name: "ZAPPROVED",
+factory.deeds[6] = {name: "ZAPPROVED",
                   price: 100,
                   mortgage_value: 50,
                   house_cost: 50,
@@ -117,7 +119,7 @@ deeds[6] = {name: "ZAPPROVED",
                };
 
 //Chance
-deeds[7] = {name: "",
+factory.deeds[7] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -130,7 +132,7 @@ deeds[7] = {name: "",
                };
 
 //Vermont Avenue
-deeds[8] = {name: "GLOBESHERPA",
+factory.deeds[8] = {name: "GLOBESHERPA",
                   price: 100,
                   mortgage_value: 50,
                   house_cost: 50,
@@ -143,7 +145,7 @@ deeds[8] = {name: "GLOBESHERPA",
                 };
 
 //Connecticut Avenue
-deeds[9] = {name: "THE DYRT",
+factory.deeds[9] = {name: "THE DYRT",
                   price: 120,
                   mortgage_value: 60,
                   house_cost: 50,
@@ -156,7 +158,7 @@ deeds[9] = {name: "THE DYRT",
                 };
 
 //Jail
-deeds[10] = {name: "PORTLAND SATURDAY MARKET",
+factory.deeds[10] = {name: "PORTLAND SATURDAY MARKET",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -171,7 +173,7 @@ deeds[10] = {name: "PORTLAND SATURDAY MARKET",
                  };
 
 //St. Charles Place
-deeds[11] = {name: "BRANDLIVE",
+factory.deeds[11] = {name: "BRANDLIVE",
                   price: 140,
                   mortgage_value: 70,
                   house_cost: 100,
@@ -184,7 +186,7 @@ deeds[11] = {name: "BRANDLIVE",
                  };
 
 //Electric Company
-deeds[12] = {name: "PORTLAND TRAILBLAZERS",
+factory.deeds[12] = {name: "PORTLAND TRAILBLAZERS",
                   price: 150,
                   mortgage_value: 75,
                   house_cost: 0,
@@ -198,7 +200,7 @@ deeds[12] = {name: "PORTLAND TRAILBLAZERS",
 
 
 //States Avenue
-deeds[13] = {name: "THINKSHOUT",
+factory.deeds[13] = {name: "THINKSHOUT",
                   price: 140,
                   mortgage_value: 70,
                   house_cost: 100,
@@ -211,7 +213,7 @@ deeds[13] = {name: "THINKSHOUT",
                  };
 
 //Virginia Avenue
-deeds[14] = {name: "ACQUIA",
+factory.deeds[14] = {name: "ACQUIA",
                   price: 160,
                   mortgage_value: 80,
                   house_cost: 100,
@@ -224,7 +226,7 @@ deeds[14] = {name: "ACQUIA",
                 };
 
 //Pennsylvania Railroad
-deeds[15] = {name: "PORTLAND STREETCAR",
+factory.deeds[15] = {name: "PORTLAND STREETCAR",
                   price: 200,
                   mortgage_value: 100,
                   house_cost: 0,
@@ -237,7 +239,7 @@ deeds[15] = {name: "PORTLAND STREETCAR",
                 };
 
 //St. James Place
-deeds[16] = {name: "NOTION",
+factory.deeds[16] = {name: "NOTION",
                   price: 180,
                   mortgage_value: 90,
                   house_cost: 100,
@@ -250,7 +252,7 @@ deeds[16] = {name: "NOTION",
                 };
 
 //Community Chest
-deeds[17] = {name: "",
+factory.deeds[17] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -263,7 +265,7 @@ deeds[17] = {name: "",
                 };
 
 //Tennessee Avenue
-deeds[18] = {name: "ARUBA NETWORKS",
+factory.deeds[18] = {name: "ARUBA NETWORKS",
                   price: 180,
                   mortgage_value: 90,
                   house_cost: 100,
@@ -276,7 +278,7 @@ deeds[18] = {name: "ARUBA NETWORKS",
                 };
 
 //New York
-deeds[19] = {name: "RENTRAK",
+factory.deeds[19] = {name: "RENTRAK",
                   price: 200,
                   mortgage_value: 100,
                   house_cost: 100,
@@ -289,7 +291,7 @@ deeds[19] = {name: "RENTRAK",
                 };
 
 //Free Parking
-deeds[20] = {name: "",
+factory.deeds[20] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -302,7 +304,7 @@ deeds[20] = {name: "",
                 };
 
 //Kentucky Avenue
-deeds[21] = {name: "RADAR",
+factory.deeds[21] = {name: "RADAR",
                   price: 220,
                   mortgage_value: 110,
                   house_cost: 150,
@@ -315,7 +317,7 @@ deeds[21] = {name: "RADAR",
                 };
 
 //Chance
-deeds[22] = {name: "",
+factory.deeds[22] = {name: "",
                   price: ,
                   mortgage_value: ,
                   house_cost: ,
@@ -328,7 +330,7 @@ deeds[22] = {name: "",
                 };
 
 //Indiana Avenue
-deeds[23] = {name: "CHIRPIFY",
+factory.deeds[23] = {name: "CHIRPIFY",
                   price: 220,
                   mortgage_value: 110,
                   house_cost: 150,
@@ -341,7 +343,7 @@ deeds[23] = {name: "CHIRPIFY",
                 };
 
 //Illinois Avenue
-deeds[24] = {name: "IOVATION",
+factory.deeds[24] = {name: "IOVATION",
                   price: 240,
                   mortgage_value: 120,
                   house_cost: 150,
@@ -354,7 +356,7 @@ deeds[24] = {name: "IOVATION",
                 };
 
 //B & O Railroad
-deeds[25] = {name: "PORTLAND AERIAL TRAM",
+factory.deeds[25] = {name: "PORTLAND AERIAL TRAM",
                   price: 200,
                   mortgage_value: 100,
                   house_cost: 0,
@@ -367,7 +369,7 @@ deeds[25] = {name: "PORTLAND AERIAL TRAM",
                 };
 
 //Atlantic Avenue
-deeds[26] = {name: "METAL TOAD",
+factory.deeds[26] = {name: "METAL TOAD",
                   price: 260,
                   mortgage_value: 130,
                   house_cost: 150,
@@ -380,7 +382,7 @@ deeds[26] = {name: "METAL TOAD",
                 };
 
 //Ventnor Avenue
-deeds[27] = {name: "WEBTRENDS",
+factory.deeds[27] = {name: "WEBTRENDS",
                   price: 260,
                   mortgage_value: 130,
                   house_cost: 150,
@@ -393,7 +395,7 @@ deeds[27] = {name: "WEBTRENDS",
                 };
 
 //Water Works
-deeds[28] = {name: "PORTLAND TIMBERS",
+factory.deeds[28] = {name: "PORTLAND TIMBERS",
                   price: 150,
                   mortgage_value: 75,
                   house_cost: 0,
@@ -406,7 +408,7 @@ deeds[28] = {name: "PORTLAND TIMBERS",
                 };
 
 //Marvin Gardens
-deeds[29] = {name: "APPNEXUS",
+factory.deeds[29] = {name: "APPNEXUS",
                   price: 280,
                   mortgage_value: 140,
                   house_cost: 150,
@@ -419,7 +421,7 @@ deeds[29] = {name: "APPNEXUS",
                 };
 
 //Go To Jail
-deeds[30] = {name: "GO TO PORTLAND SATURDAY MARKET",
+factory.deeds[30] = {name: "GO TO PORTLAND SATURDAY MARKET",
                   price: 0,
                   mortgage_value: 0,
                   house_cost: 0,
@@ -432,7 +434,7 @@ deeds[30] = {name: "GO TO PORTLAND SATURDAY MARKET",
                 };
 
 //Pacific Avenue
-deeds[31] = {name: "CROWDCOMPASS",
+factory.deeds[31] = {name: "CROWDCOMPASS",
                   price: 300,
                   mortgage_value: 150,
                   house_cost: 200,
@@ -445,7 +447,7 @@ deeds[31] = {name: "CROWDCOMPASS",
                 };
 
 //North Carolina Avenue
-deeds[32] = {name: "JIVE SOFTWARE",
+factory.deeds[32] = {name: "JIVE SOFTWARE",
                   price: 300,
                   mortgage_value: 150,
                   house_cost: 200,
@@ -458,7 +460,7 @@ deeds[32] = {name: "JIVE SOFTWARE",
                 };
 
 //Community Chest
-deeds[33] = {name: "",
+factory.deeds[33] = {name: "",
                   price: 0,
                   mortgage_value: 0,
                   house_cost: 0,
@@ -471,7 +473,7 @@ deeds[33] = {name: "",
                 };
 
 //Pennsylvania Avenue
-deeds[34] = {name: "PUPPET LABS",
+factory.deeds[34] = {name: "PUPPET LABS",
                   price: 320,
                   mortgage_value: 160,
                   house_cost: 200,
@@ -484,7 +486,7 @@ deeds[34] = {name: "PUPPET LABS",
                 };
 
 //Short Line Railroad
-deeds[35] = {name: "WASHINGTON PARK AND ZOO RAILWAY",
+factory.deeds[35] = {name: "WASHINGTON PARK AND ZOO RAILWAY",
                   price: 200,
                   mortgage_value: 100,
                   house_cost: 0,
@@ -497,7 +499,7 @@ deeds[35] = {name: "WASHINGTON PARK AND ZOO RAILWAY",
                 };
 
 //Chance
-deeds[36] = {name: "",
+factory.deeds[36] = {name: "",
                   price: 0,
                   mortgage_value: 0,
                   house_cost: 0,
@@ -510,7 +512,7 @@ deeds[36] = {name: "",
                 };
 
 //Park Place
-deeds[37] = {name: "NEW RELIC",
+factory.deeds[37] = {name: "NEW RELIC",
                   price: 350,
                   mortgage_value: 175,
                   house_cost: 200,
@@ -523,7 +525,7 @@ deeds[37] = {name: "NEW RELIC",
                 };
 
 //Luxury Tax
-deeds[38] = {name: "",
+factory.deeds[38] = {name: "",
                   price: 0,
                   mortgage_value: ,
                   house_cost: ,
@@ -536,7 +538,7 @@ deeds[38] = {name: "",
                 };
 
 //Boardwalk
-deeds[39] = {name: "FREE GEEK",
+factory.deeds[39] = {name: "FREE GEEK",
                   price: 400,
                   mortgage_value: 200,
                   house_cost: 200,

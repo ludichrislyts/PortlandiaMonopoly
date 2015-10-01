@@ -14,6 +14,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
         //  ACTION VALUE -- FUNCTION -- $$ TO CHANGE OR SPACES TO MOVE -array- specific location
         // has one value, go back is negative, mult
         //  HOLD (TRUE OR FALSE)-- (GET OUT OF JAIL FREE = TRUE)
+  var chance_cards = [];
+  var community_chest_cards = [];
   factory.actionCards = [[chance_cards], [community_chest_cards]];
   // PROPERTY CARD VALUES NEEDED:
         //  NAME TEXT
@@ -27,31 +29,31 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                            gamePiece: factory.gamePiece,
                            money: 1500,
                            inMarket: false,
-                           freedomRolls: 0;
+                           freedomRolls: 0,
                           //  monopolies: [],// array of completed card group #s
                           //  propertyGroupsOwned:[], // array of card
                           //  propertyCardsOwned: [],
                            position: 0,
-                           getOutFree = 0;
+                           getOutFree: 0,
                            houses: 0,
                            hotels: 0
                          });
      factory.playerName = null;
-  };
+  },
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
   factory.movePlayer = function(player){
     var position = player.position + diceRoll();
-    if (if position > 39){ // 40 == GO
+    if (position > 39){ // 40 == GO
       player.money += 200; // passed go
       var offset = position - 40;
-      player.position = position;
+      player.position = offset;
     }else if(position == 30){//go to market square
       player.position = 10;
       player.inMarket = true;
     }
     return player.position;
-  }
+  },
 
 
 
@@ -59,13 +61,13 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   // if player position == go to market, set value
   factory.checkSpace = function(playerPosition){
     for(var i = 0; i < factory.deeds.length; i++){
-      if(deeds[i] === playerPosition && deeds[i] != null){
-        return deeds[i];
+      if(factory.deeds[i] === playerPosition && factory.deeds[i] != null){
+        return factory.deeds[i];
       }else if(playerPosition === 30){
 
       }
     }return null;
-  }
+  },
 
   // check if a property is owned
   factory.isOwned = function(deed){
@@ -74,7 +76,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }else{
       return deed.owned;
     }
-  }
+  },
   // returns true if player has enough money to buy a deed,
   // false if not
   factory.canBuy = function(player, deed){
@@ -83,7 +85,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }else{
       return true;
     }
-  }
+  },
   factory.actionCard = function(player, card){
     if (card.kind === 'card'){ // get outta jail card
       if(card.value[0] = 0){
@@ -108,7 +110,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     }else{
       player.position = card.value;
     }
-  }
+  },
 
   // returns 0 if not owned, or player ID if owned
 
@@ -117,11 +119,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   factory.addDeedCard = function(player, deed){
     if(deed.type === 'company'){
       if(this.owned(deed) === 0){//
-        if
+        if(true){
       }
     }
     player.money -+ card.price;
 
-  }
+  },
 
-})
+});
