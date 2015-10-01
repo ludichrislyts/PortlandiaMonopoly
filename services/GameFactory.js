@@ -2,7 +2,6 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   var factory = {};
   // elements of the game
   factory.players = [];
-  factory.properties = [];
   // contains 2 arrays -- chance and community chest
 
   //CHANCE CARDS = 0
