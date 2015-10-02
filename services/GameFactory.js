@@ -38,14 +38,13 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       if(factory.gamePieces[i] === piece){
         factory.gamePieces[i].taken = true;
         factory.remainingGamePieces.splice(i, 1);
-
       }
     }
   },
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
   factory.movePlayer = function(player){
-    var position = player.position + diceRoll();
+    var position = player.position + 7; // replace 7 with diceroll function
     if (position > 39){ // 40 == GO
       player.money += 200; // passed go
       var offset = position - 40;

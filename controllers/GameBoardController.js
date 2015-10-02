@@ -8,15 +8,9 @@ portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $s
 	
 	$scope.playerPiece = GameFactory.players.playerPiece;
 	$scope.remainingPieces = GameFactory.remainingGamePieces;
+	
 	// changes the selected piece in the drop down to reflect already taken pieces
 	$scope.update = function(){
 		$scope.factory.playerPiece = GameFactory.remainingGamePieces[0];
 	};
-	// $scope.remainingPieces = GameFactory.getRemainingPieces(GameFactory.gamePieces);
-	
-	// console.log($scope.remainingPieces);
-
-	
-	// $scope.playerPiece = UtilitiesFactory.getPlayerPiece(GameFactory.players, $stateParams.pieceId);
-
 });

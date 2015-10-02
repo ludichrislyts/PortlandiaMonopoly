@@ -13,7 +13,7 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 			// 'header': {
 			// 	templateUrl: "partials/header.html",
 			// },
-			'body': {
+			'test': {
 				templateUrl: "partials/testFactoryFunctions.html",
 				controller: "GameBoardCtrl",
 			},
