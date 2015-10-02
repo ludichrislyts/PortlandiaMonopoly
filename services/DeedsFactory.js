@@ -549,5 +549,5 @@ portlandiaMonopoly.factory('DeedsFactory', function DeedsFactory(){
                     multiplier: 0,
                     type: ""
                   };
-                  
+     return factory;             
 });

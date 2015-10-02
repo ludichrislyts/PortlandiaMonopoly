@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="portlandiaMonopoly">
-<head>
-  <meta charset="UTF-8">
-  <title>Student Trackr</title>
-  <script src="lib/angular.js"></script>
-  <script src="lib/angular-ui-router.js"></script>
-  <script src="app.js"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
-  <script src="services/DeedsFactory.js"></script>
-  <script src="services/GameFactory.js"></script>
-  <script src="services/UtilitiesFactory.js"></script>
-  <script src="controllers/GameBoardContoller.js></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
-</head>
+
 <body>
-  <div class="container">
-    <h1>Hi!</h1>
-  </div>
+			<form ng-submit="factory.addPlayer()" class="form-inline" role="form">
+				<div class="form-group">
+					<label for="layer">Enter it here:</label>
+					<input class="form-control" id="layer" ng-model="factory.playerName" placeholder="Enter Name" required><br />
+					<div class="form-group"  ng-model="remainingPieces">
+							<label for="piece">Select a piece for your player:</label>
+							<select ng-controller="GamePieceCtrl" ng-init="factory.playerPiece = remainingPieces[0]" ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece"
+							id="piece" required>
+								<option class="form-control" id="piece" ng-repeat="item in remainingPieces" required>{{ item.pieceName }}</option>
+						</select>
+					</div><br />
+					<button type="submit" class="btn btn-warning btn-large">Submit</button>
+				</div>
+			</form>
 </body>
 </html>
+
