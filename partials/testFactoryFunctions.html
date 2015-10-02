@@ -1,0 +1,20 @@
+<!-- test for player piece selection. default available piece reflects 'next in line' piece -->
+<form ng-submit="factory.addPlayer()" class="form-inline" role="form">
+	<div class="form-group">
+		<label for="layer">Enter it here:</label>
+		<input class="form-control" id="layer" ng-model="factory.playerName" placeholder="Enter Name" required>
+		<br />
+		<div class="form-group" ng-model="factory.playerPiece">
+			<label for="piece">Select a piece for your player:</label>
+			<select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
+			ng-change="update()" ng-init="factory.playerPiece = remainingPieces[0]" required>
+				<option ng-model="factory.playerPiece" class="form-control" id="piece" ng-repeat="item in remainingPieces" selected required>{{ item.pieceName }}</option>
+			</select>
+		</div>
+		<br />
+		<button type="submit" class="btn btn-warning btn-large">Submit</button>
+	</div>
+</form>
+<!-- test player movement -->
+
+<form ng-submit="factory.movePlayer()"></form>

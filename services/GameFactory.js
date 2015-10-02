@@ -2,31 +2,14 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   var factory = {};
   // elements of the game
   factory.players = [];
-  factory.properties = [];
-  // contains 2 arrays -- chance and community chest
-
-  //CHANCE CARDS = 0
-  //COMMUNITY CHEST = 1
-  // ACTION CARD VALUES NEEDED:
-        //  DESCRIPTION TEXT
-        //  SUBDESCRIPTION TEXT
-        //  ACTION-TYPE -- go, money, card
-        //  ACTION VALUE -- FUNCTION -- $$ TO CHANGE OR SPACES TO MOVE -array- specific location
-        // has one value, go back is negative, mult
-        //  HOLD (TRUE OR FALSE)-- (GET OUT OF JAIL FREE = TRUE)
-  var chance_cards = [];
-  var community_chest_cards = [];
-  factory.actionCards = [[chance_cards], [community_chest_cards]];
-  // PROPERTY CARD VALUES NEEDED:
-        //  NAME TEXT
-        //  MONEY VALUE
-        //  GROUP (TO DETERMINE IF PLAYER HAD A MONOPOLY)
-  factory.propertyCards = [];
+  factory.gamePieces = [{pieceName:"blue", id: 1, taken: false},{pieceName:"red", id: 2, taken: false},{pieceName:"green", id: 1, taken: false}];
+  
+  factory.remainingGamePieces = factory.gamePieces;
 
   factory.addPlayer = function(){
     factory.players.push({ id: factory.players.length + 1,
                            name: factory.playerName,
-                           gamePiece: factory.gamePiece,
+                           piece: factory.playerPiece,
                            money: 1500,
                            inMarket: false,
                            freedomRolls: 0,
@@ -38,12 +21,30 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                            houses: 0,
                            hotels: 0
                          });
-     factory.playerName = null;
+     factory.playerName =  null; 
+     // get last player added
+     var lastAdded = factory.players.length -1;  
+     console.log(factory.players[lastAdded]);
+     
+     factory.selectPiece(factory.players[lastAdded].piece);
+     // factory.getRemainingPieces(factory.gamePieces);
+     // console.log(factory.gamePieces[factory.players[lastAdded].piece.id -1]);
+  },
+  
+  // when a player selects a piece, make other pieces unavailable
+  factory.selectPiece = function(piece){
+    // console.log(piece);
+    for(var i = 0; i < factory.gamePieces.length; i++){
+      if(factory.gamePieces[i] === piece){
+        factory.gamePieces[i].taken = true;
+        factory.remainingGamePieces.splice(i, 1);
+      }
+    }
   },
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
   factory.movePlayer = function(player){
-    var position = player.position + diceRoll();
+    var position = player.position + 7; // replace 7 with diceroll function
     if (position > 39){ // 40 == GO
       player.money += 200; // passed go
       var offset = position - 40;
