@@ -4,11 +4,20 @@
 				<div class="form-group">
 					<label for="layer">Enter it here:</label>
 					<input class="form-control" id="layer" ng-model="factory.playerName" placeholder="Enter Name" required><br />
-					<div class="form-group"  ng-model="remainingPieces">
+					<div class="form-group"  ng-model="factory.playerPiece">
 							<label for="piece">Select a piece for your player:</label>
-							<select ng-controller="GamePieceCtrl" ng-init="factory.playerPiece = remainingPieces[0]" ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece"
-							id="piece" required>
-								<option class="form-control" id="piece" ng-repeat="item in remainingPieces" required>{{ item.pieceName }}</option>
+							<select ng-options="item.pieceName for item in remainingPieces" 							class="form-control"
+											ng-model="factory.playerPiece" 
+											id="piece"
+											ng-change="update()"
+											ng-init="factory.playerPiece = remainingPieces[0]"
+											required>
+								<option ng-model="factory.playerPiece"
+												class="form-control"
+												id="piece"
+												ng-repeat="item in remainingPieces"
+												selected
+												required>{{ item.pieceName }}</option>
 						</select>
 					</div><br />
 					<button type="submit" class="btn btn-warning btn-large">Submit</button>

@@ -4,7 +4,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   factory.players = [];
   factory.gamePieces = [{pieceName:"blue", id: 1, taken: false},{pieceName:"red", id: 2, taken: false},{pieceName:"green", id: 1, taken: false}];
   
-  factory.remainingGamePieces = [];
+  factory.remainingGamePieces = factory.gamePieces;
 
   factory.addPlayer = function(){
     factory.players.push({ id: factory.players.length + 1,
@@ -27,17 +27,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
      console.log(factory.players[lastAdded]);
      
      factory.selectPiece(factory.players[lastAdded].piece);
-     factory.getRemainingPieces(factory.gamePieces);
+     // factory.getRemainingPieces(factory.gamePieces);
      // console.log(factory.gamePieces[factory.players[lastAdded].piece.id -1]);
   },
-  
-      factory.getRemainingPieces = function(collection){
-      for( var i = 0; i < collection.length; i++){
-        if(collection[i].taken == false){
-          this.remainingGamePieces.push(collection[i])
-        }
-      }
-    },
   
   // when a player selects a piece, make other pieces unavailable
   factory.selectPiece = function(piece){
@@ -45,7 +37,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     for(var i = 0; i < factory.gamePieces.length; i++){
       if(factory.gamePieces[i] === piece){
         factory.gamePieces[i].taken = true;
-        console.log(piece);
+        factory.remainingGamePieces.splice(i, 1);
+
       }
     }
   },
