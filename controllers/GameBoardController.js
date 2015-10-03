@@ -8,6 +8,9 @@ portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $s
 	
 	$scope.playerPiece = GameFactory.players.playerPiece;
 	$scope.remainingPieces = GameFactory.remainingGamePieces;
+	// initial startGame value to be false. Toggled true in partial when user selects
+	// to start game
+	$scope.startGame = false;
 	
 	// changes the selected piece in the drop down to reflect already taken pieces
 	$scope.update = function(){

@@ -1,7 +1,10 @@
-<!-- test for player piece selection. default available piece reflects 'next in line' piece -->
-<form ng-submit="factory.addPlayer()" class="form-inline" role="form">
-	<div class="form-group">
-		<label for="layer">Enter it here:</label>
+<!-- test for player piece selection. default available piece reflects 'next in line' piece 
+
+5 player max. 'startGame' variable hold value true if player max is reached when
+factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
+<form ng-submit="startGame = factory.addPlayer()" class="form-inline" role="form">
+	<div ng-hide="startGame"class="form-group">
+		<label for="layer">Enter name here:</label>
 		<input class="form-control" id="layer" ng-model="factory.playerName" placeholder="Enter Name" required>
 		<br />
 		<div class="form-group" ng-model="factory.playerPiece">
@@ -15,6 +18,10 @@
 		<button type="submit" class="btn btn-warning btn-large">Submit</button>
 	</div>
 </form>
+<div ng-show="startGame">
+	<h3>Start Portlandia Monopoly!</h3>
+</div>
+<span ng-show="players.length > 0">Number of Players = {{players.length}}</span>
 <!-- test player movement -->
 
 <form ng-submit="factory.movePlayer()"></form>
