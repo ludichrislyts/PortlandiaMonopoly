@@ -4,11 +4,15 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   factory.players = [];
   factory.gamePieces = [{pieceName:"blue", id: 1, taken: false},
                         {pieceName:"red", id: 2, taken: false},
-                        {pieceName:"green", id: 1, taken: false},
-                        {pieceName:"yellow", id: 1, taken: false},
-                        {pieceName:"black", id: 1, taken: false}];
+                        {pieceName:"green", id: 3, taken: false},
+                        {pieceName:"yellow", id: 4, taken: false},
+                        {pieceName:"black", id: 5, taken: false}];
   
-  factory.remainingGamePieces = factory.gamePieces;
+  factory.remainingGamePieces = [];
+  for(var i = 0; i < factory.gamePieces.length; i ++){
+    factory.remainingGamePieces.push(factory.gamePieces[i])
+  }
+  
   // returns true if enough players reached (5 player max), nothing if not
   factory.addPlayer = function(){
     factory.players.push({ id: factory.players.length + 1,
@@ -21,7 +25,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                           //  propertyGroupsOwned:[], // array of card
                           //  propertyCardsOwned: [],
                            position: 0,
-                           getOutFree: 0,
+                           getOutFree: [],
                            houses: 0,
                            hotels: 0
                          });
