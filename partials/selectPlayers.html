@@ -2,8 +2,8 @@
 
 5 player max. 'startGame' variable hold value true if player max is reached when
 factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
-<form ng-submit="startGame = factory.addPlayer(); update()" class="form-inline" role="form">
-	<div ng-hide="startGame"class="form-group">
+<form ng-submit="showStartButton = factory.addPlayer(); update()" class="form-inline" role="form">
+	<div ng-hide="showStartButton || startGame"class="form-group">
 		<label for="player">Enter name here:</label>
 		<input  class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
 		<br />
@@ -18,12 +18,18 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 		<button type="submit" class="btn btn-warning btn-large">Submit</button>
 	</div>
 </form>
-<div ng-show="startGame || players.length > 0">
-	<a ui-sref="play" class="button btn btn-large btn-primary">Start Portlandia Monopoly!</a>
+<!--displays players, start roll-for-first actions-->
+<div ng-show="showStartButton || players.length > 1">
+		<a ng-click="getFirstPlayer = true; startGame = true" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">Start Portlandia Monopoly!</a>
 </div>
-<span ng-show="players.length > 0">Number of Players = {{players.length}}
-	<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece</p>
-</span>
+<div class="row">
+	<div ng-show="players.length > 0">Number of Players = {{players.length}}
+		<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame" ng-click="rollForFirst(); rolled_for_first = true">
+			<button ng-hide="rolled_for_first">Roll for First!</button>
+		</span></p>
+	</div>
+	
+</div>
 <!-- test player movement -->
 
 <form ng-submit="factory.movePlayer()"></form>
