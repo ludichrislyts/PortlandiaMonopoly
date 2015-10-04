@@ -7,7 +7,31 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                         {pieceName:"green", id: 3, taken: false},
                         {pieceName:"yellow", id: 4, taken: false},
                         {pieceName:"black", id: 5, taken: false}];
- 
+                        
+/////////////////////////////////////////////////////////////////////////////
+//////////////////// seed player array for testing //////////////////////////
+///////////////////////////////////////////////////////////////////////////// 
+ // only seed 4 so 'play' page can be tested still       
+  factory.seedPlayerArray = function(){
+    for (var i = 0; i < 4; i++){
+      factory.players.push({ id: i + 1,
+                             name: "Joe",
+                             piece: {pieceName: "blank",
+                                     id: i + 1,
+                                     taken: false},
+                             money: 1500,
+                             inMarket: false,
+                             freedomRolls: 0,
+                             position: 0,
+                             getOutFree: [],
+                             houses: 0,
+                             hotels: 0 });
+    } 
+    return factory.players;  
+  },
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////// end seed player array //////////////////////////////
+/////////////////////////////////////////////////////////////////////////////         
 /////////////////////////////////////////////////////////////////////////////
 //////////////////////// player/piece  selection ////////////////////////////
 /////////////////////////////////////////////////////////////////////////////                       

@@ -1,4 +1,14 @@
 <div class="container">
 	<h3>play</h3>
+	<div class="row in-market" ng-show="isInMarket">
+		<h3>You're stuck at Saturday Market!!</h3>
+	</div>
+	<div class="row free" ng-show="!isInMarket">
+		<label for="turn_options">Post roll options:</label>
+		<select name="turn_options" id="turn_options">
+			<option ng-model="turn_options">Purchase</option>
+			<option ng-model="turn_options">Mortgage</option>
+		</select>
+	</div>
 	
 </div>

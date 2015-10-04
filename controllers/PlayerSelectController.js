@@ -7,6 +7,8 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	$scope.pieces = GameFactory.gamePieces;
 	$scope.startGame = false;
 	
+	// TESTING ONLY //
+	$scope.players = GameFactory.seedPlayerArray();
 	// $scope.playerPiece = GameFactory.players.playerPiece;
 	$scope.update = function(){
 		$scope.remainingPieces = GameFactory.remainingGamePieces;

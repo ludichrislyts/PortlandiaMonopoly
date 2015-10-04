@@ -2,4 +2,8 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	
 	$scope.factory = GameFactory;
 	$scope.player = UtilitiesFactory.findById($stateParams.playerId);
+	
+	// $stateParams
+	
+	$stateParams.isInMarket = GameFactory.inMarket();
 });
