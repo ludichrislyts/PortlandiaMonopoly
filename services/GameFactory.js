@@ -7,7 +7,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                         {pieceName:"green", id: 3, taken: false},
                         {pieceName:"yellow", id: 4, taken: false},
                         {pieceName:"black", id: 5, taken: false}];
-  
+ 
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////// player/piece  selection ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////                       
+  // array to hold pieces in piece selection process
   factory.remainingGamePieces = [];
   for(var i = 0; i < factory.gamePieces.length; i ++){
     factory.remainingGamePieces.push(factory.gamePieces[i])
@@ -32,17 +36,15 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
      factory.playerName =  null; 
      // get last player added
      var lastAdded = factory.players.length -1;  
-     console.log(factory.players[lastAdded].piece.pieceName);
-     
+     // take piece out of display array and toggle taken in piece object
      factory.selectPiece(factory.players[lastAdded].piece);
-     // factory.getRemainingPieces(factory.gamePieces);
-     // console.log(factory.gamePieces[factory.players[lastAdded].piece.id -1]);
+     // return true to toggle play in html
      if(factory.players.length == 5){return true;}
   },
   
   // when a player selects a piece, make other pieces unavailable
   factory.selectPiece = function(piece){
-    // only got through remaining pieces
+    // only go through remaining pieces
     for(var i = 0; i < factory.remainingGamePieces.length; i++){
       if(factory.remainingGamePieces[i].id === piece.id){
         // make sure to match piece in original array to toggle taken
@@ -55,6 +57,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       }
     }
   },
+/////////////////////////////////////////////////////////////////////////////
+//////////////////// end player/piece  selection ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+  
+  //determine if a player is at the market or not
+  factory.canRoll = function(player){
+    if(player.inMarket){return true;}
+    else{return false;}
+  },
+  
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
   factory.movePlayer = function(player){

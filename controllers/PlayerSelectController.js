@@ -1,8 +1,8 @@
-portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $stateParams, GameFactory, DeedsFactory, UtilitiesFactory) {
+portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
 	
 	$scope.factory = GameFactory;
 	
-	$scope.deeds = DeedsFactory.deeds;
+	// $scope.deeds = DeedsFactory.deeds;
 	$scope.players = GameFactory.players;
 	$scope.pieces = GameFactory.gamePieces;
 	$scope.startGame = false;
