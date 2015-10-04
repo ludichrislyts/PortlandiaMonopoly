@@ -27,31 +27,34 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 /////////////////// highest roller controls /////////////////////////
 /////////////////////////////////////////////////////////////////////
 	var highestRoller = [{player: null, roll: 0, show: false}];
-	var player = null // UtilitiesFactory.findById(GameFactory.players, $stateParams.playerId);
+	var player = null 
 	// assigns playerId to highestRoller player_id
-	// returns player id of highest roller
+	// returns true if highest, false if not
 	$scope.rollForFirst = function(playerId){
+		$scope.show_roll_results = true;
 		player = UtilitiesFactory.findById(GameFactory.players, playerId);
 		console.log("player: " + player);
 		require(['../lib/chance.js'], function(Chance){
 			var chance = new Chance();
 //		var numberRolled = DiceFactory.roll(); // use when ready
-			var numberRolled = chance.integer({min:2, max:12});
+			var numberRolled = chance.integer({min:2, max:12}); // this works too
 			if(numberRolled > highestRoller[0].roll){
 				highestRoller = [];
 				highestRoller.push({player: player, roll: numberRolled, show: true})
-				console.log("highest = true, numberRolled: " + numberRolled +
-										", highestRoller[0].player.name: " + highestRoller[0].player.name +
-										", .roll: " + highestRoller[0].roll);
+				// console.log("highest = true, numberRolled: " + numberRolled +
+				// 						", highestRoller[0].player.name: " + highestRoller[0].player.name +
+				// 						", .roll: " + highestRoller[0].roll);
+				$scope.highRollername = highestRoller[0].player.name;
+				$scope.highRollerNum = highestRoller[0].roll;
+				$scope.$apply(); // needed this line to update the view
 				return true;
 			}else {
-				console.log("highest = false, numberRolled: " + numberRolled +
-						", highestRoller.player.name: " + highestRoller[0].player.name +
-						", .roll: " + highestRoller[0].roll);
+				// console.log("highest = false, numberRolled: " + numberRolled +
+				// 		", highestRoller.player.name: " + highestRoller[0].player.name +
+				// 		", .roll: " + highestRoller[0].roll);
 				return false}			
 		});		
 	}
-	$scope.highRoller = highestRoller;
 /////////////////////////////////////////////////////////////////////
 /////////////////// end highest roller controls /////////////////////
 /////////////////////////////////////////////////////////////////////
