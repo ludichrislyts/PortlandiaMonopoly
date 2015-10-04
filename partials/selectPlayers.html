@@ -2,15 +2,15 @@
 
 5 player max. 'startGame' variable hold value true if player max is reached when
 factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
-<form ng-submit="startGame = factory.addPlayer()" class="form-inline" role="form">
+<form ng-submit="startGame = factory.addPlayer(); update()" class="form-inline" role="form">
 	<div ng-hide="startGame"class="form-group">
-		<label for="layer">Enter name here:</label>
-		<input class="form-control" id="layer" ng-model="factory.playerName" placeholder="Enter Name" required>
+		<label for="player">Enter name here:</label>
+		<input  class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
 		<br />
 		<div class="form-group" ng-model="factory.playerPiece">
 			<label for="piece">Select a piece for your player:</label>
-			<select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
-			ng-change="update()" ng-init="factory.playerPiece = remainingPieces[0]" required>
+			<select  ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
+			 ng-init="factory.playerPiece = remainingPieces[0]" required>
 				<option ng-model="factory.playerPiece" class="form-control" id="piece" ng-repeat="item in remainingPieces" selected required>{{ item.pieceName }}</option>
 			</select>
 		</div>
