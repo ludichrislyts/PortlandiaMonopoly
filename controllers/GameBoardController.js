@@ -10,8 +10,6 @@ portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $s
 	// $scope.playerPiece = GameFactory.players.playerPiece;
 	$scope.update = function(){
 		$scope.remainingPieces = GameFactory.remainingGamePieces;
-	};
-	$scope.updateSelected = function(){
 		$scope.factory.playerPiece = GameFactory.remainingGamePieces[0];
 	};
 	$scope.remainingPieces = GameFactory.remainingGamePieces;
