@@ -13,10 +13,19 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 			// 'header': {
 			// 	templateUrl: "partials/header.html",
 			// },
-			'test': {
-				templateUrl: "partials/testFactoryFunctions.html",
-				controller: "GameBoardCtrl",
+			'playerSelectionView': {
+				templateUrl: "partials/selectPlayers.html",
+				controller: "PlayerSelectCtrl",
 			},
 		}
 	});
+	$stateProvider.state('play',{
+		url:"/play",
+		views:{
+			'turn':{
+				templateUrl: "partials/playerTurn.html",
+				controller: "PlayerSelectCtrl",
+			}
+		}
+	})
 });

@@ -5,18 +5,23 @@
   <title>Play Monopoly!</title>
   <script src="lib/angular.js"></script>
   <script src="lib/angular-ui-router.js"></script>
+  <script src="lib/chance.js"></script>
+  <script src="lib/require.js"></script>
   <script src="app.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.js"></script>
   <script src="services/DeedsFactory.js"></script>
   <script src="services/GameFactory.js"></script>
+  <!--<script src="services/DiceFactory.js"></script>-->
   <script src="services/UtilitiesFactory.js"></script>
-  <script src="controllers/GameBoardController.js"></script>
+  <script src="controllers/PlayerSelectController.js"></script>
+  <script src="controllers/PlayerTurnController.js"></script>
   <script src="controllers/GamePieceController.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
   <body>
-    <div ui-view="test"></div>
+    <div class="container" ui-view="playerSelectionView"></div>
+    <div ui-view="turn"></div>
   </body>
 </html>
