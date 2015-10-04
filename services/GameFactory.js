@@ -32,7 +32,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
      factory.playerName =  null; 
      // get last player added
      var lastAdded = factory.players.length -1;  
-     console.log(factory.players[lastAdded]);
+     console.log(factory.players[lastAdded].piece.pieceName);
      
      factory.selectPiece(factory.players[lastAdded].piece);
      // factory.getRemainingPieces(factory.gamePieces);
@@ -42,11 +42,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   
   // when a player selects a piece, make other pieces unavailable
   factory.selectPiece = function(piece){
-    // console.log(piece);
-    for(var i = 0; i < factory.gamePieces.length; i++){
-      if(factory.gamePieces[i] === piece){
-        factory.gamePieces[i].taken = true;
+    // only got through remaining pieces
+    for(var i = 0; i < factory.remainingGamePieces.length; i++){
+      if(factory.remainingGamePieces[i].id === piece.id){
+        // make sure to match piece in original array to toggle taken
         factory.remainingGamePieces.splice(i, 1);
+        for(var j = 0; j < factory.gamePieces.length; j++){
+          if(factory.gamePieces[j] === piece){
+            factory.gamePieces[j].taken = true;
+          }
+        }
       }
     }
   },
