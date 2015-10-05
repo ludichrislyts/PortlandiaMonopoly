@@ -96,10 +96,17 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     return factory.players;
   }
   //determine if a player is at the market or not
-  factory.canRoll = function(player){
+  factory.inMarket = function(player){
     if(player.inMarket){return true;}
     else{return false;}
   },
+  factory.roll = function(){
+    require(['../lib/chance.js'], function(Chance){
+      var chance = new Chance();
+      return chance;
+    });
+  }
+
   
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
