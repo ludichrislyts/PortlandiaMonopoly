@@ -15,8 +15,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   factory.seedPlayerArray = function(){
     for (var i = 0; i < 4; i++){
       factory.players.push({ id: i + 1,
-                             name: "Joe",
-                             piece: {pieceName: "blank",
+                             name: factory.gamePieces[i].pieceName,
+                             piece: {pieceName: factory.gamePieces[i].pieceName,
                                      id: i + 1,
                                      taken: false},
                              money: 1500,
