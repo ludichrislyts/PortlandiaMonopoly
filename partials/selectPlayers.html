@@ -43,5 +43,7 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 	<div>
 		<button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button><br/>
 	</div>
-	
+</div>
+<div ng-show="startGameMessage">
+	<a ui-sref="play" class="button btn btn-primary btn-large">{{ firstPlayer.name }}, Start the Game!</a>
 </div>

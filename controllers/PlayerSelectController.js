@@ -29,13 +29,13 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	var highestRoller = [{playerName: "", roll: 0, tie: false, id: 0}];
 	var player = null;
 	var numberOfRolls = 0; 
-	var numOfPlayers = GameFactory.players.length;
 	var numberRolled = 2;
 	var firstInTieBreak = true; // for testing ties
 	// assigns playerId to highestRoller player_id
 	// returns true if there is a tie
 	// $scope.rollForFirst = function(playerId){
 	$scope.rollForFirst = function (playerId) {
+		var numOfPlayers = GameFactory.players.length;
 		// logic to determine if its a tie break round
 		if($scope.break_tie && firstInTieBreak){
 			numberOfRolls = 0;
@@ -68,13 +68,16 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 		} else {
 			alert('Sorry, ' + player.name + ', you didn\'t get the high roll.');
 		}
-		if (highestRoller.length > 1 && numberOfRolls == numOfPlayers && firstInTieBreak) {
+		if (highestRoller.length > 1 && (numberOfRolls === numOfPlayers) && firstInTieBreak) {
 			$scope.break_tie = true;
 			firstInTieBreak = true;
 			$scope.playersInTie = highestRoller;
-		}else if(highestRoller.length > 1 && numberOfRolls == numOfPlayers && !firstInTieBreak){// default first player if more than one time in tiebreaker
+		}else if(highestRoller.length > 1 && (numberOfRolls === numOfPlayers) && !firstInTieBreak){// default first player if more than one time in tiebreaker
 			alert ("Ok, enough. " + player.name + " will go first.");
-			return;
+			$scope.break_tie = false;
+			$scope.startGameMessage = true;
+			$scope.firstPlayer = player;
+			$scope.playersInOrder = GameFactory.fixPlayerOrder(player.id);
 		}
 		return;
 	};

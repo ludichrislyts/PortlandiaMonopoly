@@ -2,6 +2,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   var factory = {};
   // elements of the game
   factory.players = [];
+  //factory.playersInOrder = [];
   factory.gamePieces = [{pieceName:"Blue", id: 1, taken: false},
                         {pieceName:"Red", id: 2, taken: false},
                         {pieceName:"Green", id: 3, taken: false},
@@ -85,7 +86,15 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
 /////////////////////////////////////////////////////////////////////////////
 //////////////////// end player/piece  selection ////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
-  
+  // gets result of roll for first garbage, arranges gameflow array of players
+  // basically, take winning roller id as 1st, next highest as 2nd, etc
+  factory.fixPlayerOrder = function(id){
+    var arrayPos = id - 1;
+    for(var i = 0; i < arrayPos; i++){
+      factory.players.push(factory.players.shift());
+    }
+    return factory.players;
+  }
   //determine if a player is at the market or not
   factory.canRoll = function(player){
     if(player.inMarket){return true;}
