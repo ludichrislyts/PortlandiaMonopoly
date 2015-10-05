@@ -26,34 +26,38 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 /////////////////////////////////////////////////////////////////////
 /////////////////// highest roller controls /////////////////////////
 /////////////////////////////////////////////////////////////////////
-	var highestRoller = [{player: null, roll: 0, show: false}];
+	var highestRoller = [{playerName: "", roll: 0, tie: false}];
 	var player = null 
 	// assigns playerId to highestRoller player_id
-	// returns true if highest, false if not
-	$scope.rollForFirst = function(playerId){
+	// returns true if there is a tie
+	// $scope.rollForFirst = function(playerId){
+	var rollForFirst = function(playerId){
 		$scope.show_roll_results = true;
 		player = UtilitiesFactory.findById(GameFactory.players, playerId);
-		console.log("player: " + player);
 		require(['../lib/chance.js'], function(Chance){
 			var chance = new Chance();
 //		var numberRolled = DiceFactory.roll(); // use when ready
 			var numberRolled = chance.integer({min:2, max:12}); // this works too
+			if(numberRolled === highestRoller[0].roll){
+				highestRoller[0].tie = true;
+				highestRoller.push({playerName: player.name, roll: numberRolled, tie: true});
+				return alert(player.name + ' tied with the highest roller at ' + numberRolled + '!');
+			}
 			if(numberRolled > highestRoller[0].roll){
 				highestRoller = [];
-				highestRoller.push({player: player, roll: numberRolled, show: true})
-				// console.log("highest = true, numberRolled: " + numberRolled +
-				// 						", highestRoller[0].player.name: " + highestRoller[0].player.name +
-				// 						", .roll: " + highestRoller[0].roll);
-				$scope.highRollername = highestRoller[0].player.name;
+				highestRoller.push({playerName: player.name, roll: numberRolled, tie: false});
+				return alert(player.name + ' has the highest roll at ' + numberRolled + '!');
+				$scope.highRollerName = highestRoller[0].playerName;
 				$scope.highRollerNum = highestRoller[0].roll;
-				$scope.$apply(); // needed this line to update the view
-				return true;
-			}else {
-				// console.log("highest = false, numberRolled: " + numberRolled +
-				// 		", highestRoller.player.name: " + highestRoller[0].player.name +
-				// 		", .roll: " + highestRoller[0].roll);
-				return false}			
+			}else{
+				return alert('Sorry, ' +  player.name + ', you didn\'t get the high roll.');
+			}		
 		});		
+	}
+	$scope.runAndUpdate = function(playerId){
+		rollForFirst(playerId);
+		$scope.highRollerName = highestRoller[0].playerName;
+		$scope.highRollerNum = highestRoller[0].roll;		
 	}
 /////////////////////////////////////////////////////////////////////
 /////////////////// end highest roller controls /////////////////////

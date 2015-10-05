@@ -24,12 +24,14 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 </div>
 <div class="row">
 	<div ng-show="players.length > 0">Number of Players = {{players.length}}
-		<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame" ng-click="rollForFirst(item.id); rolled_for_first = true">
-			<button ng-hide="rolled_for_first">Roll for First!</button>
+		<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame">
+		 <!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
+		 
+			<button ng-click="runAndUpdate(item.id); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>
 		</span></p>
 	</div>
 	<div ng-model="highestRoller" ng-show="show_roll_results">
-		<h2 ng-model="highestRoller">{{ highRollername}} has the highest roll at {{ highRollerNum }}!</h2>
+		<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
 	</div>
 	
 </div>
