@@ -14,7 +14,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
 ///////////////////////////////////////////////////////////////////////////// 
  // only seed 4 so 'play' page can be tested still       
   factory.seedPlayerArray = function(){
-    for (var i = 0; i < 2; i++){ // changed to 2 for tie testing
+    for (var i = 0; i < 4; i++){ // changed to 2 for tie testing
       factory.players.push({ id: i + 1,
                              name: factory.gamePieces[i].pieceName,
                              piece: {pieceName: factory.gamePieces[i].pieceName,

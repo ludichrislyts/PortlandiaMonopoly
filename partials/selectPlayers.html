@@ -21,7 +21,7 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 	</form>
 	<!--displays players, start roll-for-first actions-->
 	<div ng-show="showStartButton || players.length > 1">
-			<a ng-click="getFirstPlayer = true; startGame = true" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">Start Portlandia Monopoly!</a>
+			<a ng-click="getFirstPlayer = true; startGame = true" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
 	</div>
 	<div class="row">
 		<div ng-show="players.length > 0">Number of Players = {{players.length}}
