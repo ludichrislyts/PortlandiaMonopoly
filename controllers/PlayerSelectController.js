@@ -31,7 +31,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	// assigns playerId to highestRoller player_id
 	// returns true if there is a tie
 	// $scope.rollForFirst = function(playerId){
-	var rollForFirst = function(playerId){
+	$scope.rollForFirst = function(playerId){
 		$scope.show_roll_results = true;
 		player = UtilitiesFactory.findById(GameFactory.players, playerId);
 		require(['../lib/chance.js'], function(Chance){
@@ -47,20 +47,20 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 				highestRoller = [];
 				highestRoller.push({playerName: player.name, roll: numberRolled, tie: false});
 				return alert(player.name + ' has the highest roll at ' + numberRolled + '!');
-				$scope.highRollerName = highestRoller[0].playerName;
-				$scope.highRollerNum = highestRoller[0].roll;
+			// HIGH ROLLER
+			// below are unused until I can get angular to display to html the results
+			// of the first roll -- selectPlayers.html HIGH ROLLER snippet
+				// $scope.highRollerName = highestRoller[0].playerName;
+				// $scope.highRollerNum = highestRoller[0].roll;
 			}else{
 				return alert('Sorry, ' +  player.name + ', you didn\'t get the high roll.');
 			}		
 		});		
-	}
-	$scope.runAndUpdate = function(playerId){
-		rollForFirst(playerId);
-		$scope.highRollerName = highestRoller[0].playerName;
-		$scope.highRollerNum = highestRoller[0].roll;		
-	}
+	};
+	
 /////////////////////////////////////////////////////////////////////
 /////////////////// end highest roller controls /////////////////////
 /////////////////////////////////////////////////////////////////////
+	
 		
 });

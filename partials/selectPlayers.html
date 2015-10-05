@@ -27,12 +27,18 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 		<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame">
 		 <!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
 		 
-			<button ng-click="runAndUpdate(item.id); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>
+			<button ng-click="rollForFirst(item.id); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>
 		</span></p>
 	</div>
-	<div ng-model="highestRoller" ng-show="show_roll_results">
+	<!-- HIGH ROLLER
+	<!-- 
+			maybe someday will be able to use this little section to display
+	 		high roller results. For now, just sending alerts to the screen
+		  --PlayerSelectController.js HIGH ROLLER section 
+	-->
+	<!--<div ng-model="highestRoller" ng-show="show_roll_results">
 		<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
-	</div>
+	</div>-->
 	
 </div>
 <!-- test player movement -->
