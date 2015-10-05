@@ -1,8 +1,10 @@
 portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
 	
 	$scope.factory = GameFactory;
-	$scope.player = UtilitiesFactory.findById($stateParams.playerId);
+	console.log($stateParams.playerId);
+	$scope.player1 = GameFactory.players[0];
+	console.log($scope.player1.name);
 	var chance = new Chance();// module loaded in index.html
-	console.log(chance.integer());
-	$stateParams.isInMarket = GameFactory.inMarket($scope.player);
+	var roll = (chance.integer({min:2, max:12}));
+	$stateParams.isInMarket = GameFactory.inMarket($scope.player1);
 });
