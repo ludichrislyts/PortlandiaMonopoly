@@ -9,5 +9,5 @@ portlandiaMonopoly.factory('UtilitiesFactory', function() {
       }
       return null;
     },
-  };
+  }//end return
 });

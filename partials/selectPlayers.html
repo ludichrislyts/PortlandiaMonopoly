@@ -39,8 +39,9 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 	<!--<div ng-model="highestRoller" ng-show="show_roll_results">
 		<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
 	</div>-->
+<div ng-model="tie" ng-show="break_tie">
+	<div>
+		<button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button><br/>
+	</div>
 	
 </div>
-<!-- test player movement -->
-
-<form ng-submit="factory.movePlayer()"></form>

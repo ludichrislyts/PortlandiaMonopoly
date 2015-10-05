@@ -2,18 +2,18 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   var factory = {};
   // elements of the game
   factory.players = [];
-  factory.gamePieces = [{pieceName:"blue", id: 1, taken: false},
-                        {pieceName:"red", id: 2, taken: false},
-                        {pieceName:"green", id: 3, taken: false},
-                        {pieceName:"yellow", id: 4, taken: false},
-                        {pieceName:"black", id: 5, taken: false}];
+  factory.gamePieces = [{pieceName:"Blue", id: 1, taken: false},
+                        {pieceName:"Red", id: 2, taken: false},
+                        {pieceName:"Green", id: 3, taken: false},
+                        {pieceName:"Yellow", id: 4, taken: false},
+                        {pieceName:"Black", id: 5, taken: false}];
                         
 /////////////////////////////////////////////////////////////////////////////
 //////////////////// seed player array for testing //////////////////////////
 ///////////////////////////////////////////////////////////////////////////// 
  // only seed 4 so 'play' page can be tested still       
   factory.seedPlayerArray = function(){
-    for (var i = 0; i < 4; i++){
+    for (var i = 0; i < 2; i++){ // changed to 2 for tie testing
       factory.players.push({ id: i + 1,
                              name: factory.gamePieces[i].pieceName,
                              piece: {pieceName: factory.gamePieces[i].pieceName,
