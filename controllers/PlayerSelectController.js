@@ -47,7 +47,9 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 		$scope.show_roll_results = true;
 		player = UtilitiesFactory.findById(GameFactory.players, playerId);
 		var chance = new Chance(); // module loaded in index.html
-		numberRolled = chance.integer({min:2, max:12}); // this works too
+		var die1 = chance.integer({min:1, max:6}); 
+		var die2 = chance.integer({min:1, max:6});
+		numberRolled = die1 + die2;
 		if (numberRolled === highestRoller[0].roll) {
 			highestRoller[0].tie = true;
 			highestRoller.push({ playerName: player.name, roll: numberRolled, tie: true, id: player.id });
