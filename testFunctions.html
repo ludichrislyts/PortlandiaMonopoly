@@ -1,24 +1,40 @@
-<html>
+<html lang="en" ng-app="portlandiaMonopoly">
   <head>
     <title>Test Functions</title>
 
-    <script src="testFunctions.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.1.js"></script>
     <script src="lib/chance.js"></script>
+    <script src="lib/require.js"></script>
+    <script src="services/UtilitiesFactory.js"></script>
+    <script src="services/DeedsFactory.js"></script>
+    <script src="services/GameFactory.js"></script>
+    <script src="services/Community_ChanceFactory.js"></script>
+    <script src="controllers/PlayerSelectController.js"></script>
+    <script src="controllers/PlayerTurnController.js"></script>
+    <script src="controllers/GameBoardController.js"></script>
+    <script src="controllers/FunctionController.js"></script>
+
+    <script src="testFunctions.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
-    <script>
-      // var roll_two_dice = rollDice();
-      // document.write("roll_two_dice = " + roll_two_dice + "<br>");
-      //
-      // var roll = totalRollAndCheckForDoubles(roll_two_dice[0], roll_two_dice[1]);
-      // document.write("roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
-      //
-      // var roll_one_die = rollDie();
-      // document.write("roll_one_die = " +roll_one_die + "<br>");
+  <body ng-controller="FunctionCtrl">
 
 
-      var roll = roll();
-      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles);
-    </script>
   </body>
 </html>
+
+
+
+
+
+
+<!-- <form id="name" ng-click="getDeed(pos)">
+<input type="text"  ng-model="position" ng-change="position" value="9">enter a value
+<button type="submit" name="button">get deed</button>
+</form> -->

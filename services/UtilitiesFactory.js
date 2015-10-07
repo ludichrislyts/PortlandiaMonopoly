@@ -9,6 +9,7 @@ portlandiaMonopoly.factory('UtilitiesFactory', function() {
       }
       return null;
     },
+
     // rolls dice, returns an array with the total and true if doubles, false if not
     rollDice: function(){
       var chance = new Chance(); // loaded in index.html
