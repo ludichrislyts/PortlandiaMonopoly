@@ -13,15 +13,22 @@
 			<p>If upon your third unsuccessful attempt at rolling for doubles, the $50 fine will be leveed anyway, and you leave Saturday Market, moving the number of spaces as indicated by the roll</p>
 		</div>
 		</label>
-		<div class="row form-group" >
-			<h4>How do you want to leave Saturday Market?</h4>
-			<ul class="no_style_li" required>
-				<li ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" value="card"> Use a get out of market free card</input></li>
-				<li><input name="market" type="radio" ng-model="market_choice" value="pay"> Pay $50</input></li>
-				<li><input name="market" type="radio" ng-model="market_choice" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input></li>
-			</ul>
-		</div>
-		<button ng-model="market_choice" ng-click="marketAction()">Submit </button>
+		<h4>How do you want to leave Saturday Market?</h4>
+		<form ng-submit="marketAction()">
+			<div class="row form-group" >
+				<ul class="no_style_li" required>
+					<li ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" value="card"> Use a get out of market free card</input></li>
+					<li><input name="market" type="radio" ng-model="market_choice" value="pay"> Pay $50</input></li>
+					<li><input name="market" type="radio" ng-model="market_choice" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input></li>
+				</ul>
+			</div>
+			<button type="submit" ng-model="market_choice" ng-click="isInMarket = false">Submit </button>
+		</form>
+		<form ng-show="choose_card">
+			<select name="cards" ng-model="cardSelected">
+				<option ng-repeat="item in getOutFreeCards">{{ item.group }}</option>
+			</select>	
+		</form>
 	</div>
 	
 	<h3>{{ player1.name}}, roll!</h3>

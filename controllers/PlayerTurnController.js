@@ -17,7 +17,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.roll = function(){
 		var resultArray = UtilitiesFactory.rollDice();
 		var numResult = resultArray[0];
-		var doubles = resultArray[1];
+		var die1 = resultArray[1];
+		var die2 = resultArray[2];
+		var doubles = resultArray[3];
 		if(doubles){
 			$scope.result = "You rolled " + numResult + ' with doubles!';
 			return true;
@@ -34,11 +36,45 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	}else{
 		$scope.has_card = false;
 	}
-	// $scope.marketAction = function(){
-	// 	if($scope.market_choice === "card"){
-			
-	// 	}
-	// }
+	$scope.marketAction = function(){
+		if($scope.market_choice === "card"){
+			var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
+			$scope.getOutFreeCards.splice(1, index);
+			console.log("in card option of marketAction");
+			$scope.isInMarket = false;
+			return;
+		}else if($scope.market_choice === "pay"){
+			if($scope.player1.money < 50){
+				var performMortgageOption = function(){};// needs a function
+			}else{
+				console.log("in pay option of marketAction, money before adjust= " + $scope.player1.money);
+				GameFactory.adjustMoney($scope.player1, -50);
+				$scope.isInMarket = false;
+				console.log("in pay option of marketAction, money after adjust= " + $scope.player1.money);
+				return;
+			}
+		}else if($scope.market_choice === "roll"){
+			var marketRoll = $scope.roll();
+			if(marketRoll.doubles){
+				console.log("in roll option of marketAction");
+				alert("You rolled doubles! You can leave Saturday Market!");
+				$scope.isInMarket = false;
+				$scope.rollAgain = false; // doubles are void when getting out of Market
+				return;
+			}else{
+				if($scope.player1.freedomRolls === 2){
+					alert("You did not roll doubles! You must pay the $50 fine!");
+					GameFactory.adjustMoney($scope.player1, -50);
+					$scope.player1.freedomRolls = 0;
+					return;
+				}else{
+					alert("You did not roll doubles! Walk around Saturday Market for another turn. Maybe you'll find that tie-dye nighty you've always wanted!");
+					$scope.player1.freedomRolls++;
+					return;
+				}
+			}// end else not doubles
+		}// end roll choice	
+	}// end market actions
 	
 // market rules:
 /* ------if player is in market, they can...
