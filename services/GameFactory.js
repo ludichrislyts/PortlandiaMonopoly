@@ -2,10 +2,48 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   var factory = {};
   // elements of the game
   factory.players = [];
-  factory.gamePieces = [{pieceName:"blue", id: 1, taken: false},{pieceName:"red", id: 2, taken: false},{pieceName:"green", id: 1, taken: false}];
+  //factory.playersInOrder = [];
+  factory.gamePieces = [{pieceName:"Blue", id: 1, taken: false},
+                        {pieceName:"Red", id: 2, taken: false},
+                        {pieceName:"Green", id: 3, taken: false},
+                        {pieceName:"Yellow", id: 4, taken: false},
+                        {pieceName:"Black", id: 5, taken: false}];
+                        
+/////////////////////////////////////////////////////////////////////////////
+//////////////////// seed player array for testing //////////////////////////
+///////////////////////////////////////////////////////////////////////////// 
+ // only seed 4 so 'play' page can be tested still       
+  factory.seedPlayerArray = function(){
+    for (var i = 0; i < 4; i++){ // changed to 2 for tie testing
+      factory.players.push({ id: i + 1,
+                             name: factory.gamePieces[i].pieceName,
+                             piece: {pieceName: factory.gamePieces[i].pieceName,
+                                     id: i + 1,
+                                     taken: false},
+                             money: 1500,
+                             inMarket: false,
+                             freedomRolls: 0,
+                             position: 0,
+                             getOutFree: [],
+                             houses: 0,
+                             hotels: 0 });
+    } 
+    return factory.players;  
+  },
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////// end seed player array //////////////////////////////
+/////////////////////////////////////////////////////////////////////////////        //                ----------------------------------------                  
+//                ----------------------------------------                  
+/////////////////////////////////////////////////////////////////////////////
+//////////////////////// player/piece  selection ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////                       
+  // array to hold pieces in piece selection process
+  factory.remainingGamePieces = [];
+  for(var i = 0; i < factory.gamePieces.length; i ++){
+    factory.remainingGamePieces.push(factory.gamePieces[i])
+  }
   
-  factory.remainingGamePieces = factory.gamePieces;
-
+  // returns true if enough players reached (5 player max), nothing if not
   factory.addPlayer = function(){
     factory.players.push({ id: factory.players.length + 1,
                            name: factory.playerName,
@@ -17,30 +55,59 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                           //  propertyGroupsOwned:[], // array of card
                           //  propertyCardsOwned: [],
                            position: 0,
-                           getOutFree: 0,
+                           getOutFree: [],
                            houses: 0,
                            hotels: 0
                          });
      factory.playerName =  null; 
      // get last player added
      var lastAdded = factory.players.length -1;  
-     console.log(factory.players[lastAdded]);
-     
+     // take piece out of display array and toggle taken in piece object
      factory.selectPiece(factory.players[lastAdded].piece);
-     // factory.getRemainingPieces(factory.gamePieces);
-     // console.log(factory.gamePieces[factory.players[lastAdded].piece.id -1]);
+     // return true to toggle play in html
+     if(factory.players.length == 5){return true;}
   },
   
   // when a player selects a piece, make other pieces unavailable
   factory.selectPiece = function(piece){
-    // console.log(piece);
-    for(var i = 0; i < factory.gamePieces.length; i++){
-      if(factory.gamePieces[i] === piece){
-        factory.gamePieces[i].taken = true;
+    // only go through remaining pieces
+    for(var i = 0; i < factory.remainingGamePieces.length; i++){
+      if(factory.remainingGamePieces[i].id === piece.id){
+        // make sure to match piece in original array to toggle taken
         factory.remainingGamePieces.splice(i, 1);
+        for(var j = 0; j < factory.gamePieces.length; j++){
+          if(factory.gamePieces[j] === piece){
+            factory.gamePieces[j].taken = true;
+          }
+        }
       }
     }
   },
+/////////////////////////////////////////////////////////////////////////////
+//////////////////// end player/piece  selection ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+  // gets result of roll for first garbage, arranges gameflow array of players
+  // basically, take winning roller id as 1st, next highest as 2nd, etc
+  factory.fixPlayerOrder = function(id){
+    var arrayPos = id - 1;
+    for(var i = 0; i < arrayPos; i++){
+      factory.players.push(factory.players.shift());
+    }
+    return factory.players;
+  }
+  //determine if a player is at the market or not
+  factory.inMarket = function(player){
+    if(player.inMarket){return true;}
+    else{return false;}
+  },
+  factory.roll = function(){
+    require(['../lib/chance.js'], function(Chance){
+      var chance = new Chance();
+      return chance;
+    });
+  }
+
+  
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
   factory.movePlayer = function(player){

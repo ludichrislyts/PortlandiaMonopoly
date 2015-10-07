@@ -80,3 +80,7 @@ html, body, div, h1, h2, h3, p, ul, li {
 .right-game-squares{
   float: left;
 }
+.header-type{
+  min-height: 250px;
+  /*margin-bottom: 150px;*/
+}
