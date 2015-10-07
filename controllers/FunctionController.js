@@ -26,18 +26,80 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
     if (deed.owned > 0) {
       return "Deed Already Owned";
     }
-    if (!factory.enoughMoney(deed.price, player.money)) {
+    if (!$scope.enoughMoney(deed.price, player.money)) {
       return "Not Enough Money";
     }
     player.money -= deed.price;
     deed.owned = player.id;
-    var new_monopoly = factory.checkForMonopoly(player.position);
+    var new_monopoly = $scope.checkForMonopoly(player.position);
     var return_string= "Congratulations! You now own " + deed.name + ".";
-    if (new_monopoly) {
-      return_string += " You have a new Monopoly!";
-    }
+    // if (new_monopoly) {
+    //   return_string += " You have a new Monopoly!";
+    // }
     return return_string;
   }
+
+  $scope.enoughMoney = function(price, player_money) {
+      if (player_money >= price) {
+        return true;
+      }
+      else {
+        return false;
+      }
+  }
+
+  $scope.checkForMonopoly = function(deed_number) {
+    var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
+                      [21, 23, 24], [26, 27, 29], [31, 32, 34], [37, 39]];
+    var deed_group = deed_groups[deeds[deed_number].group_id];
+
+    // if (deed_group.length == 2) {
+    //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
+    //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
+    //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
+    //       factory.deeds[deed_group[0]].monopoly = true;
+    //       factory.deeds[deed_group[1]].monopoly = true;
+    //       return true;
+    //     }
+    //   }
+    // }
+    // else if (deed_group.length == 3) {
+    //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
+    //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[2]].owned)
+    //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
+    //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
+    //       factory.deeds[deed_group[0]].monopoly = true;
+    //       factory.deeds[deed_group[1]].monopoly = true;
+    //       factory.deeds[deed_group[2]].monopoly = true;
+    //       return true;
+    //     }
+    //   }
+    // }
+    // else { //deed_group.length == 4
+    //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
+    //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[2]].owned)
+    //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[3]].owned)
+    //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
+    //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
+    //       factory.deeds[deed_group[0]].monopoly = true;
+    //       factory.deeds[deed_group[1]].monopoly = true;
+    //       factory.deeds[deed_group[2]].monopoly = true;
+    //       factory.deeds[deed_group[3]].monopoly = true;
+    //       return true;
+    //     }
+    //   }
+    // }
+    return false; //there is no new monopoly
+  }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -57,13 +119,16 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
                    money: 1500,
                    inMarket: false,
                    freedomRolls: 0,
-                   position: 0,
+                   position: 9,
                    getOutFree: [],
                    houses: 0,
                    hotels: 0
                 };
 
-  $scope.buyDeed(deeds[9], player);
+  var buyDeedString = $scope.buyDeed(deeds[9], player);
+  document.write("buyDeed string = " + buyDeedString + "<br>");
+  document.write("player.money = " + player.money + "<br>");
+  document.write("deeds[].owned = " + deeds[9].owned + "<br>")
 
   document.write("---------------------<br>");
 

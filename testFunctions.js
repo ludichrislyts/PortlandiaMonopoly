@@ -11,60 +11,8 @@
 //
 
 //
-// factory.checkForMonopoly = function(deed_number) {
-//   var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
-//                     [21, 23, 24], [26, 27, 29], [31, 32, 34], [37, 39]];
-//   var collection = factory.deeds;
-//   console.log(collection);
-//
-//   // var deed_group = deed_groups[factory.deeds[deed_number].group_id];
-//   // if (deed_group.length == 2) {
-//   //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
-//   //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
-//   //       factory.deeds[deed_group[0]].monopoly = true;
-//   //       factory.deeds[deed_group[1]].monopoly = true;
-//   //       return true;
-//   //     }
-//   //   }
-//   // }
-//   // else if (deed_group.length == 3) {
-//   //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[2]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
-//   //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
-//   //       factory.deeds[deed_group[0]].monopoly = true;
-//   //       factory.deeds[deed_group[1]].monopoly = true;
-//   //       factory.deeds[deed_group[2]].monopoly = true;
-//   //       return true;
-//   //     }
-//   //   }
-//   // }
-//   // else { //deed_group.length == 4
-//   //   if ((factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[1]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[2]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned == factory.deeds[deed_group[3]].owned)
-//   //       && (factory.deeds[deed_group[0]].owned > 0)) { //if true we have a monopoly
-//   //     if (factory.deeds[deed_group[0]].monopoly == false) { //we found a new monopoly
-//   //       factory.deeds[deed_group[0]].monopoly = true;
-//   //       factory.deeds[deed_group[1]].monopoly = true;
-//   //       factory.deeds[deed_group[2]].monopoly = true;
-//   //       factory.deeds[deed_group[3]].monopoly = true;
-//   //       return true;
-//   //     }
-//   //   }
-//   // }
-//   return false; //there is no new monopoly
-// }
-//
-// factory.enoughMoney = function(price, player_money) {
-//     if (player_money >= price) {
-//       return true;
-//     }
-//     else {
-//       return false;
-//     }
-// }
+
+
 //
 // factory.mortgageDeed = function(deed, player) {
 //   if (deed.mortgaged == true) {
