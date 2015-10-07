@@ -7,79 +7,109 @@ html, body, div, h1, h2, h3, p, ul, li {
   padding: 0;
 }
 
-.clearfix:before,
-.clearfix:after {
-    content:"";
-    display:table;
-}
-
-.clearfix:after {
-    clear:both;
+body{
+  font-size: 10px;
 }
 
 .board-container{
-  width: 80%;
-  margin: auto;
+  margin: 50px;
+}
+
+.column-container{
+  display: flex;
+  flex-direction: column;
+  height: 780px;
+  width: 780px;
 }
 
 .top-row{
-  float: left;
-  height: 100px;
+  flex: 2;
+  display: flex;
 }
 
-.mid-row{
-  float: left;
-  height: 493px;
+.top-left-corner-cell{
+  position: relative;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  flex: 2;
+}
+
+.top-right-corner-cell{
+  position: relative;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  flex: 2;
+}
+
+.top-cell{
+  position: relative;
+  border: 1px solid black;
+  border-right: none;
+  flex: 1;
+}
+
+.middle-row{
+  flex: 9;
+  display: flex;
+}
+
+.middle-row-left{
+  position: relative;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-cell{
+  position: relative;
+  flex: 1;
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.middle-row-middle{
+  position: relative;
+  flex: 9;
+}
+
+.middle-row-right{
+  position: relative;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-cell{
+  position: relative;
+  flex: 1;
+  border: 1px solid black;
+  border-bottom: none;
 }
 
 .bottom-row{
-  float: left;
-  height: 100px;
+  flex: 2;
+  display: flex;
+  border: 1px solid black;
 }
 
-.corner-game-square{
-  float: left;
-  height: 96px;
-  width: 96px;
-  border: 2px solid black;
+.bottom-left-corner-cell{
+  position: relative;
+  border-right: 1px solid black;
+  flex: 2;
 }
 
-.game-square{
-  float: left;
+.bottom-right-corner-cell{
+  position: relative;
+  flex: 2;
 }
 
-.top .square, .bottom .square{
-  float: left;
-  height: 96px;
-  width: 53px;
-  border: 2px solid black;
-  border-left: none;
+.bottom-cell{
+  position: relative;
+  border-right: 1px solid black;
+  flex: 1;
 }
 
-.left-game-squares{
-  float: left;
-}
-
-.left .square, .right .square{
-  height: 53px;
-  width: 96px;
-  border: 2px solid black;
-  border-top: none;
-}
-
-.left{
-
-}
-
-.middle-board{
-  float: left;
-  height: 493px;
-  width: 493px;
-}
-
-.right-game-squares{
-  float: left;
-}
 .header-type{
   min-height: 250px;
   /*margin-bottom: 150px;*/
