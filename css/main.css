@@ -125,6 +125,7 @@ body{
 
 .square1 .content, .square3 .content, .square6 .content, .square8 .content, .square9 .content{
   flex: 3;
+  text-align: center;
 }
 
 .square11, .square13, .square14, .square16, .square18, .square19{
@@ -133,6 +134,7 @@ body{
 
 .square11 .content, .square13 .content, .square14 .content, .square16 .content, .square18 .content, .square19 .content{
   flex: 3;
+  text-align: center;
 }
 
 .square21, .square23, .square24, .square26, .square27, .square29{
@@ -142,6 +144,7 @@ body{
 
 .square21 .content, .square23 .content, .square24 .content, .square26 .content, .square27 .content, .square29 .content{
   flex: 3;
+  text-align: center;
 }
 
 .square31, .square32, .square34, .square37, .square39{
@@ -150,6 +153,42 @@ body{
 
 .square31 .content, .square32 .content, .square34 .content, .square37 .content, .square39 .content{
   flex: 3;
+  text-align: center;
+}
+
+.right-name{
+  transform: rotate(270deg);
+  position: absolute;
+  width: 56px;
+  margin-left: -15%;
+  bottom: 40%;
+}
+
+.square31 .right-name{
+  width: 56px;
+  margin-left: -15%;
+  bottom: 30%;
+}
+
+.left-name{
+  transform: rotate(90deg);
+  position: absolute;
+  width: 56px;
+  margin-left: 42%;
+  bottom: 40%;
+}
+
+.square18 .left-name {
+  bottom: 34%;
+}
+
+.top-name{
+  transform: rotate(180deg);
+  margin-top: 140%;
+}
+
+.bottom-name{
+  margin-top: 10%;
 }
 
 .color1{
