@@ -31,7 +31,7 @@
 		</form>
 	</div>
 	
-	<h3>{{ player1.name}}, roll!</h3>
+	<h3>{{ currentPlayer.name}}, roll!</h3>
 	<button ng-hide="rolled || isInMarket" ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
 	
 	<div class="row free" ng-show="!isInMarket">

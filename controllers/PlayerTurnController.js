@@ -4,12 +4,40 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.result = "roll";
 	$scope.factory = GameFactory;
 	$scope.player1 = GameFactory.players[0];
+	$scope.player2 = GameFactory.players[1];
+	$scope.player3 = GameFactory.players[2];
+	$scope.player4 = GameFactory.players[3];
+	$scope.player4 = GameFactory.players[4];
+	
+	var index = 0;
+	$scope.currentPlayer = $scope.player1;
+	$scope.endTurn = function(){
+		index++;
+		if(index === GameFactory.players.length){
+			index = 0;
+		}
+		if(index === 0){
+			$scope.currentPlayer = $scope.player1;
+		}else if(index === 1){
+			$scope.currentPlayer = $scope.player2;
+		}else if(index === 2){
+			$scope.currentPlayer = $scope.player3;
+		}else if(index ===3){
+			$scope.currentPlayer = $scope.player4;
+		}else{
+			$scope.currentPlayer = $scope.player5;
+		}
+	},
+	
+	
+	// current player start
 	// default to 'in market' for testing
-	$scope.player1.inMarket = true;
-	$scope.isInMarket = GameFactory.inMarket($scope.player1);
-	console.log($scope.player1.name + " <= name, inMarket => " + $scope.player1.inMarket);
-	GameFactory.playerStatsAlert($scope.player1);
-	if($scope.player1.freedomRolls < 2){
+	$scope.currentPlayer.inMarket = true;
+	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
+	console.log($scope.isInMarket + ", scope");
+	
+	GameFactory.playerStatsAlert($scope.currentPlayer);
+	if($scope.currentPlayer.freedomRolls < 2){
 		$scope.stay_in_market = true;
 	}else{
 		$scope.stay_in_market = false;		
@@ -30,7 +58,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 	}
 	// to determine to show use card option
-	var freeCards = GameFactory.hasGetOut($scope.player1);
+	var freeCards = GameFactory.hasGetOut($scope.currentPlayer);
 	if(freeCards.length > 0){
 		$scope.has_card = true;
 		$scope.getOutFreeCards = freeCards;
@@ -38,24 +66,25 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		$scope.has_card = false;
 	}
 	$scope.marketAction = function(){
-		GameFactory.playerStatsAlert($scope.player1);
+		console.log($scope.currentPlayer);
+		GameFactory.playerStatsAlert($scope.currentPlayer);
 		if($scope.market_choice === "card"){
 			var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
 			$scope.getOutFreeCards.splice(1, index);
 			console.log("in card option of marketAction");
 			$scope.isInMarket = false;
-			GameFactory.playerStatsAlert($scope.player1);
+			GameFactory.playerStatsAlert($scope.currentPlayer);
 			return;
 		}else if($scope.market_choice === "pay"){
-			if($scope.player1.money < 50){
+			if($scope.currentPlayer.money < 50){
 				var performMortgageOption = function(){};// needs a function
 			}else{
-				console.log("in pay option of marketAction, money before adjust= " + $scope.player1.money);
-				GameFactory.adjustMoney($scope.player1, -50);
+				console.log("in pay option of marketAction, money before adjust= " + $scope.currentPlayer.money);
+				GameFactory.adjustMoney($scope.currentPlayer, -50);
 				$scope.isInMarket = false;
-				console.log("in pay option of marketAction, money after adjust= " + $scope.player1.money);
-				$scope.player1.inMarket = false;
-				GameFactory.playerStatsAlert($scope.player1);
+				console.log("in pay option of marketAction, money after adjust= " + $scope.currentPlayer.money);
+				$scope.currentPlayer.inMarket = false;
+				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}
 		}else if($scope.market_choice === "roll"){
@@ -65,22 +94,22 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				alert("You rolled doubles! You can leave Saturday Market!");
 				$scope.rollAgain = false; // doubles are void when getting out of Market
 				$scope.isInMarket = false;
-				$scope.player1.inMarket = false;
-				GameFactory.playerStatsAlert($scope.player1);
+				$scope.currentPlayer.inMarket = false;
+				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}else{
-				if($scope.player1.freedomRolls === 2){
+				if($scope.currentPlayer.freedomRolls === 2){
 					alert("You did not roll doubles! You must pay the $50 fine!");
-					GameFactory.adjustMoney($scope.player1, -50);
-					$scope.player1.freedomRolls = 0;
+					GameFactory.adjustMoney($scope.currentPlayer, -50);
+					$scope.currentPlayer.freedomRolls = 0;
 					$scope.isInMarket = false;
-					$scope.player1.inMarket = false;
-					GameFactory.playerStatsAlert($scope.player1);
+					$scope.currentPlayer.inMarket = false;
+					GameFactory.playerStatsAlert($scope.currentPlayer);
 					return;
 				}else{
 					alert("You did not roll doubles! Walk around Saturday Market for another turn. Maybe you'll find that tie-dye nighty you've always wanted!");
-					$scope.player1.freedomRolls++;
-					GameFactory.playerStatsAlert($scope.player1);
+					$scope.currentPlayer.freedomRolls++;
+					GameFactory.playerStatsAlert($scope.currentPlayer);
 					return;
 				}
 			}// end else not doubles
