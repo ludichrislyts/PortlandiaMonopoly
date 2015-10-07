@@ -1,9 +1,30 @@
 <div class="container header-type">
-	<h3>{{ player1.name}}, roll!</h3>
-	<button ng-model="result" ng-click="roll()">{{result}}</button>
 	<div class="row in-market" ng-show="isInMarket">
 		<h3>You're stuck at Saturday Market!!</h3>
+		<!--show if player has another turn to stay in market-->
+		<label for="market_choices">{{ player1.name }}, select your options. You can:<br/>
+		* Pay $50.<br/>
+		* Use an available "Leave Saturday Market Free" card<br/>
+		* Roll for doubles<br/>
+		<button ng-model="show_rules" ng-click="show_rules = !show_rules">Click here to view rules</button>
+		<div ng-show="show_rules" class="row">
+			<p>If you choose to pay $50 or spend a "Leave Saturday Market Free" card at the start of your turn, you may roll as normal.</p><br/>
+			<p>If you choose to roll for doubles and do not get doubles, you will stay at Saturday Market for another turn (3 turns max).</p><br/>
+			<p>If upon your third unsuccessful attempt at rolling for doubles, the $50 fine will be leveed anyway, and you leave Saturday Market, moving the number of spaces as indicated by the roll</p>
+		</div>
+		</label>
+		<div class="row">
+			<select ng-show="stay_in_market" name="market_choices" id="market_choices">
+				<option ng-show="has_card" type="radio" name="market_choices" ng-model="use_card">Use a get out of market free card</option>
+				<option type="radio" name="market_choices" ng-model="pay">Pay $50</option>
+				<option type="radio" name="market_choices" ng-model="roll">I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</option>
+			</select>
+		</div>
 	</div>
+	
+	<h3>{{ player1.name}}, roll!</h3>
+	<button ng-hide="rolled || isInMarket" ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
+	
 	<div class="row free" ng-show="!isInMarket">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
