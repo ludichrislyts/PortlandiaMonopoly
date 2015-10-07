@@ -110,4 +110,7 @@ body{
   flex: 1;
 }
 
-square
+.header-type{
+  min-height: 250px;
+  /*margin-bottom: 150px;*/
+}

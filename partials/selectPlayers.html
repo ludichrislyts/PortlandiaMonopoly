@@ -1,0 +1,53 @@
+<!-- test for player piece selection. default available piece reflects 'next in line' piece 
+
+5 player max. 'startGame' variable hold value true if player max is reached when
+factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
+<div class="container header-type">
+	<form ng-submit="showStartButton = factory.addPlayer(); update()" class="form-inline" role="form">
+		<div ng-hide="showStartButton || startGame" class="form-group">
+			<label for="player">Enter name here:</label>
+			<input class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
+			<br />
+			<div class="form-group" ng-model="factory.playerPiece">
+				<label for="piece">Select a piece for your player:</label>
+				<select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
+				ng-init="factory.playerPiece = remainingPieces[0]" selected required>
+					<option ng-model="factory.playerPiece" class="form-control" id="piece" ng-repeat="item in remainingPieces" selected required>{{ item.pieceName }}</option>
+				</select>
+			</div>
+			<br />
+			<button type="submit" class="btn btn-warning btn-large">Submit</button>
+		</div>
+	</form>
+	<!--displays players, start roll-for-first actions-->
+	<div ng-show="showStartButton || players.length > 1">
+		<a ng-click="getFirstPlayer = true; startGame = true" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
+	</div>
+	<div class="row">
+		<div ng-show="players.length > 0">Number of Players = {{players.length}}
+			<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame">
+			<!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
+			
+				<button ng-click="rollForFirst(item.id); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>
+			</span></p>
+		</div>
+		<!-- HIGH ROLLER
+		<!-- 
+				maybe someday will be able to use this little section to display
+				high roller results. For now, just sending alerts to the screen
+				--PlayerSelectController.js HIGH ROLLER section 
+		-->
+		<!--<div ng-model="highestRoller" ng-show="show_roll_results">
+			<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
+		</div>-->
+		<div ng-model="tie" ng-show="break_tie">
+			<div>
+				<button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button>
+				<br/>
+			</div>
+		</div>
+		<div ng-show="startGameMessage" ng-click="startGameMessage = false">
+			<a ui-sref="play({playerId:firstPlayer.id})" class="button btn btn-primary btn-large">{{ firstPlayer.name }}, Start the Game!</a>
+		</div>
+	</div>
+</div>
