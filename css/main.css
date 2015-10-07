@@ -11,86 +11,103 @@ body{
   font-size: 10px;
 }
 
-.clearfix:before,
-.clearfix:after {
-    content:"";
-    display:table;
-}
-
-.clearfix:after {
-    clear:both;
-}
-
 .board-container{
-  width: 80%;
-  margin: auto;
-  overflow: scroll;
+  margin: 50px;
 }
 
-.top-row, .mid-row, {
-  float: left;
+.column-container{
+  display: flex;
+  flex-direction: column;
+  height: 780px;
+  width: 780px;
 }
 
-{
-  float: left;
+.top-row{
+  flex: 2;
+  display: flex;
+}
+
+.top-left-corner-cell{
+  position: relative;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  flex: 2;
+}
+
+.top-right-corner-cell{
+  position: relative;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  flex: 2;
+}
+
+.top-cell{
+  position: relative;
+  border: 1px solid black;
+  border-right: none;
+  flex: 1;
+}
+
+.middle-row{
+  flex: 9;
+  display: flex;
+}
+
+.middle-row-left{
+  position: relative;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.left-cell{
+  position: relative;
+  flex: 1;
+  border: 1px solid black;
+  border-bottom: none;
+}
+
+.middle-row-middle{
+  position: relative;
+  flex: 9;
+}
+
+.middle-row-right{
+  position: relative;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-cell{
+  position: relative;
+  flex: 1;
+  border: 1px solid black;
+  border-bottom: none;
 }
 
 .bottom-row{
-  float: left;
+  flex: 2;
+  display: flex;
+  border: 1px solid black;
 }
 
-.corner-game-square{
-  float: left;
-  height: 9.6em;
-  width: 9.6em;
-  border: .1em solid black;
-}
-
-.game-square{
-  float: left;
-}
-
-.top .square, .bottom .square{
-  float: left;
-  height: 9.6em;
-  width: 5.3em;
-  border: .1em solid black;
-  border-left: none;
+.bottom-left-corner-cell{
   position: relative;
+  border-right: 1px solid black;
+  flex: 2;
 }
 
-.left-game-squares{
-  float: left;
-}
-
-.left .square, .right .square{
-  height: 5.3em;
-  width: 9.6em;
-  border: .1em solid black;
-  border-top: none;
+.bottom-right-corner-cell{
   position: relative;
+  flex: 2;
 }
 
-.left{
-
+.bottom-cell{
+  position: relative;
+  border-right: 1px solid black;
+  flex: 1;
 }
 
-.middle-board{
-  float: left;
-  height: 48.5em;
-  width: 48.5em;
-}
-
-.right-game-squares{
-  float: left;
-}
-
-.Connecticut{
-  position: absolute;
-  text-align: center;
-  border-top: .1em solid black;
-  width: 5.3em;
-  top: 0px;
-  left: 0px;
-  background:rgba(128,204,255,0.7);
-}
+square
