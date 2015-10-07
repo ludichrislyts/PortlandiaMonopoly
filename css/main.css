@@ -84,3 +84,6 @@ html, body, div, h1, h2, h3, p, ul, li {
   min-height: 250px;
   /*margin-bottom: 150px;*/
 }
+.no_style_li{
+  list-style-type: none;
+}

@@ -4,6 +4,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.result = "roll";
 	$scope.factory = GameFactory;
 	$scope.player1 = GameFactory.players[0];
+	// default to 'in market' for testing
 	$scope.player1.inMarket = true;
 	$scope.isInMarket = GameFactory.inMarket($scope.player1);
 	console.log($scope.player1.name + " <= name, inMarket => " + $scope.player1.inMarket);
@@ -25,6 +26,20 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			return false;
 		}
 	}
+	// to determine to show use card option
+	var freeCards = GameFactory.hasGetOut($scope.player1);
+	if(freeCards.length > 0){
+		$scope.has_card = true;
+		$scope.getOutFreeCards = freeCards;
+	}else{
+		$scope.has_card = false;
+	}
+	// $scope.marketAction = function(){
+	// 	if($scope.market_choice === "card"){
+			
+	// 	}
+	// }
+	
 // market rules:
 /* ------if player is in market, they can...
 * pay $50

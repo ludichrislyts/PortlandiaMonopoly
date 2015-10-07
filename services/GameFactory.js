@@ -110,6 +110,17 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
+  
+  // check if player had a get out of market card
+  // returns empty array if no card, getOutFree array if has card
+  factory.hasGetOut = function(player){
+    if(player.getOutFree.length === 0){
+      return {card:[]}
+    }else{
+      return {card: player.getOutFree}
+    }
+  },
+  
   factory.movePlayer = function(player){
     var position = player.position + 7; // replace 7 with diceroll function
     if (position > 39){ // 40 == GO
