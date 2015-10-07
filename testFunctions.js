@@ -17,7 +17,7 @@ function roll() {
 
 function buyDeed(deed, player) {
   if (deed.owned > 0) {
-    return "Company Already Owned";
+    return "Deed Already Owned";
   }
   if (!enoughMoney(deed.price, player.money)) {
     return "Not Enough Money";
@@ -86,7 +86,27 @@ function enoughMoney (price, player_money) {
 }
 
 function mortgageDeed(deed, player) {
-  
+  if (deed.mortgaged == true) {
+    return "Deed Already Mortgaged";
+  }
+  deed.mortgaged = true;
+  player.money += deed.mortgage_value;
+  return "Deed Mortgaged";
+}
+
+function unMortgageDeed(deed, player) {
+  if (deed.mortgaged == false) {
+    return "Deed is not mortgaged";
+  }
+  var mortgage_repayment_price = deed.mortgage_value * 1.1; //Unmortgaging deeds cost 10% more than the amount it was mortgaged for
+  if (enoughMoney(mortgage_repayment_price, player.money)) {
+    deed.mortgaged = false;
+    player.money -= mortgage_repayment_price;
+    return "Deed is unmortgaged";
+  }
+  else {
+    return "Not Enough Money";
+  }
 }
 
 
