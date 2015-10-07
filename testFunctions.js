@@ -19,7 +19,7 @@ function buyDeed(deed, player) {
   if (deed.owned > 0) {
     return "Company Already Owned";
   }
-  if (player.money < deed.price) {
+  if (!enoughMoney(deed.price, player.money)) {
     return "Not Enough Money";
   }
   player.money -= deed.price;
@@ -75,6 +75,20 @@ function checkForMonopoly(deed_number) {
   }
   return false; //there is no new monopoly
 }
+
+function enoughMoney (price, player_money) {
+    if (player_money >= price) {
+      return true;
+    }
+    else {
+      return false;
+    }
+}
+
+function mortgageDeed(deed, player) {
+  
+}
+
 
 
 //group_id:
