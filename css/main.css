@@ -25,18 +25,18 @@ body{
 .top-row{
   flex: 2;
   display: flex;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .top-left-corner-cell{
   position: relative;
-  border-top: 1px solid black;
   border-left: 1px solid black;
   flex: 2;
 }
 
 .top-right-corner-cell{
   position: relative;
-  border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
   flex: 2;
@@ -44,8 +44,7 @@ body{
 
 .top-cell{
   position: relative;
-  border: 1px solid black;
-  border-right: none;
+  border-left: 1px solid black;
   flex: 1;
 }
 
@@ -85,6 +84,10 @@ body{
   flex: 1;
   border: 1px solid black;
   border-bottom: none;
+}
+
+.square19, .square31{
+  border-top: none;
 }
 
 .bottom-row{
