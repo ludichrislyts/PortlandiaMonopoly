@@ -25,18 +25,18 @@ body{
 .top-row{
   flex: 2;
   display: flex;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
 
 .top-left-corner-cell{
   position: relative;
-  border-top: 1px solid black;
   border-left: 1px solid black;
   flex: 2;
 }
 
 .top-right-corner-cell{
   position: relative;
-  border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
   flex: 2;
@@ -44,8 +44,7 @@ body{
 
 .top-cell{
   position: relative;
-  border: 1px solid black;
-  border-right: none;
+  border-left: 1px solid black;
   flex: 1;
 }
 
@@ -87,6 +86,10 @@ body{
   border-bottom: none;
 }
 
+.square19, .square31{
+  border-top: none;
+}
+
 .bottom-row{
   flex: 2;
   display: flex;
@@ -114,6 +117,162 @@ body{
   min-height: 250px;
   /*margin-bottom: 150px;*/
 }
+
 .no_style_li{
   list-style-type: none;
+
+
+.square1, .square3, .square6, .square8, .square9{
+  display: flex;
+  flex-direction: column;
+}
+
+.square1 .content, .square3 .content, .square6 .content, .square8 .content, .square9 .content{
+  flex: 3;
+  text-align: center;
+}
+
+.square11, .square13, .square14, .square16, .square18, .square19{
+  display: flex;
+}
+
+.square11 .content, .square13 .content, .square14 .content, .square16 .content, .square18 .content, .square19 .content{
+  flex: 3;
+  text-align: center;
+}
+
+.square21, .square23, .square24, .square26, .square27, .square29{
+  display: flex;
+  flex-direction: column;
+}
+
+.square21 .content, .square23 .content, .square24 .content, .square26 .content, .square27 .content, .square29 .content{
+  flex: 3;
+  text-align: center;
+}
+
+.square31, .square32, .square34, .square37, .square39{
+  display: flex;
+}
+
+.square31 .content, .square32 .content, .square34 .content, .square37 .content, .square39 .content{
+  flex: 3;
+  text-align: center;
+}
+
+.right-name{
+  transform: rotate(270deg);
+  position: absolute;
+  width: 56px;
+  margin-left: -15%;
+  bottom: 40%;
+}
+
+.right-cost{
+  transform: rotate(270deg);
+  position: absolute;
+  width: 56px;
+  margin-left: 32%;
+  bottom: 40%;
+}
+
+.square31 .right-name{
+  width: 56px;
+  margin-left: -15%;
+  bottom: 30%;
+}
+
+.left-name{
+  transform: rotate(90deg);
+  position: absolute;
+  width: 56px;
+  margin-left: 42%;
+  bottom: 40%;
+}
+
+.left-cost{
+  transform: rotate(90deg);
+  position: absolute;
+  width: 56px;
+  margin-left: -8%;
+  bottom: 40%;
+}
+
+.square18 .left-name {
+  bottom: 34%;
+}
+
+.top-name{
+  transform: rotate(180deg);
+  margin-top: 90%;
+}
+
+.top-cost{
+  transform: rotate(180deg);
+  margin-top: 15%;
+}
+
+.bottom-name{
+  margin-top: 10%;
+}
+
+.bottom-cost{
+  margin-top: 5em;
+}
+
+.square1 .bottom-cost{
+  margin-top: 4em;
+}
+
+.color1{
+  height: 27px;
+  border-bottom: 1px solid black;
+  background-color: #803399;
+}
+
+.color2{
+  height: 27px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  background-color: #80CCFF;
+}
+
+.color3{
+  width: 27px;
+  border-left: 1px solid black;
+  background-color: #FF00FF;
+  flex: 1;
+}
+
+.color4{
+  width: 27px;
+  border-left: 1px solid black;
+  background-color: #FF8000;
+}
+
+.color5{
+  height: 27px;
+  border-top: 1px solid black;
+  background-color: #FF0000;
+}
+
+.color6{
+  height: 27px;
+  border-top: 1px solid black;
+  background-color: #FFFF00;
+}
+
+.color7{
+  width: 27px;
+  border-right: 1px solid black;
+  background-color: #338033;
+  flex: 1;
+}
+
+.color8{
+  width: 27px;
+  border-right: 1px solid black;
+  background-color: #2020CC;
+  flex: 1;
+
 }

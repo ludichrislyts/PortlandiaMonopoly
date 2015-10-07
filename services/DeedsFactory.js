@@ -39,6 +39,7 @@ factory.deeds[0] = {name: "G0",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""  //company, sport, train
                 };
@@ -52,6 +53,7 @@ factory.deeds[1] = {name: "JAMA SOFTWARE",
                   group_id: 1,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -65,6 +67,7 @@ factory.deeds[2] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -78,6 +81,7 @@ factory.deeds[3] = {name: "ALTSOURCE",
                   group_id: 1,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -91,6 +95,7 @@ factory.deeds[4] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -104,6 +109,7 @@ factory.deeds[5] = {name: "MAX",
                   group_id: 2,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "train"
                 };
@@ -117,6 +123,7 @@ factory.deeds[6] = {name: "ZAPPROVED",
                   group_id: 3,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                };
@@ -130,6 +137,7 @@ factory.deeds[7] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                };
@@ -143,6 +151,7 @@ factory.deeds[8] = {name: "GLOBESHERPA",
                   group_id: 3,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -156,6 +165,7 @@ factory.deeds[9] = {name: "THE DYRT",
                   group_id: 3,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -169,6 +179,7 @@ factory.deeds[10] = {name: "PORTLAND SATURDAY MARKET",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                  };
@@ -182,6 +193,7 @@ factory.deeds[11] = {name: "BRANDLIVE",
                   group_id: 4,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                  };
@@ -195,6 +207,7 @@ factory.deeds[12] = {name: "PORTLAND TRAILBLAZERS",
                   group_id: 5,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                  };
@@ -209,6 +222,7 @@ factory.deeds[13] = {name: "THINKSHOUT",
                   group_id: 4,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                  };
@@ -222,6 +236,7 @@ factory.deeds[14] = {name: "ACQUIA",
                   group_id: 4,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -235,6 +250,7 @@ factory.deeds[15] = {name: "PORTLAND STREETCAR",
                   group_id: 2,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "train"
                 };
@@ -248,6 +264,7 @@ factory.deeds[16] = {name: "NOTION",
                   group_id: 6,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -261,6 +278,7 @@ factory.deeds[17] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -274,6 +292,7 @@ factory.deeds[18] = {name: "ARUBA NETWORKS",
                   group_id: 6,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -287,6 +306,7 @@ factory.deeds[19] = {name: "RENTRAK",
                   group_id: 6,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -300,6 +320,7 @@ factory.deeds[20] = {name: "WASHINGTON PARK",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -313,6 +334,7 @@ factory.deeds[21] = {name: "RADAR",
                   group_id: 7,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -326,6 +348,7 @@ factory.deeds[22] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -339,6 +362,7 @@ factory.deeds[23] = {name: "CHIRPIFY",
                   group_id: 7,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -352,6 +376,7 @@ factory.deeds[24] = {name: "IOVATION",
                   group_id: 7,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -365,6 +390,7 @@ factory.deeds[25] = {name: "PORTLAND AERIAL TRAM",
                   group_id: 2,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -378,6 +404,7 @@ factory.deeds[26] = {name: "METAL TOAD",
                   group_id: 8,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -391,6 +418,7 @@ factory.deeds[27] = {name: "WEBTRENDS",
                   group_id: 8,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -404,6 +432,7 @@ factory.deeds[28] = {name: "PORTLAND TIMBERS",
                   group_id: 5,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -417,6 +446,7 @@ factory.deeds[29] = {name: "APPNEXUS",
                   group_id: 8,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -430,6 +460,7 @@ factory.deeds[30] = {name: "GO TO PORTLAND SATURDAY MARKET",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -443,6 +474,7 @@ factory.deeds[31] = {name: "CROWDCOMPASS",
                   group_id: 9,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -456,6 +488,7 @@ factory.deeds[32] = {name: "JIVE SOFTWARE",
                   group_id: 9,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -469,6 +502,7 @@ factory.deeds[33] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -482,6 +516,7 @@ factory.deeds[34] = {name: "PUPPET LABS",
                   group_id: 9,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -495,6 +530,7 @@ factory.deeds[35] = {name: "WASHINGTON PARK AND ZOO RAILWAY",
                   group_id: 2,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -508,6 +544,7 @@ factory.deeds[36] = {name: "",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -521,6 +558,7 @@ factory.deeds[37] = {name: "NEW RELIC",
                   group_id: 10,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -534,6 +572,7 @@ factory.deeds[38] = {name: "VOODOO DOUGHNUTS",
                   group_id: 0,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: ""
                 };
@@ -547,6 +586,7 @@ factory.deeds[39] = {name: "FREE GEEK",
                   group_id: 10,
                   owned: 0,
                   monopoly: false,
+                  mortgaged: false,
                   multiplier: 0,
                   type: "company"
                 };
@@ -584,7 +624,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //owned: 0 means unowned, 1 means player 1 owns it, 2 means player 2 owns it, etc.
 //   //************************************************************************
 //   factory.deeds = [];
-  
+
 //   //Go
 //   factory.deeds[0] = {name: "G0",
 //                     price: 0,
@@ -597,7 +637,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""  //company, sport, or train
 //                   };
-  
+
 //   //Mediterranean Avenue
 //   factory.deeds[1] = {name: "JAMA SOFTWARE",
 //                     price: 60,
@@ -610,7 +650,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                   };
-  
+
 //   //Community Chest
 //   // factory.deeds[2] = {name: "",
 //   //                   price: ,
@@ -623,7 +663,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Baltic Avenue
 //   factory.deeds[3] = {name: "ALTSOURCE",
 //                     price: 60,
@@ -636,7 +676,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                   };
-  
+
 //   //Income Tax
 //   // factory.deeds[4] = {name: "",
 //   //                   price: ,
@@ -649,7 +689,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Reading Railroad
 //   factory.deeds[5] = {name: "MAX",
 //                     price: 200,
@@ -662,7 +702,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "train"
 //                   };
-  
+
 //   //Oriental Avenue
 //   factory.deeds[6] = {name: "ZAPPROVED",
 //                     price: 100,
@@ -675,7 +715,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                 };
-  
+
 //   //Chance
 //   // factory.deeds[7] = {name: "",
 //   //                   price: ,
@@ -688,7 +728,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                };
-  
+
 //   //Vermont Avenue
 //   factory.deeds[8] = {name: "GLOBESHERPA",
 //                     price: 100,
@@ -701,7 +741,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                   };
-  
+
 //   //Connecticut Avenue
 //   factory.deeds[9] = {name: "THE DYRT",
 //                     price: 120,
@@ -714,7 +754,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                   };
-  
+
 //   //Jail
 //   // factory.deeds[10] = {name: "PORTLAND SATURDAY MARKET",
 //   //                   price: ,
@@ -729,7 +769,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                  };
-  
+
 //   //St. Charles Place
 //   factory.deeds[11] = {name: "BRANDLIVE",
 //                     price: 140,
@@ -742,7 +782,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "company"
 //                   };
-  
+
 //   //Electric Company
 //   factory.deeds[12] = {name: "PORTLAND TRAILBLAZERS",
 //                     price: 150,
@@ -755,8 +795,8 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
-  
+
+
 //   //States Avenue
 //   factory.deeds[13] = {name: "THINKSHOUT",
 //                     price: 140,
@@ -769,7 +809,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Virginia Avenue
 //   factory.deeds[14] = {name: "ACQUIA",
 //                     price: 160,
@@ -782,7 +822,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Pennsylvania Railroad
 //   factory.deeds[15] = {name: "PORTLAND STREETCAR",
 //                     price: 200,
@@ -795,7 +835,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: "train"
 //                   };
-  
+
 //   //St. James Place
 //   factory.deeds[16] = {name: "NOTION",
 //                     price: 180,
@@ -808,7 +848,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Community Chest
 //   // factory.deeds[17] = {name: "",
 //   //                   price: ,
@@ -821,7 +861,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Tennessee Avenue
 //   factory.deeds[18] = {name: "ARUBA NETWORKS",
 //                     price: 180,
@@ -834,7 +874,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //New York
 //   factory.deeds[19] = {name: "RENTRAK",
 //                     price: 200,
@@ -847,7 +887,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Free Parking
 //   // factory.deeds[20] = {name: "",
 //   //                   price: ,
@@ -860,7 +900,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Kentucky Avenue
 //   factory.deeds[21] = {name: "RADAR",
 //                     price: 220,
@@ -873,7 +913,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Chance
 //   // factory.deeds[22] = {name: "",
 //   //                   price: ,
@@ -886,7 +926,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Indiana Avenue
 //   factory.deeds[23] = {name: "CHIRPIFY",
 //                     price: 220,
@@ -899,7 +939,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Illinois Avenue
 //   factory.deeds[24] = {name: "IOVATION",
 //                     price: 240,
@@ -912,7 +952,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //B & O Railroad
 //   factory.deeds[25] = {name: "PORTLAND AERIAL TRAM",
 //                     price: 200,
@@ -925,7 +965,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Atlantic Avenue
 //   factory.deeds[26] = {name: "METAL TOAD",
 //                     price: 260,
@@ -938,7 +978,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Ventnor Avenue
 //   factory.deeds[27] = {name: "WEBTRENDS",
 //                     price: 260,
@@ -951,7 +991,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Water Works
 //   factory.deeds[28] = {name: "PORTLAND TIMBERS",
 //                     price: 150,
@@ -964,7 +1004,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Marvin Gardens
 //   factory.deeds[29] = {name: "APPNEXUS",
 //                     price: 280,
@@ -977,7 +1017,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Go To Jail
 //   factory.deeds[30] = {name: "GO TO PORTLAND SATURDAY MARKET",
 //                     price: 0,
@@ -990,7 +1030,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Pacific Avenue
 //   factory.deeds[31] = {name: "CROWDCOMPASS",
 //                     price: 300,
@@ -1003,7 +1043,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //North Carolina Avenue
 //   factory.deeds[32] = {name: "JIVE SOFTWARE",
 //                     price: 300,
@@ -1016,7 +1056,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Community Chest
 //   factory.deeds[33] = {name: "",
 //                     price: 0,
@@ -1029,7 +1069,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Pennsylvania Avenue
 //   factory.deeds[34] = {name: "PUPPET LABS",
 //                     price: 320,
@@ -1042,7 +1082,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Short Line Railroad
 //   factory.deeds[35] = {name: "WASHINGTON PARK AND ZOO RAILWAY",
 //                     price: 200,
@@ -1055,7 +1095,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Chance
 //   factory.deeds[36] = {name: "",
 //                     price: 0,
@@ -1068,7 +1108,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Park Place
 //   factory.deeds[37] = {name: "NEW RELIC",
 //                     price: 350,
@@ -1081,7 +1121,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-  
+
 //   //Luxury Tax
 //   // factory.deeds[38] = {name: "",
 //   //                   price: 0,
@@ -1094,7 +1134,7 @@ factory.deeds[39] = {name: "FREE GEEK",
 //   //                   multiplier: 0,
 //   //                   type: ""
 //   //                 };
-  
+
 //   //Boardwalk
 //   factory.deeds[39] = {name: "FREE GEEK",
 //                     price: 400,
@@ -1107,4 +1147,4 @@ factory.deeds[39] = {name: "FREE GEEK",
 //                     multiplier: 0,
 //                     type: ""
 //                   };
-//      return factory;             
+//      return factory;
