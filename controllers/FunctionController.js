@@ -20,7 +20,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       doubles = false;
     }
     return {total: total, die1: die1, die2: die2, doubles: doubles};
-  },
+  } //end roll()
 
   $scope.buyDeed = function(deed, player) {
     if (deed.owned > 0) {
@@ -38,7 +38,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       return_string += " You have a new Monopoly!";
     }
     return return_string;
-  },
+  } //end buyDeed()
 
   $scope.enoughMoney = function(price, player_money) {
       if (player_money >= price) {
@@ -47,7 +47,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       else {
         return false;
       }
-  },
+  } //end enoughMoney()
 
   $scope.checkForMonopoly = function(deed_number) {
     var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
@@ -91,26 +91,67 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       }
     }
     return false; //there is no new monopoly
-  };
+  } //end checkForMonopoly()
 
   $scope.move = function(player, total) {
     player.position += total;
-    // $(".player" + player.id).appendTo(".sqaure" + player.position);
-  }
+    if (player.position > 39) { //player passed or landed on go
+      player.position -= 40;
+      player.money += 200;
+    }
+    // $(".player" + player.id).appendTo(".square" + player.position);
+  } //end move()
 
-  $scope.turn = function(player, total) {
-    roll ={};
+  $scope.turn = function(player, total) { //if total is not passed in, then the player hasn't rolled yet and we will roll here
+    var roll ={};
     roll.total = total || 0;
     if (roll.total == 0) {
       roll = $scope.roll();
-      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+      document.write("old player.money = " + player.money + "<br>old player.position = " + player.position + "<br>roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
     }
     else {
-      document.write("roll.total =" + roll.total + "<br>");
+      document.write("old player.money = " + player.money + "<br>old player.position = " + player.position + "<br>roll.total =" + roll.total + "<br>");
+      $roll = {doubles: false};
+    }
+    if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
+      $scope.gotoJail(player);
+      return;
     }
     $scope.move(player, roll.total);
+    document.write("new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
+roll.doubles = true;
+    while ((roll.doubles) && (player.num_of_doubles < 3)) {
+      player.num_of_doubles++;
+      roll = $scope.roll();
+roll.doubles = true;
+      if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
+        $scope.gotoJail(player);
+        return;
+      }
+      $scope.move(player, roll.total);
+      document.write("---------------------<br>");
+      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>player.num_of_doubles = " + player.num_of_doubles + "<br>new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
+    }
+    player.num_of_doubles = 0;
+  } //end turn()
 
-  }
+  $scope.gotoJail = function(player) {
+    player.position = 10;
+    player.num_of_doubles = 0;
+    player.inMarket = true;
+    document.write ("In Jail. player.position = " + player.position +
+                    "<br>player.num_of_doubles = " + player.num_of_doubles +
+                    "<br>player.inMarket = " + player.inMarket + "<br>");
+  } //end gotoJail()
+
+
+
+
+
+
+
+
+
 
 
   var player = { id: 1,
@@ -121,14 +162,15 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
                    money: 1500,
                    inMarket: false,
                    freedomRolls: 0,
-                   position: 9,
+                   position: 38,
                    getOutFree: [],
                    houses: 0,
+                   num_of_doubles: 0,
                    hotels: 0
                 };
 
   document.write("<u>turn()</u>:<br>");
-  var turn = $scope.turn(player, 10);
+  var turn = $scope.turn(player);
 
 
 
