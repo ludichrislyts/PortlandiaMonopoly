@@ -8,11 +8,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                         {pieceName:"Green", id: 3, taken: false},
                         {pieceName:"Yellow", id: 4, taken: false},
                         {pieceName:"Black", id: 5, taken: false}];
-                        
+
 /////////////////////////////////////////////////////////////////////////////
 //////////////////// seed player array for testing //////////////////////////
-///////////////////////////////////////////////////////////////////////////// 
- // only seed 4 so 'play' page can be tested still       
+/////////////////////////////////////////////////////////////////////////////
+ // only seed 4 so 'play' page can be tested still
   factory.seedPlayerArray = function(){
     for (var i = 0; i < 4; i++){ // changed to 2 for tie testing
       factory.players.push({ id: i + 1,
@@ -26,28 +26,29 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                              position: 0,
                              getOutFree: [],
                              houses: 0,
+                             num_of_doubles: 0,
                              hotels: 0 });
-    } 
+    }
     // add a player with a couple get out free cards for testing
     // getOutFree array contains the group type from the card:
     // "CC" for community chest and "C" for chance.
     var pieceIndex = factory.gamePieces.length -1;
-    factory.players.push({ id: factory.players.length + 1, name: factory.gamePieces[pieceIndex].pieceName, piece: {pieceName: factory.gamePieces[pieceIndex].pieceName, id: pieceIndex + 1, taken: true}, money: 1500, inMarket: true, freedomRolls: 0, position: 0, getOutFree: ["CC", "C"], houses: 3, hotels: 2});
-    return factory.players;  
+    factory.players.push({ id: factory.players.length + 1, name: factory.gamePieces[pieceIndex].pieceName, piece: {pieceName: factory.gamePieces[pieceIndex].pieceName, id: pieceIndex + 1, taken: true}, money: 1500, inMarket: true, freedomRolls: 0, position: 0, num_of_doubles: 0, getOutFree: ["CC", "C"], houses: 3, hotels: 2});
+    return factory.players;
   },
 /////////////////////////////////////////////////////////////////////////////
 //////////////////////// end seed player array //////////////////////////////
-/////////////////////////////////////////////////////////////////////////////        //                ----------------------------------------                  
-//                ----------------------------------------                  
+/////////////////////////////////////////////////////////////////////////////        //                ----------------------------------------
+//                ----------------------------------------
 /////////////////////////////////////////////////////////////////////////////
 //////////////////////// player/piece  selection ////////////////////////////
-/////////////////////////////////////////////////////////////////////////////                       
+/////////////////////////////////////////////////////////////////////////////
   // array to hold pieces in piece selection process
   factory.remainingGamePieces = [];
   for(var i = 0; i < factory.gamePieces.length; i ++){
     factory.remainingGamePieces.push(factory.gamePieces[i])
   }
-  
+
   // returns true if enough players reached (5 player max), nothing if not
   factory.addPlayer = function(){
     factory.players.push({ id: factory.players.length + 1,
@@ -62,17 +63,18 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                            position: 0,
                            getOutFree: [],
                            houses: 0,
+                           num_of_doubles: 0,
                            hotels: 0
                          });
-     factory.playerName =  null; 
+     factory.playerName =  null;
      // get last player added
-     var lastAdded = factory.players.length -1;  
+     var lastAdded = factory.players.length -1;
      // take piece out of display array and toggle taken in piece object
      factory.selectPiece(factory.players[lastAdded].piece);
      // return true to toggle play in html
      if(factory.players.length >= 5){return true;}
   },
-  
+
   // when a player selects a piece, make other pieces unavailable
   factory.selectPiece = function(piece){
     // only go through remaining pieces
@@ -112,10 +114,10 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     });
   }
 
-  
+
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
-  
+
   // check if player had a get out of market card
   // returns empty array if no card, getOutFree array if has card
   factory.hasGetOut = function(player){
@@ -125,7 +127,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       return player.getOutFree;
     }
   },
-  
+
   factory.movePlayer = function(player){
     var position = player.position + 7; // replace 7 with diceroll function
     if (position > 39){ // 40 == GO
@@ -170,9 +172,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       return true;
     }
   };
-  
+
   factory.useLeaveMarketCard = function(player){
-    
+
   }
   // action card - kind: card- get out of jail free
   //                            Pay or collect money from every player
@@ -229,7 +231,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   //   return player.money;
   // };
   ///////////////////////////////////////////////////////////////
-  
+
   //FOR TESTING ONLY
   factory.playerStatsAlert = function(player){
     var name = player.name
@@ -241,16 +243,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     var getOutFreeCards = player.getOutFree.length;
     var houses = player.houses;
     var hotels = player.hotels;
-    alert("Player name: " + name + "\n" + 
+    alert("Player name: " + name + "\n" +
           "Piece: " + piece + "\n" +
           "Money: " + money + "\n" +
           "inMarket: " + inMarket + "\n" +
-          "freedomRolls:" + freedomRolls + "\n" + 
+          "freedomRolls:" + freedomRolls + "\n" +
           "position: " + position + "\n" +
           "getOutFreeCards: " + getOutFreeCards + "\n"
           );
   }
-  
+
   return factory;
 
 });
