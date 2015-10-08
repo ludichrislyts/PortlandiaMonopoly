@@ -29,6 +29,19 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     currentPlayer.money += amount;
     return currentPlayer.money;
   };
+  $scope.turn = function(player, total) {
+    var roll ={};
+    roll.total = total || 0;
+    if (roll.total == 0) {
+      roll = $scope.roll();
+      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+    }
+    else {
+      document.write("roll.total =" + roll.total + "<br>");
+    }
+    $scope.move(player, roll.total);
+
+  },
 	
 	  $scope.roll = function() {
     var chance = new Chance(); // loaded in index.html

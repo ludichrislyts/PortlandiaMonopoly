@@ -99,7 +99,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
   }
 
   $scope.turn = function(player, total) {
-    roll ={};
+    var roll ={};
     roll.total = total || 0;
     if (roll.total == 0) {
       roll = $scope.roll();

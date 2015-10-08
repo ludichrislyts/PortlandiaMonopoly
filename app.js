@@ -12,7 +12,7 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 		views:{
 			'test':{
 				templateUrl: "testFunctions.html",
-				controller: "FunctionCtrl",
+				// controller: "FunctionCtrl",
 			},
 			'playerActions': {
 				templateUrl: "partials/selectPlayers.html",
