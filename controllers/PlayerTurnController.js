@@ -88,9 +88,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		GameFactory.playerStatsAlert($scope.currentPlayer);
 		if($scope.market_choice === "card"){
 			$scope.choose_card = true;			
-			var index = $scope.getOutFreeCards.indexOf($stateParams.cardChosen);
-			$scope.getOutFreeCards.splice(1, index);
-			console.log("in card option of marketAction");
+			var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
+			$scope.currentPlayer.getOutFree.splice(index, 1);
+			console.log(index + ", in card option of marketAction: " + $scope.cardSelected + ", card chosen");
 			$scope.isInMarket = false;
 			GameFactory.playerStatsAlert($scope.currentPlayer);
 			return;
