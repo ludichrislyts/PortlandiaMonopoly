@@ -124,6 +124,10 @@ body{
   /*margin-bottom: 150px;*/
 }
 
+
+
+/* Creating internal flex boxes for color layers */
+
 .square1, .square3, .square6, .square8, .square9{
   display: flex;
   flex-direction: column;
