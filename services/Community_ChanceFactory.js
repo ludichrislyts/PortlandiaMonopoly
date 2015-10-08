@@ -1,5 +1,5 @@
 portlandiaMonopoly.factory("CommChanceFactory", function CommChanceFactory(){
-var factory = {}	
+var factory = {}
 
 factory.community_chest_data = [];
 factory.chance_data = [];
@@ -19,7 +19,7 @@ factory.community_chest_data[0] = {text: "WIN DANCE CONTEST AT THE CRYSTAL BALLR
 factory.community_chest_data[1] = {text: "GATHER SIGNATURES AT TOM MCCALL WATERFRONT PARK", subtext: "COLLECT $25", kind: "money", value: [25], group: "Community Chest"}; //Receive for services $25
 factory.community_chest_data[2] = {text: "ADVANCE TO GO", subtext: "(COLLECT $200)", kind: "go", value: [0], group: "Community Chest"}; //Advance to Go (Collect $200)
 factory.community_chest_data[3] = {text: "TOUR PORTLAND'S CRAFT BREWERIES", subtext: "PAY $100 FOR BEER", kind: "money", value:[-100], group: "Community Chest"}; //Pay Hospital $100
-factory.community_chest_data[4] = {text: "PORTLAND ARTS TAX", subtext: "PAY $50", kind: "money", value:[-50], group: "Community Chest"}; //Doctor's fees – Pay $50
+factory.community_chest_data[4] = {text: "GET CAUGHT RIDING THE MAX WITHOUT A TICKET", subtext: "PAY $50", kind: "money", value:[-50], group: "Community Chest"}; //Doctor's fees – Pay $50
 factory.community_chest_data[5] = {text: "GET OUT OF PORTLAND SATURDAY MARKET, FREE", subtext: "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", kind: "card", value: [0], group: "Community Chest"}; //Get out of jail free – this card may be kept until needed, or sold
 factory.community_chest_data[6] = {text: "WIN A SOCCER TOURNAMENT AT DELTA PARK", subtext: "COLLECT $45", kind: "money", value:[45], group: "Community Chest"}; //From sale of stock you get $45
 factory.community_chest_data[7] = {text: "SELL YOUR FAMILY PASS TO THE OREGON ZOO", subtext: "COLLECT $100", kind: "money", value:[100], group: "Community Chest"}; //You inherit $100
