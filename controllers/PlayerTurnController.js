@@ -9,6 +9,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.player3 = GameFactory.players[2];
 	$scope.player4 = GameFactory.players[3];
 	$scope.player5 = GameFactory.players[4];
+	$scope.community_chest = CommChanceFactory.community_chest_data;
+	$scope.chance = CommChanceFactory.chance_data;
 
 	var index = 0;
 	// uncomment this line for a real game
@@ -107,8 +109,46 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
-		if (not owned) {
+		var deed = deeds[player.position];
+		if (deed.group_id == 0) { // player is not able to buy this deed
+			if (player.position == 0) { //Go
 
+			}
+			else if ((player.position == 2) || (player.position == 17) ||
+							(player.position == 33)) { //Community Chest
+				$scope.drawCard("community chest");
+			}
+			else if (player.position == 4) { //Portland Art Tax
+
+			}
+			else if ((player.position == 7) || (player.position == 22) ||
+							(player.position == 36)) { //Chance
+				$scope.drawCard("chance");
+			}
+			else if (player.position == 10) { //Portland Saturday Market
+
+			}
+			else if (player.position == 20) { //Rose Garden
+
+			}
+			else if (player.position == 30) { //Goto Jail
+
+			}
+			else if (player.position == 38) { //VooDoo Donuts
+
+			}
+			else {
+				alert("This should never print");
+			}
+		}
+		else if (deed.owned == 0) {
+			// player option to buy or not to buy
+		}
+		else if (deed.owned != player.id) {
+			// player needs to pay another player rent
+		}
+		else {
+			// player already owns this deed
 		}
 	} //end playerOption()
 
@@ -131,6 +171,22 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 		return return_string;
 	}, //end buyDeed()
+
+
+	//****************DRAWCARD FUNCTION****************//
+	$scope.drawCard = function(card_type) {
+		var card_number = chance.integer({min:0, max:16});
+		if (card_type == "community chest") {
+			var card = $scope.community_chest[card_number];
+			alert(card.text + "<br>" + card.subtext + "<br>")
+		}
+		else if (card_type = "chance") {
+
+		}
+		else {
+			alert("This should not print");
+		}
+	} //end drawCard()
 
 
 	//****************ENOUGHMONEY FUNCTION****************//
