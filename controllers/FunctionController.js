@@ -95,21 +95,36 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
 
   $scope.move = function(player, total) {
     player.position += total;
-    // $(".player" + player.id).appendTo(".sqaure" + player.position);
+    if (player.position > 39) { //player passed or landed on go
+      player.position -= 40;
+      player.money += 200;
+    }
+    // $(".player" + player.id).appendTo(".square" + player.position);
   }
 
   $scope.turn = function(player, total) {
-    roll ={};
+    var roll ={};
     roll.total = total || 0;
     if (roll.total == 0) {
       roll = $scope.roll();
-      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+      document.write("old player.money = " + player.money + "<br>old player.position = " + player.position + "<br>roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
     }
     else {
-      document.write("roll.total =" + roll.total + "<br>");
+      document.write("old player.money = " + player.money + "<br>old player.position = " + player.position + "<br>roll.total =" + roll.total + "<br>");
+      $roll = {doubles: false};
     }
     $scope.move(player, roll.total);
-
+    document.write("new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
+roll.doubles = true;
+    while ((roll.doubles) && player.num_of_doubles < 3) {
+      player.num_of_doubles++;
+      roll = $scope.roll();
+roll.doubles = true;
+      $scope.move(player, roll.total);
+      document.write("---------------------<br>");
+      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>player.num_of_doubles = " + player.num_of_doubles + "<br>new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
+    }
+    player.num_of_doubles = 0;
   }
 
 
@@ -121,14 +136,15 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
                    money: 1500,
                    inMarket: false,
                    freedomRolls: 0,
-                   position: 9,
+                   position: 38,
                    getOutFree: [],
                    houses: 0,
+                   num_of_doubles: 0,
                    hotels: 0
                 };
 
   document.write("<u>turn()</u>:<br>");
-  var turn = $scope.turn(player, 10);
+  var turn = $scope.turn(player);
 
 
 
