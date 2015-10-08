@@ -222,23 +222,6 @@ body{
   margin-top: 4em;
 }
 
-.square30 .content{
-  width: 75px;
-  height: 75px;
-  text-align: center;
-  transform: rotate(225deg);
-  margin-left: 10%;
-  margin-top: 25%;
-}
-
-.square30 .content .img{
-  height: 50px;
-  width: 50px;
-  margin-left: 10px;
-  background-image: url(../img/gotojail.gif);
-  background-size: cover;
-}
-
 .square38{
   flex: 1;
   display: flex;
@@ -369,6 +352,7 @@ body{
   transform: rotate(90deg);
   text-align: center;
   bottom: 40%;
+  margin-left: 6%;
 }
 
 .square25 .content{
@@ -420,3 +404,243 @@ body{
   margin-left: 75%;
   bottom: 35%;
 }
+
+/* Corner Squares */
+
+.square30 .content{
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  transform: rotate(225deg);
+  margin-left: 10%;
+  margin-top: 25%;
+}
+
+.square30 .content .img{
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  background-image: url(../img/gotojail.gif);
+  background-size: cover;
+}
+
+.square20 .content{
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  transform: rotate(135deg);
+  margin-left: 20%;
+  margin-top: 25%;
+}
+
+.square20 .content .img{
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  background-image: url(../img/rose.jpg);
+  background-size: cover;
+}
+
+.square10 .img{
+  position: absolute;
+  background-image: url(../img/psm.jpg);
+  background-size: cover;
+  height: 90px;
+  width: 90px;
+  top: 0;
+  right: 0;
+}
+
+.square10 .content{
+  padding-top: 100px;
+  padding-left: 50px;
+}
+
+.square0 .content{
+ width: 60px;
+ transform: rotate(315deg);
+ margin-left: 25%;
+ margin-top: 5%;
+}
+
+.square0 .content p{
+  font-size: 50px;
+  margin-left: -20%;
+  margin-top: -20%;
+}
+
+.square0 .img{
+  position: absolute;
+  height: 20px;
+  width: 40px;
+  background-image: url(../img/arrow.jpg);
+  background-size: cover;
+  bottom: 5px;
+  left: 40px;
+}
+
+/* Chance and Community Chest cards*/
+
+.square2 .content{
+  text-align: center;
+  margin-top: 25%;
+}
+
+.square2 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square17 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -10%;
+  margin-left: 30%;
+  transform: rotate(90deg);
+  width: 50px;
+}
+
+.square17 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square33 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -10%;
+  margin-left: 30%;
+  transform: rotate(270deg);
+  width: 50px;
+}
+
+.square33 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square7 .content{
+  text-align: center;
+  margin-top: 25%;
+}
+
+.square7 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-top: 10%;
+}
+
+.square22 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: 30%;
+  margin-left: 10%;
+  transform: rotate(180deg);
+  width: 50px;
+}
+
+.square22 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-left: -13%;
+  margin-top: 20%;
+}
+
+.square36 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -15%;
+  margin-left: 25%;
+  transform: rotate(270deg);
+  width: 50px;
+}
+
+.square36 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-left: -13%;
+  margin-top: 20%;
+}
+
+
+/* Income Tax */
+
+.square4 .content{
+  text-align: center;
+}
+
+.square4 .img{
+  background-image: url(../img/arttax.png);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+}
+
+.square4 p{
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Utility Sports Teams */
+
+.square12 .content{
+  position: absolute;
+  text-align: center;
+  transform: rotate(90deg);
+  margin-left: 64%;
+  bottom: 30%;
+}
+
+.square12 .img{
+  position: absolute;
+  background-image: url(../img/tb.png);
+  background-size: cover;
+  height: 55px;
+  width: 60px;
+  transform: rotate(90deg);
+  margin-left: 25%;
+}
+
+.square12 p{
+  position: absolute;
+  transform: rotate(90deg);
+  text-align: center;
+  bottom: 40%;
+  margin-left: 6%;
+}
+
+.square28 .content{
+  text-align: center;
+  transform: rotate(180deg);
+  margin-top: 5px;
+}
+
+.square28 .img{
+  background-image: url(../img/timbers.png);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  transform: rotate(180deg);
+  margin-left: 3px;
+  margin-top: 5px;
+}
+
+.square28 p{
+  transform: rotate(180deg);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Player display pieces */
