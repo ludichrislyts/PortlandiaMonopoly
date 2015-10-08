@@ -1,4 +1,18 @@
 <div class="container header-type">
+	<!--no stuck in market actions - roll button and post roll options-->
+	<div ng-show="rolled === false && isInMarket === false && submit === false">
+		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
+		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
+	</div>
+	
+	<div class="row free" ng-show="rolled && !isInMarket">
+		<label for="turn_options">Post roll options:</label>
+		<select name="turn_options" id="turn_options">
+			<option ng-model="turn_options">Purchase</option>
+			<option ng-model="turn_options">Mortgage</option>
+		</select>
+	</div>
+	<!--stuck in market actions-->
 	<div class="row in-market" ng-show="isInMarket">
 		<h3>You're stuck at Saturday Market!!</h3>
 		<!--show if player has another turn to stay in market-->
@@ -27,7 +41,7 @@
 					</li>
 				</ul>
 			</div>
-			<button type="submit" ng-model="market_choice" ng-click="isInMarket = false">Submit </button>
+			<button type="submit" ng-model="market_choice" ng-click="isInMarket = false; submit = true">Submit </button>
 		</form>
 		<!--<div ng-show="choose_card">
 			<form ng-model="cardSelected">
@@ -36,18 +50,6 @@
 				</select>	
 			</form>
 		</div>-->
-	</div>
-	<div ng-hide="!rolled || isInMarket">
-		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
-		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
-	</div>
-	
-	<div class="row free" ng-show="rolled">
-		<label for="turn_options">Post roll options:</label>
-		<select name="turn_options" id="turn_options">
-			<option ng-model="turn_options">Purchase</option>
-			<option ng-model="turn_options">Mortgage</option>
-		</select>
 	</div>
 	<div ng-show="show_end_turn_button">
 		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button">End turn</button>

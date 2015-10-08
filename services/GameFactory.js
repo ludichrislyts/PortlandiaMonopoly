@@ -221,12 +221,15 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     player.money -+ deed.price;
 
   };
+  ///////////////////// MOVED TO PLAYER TURN CTRL ///////////////
   // adjust Player money
   // returns new amount
-  factory.adjustMoney = function(player, amount){
-    player.money += amount;
-    return player.money;
-  };
+  // factory.adjustMoney = function(player, amount){
+  //   player.money += amount;
+  //   return player.money;
+  // };
+  ///////////////////////////////////////////////////////////////
+  
   //FOR TESTING ONLY
   factory.playerStatsAlert = function(player){
     var name = player.name

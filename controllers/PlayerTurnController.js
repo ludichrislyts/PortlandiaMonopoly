@@ -19,13 +19,43 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 /////////////////////////////////////////////////////////////////////////
 	$scope.currentPlayer = $scope.player5;
 	console.log($scope.currentPlayer.name + ", currentPlayer initial");
+/////////////////////////////////////////////////////////////////////////
+////////////// FACTORY FUNCTIONS THAT DON'T USE $SCOPE //////////////////
+////////////////////////// (I THINK) ////////////////////////////////////
 	
+	// adjust Player money
+  // returns new amount
+  var adjustMoney = function(currentPlayer, amount){
+    currentPlayer.money += amount;
+    return currentPlayer.money;
+  };
+	
+	  $scope.roll = function() {
+    var chance = new Chance(); // loaded in index.html
+    var die1 = chance.integer({min:1, max:6});
+    var die2 = chance.integer({min:1, max:6});
+    var total = die1 + die2;
+    if (die1 === die2) {
+      var doubles = true;
+    }
+    else {
+      doubles = false;
+    }
+    return {total: total, die1: die1, die2: die2, doubles: doubles};
+  };
+	
+	$scope.currentPlayer.inMarket = true;
+	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
+	console.log($scope.isInMarket + ", scope");
 	// advance turn
 	$scope.endTurn = function(){
 		// FOR TESTING
 		$scope.currentPlayer = $scope.player5;
 		GameFactory.playerStatsAlert($scope.currentPlayer);
-		alert("in end turn function");
+		$scope.isInMarket = $scope.currentPlayer.inMarket;
+		$scope.rolled = false;
+		$scope.submit = false;
+		alert("in end turn function, " + $scope.rolled + ", <= rolled, " + $scope.isInMarket + ", isInMarket");
 		//reset 
 		// comment out above line and uncomment below for actual gameplay
 	// 	index++;
@@ -43,15 +73,14 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	// 	}else{
 	// 		$scope.currentPlayer = $scope.player5;
 	// 	}
-		$scope.isInMarket = $scope.currentPlayer.inMarket;
-	 },
-	
+	 };// end end turn
+	 
+	// $scope.currentPlayer = $scope.player4;
+	// $scope.currentPlayer = $scope.player5;
+	// $scope.isInMarket = true;
 	
 	// current player start
 	// default to 'in market' for testing
-	$scope.currentPlayer.inMarket = true;
-	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
-	console.log($scope.isInMarket + ", scope");
 	
 	GameFactory.playerStatsAlert($scope.currentPlayer);
 	// check if player has already rolled twice to get out of market
@@ -59,23 +88,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		$scope.stay_in_market = true;
 	}else{
 		$scope.stay_in_market = false;
-	}
+	};
 	
-	// returns true if doubles were rolled
-	$scope.roll = function(){
-		var resultArray = UtilitiesFactory.rollDice();
-		var numResult = resultArray[0];
-		var die1 = resultArray[1];
-		var die2 = resultArray[2];
-		var doubles = resultArray[3];
-		if(doubles){
-			$scope.result = "You rolled " + numResult + ' with doubles!';
-			return true;
-		}else{
-			$scope.result = "You rolled " + numResult;
-			return false;
-		}
-	}
+
 	// to determine to show use card option
 	var freeCards = GameFactory.hasGetOut($scope.currentPlayer);
 	console.log(freeCards[0] + ", " + freeCards[1] + ", freeCards");
@@ -101,7 +116,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
 			$scope.currentPlayer.getOutFree.splice(index, 1);
 			console.log(index + ", in card option of marketAction: " + $scope.cardSelected + ", card chosen");
+			$scope.currentPlayer.inMarket = false;
 			$scope.isInMarket = false;
+			$scope.rolled = false;
+			$scope.submit = false;
 			GameFactory.playerStatsAlert($scope.currentPlayer);
 			return;
 			// pay option, first case player doesn't have enough money,
@@ -111,9 +129,11 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				var performMortgageOption = function(){};// needs a function
 			//player does have enough, pay the fine
 			}else{ 
+				// if player decides to pay first, subtract money and start their turn
+			  adjustMoney($scope.currentPlayer, -50);
 				$scope.isInMarket = false;
-				console.log("in pay option of marketAction, money after adjust= " + $scope.currentPlayer.money);
 				$scope.currentPlayer.inMarket = false;
+				$scope.submit = false;
 				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}
@@ -126,29 +146,34 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				$scope.isInMarket = false;
 				$scope.currentPlayer.inMarket = false;
 				$scope.rolled = true;
+				turn($scope.currentPlayer, marketRoll.total);
 				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}else{
 				if($scope.currentPlayer.freedomRolls === 2){
 					alert("You did not roll doubles! You must pay the $50 fine!");
-					GameFactory.adjustMoney($scope.currentPlayer, -50);
+					adjustMoney($scope.currentPlayer, -50);
 					$scope.currentPlayer.freedomRolls = 0;
 					$scope.isInMarket = false;
 					$scope.currentPlayer.inMarket = false;
+					//$scope.submit = false; // start turn instead
+					turn($scope.currentPlayer, marketRoll.total);
 					GameFactory.playerStatsAlert($scope.currentPlayer);
-					$scope.show_end_turn_button = true;
+					// $scope.show_end_turn_button = true;
 					// $scope.endTurn();
 					return;
 				}else{
 					alert("You did not roll doubles! Walk around Saturday Market for another turn. Maybe you'll find that tie-dye nighty you've always wanted!");
 					$scope.currentPlayer.freedomRolls++;
 					GameFactory.playerStatsAlert($scope.currentPlayer);
+					// $scope.isInMarket = true;
 					$scope.show_end_turn_button = true;
 					// $scope.endTurn();
 					return;
 				}
 			}// end else not doubles
 		}// end roll choice	
+		$scope.market_choice = null;
 	}// end market actions
 	
 
