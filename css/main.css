@@ -20,6 +20,8 @@ body{
   flex-direction: column;
   height: 780px;
   width: 780px;
+  background-color: #ecfcf4;
+  outline: 3px solid black;
 }
 
 .top-row{
@@ -224,6 +226,42 @@ body{
   margin-top: 4em;
 }
 
+.square38{
+  flex: 1;
+  display: flex;
+}
+
+.square38 .content{
+  flex: 1;
+  transform: rotate(270deg);
+  text-align: center;
+  position: absolute;
+  margin-left: -2%;
+  bottom: 20%;
+  width: 50px;
+}
+
+.square38 .img{
+  flex: 1;
+  transform: rotate(270deg);
+  background-image: url(../img/donut.jpg);
+  background-size: cover;
+  position: absolute;
+  height: 50px;
+  width: 45px;
+  margin-left: 42%;
+  bottom: 0;
+}
+
+.donutpay{
+  flex: 1;
+  transform: rotate(270deg);
+  text-align: center;
+  position: absolute;
+  margin-left: 65%;
+  bottom: 35%;
+}
+
 .color1{
   height: 27px;
   border-bottom: 1px solid black;
@@ -276,3 +314,338 @@ body{
   flex: 1;
 
 }
+
+/* Railroads */
+.square5 .content{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.square5 .img{
+  background-image: url(../img/railroad.gif);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+}
+
+.square5 p{
+  margin-top: 15px;
+  text-align: center;
+}
+
+.square15 .content{
+  position: absolute;
+  text-align: center;
+  transform: rotate(90deg);
+  margin-left: 71%;
+  bottom: 30%;
+}
+
+.square15 .img{
+  position: absolute;
+  background-image: url(../img/railroad.gif);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  transform: rotate(90deg);
+  margin-left: 25%;
+}
+
+.square15 p{
+  position: absolute;
+  transform: rotate(90deg);
+  text-align: center;
+  bottom: 40%;
+  margin-left: 6%;
+}
+
+.square25 .content{
+  text-align: center;
+  transform: rotate(180deg);
+  margin-top: 5px;
+}
+
+.square25 .img{
+  background-image: url(../img/railroad.gif);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  transform: rotate(180deg);
+  margin-left: 6px;
+  margin-top: 5px;
+}
+
+.square25 p{
+  transform: rotate(180deg);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.square35 .content{
+  position: absolute;
+  text-align: center;
+  transform: rotate(270deg);
+  bottom: 30%;
+  margin-left: -10%;
+  width: 58px;
+}
+
+.square35 .img{
+  position: absolute;
+  background-image: url(../img/railroad.gif);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  transform: rotate(270deg);
+  margin-left: 25%;
+  bottom: 0;
+}
+
+.square35 p{
+  position: absolute;
+  transform: rotate(270deg);
+  text-align: center;
+  margin-left: 75%;
+  bottom: 35%;
+}
+
+/* Corner Squares */
+
+.square30 .content{
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  transform: rotate(225deg);
+  margin-left: 10%;
+  margin-top: 25%;
+}
+
+.square30 .content .img{
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  background-image: url(../img/gotojail.gif);
+  background-size: cover;
+}
+
+.square20 .content{
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  transform: rotate(135deg);
+  margin-left: 20%;
+  margin-top: 25%;
+}
+
+.square20 .content .img{
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  background-image: url(../img/rose.jpg);
+  background-size: cover;
+}
+
+.square10 .img{
+  position: absolute;
+  background-image: url(../img/psm.jpg);
+  background-size: cover;
+  height: 90px;
+  width: 90px;
+  top: 0;
+  right: 0;
+}
+
+.square10 .content{
+  padding-top: 100px;
+  padding-left: 50px;
+}
+
+.square0 .content{
+ width: 60px;
+ transform: rotate(315deg);
+ margin-left: 25%;
+ margin-top: 5%;
+}
+
+.square0 .content p{
+  font-size: 50px;
+  margin-left: -20%;
+  margin-top: -20%;
+}
+
+.square0 .img{
+  position: absolute;
+  height: 20px;
+  width: 40px;
+  background-image: url(../img/arrow.jpg);
+  background-size: cover;
+  bottom: 5px;
+  left: 40px;
+}
+
+/* Chance and Community Chest cards*/
+
+.square2 .content{
+  text-align: center;
+  margin-top: 25%;
+}
+
+.square2 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square17 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -10%;
+  margin-left: 30%;
+  transform: rotate(90deg);
+  width: 50px;
+}
+
+.square17 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square33 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -10%;
+  margin-left: 30%;
+  transform: rotate(270deg);
+  width: 50px;
+}
+
+.square33 .img{
+  background-image: url(../img/communitychest.gif);
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.square7 .content{
+  text-align: center;
+  margin-top: 25%;
+}
+
+.square7 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-top: 10%;
+}
+
+.square22 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: 30%;
+  margin-left: 10%;
+  transform: rotate(180deg);
+  width: 50px;
+}
+
+.square22 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-left: -13%;
+  margin-top: 20%;
+}
+
+.square36 .content{
+  position: absolute;
+  text-align: center;
+  margin-top: -15%;
+  margin-left: 25%;
+  transform: rotate(270deg);
+  width: 50px;
+}
+
+.square36 .img{
+  background-image: url(../img/chance.png);
+  background-size: cover;
+  height: 65px;
+  width: 50px;
+  margin-left: -13%;
+  margin-top: 20%;
+}
+
+
+/* Income Tax */
+
+.square4 .content{
+  text-align: center;
+}
+
+.square4 .img{
+  background-image: url(../img/arttax.png);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+}
+
+.square4 p{
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Utility Sports Teams */
+
+.square12 .content{
+  position: absolute;
+  text-align: center;
+  transform: rotate(90deg);
+  margin-left: 64%;
+  bottom: 30%;
+}
+
+.square12 .img{
+  position: absolute;
+  background-image: url(../img/tb.png);
+  background-size: cover;
+  height: 55px;
+  width: 60px;
+  transform: rotate(90deg);
+  margin-left: 25%;
+}
+
+.square12 p{
+  position: absolute;
+  transform: rotate(90deg);
+  text-align: center;
+  bottom: 40%;
+  margin-left: 6%;
+}
+
+.square28 .content{
+  text-align: center;
+  transform: rotate(180deg);
+  margin-top: 5px;
+}
+
+.square28 .img{
+  background-image: url(../img/timbers.png);
+  background-size: cover;
+  height: 55px;
+  width: 55px;
+  transform: rotate(180deg);
+  margin-left: 3px;
+  margin-top: 5px;
+}
+
+.square28 p{
+  transform: rotate(180deg);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Player display pieces */
