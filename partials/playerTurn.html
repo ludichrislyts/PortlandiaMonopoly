@@ -16,14 +16,14 @@
 		<h4>How do you want to leave Saturday Market?</h4>
 		<form ng-submit="marketAction()">
 			<div class="row form-group" >
-				<ul class="no_style_li" required>
-					<li id="card" ng-model="market_choice"  ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" ng-change="showCards()" value="card"> Use a get out of market free card</input>
+				<ul class="no_style_li" name="market" required single>
+					<li id="card" ng-model="market_choice"  ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = true" value="card"> Use a get out of market free card</input>
 						<span ng-show="choose_card" >
 							<show-cards></show-cards></span>
 					</li>
-					<li><input name="market" type="radio" ng-model="market_choice" value="pay"> Pay $50</input>
+					<li><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="pay"> Pay $50</input>
 					</li>
-					<li><input name="market" type="radio" ng-model="market_choice" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input>
+					<li><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input>
 					</li>
 				</ul>
 			</div>
@@ -37,17 +37,20 @@
 			</form>
 		</div>-->
 	</div>
-	<div ng-hide="rolled || isInMarket">
+	<div ng-hide="!rolled || isInMarket">
 		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
 		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
 	</div>
 	
-	<div class="row free" ng-show="!isInMarket">
+	<div class="row free" ng-show="rolled">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
 			<option ng-model="turn_options">Purchase</option>
 			<option ng-model="turn_options">Mortgage</option>
 		</select>
+	</div>
+	<div ng-show="show_end_turn_button">
+		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button">End turn</button>
 	</div>
 	
 </div>
