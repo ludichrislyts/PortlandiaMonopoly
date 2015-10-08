@@ -11,4 +11,9 @@ portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $s
 			}
 		});
 	});
+
 })
+
+
+
+
