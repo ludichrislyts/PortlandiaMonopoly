@@ -12,30 +12,25 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 		views:{
 			'test':{
 				templateUrl: "testFunctions.html",
-				controller: "FunctionCtrl",
+				// controller: "FunctionCtrl",
 			},
-			'playerActions': {
+			'setup': {
 				templateUrl: "partials/selectPlayers.html",
 				controller: "PlayerSelectCtrl",
-			},
-			'gameBoard':{
-				templateUrl: "partials/gameboard.html",
-				// templateUrl: "gameboardtest.html",
-				controller: "GameBoardCtrl",
 			},
 		}
 	});
 	$stateProvider.state('play',{
 		url:"/play",
-		views:{
-			'playerActions':{
-				templateUrl: "partials/playerTurn.html",
-				controller: "PlayerTurnCtrl",
-			},
+		views:{					
 			'gameBoard':{
 				templateUrl: "partials/gameboard.html",
 				controller: "GameBoardCtrl",
 			},
-		}
+			'playerActions':{
+				templateUrl: "partials/playerTurn.html",
+				controller: "PlayerTurnCtrl",
+			},
+		}			
 	});
 });

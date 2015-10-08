@@ -28,8 +28,9 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
   <body>
-    <div ui-view="test"></div>
-    <div ui-view="playerActions"></div>
-    <div ui-view="gameBoard"></div>
+      <div ui-view="test"></div>
+      <div class="container" ui-view="setup"></div>
+      <div class="col-md-8" style="padding-top: 50px; padding-right: 50px" ui-view="gameBoard"></div>
+      <div class="col-md-4" ui-view="playerActions"></div>   
   </body>
 </html>

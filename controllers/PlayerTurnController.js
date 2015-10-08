@@ -11,14 +11,20 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.player5 = GameFactory.players[4];
 	
 	var index = 0;
-	// $scope.currentPlayer = $scope.player1; // uncomment this line for a real game
+	// uncomment this line for a real game
+	$scope.currentPlayer = $scope.player1; 
+	// SETUP TURN
+	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
+	console.log($scope.isInMarket + ", scope");
+	$scope.rolled = false;
+	$scope.submit = false;
 	// FOR TESTING GET OUT FREE CARDS!!
 /////////////////////////////////////////////////////////////////////////
 ///////////// Player Select Controller, lines 89 + 96 must //////////////
 /////////////////// also be uncommented /////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
-	$scope.currentPlayer = $scope.player5;
-	console.log($scope.currentPlayer.name + ", currentPlayer initial");
+			// $scope.currentPlayer = $scope.player5;
+			// console.log($scope.currentPlayer.name + ", currentPlayer initial");
 /////////////////////////////////////////////////////////////////////////
 ////////////// FACTORY FUNCTIONS THAT DON'T USE $SCOPE //////////////////
 ////////////////////////// (I THINK) ////////////////////////////////////
@@ -29,6 +35,19 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     currentPlayer.money += amount;
     return currentPlayer.money;
   };
+  $scope.turn = function(player, total) {
+    var roll ={};
+    roll.total = total || 0;
+    if (roll.total == 0) {
+      roll = $scope.roll();
+      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+    }
+    else {
+      document.write("roll.total =" + roll.total + "<br>");
+    }
+    $scope.move(player, roll.total);
+
+  },
 	
 	  $scope.roll = function() {
     var chance = new Chance(); // loaded in index.html
@@ -44,35 +63,33 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     return {total: total, die1: die1, die2: die2, doubles: doubles};
   };
 	
-	$scope.currentPlayer.inMarket = true;
-	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
-	console.log($scope.isInMarket + ", scope");
+
 	// advance turn
 	$scope.endTurn = function(){
 		// FOR TESTING
-		$scope.currentPlayer = $scope.player5;
-		GameFactory.playerStatsAlert($scope.currentPlayer);
-		$scope.isInMarket = $scope.currentPlayer.inMarket;
+		// $scope.currentPlayer = $scope.player5;
+		// GameFactory.playerStatsAlert($scope.currentPlayer);
+		// $scope.isInMarket = $scope.currentPlayer.inMarket;
 		$scope.rolled = false;
 		$scope.submit = false;
 		alert("in end turn function, " + $scope.rolled + ", <= rolled, " + $scope.isInMarket + ", isInMarket");
 		//reset 
 		// comment out above line and uncomment below for actual gameplay
-	// 	index++;
-	// 	if(index === GameFactory.players.length){
-	// 		index = 0;
-	// 	}
-	// 	if(index === 0){
-	// 		$scope.currentPlayer = $scope.player1;
-	// 	}else if(index === 1){
-	// 		$scope.currentPlayer = $scope.player2;
-	// 	}else if(index === 2){
-	// 		$scope.currentPlayer = $scope.player3;
-	// 	}else if(index ===3){
-	// 		$scope.currentPlayer = $scope.player4;
-	// 	}else{
-	// 		$scope.currentPlayer = $scope.player5;
-	// 	}
+		index++;
+		if(index === GameFactory.players.length){
+			index = 0;
+		}
+		if(index === 0){
+			$scope.currentPlayer = $scope.player1;
+		}else if(index === 1){
+			$scope.currentPlayer = $scope.player2;
+		}else if(index === 2){
+			$scope.currentPlayer = $scope.player3;
+		}else if(index ===3){
+			$scope.currentPlayer = $scope.player4;
+		}else{
+			$scope.currentPlayer = $scope.player5;
+		}
 	 };// end end turn
 	 
 	// $scope.currentPlayer = $scope.player4;

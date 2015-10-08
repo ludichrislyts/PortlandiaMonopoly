@@ -4,8 +4,8 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	// $scope.deeds = DeedsFactory.deeds;
 	
 	// TESTING ONLY!! Comment out and un-comment next $scope.players line when game is live
-	$scope.players = GameFactory.seedPlayerArray();
-	// $scope.players = GameFactory.players;
+	//$scope.players = GameFactory.seedPlayerArray();
+	$scope.players = GameFactory.players;
 	$scope.pieces = GameFactory.gamePieces;
 	// initial startGame value to be false. Toggled true in partial when user selects
 	// to start game
@@ -31,11 +31,13 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	var numberOfRolls = 0; 
 	var numberRolled = 0;
 	var firstInTieBreak = true; // for testing ties
-	var numOfRollers = GameFactory.players.length;
+	numOfRollers = GameFactory.players.length;
+
 	// assigns playerId to highestRoller player_id
 	// returns true if there is a tie
 	// $scope.rollForFirst = function(playerId){
 	$scope.rollForFirst = function (playerId) {
+			var numOfRollers = GameFactory.players.length;
 		// logic to determine if its a tie break round
 		if($scope.break_tie && firstInTieBreak){
 			numberOfRolls = 0;
@@ -86,14 +88,14 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 			$scope.break_tie = false;
 			$scope.startGameMessage = true;
 			$scope.firstPlayer = player;
-			// $scope.playersInOrder = GameFactory.fixPlayerOrder(player.id);
+			$scope.playersInOrder = GameFactory.fixPlayerOrder(player.id);
 			console.log("rolls not first in tie, === " + numberOfRolls + ", players:" + numOfRollers);
 		}
 		else if(numberOfRolls === numOfRollers){
 			var playerToStart = UtilitiesFactory.findById(GameFactory.players,highestRoller[0].id);
 			$scope.startGameMessage = true;
 			$scope.firstPlayer = playerToStart;
-			// $scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
+			$scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
 			console.log("HERE" + "end, === " + numberOfRolls + ", players:" + numOfRollers);
 		}
 		return;
