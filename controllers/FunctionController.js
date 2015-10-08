@@ -93,8 +93,9 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
     return false; //there is no new monopoly
   };
 
-  $scope.move = function() {
-    $(".player" + player.id).appendTo(".sqaure" + player.position);
+  $scope.move = function(player, total) {
+    player.position += total;
+    // $(".player" + player.id).appendTo(".sqaure" + player.position);
   }
 
   $scope.turn = function(player, total) {
@@ -102,25 +103,15 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
     roll.total = total || 0;
     if (roll.total == 0) {
       roll = $scope.roll();
+      document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
     }
-    document.write("roll = " + roll + "<br>");
+    else {
+      document.write("roll.total =" + roll.total + "<br>");
+    }
+    $scope.move(player, roll.total);
 
   }
 
-
-
-
-
-
-
-
-  document.write("<u>roll()</u>:<br>");
-  var roll = $scope.roll();
-  document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
-
-  document.write("---------------------<br>");
-
-  document.write("<u>buyDeed()</u>:<br>");
 
   var player = { id: 1,
                    name: "car",
@@ -136,88 +127,102 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
                    hotels: 0
                 };
 
-  var buyDeedString = $scope.buyDeed(deeds[1], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[1].owned = " + deeds[1].owned + "<br>");
-  document.write("deeds[1].monopoly = " + deeds[1].monopoly + "<br>");
+  document.write("<u>turn()</u>:<br>");
+  var turn = $scope.turn(player, 10);
 
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[3], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[3].owned = " + deeds[3].owned + "<br>");
-  document.write("deeds[1].monopoly = " + deeds[1].monopoly + "<br>");
-  document.write("deeds[3].monopoly = " + deeds[3].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[9], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[9].owned = " + deeds[9].owned + "<br>");
-  document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
-  document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
-  document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[8], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[8].owned = " + deeds[8].owned + "<br>");
-  document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
-  document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
-  document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[6], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[6].owned = " + deeds[6].owned + "<br>");
-  document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
-  document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
-  document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
 
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[5], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[5].owned = " + deeds[5].owned + "<br>");
-  document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
-  document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
-  document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
-  document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[15], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[15].owned = " + deeds[15].owned + "<br>");
-  document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
-  document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
-  document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
-  document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[25], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[25].owned = " + deeds[25].owned + "<br>");
-  document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
-  document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
-  document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
-  document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
-  document.write("---------------------<br>");
-  document.write("<u>buyDeed()</u>:<br>");
-  var buyDeedString = $scope.buyDeed(deeds[35], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[35].owned = " + deeds[35].owned + "<br>");
-  document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
-  document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
-  document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
-  document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
+
+  // document.write("<u>roll()</u>:<br>");
+  // var roll = $scope.roll();
+  // document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+  //
+  // document.write("---------------------<br>");
+  //
+  // document.write("<u>buyDeed()</u>:<br>");
+
+
+  // var buyDeedString = $scope.buyDeed(deeds[1], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[1].owned = " + deeds[1].owned + "<br>");
+  // document.write("deeds[1].monopoly = " + deeds[1].monopoly + "<br>");
+  //
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[3], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[3].owned = " + deeds[3].owned + "<br>");
+  // document.write("deeds[1].monopoly = " + deeds[1].monopoly + "<br>");
+  // document.write("deeds[3].monopoly = " + deeds[3].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[9], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[9].owned = " + deeds[9].owned + "<br>");
+  // document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
+  // document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
+  // document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[8], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[8].owned = " + deeds[8].owned + "<br>");
+  // document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
+  // document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
+  // document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[6], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[6].owned = " + deeds[6].owned + "<br>");
+  // document.write("deeds[9].monopoly = " + deeds[9].monopoly + "<br>");
+  // document.write("deeds[8].monopoly = " + deeds[8].monopoly + "<br>");
+  // document.write("deeds[6].monopoly = " + deeds[6].monopoly + "<br>");
+  //
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[5], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[5].owned = " + deeds[5].owned + "<br>");
+  // document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
+  // document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
+  // document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
+  // document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[15], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[15].owned = " + deeds[15].owned + "<br>");
+  // document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
+  // document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
+  // document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
+  // document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[25], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[25].owned = " + deeds[25].owned + "<br>");
+  // document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
+  // document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
+  // document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
+  // document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
+  // document.write("---------------------<br>");
+  // document.write("<u>buyDeed()</u>:<br>");
+  // var buyDeedString = $scope.buyDeed(deeds[35], player);
+  // document.write("buyDeed string = " + buyDeedString + "<br>");
+  // document.write("player.money = " + player.money + "<br>");
+  // document.write("deeds[35].owned = " + deeds[35].owned + "<br>");
+  // document.write("deeds[5].monopoly = " + deeds[5].monopoly + "<br>");
+  // document.write("deeds[15].monopoly = " + deeds[15].monopoly + "<br>");
+  // document.write("deeds[25].monopoly = " + deeds[25].monopoly + "<br>");
+  // document.write("deeds[35].monopoly = " + deeds[35].monopoly + "<br>");
 
 });
 
