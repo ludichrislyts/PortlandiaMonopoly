@@ -30,9 +30,10 @@
 			</select>	
 		</form>
 	</div>
-	
-	<h3>{{ currentPlayer.name}}, roll!</h3>
-	<button ng-hide="rolled || isInMarket" ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
+	<div ng-hide="rolled || isInMarket">
+		<h3>{{ currentPlayer.name}}, roll!</h3>
+		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
+	</div>
 	
 	<div class="row free" ng-show="!isInMarket">
 		<label for="turn_options">Post roll options:</label>

@@ -96,6 +96,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				$scope.rollAgain = false; // doubles are void when getting out of Market
 				$scope.isInMarket = false;
 				$scope.currentPlayer.inMarket = false;
+				$scope.rolled = true;
 				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}else{
@@ -106,11 +107,13 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 					$scope.isInMarket = false;
 					$scope.currentPlayer.inMarket = false;
 					GameFactory.playerStatsAlert($scope.currentPlayer);
+					$scope.endTurn();
 					return;
 				}else{
 					alert("You did not roll doubles! Walk around Saturday Market for another turn. Maybe you'll find that tie-dye nighty you've always wanted!");
 					$scope.currentPlayer.freedomRolls++;
 					GameFactory.playerStatsAlert($scope.currentPlayer);
+					$scope.endTurn();
 					return;
 				}
 			}// end else not doubles
