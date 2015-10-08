@@ -120,7 +120,7 @@ body{
 
 .no_style_li{
   list-style-type: none;
-
+}
 
 .square1, .square3, .square6, .square8, .square9{
   display: flex;
