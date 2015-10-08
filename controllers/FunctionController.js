@@ -134,12 +134,6 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
 
 
 
-
-
-
-
-
-
   var player = { id: 1,
                    name: "car",
                   //  piece: {pieceName: factory.gamePieces[i].pieceName,
