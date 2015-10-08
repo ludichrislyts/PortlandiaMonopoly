@@ -25,7 +25,7 @@ body{
   background-color: #ecfcf4;
   outline: .3em solid black;
   transform: rotateX(45deg);
-  box-shadow: 7px 14px 14px 10px rgba(0,0,0,0.75);
+  box-shadow: 7px 14px 14px 8px rgba(0,0,0,0.75);
 }
 
 .top-row{
@@ -648,3 +648,44 @@ body{
 }
 
 /* Player display pieces */
+
+.player1{
+  position: absolute;
+  background-image: url(../img/dog.png);
+  background-size: cover;
+  z-index: 2;
+  height: 5em;
+  width: 5em;
+}
+
+.player2{
+  position: absolute;
+  background-image: url(../img/hat.png);
+  background-size: cover;
+  z-index: 2;
+  height: 4em;
+  width: 5em;
+  top: 0;
+  right: 0;
+}
+
+.player3{
+  position: absolute;
+  background-image: url(../img/iron.png);
+  background-size: cover;
+  z-index: 2;
+  height: 4em;
+  width: 5em;
+  bottom: 0;
+}
+
+.player4{
+  position: absolute;
+  background-image: url(../img/elephant.png);
+  background-size: cover;
+  z-index: 2;
+  height: 5em;
+  width: 6em;
+  bottom: 0;
+  right: 0;
+}
