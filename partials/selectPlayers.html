@@ -21,15 +21,15 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 	</form>
 	<!--displays players, start roll-for-first actions-->
 	<div ng-show="showStartButton || players.length > 1">
-		<a ng-click="getFirstPlayer = true; startGame = true" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
+		<a ng-click="getFirstPlayer = true; startGame = true; rollForFirst()" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
 	</div>
 	<div class="row">
 		<div ng-show="players.length > 0">Number of Players = {{players.length}}
-			<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece <span ng-show="startGame">
+			<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece</p>
 			<!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
 			
-				<button ng-click="rollForFirst(item.id); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>
-			</span></p>
+				<!--<button ng-show="startGame" ng-click="rollForFirst(); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>-->
+
 		</div>
 		<!-- HIGH ROLLER
 		<!-- 
@@ -40,14 +40,14 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
 		<!--<div ng-model="highestRoller" ng-show="show_roll_results">
 			<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
 		</div>-->
-		<div ng-model="tie" ng-show="break_tie">
+		<!--<div ng-model="tie" ng-show="break_tie">
 			<div>
 				<button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button>
 				<br/>
-			</div>
+			</div>-->
 		</div>
 		<div ng-show="startGameMessage" ng-click="startGameMessage = false">
-			<a ui-sref="play({playerId:firstPlayer.id})" class="button btn btn-primary btn-large">{{ firstPlayer.name }}, Start the Game!</a>
+			<a ui-sref="play" class="button btn btn-primary btn-large">{{ playerToStart.name }}, Start the Game!</a>
 		</div>
 	</div>
 </div>

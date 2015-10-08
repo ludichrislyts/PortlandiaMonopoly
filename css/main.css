@@ -10,6 +10,40 @@ html, body, div, h1, h2, h3, p, ul, li {
 body{
   font-size: 8px;
 }
+.containerStatbar{
+  width: 100%;
+  height: 5em;
+  background-color: #80CCFF;
+  display: inline-block;
+  color: white;
+}
+.statbar{
+  padding: 1em;
+  margin-left: 5em;
+  display: inline-block;
+  float: left;
+  min-width: 5em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  border: .3em solid #ecfcf4;
+  border-top: none;
+  -webkit-box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
+  -moz-box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
+  box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
+}
+.statbar p{
+  display: inline-block;
+  font-size: 2.5em;
+}
+.statbar .money{
+  padding: .5em;
+  margin-left: .5em;
+  
+}
+/*.p1{
+  
+}*/
+
 
 .board-container{
   margin: 50px;
@@ -18,6 +52,7 @@ body{
 }
 
 .column-container{
+  margin-top: -15em;
   display: flex;
   flex-direction: column;
   height: 78.0em;
@@ -702,4 +737,16 @@ body{
   right: 0;
 }
 
-/**/
+/*
+player action section (playerTurn
+*/
+.player-control{
+  min-height: 30em;
+  max-width: 20em;
+  border: 3px solid darkslategray;
+  margin-left: 3em;
+  margin-right: 5em;
+  margin-top: 4em;
+  padding: 2em;
+  
+}

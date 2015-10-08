@@ -6,7 +6,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   factory.gamePieces = [{pieceName:"Blue", id: 1, taken: false},
                         {pieceName:"Red", id: 2, taken: false},
                         {pieceName:"Green", id: 3, taken: false},
-                        {pieceName:"Yellow", id: 4, taken: false},
+                        {pieceName:"Orange", id: 4, taken: false},
                         {pieceName:"Black", id: 5, taken: false}];
 
 /////////////////////////////////////////////////////////////////////////////
