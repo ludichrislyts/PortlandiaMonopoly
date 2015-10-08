@@ -20,7 +20,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       doubles = false;
     }
     return {total: total, die1: die1, die2: die2, doubles: doubles};
-  }
+  },
 
   $scope.buyDeed = function(deed, player) {
     if (deed.owned > 0) {
@@ -37,7 +37,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
     //   return_string += " You have a new Monopoly!";
     // }
     return return_string;
-  }
+  },
 
   $scope.enoughMoney = function(price, player_money) {
       if (player_money >= price) {
@@ -46,7 +46,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       else {
         return false;
       }
-  }
+  },
 
   $scope.checkForMonopoly = function(deed_number) {
     var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
@@ -90,7 +90,7 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
     //   }
     // }
     return false; //there is no new monopoly
-  }
+  },
 
 
 
@@ -103,13 +103,13 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
 
 
 
-  document.write("<u>roll()</u>:<br>");
+  console.log("<u>roll()</u>:<br>");
   var roll = $scope.roll();
-  document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
+  console.log("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>");
 
-  document.write("---------------------<br>");
+  console.log("---------------------<br>");
 
-  document.write("<u>buyDeed()</u>:<br>");
+  console.log("<u>buyDeed()</u>:<br>");
 
   var player = { id: 1,
                    name: "car",
@@ -126,11 +126,11 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
                 };
 
   var buyDeedString = $scope.buyDeed(deeds[9], player);
-  document.write("buyDeed string = " + buyDeedString + "<br>");
-  document.write("player.money = " + player.money + "<br>");
-  document.write("deeds[].owned = " + deeds[9].owned + "<br>")
+  console.log("buyDeed string = " + buyDeedString + "<br>");
+  console.log("player.money = " + player.money + "<br>");
+  console.log("deeds[].owned = " + deeds[9].owned + "<br>")
 
-  document.write("---------------------<br>");
+  console.log("---------------------<br>");
 
 
 
