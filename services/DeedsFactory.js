@@ -87,7 +87,7 @@ factory.deeds[3] = {name: "ALTSOURCE",
                 };
 
 //Income Tax
-factory.deeds[4] = {name: "",
+factory.deeds[4] = {name: "PORTLAND ART TAX",
                   price: 0,
                   mortgage_value: 0,
                   house_cost: 0,
