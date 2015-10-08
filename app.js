@@ -10,9 +10,10 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url: "",
 		views:{
-			// 'header': {
-			// 	templateUrl: "partials/header.html",
-			// },
+			'test':{
+				templateUrl: "testFunctions.html",
+				controller: "FunctionCtrl",
+			},
 			'playerActions': {
 				templateUrl: "partials/selectPlayers.html",
 				controller: "PlayerSelectCtrl",
@@ -36,5 +37,5 @@ portlandiaMonopoly.config(function($stateProvider, $urlRouterProvider) {
 				controller: "GameBoardCtrl",
 			},
 		}
-	})
+	});
 });

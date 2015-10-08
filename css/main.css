@@ -124,6 +124,10 @@ body{
   /*margin-bottom: 150px;*/
 }
 
+.no_style_li{
+  list-style-type: none;
+}
+
 .square1, .square3, .square6, .square8, .square9{
   display: flex;
   flex-direction: column;
@@ -312,6 +316,7 @@ body{
   border-right: 1px solid black;
   background-color: #2020CC;
   flex: 1;
+
 }
 
 /* Railroads */
