@@ -4,8 +4,8 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	// $scope.deeds = DeedsFactory.deeds;
 	
 	// TESTING ONLY!! Comment out and un-comment next $scope.players line when game is live
-	$scope.players = GameFactory.seedPlayerArray();
-	// $scope.players = GameFactory.players;
+	//$scope.players = GameFactory.seedPlayerArray();
+	$scope.players = GameFactory.players;
 	$scope.pieces = GameFactory.gamePieces;
 	// initial startGame value to be false. Toggled true in partial when user selects
 	// to start game
@@ -31,11 +31,13 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	var numberOfRolls = 0; 
 	var numberRolled = 0;
 	var firstInTieBreak = true; // for testing ties
-	var numOfRollers = GameFactory.players.length;
+	numOfRollers = GameFactory.players.length;
+
 	// assigns playerId to highestRoller player_id
 	// returns true if there is a tie
 	// $scope.rollForFirst = function(playerId){
 	$scope.rollForFirst = function (playerId) {
+			var numOfRollers = GameFactory.players.length;
 		// logic to determine if its a tie break round
 		if($scope.break_tie && firstInTieBreak){
 			numberOfRolls = 0;

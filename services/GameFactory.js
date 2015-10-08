@@ -70,7 +70,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
      // take piece out of display array and toggle taken in piece object
      factory.selectPiece(factory.players[lastAdded].piece);
      // return true to toggle play in html
-     if(factory.players.length == 5){return true;}
+     if(factory.players.length >= 5){return true;}
   },
   
   // when a player selects a piece, make other pieces unavailable
