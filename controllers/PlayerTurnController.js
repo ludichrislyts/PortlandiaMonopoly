@@ -57,6 +57,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			return;
 		}
 		$scope.move(player, roll.total);
+		$scope.playerOption(player); //give player option to buy deed landed on
 		while ((roll.doubles) && (player.num_of_doubles < 3)) {
 			player.num_of_doubles++;
 			roll = $scope.roll();
@@ -65,9 +66,16 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				return;
 			}
 			$scope.move(player, roll.total);
+			$scope.playerOption(player); //give player option to buy deed landed on
 		}
 		player.num_of_doubles = 0;
 	} //end turn()
+
+
+	//****************CONTINUETURN FUNCTION****************//
+	$scope.continueTurn = function(player) {
+
+	} //end continueTurn()
 
 
 	//****************ROLL FUNCTION****************//
@@ -84,6 +92,25 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	  }
 	  return {total: total, die1: die1, die2: die2, doubles: doubles};
   } //end roll()
+
+
+	//****************MOVE FUNCTION****************//
+	$scope.move = function(player, total) {
+		player.position += total;
+		if (player.position > 39) { //player passed or landed on go
+			player.position -= 40;
+			player.money += 200;
+		}
+		$(".player" + player.id).appendTo(".square" + player.position);
+	} //end move()
+
+
+	//****************PLAYEROPTION FUNCTION****************//
+	$scope.playerOption = function(player) {
+		if (not owned) {
+
+		}
+	} //end playerOption()
 
 
 	//****************BUYDEED FUNCTION****************//
@@ -170,17 +197,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		player.inMarket = true;
 		$(".player" + player.id).appendTo(".square" + player.position);
 	} //end gotoJail()
-
-
-	//****************MOVE FUNCTION****************//
-	$scope.move = function(player, total) {
-		player.position += total;
-		if (player.position > 39) { //player passed or landed on go
-			player.position -= 40;
-			player.money += 200;
-		}
-		$(".player" + player.id).appendTo(".square" + player.position);
-	} //end move()
 
 
 	//****************ENDTURN FUNCTION****************//

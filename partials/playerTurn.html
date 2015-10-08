@@ -8,8 +8,9 @@
 	<div class="row free" ng-show="rolled && !isInMarket">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
-			<option ng-model="turn_options">Purchase</option>
-			<option ng-model="turn_options">Mortgage</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Purchase</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Do Not Purchase</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Mortgage</option>
 		</select>
 	</div>
 	<!--stuck in market actions-->
