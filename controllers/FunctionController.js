@@ -113,18 +113,35 @@ portlandiaMonopoly.controller('FunctionCtrl', function FunctionCtrl($scope, $sta
       document.write("old player.money = " + player.money + "<br>old player.position = " + player.position + "<br>roll.total =" + roll.total + "<br>");
       $roll = {doubles: false};
     }
+    if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
+      $scope.gotoJail(player);
+      return;
+    }
     $scope.move(player, roll.total);
     document.write("new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
 roll.doubles = true;
-    while ((roll.doubles) && player.num_of_doubles < 3) {
+    while ((roll.doubles) && (player.num_of_doubles < 3)) {
       player.num_of_doubles++;
       roll = $scope.roll();
 roll.doubles = true;
+      if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
+        $scope.gotoJail(player);
+        return;
+      }
       $scope.move(player, roll.total);
       document.write("---------------------<br>");
       document.write("roll.die1 = " + roll.die1 + "<br>roll.die2 = " + roll.die2 + "<br>roll.total = " + roll.total + "<br>roll.doubles = " + roll.doubles + "<br>player.num_of_doubles = " + player.num_of_doubles + "<br>new player.money = " + player.money + "<br>new player.position = " + player.position + "<br>");
     }
     player.num_of_doubles = 0;
+  }
+
+  $scope.gotoJail = function(player) {
+    player.position = 10;
+    player.num_of_doubles = 0;
+    player.inMarket = true;
+    document.write ("In Jail. player.position = " + player.position +
+                    "<br>player.num_of_doubles = " + player.num_of_doubles +
+                    "<br>player.inMarket = " + player.inMarket + "<br>");
   }
 
 
