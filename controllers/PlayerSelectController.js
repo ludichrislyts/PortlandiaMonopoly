@@ -86,14 +86,14 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 			$scope.break_tie = false;
 			$scope.startGameMessage = true;
 			$scope.firstPlayer = player;
-			$scope.playersInOrder = GameFactory.fixPlayerOrder(player.id);
+			// $scope.playersInOrder = GameFactory.fixPlayerOrder(player.id);
 			console.log("rolls not first in tie, === " + numberOfRolls + ", players:" + numOfRollers);
 		}
 		else if(numberOfRolls === numOfRollers){
 			var playerToStart = UtilitiesFactory.findById(GameFactory.players,highestRoller[0].id);
 			$scope.startGameMessage = true;
 			$scope.firstPlayer = playerToStart;
-			$scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
+			// $scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
 			console.log("HERE" + "end, === " + numberOfRolls + ", players:" + numOfRollers);
 		}
 		return;

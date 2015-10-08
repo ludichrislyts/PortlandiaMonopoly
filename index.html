@@ -16,11 +16,19 @@
   <script src="controllers/PlayerSelectController.js"></script>
   <script src="controllers/PlayerTurnController.js"></script>
   <script src="controllers/GameBoardController.js"></script>
+  <script src="directives/gameDirectives.js"></script>
+
+  <script src="controllers/FunctionController.js"></script>
+  <script src="testFunctions.js"></script>
+
+
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
   <body>
+    <div ui-view="test"></div>
     <div ui-view="playerActions"></div>
     <div ui-view="gameBoard"></div>
   </body>

@@ -19,7 +19,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                              name: factory.gamePieces[i].pieceName,
                              piece: {pieceName: factory.gamePieces[i].pieceName,
                                      id: i + 1,
-                                     taken: false},
+                                     taken: true},
                              money: 1500,
                              inMarket: false,
                              freedomRolls: 0,
@@ -28,6 +28,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                              houses: 0,
                              hotels: 0 });
     } 
+    // add a player with a couple get out free cards for testing
+    // getOutFree array contains the group type from the card:
+    // "CC" for community chest and "C" for chance.
+    var pieceIndex = factory.gamePieces.length -1;
+    factory.players.push({ id: factory.players.length + 1, name: factory.gamePieces[pieceIndex].pieceName, piece: {pieceName: factory.gamePieces[pieceIndex].pieceName, id: pieceIndex + 1, taken: true}, money: 1500, inMarket: true, freedomRolls: 0, position: 0, getOutFree: ["CC", "C"], houses: 3, hotels: 2});
     return factory.players;  
   },
 /////////////////////////////////////////////////////////////////////////////
@@ -110,6 +115,17 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   
   //moves player and returns the new postiton
   // sends player to market if position = 30 (go to market)
+  
+  // check if player had a get out of market card
+  // returns empty array if no card, getOutFree array if has card
+  factory.hasGetOut = function(player){
+    if(player.getOutFree.length === 0){
+      return [];
+    }else{
+      return player.getOutFree;
+    }
+  },
+  
   factory.movePlayer = function(player){
     var position = player.position + 7; // replace 7 with diceroll function
     if (position > 39){ // 40 == GO
@@ -154,6 +170,10 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       return true;
     }
   };
+  
+  factory.useLeaveMarketCard = function(player){
+    
+  }
   // action card - kind: card- get out of jail free
   //                            Pay or collect money from every player
   //                     money - collect or pay money
@@ -201,6 +221,36 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
     player.money -+ deed.price;
 
   };
+  ///////////////////// MOVED TO PLAYER TURN CTRL ///////////////
+  // adjust Player money
+  // returns new amount
+  // factory.adjustMoney = function(player, amount){
+  //   player.money += amount;
+  //   return player.money;
+  // };
+  ///////////////////////////////////////////////////////////////
+  
+  //FOR TESTING ONLY
+  factory.playerStatsAlert = function(player){
+    var name = player.name
+    var piece = player.piece.pieceName;
+    var money = ("$" + player.money);
+    var inMarket = player.inMarket;
+    var freedomRolls = player.freedomRolls;
+    var position = player.position;
+    var getOutFreeCards = player.getOutFree.length;
+    var houses = player.houses;
+    var hotels = player.hotels;
+    alert("Player name: " + name + "\n" + 
+          "Piece: " + piece + "\n" +
+          "Money: " + money + "\n" +
+          "inMarket: " + inMarket + "\n" +
+          "freedomRolls:" + freedomRolls + "\n" + 
+          "position: " + position + "\n" +
+          "getOutFreeCards: " + getOutFreeCards + "\n"
+          );
+  }
+  
   return factory;
 
 });
