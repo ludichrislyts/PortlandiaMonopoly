@@ -19,7 +19,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                              name: factory.gamePieces[i].pieceName,
                              piece: {pieceName: factory.gamePieces[i].pieceName,
                                      id: i + 1,
-                                     taken: false},
+                                     taken: true},
                              money: 1500,
                              inMarket: false,
                              freedomRolls: 0,
@@ -28,6 +28,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
                              houses: 0,
                              hotels: 0 });
     } 
+    // add a player with a couple get out free cards for testing
+    // getOutFree array contains the group type from the card:
+    // "CC" for community chest and "C" for chance.
+    var pieceIndex = factory.gamePieces.length -1;
+    factory.players.push({ id: factory.players.length + 1, name: factory.gamePieces[pieceIndex].pieceName, piece: {pieceName: factory.gamePieces[pieceIndex].pieceName, id: pieceIndex + 1, taken: true}, money: 1500, inMarket: true, freedomRolls: 0, position: 0, getOutFree: ["CC", "C"], houses: 3, hotels: 2});
     return factory.players;  
   },
 /////////////////////////////////////////////////////////////////////////////
@@ -115,9 +120,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
   // returns empty array if no card, getOutFree array if has card
   factory.hasGetOut = function(player){
     if(player.getOutFree.length === 0){
-      return {card:[]}
+      return [];
     }else{
-      return {card: player.getOutFree}
+      return player.getOutFree;
     }
   },
   
@@ -165,6 +170,10 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory(){
       return true;
     }
   };
+  
+  factory.useLeaveMarketCard = function(player){
+    
+  }
   // action card - kind: card- get out of jail free
   //                            Pay or collect money from every player
   //                     money - collect or pay money

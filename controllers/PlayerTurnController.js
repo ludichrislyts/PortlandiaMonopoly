@@ -10,7 +10,16 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.player4 = GameFactory.players[4];
 	
 	var index = 0;
-	$scope.currentPlayer = $scope.player1;
+	// $scope.currentPlayer = $scope.player1; // uncomment this line for a real game
+	// FOR TESTING GET OUT FREE CARDS!!
+/////////////////////////////////////////////////////////////////////////
+///////////// Player Select Controller, lines 89 + 96 must //////////////
+/////////////////// also be uncommented /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+	$scope.currentPlayer = $scope.player4;
+	console.log($scope.currentPlayer.name + ", currentPlayer initial");
+	
+	// advance turn
 	$scope.endTurn = function(){
 		index++;
 		if(index === GameFactory.players.length){
@@ -60,17 +69,26 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	}
 	// to determine to show use card option
 	var freeCards = GameFactory.hasGetOut($scope.currentPlayer);
+	console.log(freeCards[0] + ", " + freeCards[1] + ", freeCards");
 	if(freeCards.length > 0){
 		$scope.has_card = true;
 		$scope.getOutFreeCards = freeCards;
 	}else{
 		$scope.has_card = false;
 	}
+	$scope.showCards = function(){
+		if($scope.choose_card === true){
+			$scope.choose_card = false;
+		}else { 
+			$scope.choose_card = true;
+		}
+	},
 	$scope.marketAction = function(){
 		console.log($scope.currentPlayer);
 		GameFactory.playerStatsAlert($scope.currentPlayer);
 		if($scope.market_choice === "card"){
-			var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
+			$scope.choose_card = true;			
+			var index = $scope.getOutFreeCards.indexOf($stateParams.cardChosen);
 			$scope.getOutFreeCards.splice(1, index);
 			console.log("in card option of marketAction");
 			$scope.isInMarket = false;

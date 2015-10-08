@@ -2,7 +2,7 @@
 	<div class="row in-market" ng-show="isInMarket">
 		<h3>You're stuck at Saturday Market!!</h3>
 		<!--show if player has another turn to stay in market-->
-		<label for="market_choices">{{ player1.name }}, select your options. You can:<br/>
+		<label for="market_choices">{{ currentPlayer.name }}, select your options. You can:<br/>
 		* Pay $50.<br/>
 		* Use an available "Leave Saturday Market Free" card<br/>
 		* Roll for doubles<br/>
@@ -17,21 +17,28 @@
 		<form ng-submit="marketAction()">
 			<div class="row form-group" >
 				<ul class="no_style_li" required>
-					<li ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" value="card"> Use a get out of market free card</input></li>
-					<li><input name="market" type="radio" ng-model="market_choice" value="pay"> Pay $50</input></li>
-					<li><input name="market" type="radio" ng-model="market_choice" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input></li>
+					<li id="card" ng-model="market_choice"  ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" ng-change="showCards()" value="card"> Use a get out of market free card</input>
+						<span ng-show="choose_card" >
+							<show-cards></show-cards></span>
+					</li>
+					<li><input name="market" type="radio" ng-model="market_choice" value="pay"> Pay $50</input>
+					</li>
+					<li><input name="market" type="radio" ng-model="market_choice" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input>
+					</li>
 				</ul>
 			</div>
 			<button type="submit" ng-model="market_choice" ng-click="isInMarket = false">Submit </button>
 		</form>
-		<form ng-show="choose_card">
-			<select name="cards" ng-model="cardSelected">
-				<option ng-repeat="item in getOutFreeCards">{{ item.group }}</option>
-			</select>	
-		</form>
+		<!--<div ng-show="choose_card">
+			<form ng-model="cardSelected">
+				<select name="cards" ng-model="cardSelected">
+					<option ng-repeat="item in getOutFreeCards" ng-model="cardSelected" value="({cardChosen: item.group})">{{ item.group }}</option>
+				</select>	
+			</form>
+		</div>-->
 	</div>
 	<div ng-hide="rolled || isInMarket">
-		<h3>{{ currentPlayer.name}}, roll!</h3>
+		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
 		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
 	</div>
 	
