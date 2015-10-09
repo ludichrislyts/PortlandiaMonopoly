@@ -17,6 +17,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	var lastRoller;
 	var lastLastRoller;
 	var whoTurn = 0;
+	var number_of_players = GameFactory.players.indexOf
 	// uncomment this line for a real game
 	$scope.currentPlayer = $scope.player1;
 	// SETUP TURN
@@ -61,14 +62,13 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************TURN FUNCTION****************//
 	$scope.turn = function(player, total) { //if total is not passed in, then the player hasn't rolled yet and we will roll here
-		var roll = $scope.roll();
-		// roll.total = total || 0;
-		console.log(roll.total);
-		if (roll.total == 0) {
+		var roll = {};
+		total = total || 0;
+		if (total == 0) {
 			roll = $scope.roll();
 		}
 		else {
-			$roll = {doubles: false};
+			$roll = {total: total, doubles: false};
 		}
 		$scope.move(player, roll.total);
 		$scope.playerOption(player); //give player option to buy deed landed on
@@ -77,16 +77,17 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			roll = $scope.roll();
 			if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
 				$scope.gotoJail(player);
-				return;
+				$scope.show_end_turn_button = true;
 			}
 			$scope.move(player, roll.total);
 			$scope.playerOption(player); //give player option to buy deed landed on
 		}
 		if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
 			$scope.gotoJail(player);
-			return;
+			$scope.show_end_turn_button = true;
 		}
 		player.num_of_doubles = 0;
+		$scope.show_end_turn_button = true;
 	} //end turn()
 
 
@@ -98,6 +99,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************ROLL FUNCTION****************//
   $scope.roll = function() {
+		console.log("roll");
 	  var chance = new Chance(); // loaded in index.html
 	  var die1 = chance.integer({min:1, max:6});
 	  var die2 = chance.integer({min:1, max:6});
@@ -126,7 +128,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
-		var deed = $scope.deeds[player.position];
+		var deed = deeds[player.position];
 		if (deed.group_id == 0) { // player is not able to buy this deed
 			if (player.position == 0) { //Go
 
@@ -168,7 +170,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			}
 		}
 		else if (deed.owned == 0) { // player option to buy or not to buy
-			var buy_deed = confirm("Do you want to buy "+ deed.name + "?");
+			console.log("2");
+			var buy_deed = confirm("Do you want to buy " + deed.name + "?");
 				if (buy_deed) {
 					$scope.buyDeed(deed, player);
 				}
@@ -206,6 +209,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		var return_string= "Congratulations! You now own " + deed.name + ".";
 		if (new_monopoly) {
 			return_string += " You have a new Monopoly!";
+		}
+		if (player.position < 10){
+			$(".square" + player.position + " .bottom-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 20) && (player.position > 10)) {
+			$(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 30) && (player.position > 20)) {
+			$(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 30) && (player.position > 20)) {
+			$(".square" + player.position + " .right-cost").css("background-color", player.piece.pieceName);
 		}
 		alert(return_string);
 		return;
