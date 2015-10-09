@@ -2,7 +2,7 @@
 	<!--no stuck in market actions - roll button and post roll options-->
 	<div ng-show="rolled === false && isInMarket === false && submit === false">
 		<h3 ng-show="samePlayer == false">{{ currentPlayer.name}}, it's your turn. Roll!</h3>
-		<h3 ng-hide="samePlayer == false">{{ currentPlayer.name}}, Roll Again!</h3>
+		<h3 ng-show="samePlayer == true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>
 		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
 	</div>
 	<!--if player lands on a no-buy space-->

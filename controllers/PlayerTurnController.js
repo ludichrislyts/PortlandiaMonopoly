@@ -21,6 +21,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	var lastLastRoller;
 	var whoTurn = 0;
 	var cardType = null;
+	$scope.chanceCard = false;
+	$scope.community_chanceCard = false;
 	// uncomment this line for a real game
 	$scope.currentPlayer = $scope.player1;
 
@@ -190,6 +192,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	//****************MOVE FUNCTION****************//
 	$scope.move = function(player, total) {
 		player.position += total;
+		console.log(total + ", total in move");
 		if (player.position > 39) { //player passed or landed on go
 			player.position -= 40;
 			player.money += 200;
@@ -359,9 +362,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 		for (var i = 0; i < $scope.players.length; i++){
 			if($scope.players[i].id == $scope.currentPlayer.id){
-				$("#p"+$scope.currentPlayer.id).css("color", "yellow");
+				$("#p"+$scope.currentPlayer.id).css("margin-top", "5px");
 			}else{
-				$("#p"+$scope.players[i].id).css("colorw","white");				
+				$("#p"+$scope.players[i].id).css("margin-top","0px");				
 			}
 		}
 	};// end endTurn()
@@ -382,7 +385,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         }
       }
     }else if(card.kind ==='money'){
-			alert(player.inMarket + ", player gets paid in actionCard()");
+			// alert(player.inMarket + ", player gets paid in actionCard()");
       player.money += card.value[0];
     } else if(card.kind === 'assess'){
       player.money -= ((player.houses * card.value[0]) + (player.hotels * card.value[1]));
@@ -394,8 +397,16 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 						player.position = card.value;
 						player.inMarket = true;		
 						alert(player.inMarket + ", player in Market in actionCard()");			
-				}else{
-					player.position = card.value;
+				}else if(card.value == 0){ // advance to go
+						player.position = 0;
+						player.money += 200;
+				}else{ // random other places
+					if(player.position < card.value){
+						player.position = card.value;						
+					}else{
+						player.position = card.value;
+						player.money += 200;
+					}
 				}
       }
     }
