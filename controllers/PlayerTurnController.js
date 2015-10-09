@@ -1,9 +1,10 @@
 portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, CommChanceFactory, DeedsFactory, UtilitiesFactory) {
 	 // var actionCard = UtilitiesFactory.findById(CommChanceFactory, spaceId);
-	$scope.turn_options = "true";
+	
+	// toggles purchase/pass on property display, not really used now
+	$scope.turn_options = "true"; 
 	$scope.deeds = DeedsFactory.deeds;
 	$scope.result = "roll";
-	$scope.rolled = false;
 	$scope.players = GameFactory.players;
 	$scope.factory = GameFactory;
 	$scope.player1 = GameFactory.players[0];
@@ -30,16 +31,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.submit = false;
 	$scope.buyOption = false;
 	$scope.drawAction = false;
-	// FOR TESTING GET OUT FREE CARDS!!
-/////////////////////////////////////////////////////////////////////////
-///////////// Player Select Controller, lines 89 + 96 must //////////////
-/////////////////// also be uncommented /////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
-			// $scope.currentPlayer = $scope.player5;
-			// console.log($scope.currentPlayer.name + ", currentPlayer initial");
-/////////////////////////////////////////////////////////////////////////
-////////////// FACTORY FUNCTIONS THAT DON'T USE $SCOPE //////////////////
-////////////////////////// (I THINK) ////////////////////////////////////
+
 
 	// adjust Player money
   // returns new amount
@@ -86,7 +78,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		else{
 			player.num_of_doubles = 0;
 		}
-		// $scope.move(player, $scope.rollResult.total); // possibly move this into player option function to be able to get roll results before moving player piece on board
 		return;
 	};
 	//****************PLAYEROPTION FUNCTION****************//
@@ -149,26 +140,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 		else if (deed.owned == 0) {
 			 // player option to buy or not to buy
-			//$scope.buyOption = true;
-			// if($scope.turn_options == "true"){
-				$scope.buy_deed(deed);
-				// $scope.show_end_turn_button = true;	
-				// return;
-			// }else{
+				$scope.ask_to_buy_deed(deed);
 				$scope.show_end_turn_button = true;	
 				return;
-			}
-			// console.log("2");
-			// var buy_deed = confirm("Do you want to buy " + deed.name + "?");
-			// 	if (buy_deed) {
-			// 		$scope.buyDeed(deed, player);
-			// 	}
-			// 	else {
-
-			// 	}
-		
-			// player option to buy or not to buy
-		
+			}		
 		else if (deed.owned != player.id) {
 			// player needs to pay another player rent
 		}
@@ -185,57 +160,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		console.log($scope.cardToRead);
 		console.log(cardType);
 	};
-	// $scope.playerOption($scope.currentPlayer); //give player option to buy deed landed on
 
-	//****************TURN FUNCTION****************//
-	// $scope.turn = function(player, total) { //if total is not passed in, then the player hasn't rolled yet and we will roll here
-	// 	$scope.rollResult = {};
-	// 	//roll = $scope.roll();
-	// 	total = total || 0;
-	// 	console.log($scope.rollResult.total);
-	// 	if (total == 0) {
-	// 		$scope.rollResult = $scope.roll();
-	// 	}
-	// 	else {
-	// 		$scope.rollResult = {total: total, doubles: false};
-	// 	}
-	// 	$scope.move(player, $scope.rollResult.total);
-	// 	$scope.playerOption(player); //give player option to buy deed landed on
-	// 	while (($scope.rollResult.doubles) && (player.num_of_doubles < 3)) {
-	// 		player.num_of_doubles++;
-	// 		$scope.rollResult = $scope.roll(); // not herre
-	// 		if (($scope.rollResult.doubles == true) && (player.num_of_doubles >= 3)) {
-	// 			$scope.rollResult.doubles = false;
-	// 			$scope.gotoJail(player);
-	// 			return;
-	// 		}
-	// 		$scope.move(player, $scope.rollResult.total);
-	// 		$scope.playerOption(player); //give player option to buy deed landed on
-	// 	}
-	// 	if (($scope.rollResult.doubles == true) && (player.num_of_doubles >= 3)) {
-	// 		$scope.gotoJail(player);
-	// 		return;
-	// 	}
-	// 	$scope.noDubs = true;
-	// 	player.num_of_doubles = 0;
-	// } //end turn()
-
-
-	//****************CONTINUETURN FUNCTION****************//
-	$scope.continueTurn = function(player) {
-
-	} //end continueTurn()
-
-	$scope.buy_deed = function(deed){
-		console.log(deed);
-		var buy = confirm("Do you want to buy " + deed.name + "?");
-				if (buy) {
-					$scope.buyDeed(deed);
-				}
-				else {
-
-				}
-	}
 
 	//****************ROLL FUNCTION****************//
   $scope.roll = function() {
@@ -264,8 +189,17 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		$(".player" + player.id).appendTo(".square" + player.position);
 		console.log(player.position + ", player position after roll");
 	} //end move()
+	
+	$scope.ask_to_buy_deed = function(deed){
+		console.log(deed);
+		var buy = confirm("Do you want to buy " + deed.name + "?");
+				if (buy) {
+					$scope.buyDeed(deed);
+				}
+				else {
 
-
+				}
+	}
 
 
 	//****************BUYDEED FUNCTION****************//
@@ -417,10 +351,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	// };// end endTurn()
 	// testing new end turn
 	$scope.endTurn = function () {
-		// FOR TESTING
-		// $scope.currentPlayer = $scope.player5;
-		// GameFactory.playerStatsAlert($scope.currentPlayer);
-		// $scope.isInMarket = $scope.currentPlayer.inMarket;
 		$scope.draw = false;
 		$scope.rolled = false; // resets roll button
 		$scope.submit = false; // resets show roll button display
@@ -429,7 +359,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		$scope.drawAction = false; // draw card and display result reset
 		//reset
 		if ($scope.currentPlayer.num_of_doubles > 0) {
-			$scope.samePlayer = true;
+			// do nothing, same player will roll
 		} else {
 			index++;
 			if (index === GameFactory.players.length) {
@@ -448,14 +378,12 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			}
 		}
 		for (var i = 0; i < $scope.players.length; i++){
-			if($scope.players[i].id = $scope.currentPlayer.id){
+			if($scope.players[i].id == $scope.currentPlayer.id){
 				$("#p"+$scope.currentPlayer.id).css("color", "yellow");
 			}else{
 				$("#p"+$scope.players[i].id).css("colorw","white");				
 			}
 		}
-
-			// $(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
 	};// end endTurn()
 
 // action from community chest and chance cards function
@@ -488,13 +416,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
       }
     }
   };
-
-
-
-
-
-
-
 
 	//****************SHOWCARDS FUNCTION****************//
 	$scope.showCards = function(){
@@ -582,35 +503,4 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}// end roll choice
 		$scope.market_choice = null;
 	} // end marketActions()
-
-
-	// $scope.roll = function(){
-	// 	var resultArray = UtilitiesFactory.rollDice();
-	// 	var numResult = resultArray[0];
-	// 	var doubles = resultArray[1];
-	// 	if(doubles){
-	// 		$scope.result = "You rolled " + numResult + ' with doubles!';
-	// 		return true;
-	// 	}else{
-	// 		$scope.result = "You rolled " + numResult;
-	// 		return false;
-	// 	}
-	// }
-
-// market rules:
-/* ------if player is in market, they can...
-* pay $50
-* use card
-* roll doubles
-*		- if doubles are rolled in turns 1, 2, or 3, player gets out, but
-*     doubles power up is voided
-*		- if player decides to pay $50/use card BEFORE rolling, doubles power is in 				effect
-		- if player does not pay, use card, or roll doubles by the third turn, player
-		  must pay the $50, and whatever was the last roll is the current roll
-*/
-	// for testing in market functions:
-
-
-
-
 });
