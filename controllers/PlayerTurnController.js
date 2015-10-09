@@ -126,7 +126,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
-		var deeds = $scope.deeds[player.position];
+		var deed = deeds[player.position];
 		if (deed.group_id == 0) { // player is not able to buy this deed
 			if (player.position == 0) { //Go
 
