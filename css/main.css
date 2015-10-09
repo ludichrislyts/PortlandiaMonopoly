@@ -203,7 +203,6 @@ body{
   flex: 3;
   text-align: center;
 }
-
 .right-name{
   transform: rotate(270deg);
   position: absolute;

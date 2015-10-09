@@ -41,6 +41,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 		var index = chance.integer({min:1, max:$scope.players.length});
 		$scope.playersInOrder = GameFactory.fixPlayerOrder(index);
 		$scope.playerToStart = GameFactory.players[0];
+		$("#p" + $scope.playerToStart.id).css("color", "yellow");
 	// 		var numOfRollers = GameFactory.players.length;
 	// 	// logic to determine if its a tie break round
 	// 	if($scope.break_tie && firstInTieBreak){
