@@ -1,4 +1,4 @@
-portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, CommChanceFactory, UtilitiesFactory) {
+portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, CommChanceFactory, DeedsFactory, UtilitiesFactory) {
 	 // var actionCard = UtilitiesFactory.findById(CommChanceFactory, spaceId);
 
 	$scope.result = "roll";
@@ -11,6 +11,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.player5 = GameFactory.players[4];
 	$scope.community_chest = CommChanceFactory.community_chest_data;
 	$scope.chance = CommChanceFactory.chance_data;
+	var deeds = DeedsFactory.deeds;
 
 	var index = 0;
 	// uncomment this line for a real game
@@ -104,6 +105,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			player.money += 200;
 		}
 		$(".player" + player.id).appendTo(".square" + player.position);
+		console.log(player.position + ", player position after roll");
 	} //end move()
 
 
