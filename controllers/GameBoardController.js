@@ -3,12 +3,17 @@ portlandiaMonopoly.controller('GameBoardCtrl', function GameBoardCtrl($scope, $s
 // 	$scope.initialize = GameFactory.getRemainingPieces(GameFactory.gamePieces);
 // 	$scope.remainingPieces = GameFactory.remainingGamePieces;
 //
-$(document).ready(function(){
-	$( "#hide-option" ).tooltip({
-		hide: {
-			effect: "explode",
-			delay: 250
-		}
+	$(document).ready(function(){
+		$( "#hide-option" ).tooltip({
+			hide: {
+				effect: "explode",
+				delay: 250
+			}
+		});
 	});
-});
-});
+
+})
+
+
+
+

@@ -17,7 +17,7 @@
   <script src="controllers/PlayerTurnController.js"></script>
   <script src="controllers/GameBoardController.js"></script>
   <script src="directives/gameDirectives.js"></script>
-
+  <script src="controllers/PlayerStatController.js"></script>
   <script src="controllers/FunctionController.js"></script>
   <script src="testFunctions.js"></script>
 
@@ -30,6 +30,7 @@
   <body>
       <div ui-view="test"></div>
       <div class="container" ui-view="setup"></div>
+      <div ui-view="playerStats"></div>
       <div class="col-md-8" style="padding-top: 50px; padding-right: 50px" ui-view="gameBoard"></div>
       <div class="col-md-4" ui-view="playerActions"></div>   
   </body>
