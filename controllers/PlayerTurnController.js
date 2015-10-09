@@ -130,6 +130,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.playerOption = function(player) {
 		var deed = deeds[player.position];
 		if (deed.group_id == 0) { // player is not able to buy this deed
+			debugger;
 			if (player.position == 0) { //Go
 
 			}
@@ -156,7 +157,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			}
 			else if (player.position == 30) { //Goto Jail
 				player.position = 10;
-				player.inMarket = true;
 				$(".player" + player.id).appendTo(".square" + player.position);
 				return;
 			}
@@ -179,15 +179,12 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 				}
 		}
-		else if (deed.owned != player.id) { // player needs to pay another player rent
-			var amount_owed = deed.rent[multiplier];
-			var receiving_player = GameFactory.players[deed.owned];
-			player.money -= amount_owed;
-			receiving_player.money += amount_owed;
-
+		else if (deed.owned != player.id) {
+			// player needs to pay another player rent
 		}
-		else { // player already owns this deed
-			alert("You already own " + deed.name);
+		else {
+			// player already owns this deed
+			return
 		}
 	} //end playerOption()
 
@@ -195,12 +192,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	//****************BUYDEED FUNCTION****************//
 	$scope.buyDeed = function(deed, player) {
 		if (deed.owned > 0) {
-			alert("Deed Already Owned");
-			return;
+			return "Deed Already Owned";
 		}
 		if (!$scope.enoughMoney(deed.price, player.money)) {
-			alert("Not Enough Money");
-			return;
+			return "Not Enough Money";
 		}
 		player.money -= deed.price;
 		deed.owned = player.id;
@@ -216,7 +211,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			$(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
 		} else if ((player.position < 30) && (player.position > 20)) {
 			$(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
-		} else if ((player.position < 30) && (player.position > 20)) {
+		} else if ((player.position < 40) && (player.position > 30)) {
 			$(".square" + player.position + " .right-cost").css("background-color", player.piece.pieceName);
 		}
 		alert(return_string);
@@ -314,7 +309,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		// $scope.isInMarket = $scope.currentPlayer.inMarket;
 		$scope.rolled = false;
 		$scope.submit = false;
-		alert("in end turn function, " + $scope.rolled + ", <= rolled, " + $scope.isInMarket + ", isInMarket");
+		// alert("in end turn function, " + $scope.rolled + ", <= rolled, " + $scope.isInMarket + ", isInMarket");
 		//reset
 		// comment out above line and uncomment below for actual gameplay
 		index++;
@@ -351,9 +346,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	// to determine to show use card option
 
-
-
-
+$scope.updateDiv = function(text){
+	$(".status").empty();
+	$("status").text(text);
+}
 
 
 
