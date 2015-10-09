@@ -175,6 +175,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 		else {
 			// player already owns this deed
+			return
 		}
 	} //end playerOption()
 
@@ -194,6 +195,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		var return_string= "Congratulations! You now own " + deed.name + ".";
 		if (new_monopoly) {
 			return_string += " You have a new Monopoly!";
+		}
+		if (player.position < 10){
+			$(".square" + player.position + " .bottom-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 20) && (player.position > 10)) {
+			$(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 30) && (player.position > 20)) {
+			$(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 30) && (player.position > 20)) {
+			$(".square" + player.position + " .right-cost");
 		}
 		return return_string;
 	}, //end buyDeed()
@@ -326,9 +336,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	// to determine to show use card option
 
-
-
-
+$scope.updateDiv = function(text){
+	$(".status").empty();
+	$("status").text(text);
+}
 
 
 
