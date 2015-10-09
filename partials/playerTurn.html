@@ -1,7 +1,8 @@
 <div class="container player-control" style="font-size: 16px">
 	<!--no stuck in market actions - roll button and post roll options-->
 	<div ng-show="rolled === false && isInMarket === false && submit === false">
-		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
+		<h3 ng-show="samePlayer == false">{{ currentPlayer.name}}, it's your turn. Roll!</h3>
+		<h3 ng-hide="samePlayer == false">{{ currentPlayer.name}}, Roll Again!</h3>
 		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
 	</div>
 	<!--if player lands on a no-buy space-->
@@ -21,8 +22,8 @@
 		<!--if its a chance card, $scope.chance = true in controller-->
 		<div ng-show="draw">
 			<span ng-model="drawActions" ng-hide="drawAction">
-				<h4 ng-show="community_chest && chance != true">You landed on Community Chest!</h4>
-				<h4 ng-show="chance && community_chest != true">You landed on Chance!</h4>
+				<h4 ng-show="community_chestCard && chanceCard != true">You landed on Community Chest!</h4>
+				<h4 ng-show="chanceCard && community_chestCard != true">You landed on Chance!</h4>
 				<h5>Click to pick a card</h5>
 				<button ng-click="drawAction = true; getCard()">Draw</button>
 			</span>		
