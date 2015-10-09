@@ -61,14 +61,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************TURN FUNCTION****************//
 	$scope.turn = function(player, total) { //if total is not passed in, then the player hasn't rolled yet and we will roll here
-		var roll = $scope.roll();
-		// roll.total = total || 0;
+		var roll = {};
+		//roll = $scope.roll();
+		total = total || 0;
 		console.log(roll.total);
-		if (roll.total == 0) {
+		if (total == 0) {
 			roll = $scope.roll();
 		}
 		else {
-			$roll = {doubles: false};
+			roll = {total: total, doubles: false};
 		}
 		$scope.move(player, roll.total);
 		$scope.playerOption(player); //give player option to buy deed landed on
@@ -86,6 +87,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			$scope.gotoJail(player);
 			return;
 		}
+		$scope.noDubs = true;
 		player.num_of_doubles = 0;
 	} //end turn()
 
@@ -126,6 +128,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
+		//console.log(player);
+		var card;
 		var deed = deeds[player.position];
 		if (deed.group_id == 0) { // player is not able to buy this deed
 			if (player.position == 0) { //Go
@@ -133,49 +137,67 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			}
 			else if ((player.position == 2) || (player.position == 17) ||
 							(player.position == 33)) { //Community Chest
-				$scope.drawCard("community chest");
-				$scope.cardToRead = 
-				return;
+				card = $scope.drawCard("community chest");
+				$scope.cardToRead = card;
+				$scope.community_chest = true;
+				$scope.draw = true;
 			}
 			else if (player.position == 4) { //Portland Art Tax
 					alert("Pay Portland Art Tax, Lose 200 Dollars");
 				player.money -= 200;
-				return;
 			}
 			else if ((player.position == 7) || (player.position == 22) ||
 							(player.position == 36)) { //Chance
-				$scope.drawCard("chance");
-				return;
+				card = $scope.drawCard("chance");
+				alert("in chance of playerOption, " + player.position);
+				$scope.cardToRead = card;
+				$scope.chance = true;
+				$scope.draw = true;
 			}
 			else if (player.position == 10) { //Portland Saturday Market
-				return;
+				//return;
 			}
 			else if (player.position == 20) { //Rose Garden
-				return;
+				//return;
 			}
 			else if (player.position == 30) { //Goto Jail
 				player.position = 10;
 				$(".player" + player.id).appendTo(".square" + player.position);
-				return;
+				//return;
 			}
 			else if (player.position == 38) { //VooDoo Donuts
 				alert("Pay for Voodoo Donuts, Lose 175 Dollars");
 				player.money -= 175;
-				return;
+				//return;
 			}
 			else {
 				alert("This should never print");
 			}
 		}
 		else if (deed.owned == 0) {
-			// player option to buy or not to buy
+			 // player option to buy or not to buy
+			console.log("2");
+			var buy_deed = confirm("Do you want to buy " + deed.name + "?");
+				if (buy_deed) {
+					$scope.buyDeed(deed, player);
+				}
+				else {
+
+				}
+			$scope.buyOption = true;
 		}
+			// player option to buy or not to buy
+		
 		else if (deed.owned != player.id) {
 			// player needs to pay another player rent
 		}
 		else {
 			// player already owns this deed
 		}
+		$scope.show_end_turn_button = true;	
+		$scope.buyOption = false;
+		$scope.drawAction = false;
+		return;
 	} //end playerOption()
 
 
@@ -195,19 +217,31 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		if (new_monopoly) {
 			return_string += " You have a new Monopoly!";
 		}
+		if (player.position < 10){
+			$(".square" + player.position + " .bottom-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 20) && (player.position > 10)) {
+			$(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 30) && (player.position > 20)) {
+			$(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
+		} else if ((player.position < 40) && (player.position > 20)) {
+			$(".square" + player.position + " .right-cost").css("background-color", player.piece.pieceName);
+		}
 		return return_string;
 	}, //end buyDeed()
 
 
 	//****************DRAWCARD FUNCTION****************//
 	$scope.drawCard = function(card_type) {
+		var card;
 		var card_number = chance.integer({min:0, max:16});
 		if (card_type == "community chest") {
-			var card = $scope.community_chest[card_number];
+			card = $scope.community_chest[card_number];
 			alert(card.text + "<br>" + card.subtext + "<br>");
+			return card;
 		}
 		else if (card_type = "chance") {
-
+			card = $scope.chance[card_number];
+			return card;
 		}
 		else {
 			alert("This should not print");
@@ -390,7 +424,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				$scope.isInMarket = false;
 				$scope.currentPlayer.inMarket = false;
 				$scope.rolled = true;
-				turn($scope.currentPlayer, marketRoll.total);
+				$scope.turn($scope.currentPlayer, marketRoll.total);
 				GameFactory.playerStatsAlert($scope.currentPlayer);
 				return;
 			}else{

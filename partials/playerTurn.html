@@ -6,7 +6,7 @@
 	</div>
 	<!--if player lands on a no-buy space-->
 	<div ng-show="rolled && !isInMarket">
-		<div ng-show="deeedOwned">
+		<div ng-show="deedOwned">
 			<!--need a 'playerToPay' object from the controller here-->
 			
 		</div>
@@ -18,10 +18,10 @@
 		<!--if its a chance card, $scope.chance = true in controller-->
 		<div ng-show="draw">
 			<span ng-model="drawActions" ng-hide="drawAction">
-				<h4 ng-show="community_chest">You landed on Community Chest!</h4>
-				<h4 ng-show="chance">You landed on Chance!</h4>
+				<h4 ng-show="community_chest && chance != true">You landed on Community Chest!</h4>
+				<h4 ng-show="chance && community_chest!= true">You landed on Chance!</h4>
 				<h5>Click to pick a card</h5>
-				<button ng-click="drawCard(cardToRead.group); drawAction = true"></button>
+				<button ng-click="drawCard(cardToRead.group); drawAction = true">Draw</button>
 			</span>		
 			<read-card ng-show="drawAction"></read-card>
 		</div>
@@ -42,7 +42,7 @@
 	</div>
 	
 	<!--if a player lands on an available piece-->
-	<div class="row free" ng-show="rolled && !isInMarket">
+	<div class="row free" ng-show="buyOption">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
 			<option ng-model="turn_options" ng-click="continueTurn(player)">Purchase</option>
@@ -91,7 +91,7 @@
 			</form>
 		</div>-->
 	</div>
-	<div ng-show="show_end_turn_button">
+	<div ng-show="show_end_turn_button && noDubs">
 		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false">End turn</button>
 	</div>
 
