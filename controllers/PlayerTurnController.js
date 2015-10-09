@@ -77,6 +77,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			player.num_of_doubles++;
 			roll = $scope.roll();
 			if ((roll.doubles == true) && (player.num_of_doubles >= 3)) {
+				roll.doubles = false;
 				$scope.gotoJail(player);
 				return;
 			}
@@ -138,6 +139,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			else if ((player.position == 2) || (player.position == 17) ||
 							(player.position == 33)) { //Community Chest
 				card = $scope.drawCard("community chest");
+				alert("in c.c. of playerOption, " + player.position);
 				$scope.cardToRead = card;
 				$scope.community_chest = true;
 				$scope.draw = true;
@@ -237,10 +239,13 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		if (card_type == "community chest") {
 			card = $scope.community_chest[card_number];
 			alert(card.text + "<br>" + card.subtext + "<br>");
+			$scope.actionCard($scope.currentPlayer, card);
 			return card;
 		}
 		else if (card_type = "chance") {
 			card = $scope.chance[card_number];
+			alert(card.text + "<br>" + card.subtext + "<br>");
+			$scope.actionCard($scope.currentPlayer, card);
 			return card;
 		}
 		else {
@@ -311,7 +316,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		player.position = 10;
 		player.num_of_doubles = 0;
 		player.inMarket = true;
+		
 		$(".player" + player.id).appendTo(".square" + player.position);
+		
 	} //end gotoJail()
 
 
@@ -323,7 +330,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		// $scope.isInMarket = $scope.currentPlayer.inMarket;
 		$scope.rolled = false;
 		$scope.submit = false;
-		alert("in end turn function, " + $scope.rolled + ", <= rolled, " + $scope.isInMarket + ", isInMarket");
 		//reset
 		// comment out above line and uncomment below for actual gameplay
 		index++;
@@ -343,22 +349,33 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		}
 	};// end endTurn()
 
-	// $scope.currentPlayer = $scope.player4;
-	// $scope.currentPlayer = $scope.player5;
-	// $scope.isInMarket = true;
-
-	// current player start
-	// default to 'in market' for testing
-
-	// GameFactory.playerStatsAlert($scope.currentPlayer);
-	// // check if player has already rolled twice to get out of market
-	// if($scope.currentPlayer.freedomRolls < 2){
-	// 	$scope.stay_in_market = true;
-	// }else{
-	// 	$scope.stay_in_market = false;
-	// };
-
-	// to determine to show use card option
+// action from community chest and chance cards function
+  $scope.actionCard = function(player, card){
+    if (card.kind === 'card'){ // get outta jail card
+      if(card.value[0] = 0){
+        player.getOutFree += 1; // player might get more than 1
+      }else{ // player must pay each player $, or player receives $ from other players
+        for(var i = 0; i < $scope.factory.players; i++ ){
+          if(player.id === $scope.factory.players[i].id){
+            continue;
+          }else{
+            $scope.factory.players[i].money += card.value[0];
+            player.money += card.value[0];
+          }
+        }
+      }
+    }else if(card.kind ==='money'){
+      player.money =+ card.value[0];
+    } else if(card.kind === 'assess'){
+      player.money -= ((player.houses * card.value[0]) + (player.hotels * card.value[1]));
+      }else{// it's a move card
+      if(card.value < 0){
+        player.position -= 3; // go back 3 spaces card
+      }else{
+        player.position = card.value;
+      }
+    }
+  };
 
 
 
