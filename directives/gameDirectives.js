@@ -12,6 +12,12 @@ portlandiaMonopoly.directive('readCard', function(){
 	};
 });
 
+portlandiaMonopoly.directive('rollResults', function(){
+	return{
+		template: ('<div><h4>You rolled a {{ rollResult.die1 }} and a {{ rollResult.die2 }}</h4><span ng-show="rollResult.doubles"><h4> with doubles!')
+	};
+})
+
 
 
 

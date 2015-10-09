@@ -2,7 +2,7 @@
 	<!--no stuck in market actions - roll button and post roll options-->
 	<div ng-show="rolled === false && isInMarket === false && submit === false">
 		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
-		<button ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
+		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
 	</div>
 	<!--if player lands on a no-buy space-->
 	<div ng-show="rolled && !isInMarket">
@@ -10,6 +10,9 @@
 			<!--need a 'playerToPay' object from the controller here-->
 			
 		</div>
+		<roll-results ng-show="rolled"></roll-results>
+		<button ng-hide="option_clicked === true" ng-click="playerOption(currentPlayer, rollResult); option_clicked = true">Move</button>
+	
 		
 		<!--this div should handle comm chest and/or chance cards-->
 		<!--need $scope.draw = true from controller-->
@@ -19,9 +22,9 @@
 		<div ng-show="draw">
 			<span ng-model="drawActions" ng-hide="drawAction">
 				<h4 ng-show="community_chest && chance != true">You landed on Community Chest!</h4>
-				<h4 ng-show="chance && community_chest!= true">You landed on Chance!</h4>
+				<h4 ng-show="chance && community_chest != true">You landed on Chance!</h4>
 				<h5>Click to pick a card</h5>
-				<button ng-click="drawCard(cardToRead.group); drawAction = true">Draw</button>
+				<button ng-click="drawAction = true; getCard()">Draw</button>
 			</span>		
 			<read-card ng-show="drawAction"></read-card>
 		</div>
@@ -43,12 +46,15 @@
 	
 	<!--if a player lands on an available piece-->
 	<div class="row free" ng-show="buyOption">
-		<label for="turn_options">Post roll options:</label>
-		<select name="turn_options" id="turn_options">
-			<option ng-model="turn_options" ng-click="continueTurn(player)">Purchase</option>
-			<option ng-model="turn_options" ng-click="continueTurn(player)">Do Not Purchase</option>
-			<option ng-model="turn_options" ng-click="continueTurn(player)">Mortgage</option>
-		</select>
+		<form ng-model="turn_options">
+			<label for="turn_options">Post roll options:</label>
+			<select ng-model="turn_options" id="turn_options">
+				<option ng-model="turn_options" ng-value="true">Purchase</option>
+				<option ng-model="turn_options" ng-value="false">Do Not Purchase</option>
+				<!--<option ng-model="turn_options" ng-click="continueTurn(player)">Mortgage</option>-->
+			</select>
+			<button ng-click="buyOption = false">Buy/Pass</button>
+		</form>
 	</div>
 	<!--end land on available piece-->
 	
@@ -91,7 +97,7 @@
 			</form>
 		</div>-->
 	</div>
-	<div ng-show="show_end_turn_button && noDubs">
+	<div ng-show="show_end_turn_button">
 		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false">End turn</button>
 	</div>
 

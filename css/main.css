@@ -204,9 +204,9 @@ body{
   text-align: center;
 }
 
-.square32 .right-cost{
+/*.square32 .right-cost{
   background-color: red;
-}
+}*/
 
 .right-name{
   transform: rotate(270deg);
