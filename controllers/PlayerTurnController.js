@@ -126,11 +126,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
-<<<<<<< HEAD
 		var deed = deeds[player.position];
-=======
-		var deed = $scope.deeds[player.position];
->>>>>>> d898bd6a436f166fd8e5dd7fa3fe15e55f7f1701
 		if (deed.group_id == 0) { // player is not able to buy this deed
 			if (player.position == 0) { //Go
 
@@ -138,6 +134,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			else if ((player.position == 2) || (player.position == 17) ||
 							(player.position == 33)) { //Community Chest
 				$scope.drawCard("community chest");
+				$scope.cardToRead = 
 				return;
 			}
 			else if (player.position == 4) { //Portland Art Tax
@@ -158,7 +155,6 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 			}
 			else if (player.position == 30) { //Goto Jail
 				player.position = 10;
-				player.inMarket = true;
 				$(".player" + player.id).appendTo(".square" + player.position);
 				return;
 			}
@@ -171,24 +167,14 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 				alert("This should never print");
 			}
 		}
-		else if (deed.owned == 0) { // player option to buy or not to buy
-			var buy_deed = confirm("Do you want to buy "+ deed.name + "?");
-				if (buy_deed) {
-					$scope.buyDeed(deed, player);
-				}
-				else {
-
-				}
+		else if (deed.owned == 0) {
+			// player option to buy or not to buy
 		}
-		else if (deed.owned != player.id) { // player needs to pay another player rent
-			var amount_owed = deed.rent[multiplier];
-			var receiving_player = GameFactory.players[deed.owned];
-			player.money -= amount_owed;
-			receiving_player.money += amount_owed;
-
+		else if (deed.owned != player.id) {
+			// player needs to pay another player rent
 		}
-		else { // player already owns this deed
-			alert("You already own " + deed.name);
+		else {
+			// player already owns this deed
 		}
 	} //end playerOption()
 
@@ -196,12 +182,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	//****************BUYDEED FUNCTION****************//
 	$scope.buyDeed = function(deed, player) {
 		if (deed.owned > 0) {
-			alert("Deed Already Owned");
-			return;
+			return "Deed Already Owned";
 		}
 		if (!$scope.enoughMoney(deed.price, player.money)) {
-			alert("Not Enough Money");
-			return;
+			return "Not Enough Money";
 		}
 		player.money -= deed.price;
 		deed.owned = player.id;
@@ -211,8 +195,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		if (new_monopoly) {
 			return_string += " You have a new Monopoly!";
 		}
-		alert(return_string);
-		return;
+		return return_string;
 	}, //end buyDeed()
 
 
@@ -221,7 +204,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 		var card_number = chance.integer({min:0, max:16});
 		if (card_type == "community chest") {
 			var card = $scope.community_chest[card_number];
-			alert(card.text + "<br>" + card.subtext + "<br>")
+			alert(card.text + "<br>" + card.subtext + "<br>");
 		}
 		else if (card_type = "chance") {
 
