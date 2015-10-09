@@ -14,6 +14,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	var deeds = DeedsFactory.deeds;
 
 	var index = 0;
+	var lastRoller;
+	var lastLastRoller;
+	var whoTurn = 0;
 	// uncomment this line for a real game
 	$scope.currentPlayer = $scope.player1;
 	// SETUP TURN
@@ -39,6 +42,21 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     return currentPlayer.money;
   };
 
+	$scope.turnHandler = function (player){
+		$scope.turn($scope.whoTurn(player));
+		lastLastRoller = lastRoller;
+		lastRoller = $scope.player.id;
+	}
+
+	$scope.whoTurn = function(player){
+		var index = player.id + 1;
+		if (roll.doubles == true){
+			return player;
+		} else {
+			var newPlayer = $factory.players[index];
+			return newPlayer;
+		}
+	}
 
 
 	//****************TURN FUNCTION****************//
@@ -108,7 +126,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************PLAYEROPTION FUNCTION****************//
 	$scope.playerOption = function(player) {
-		var deed = $scope.deeds[player.position];
+		var deeds = $scope.deeds[player.position];
 		if (deed.group_id == 0) { // player is not able to buy this deed
 			if (player.position == 0) { //Go
 
