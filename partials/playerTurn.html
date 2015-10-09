@@ -2,14 +2,15 @@
 	<!--no stuck in market actions - roll button and post roll options-->
 	<div ng-show="rolled === false && isInMarket === false && submit === false">
 		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
-		<button ng-model="result" ng-click="roll(); rolled = true">Shake 'Em!</button>
+		<button ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
 	</div>
-	
+
 	<div class="row free" ng-show="rolled && !isInMarket">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
-			<option ng-model="turn_options">Purchase</option>
-			<option ng-model="turn_options">Mortgage</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Purchase</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Do Not Purchase</option>
+			<option ng-model="turn_options" ng-click="continueTurn(player)">Mortgage</option>
 		</select>
 	</div>
 	<!--stuck in market actions-->
@@ -47,12 +48,12 @@
 			<form ng-model="cardSelected">
 				<select name="cards" ng-model="cardSelected">
 					<option ng-repeat="item in getOutFreeCards" ng-model="cardSelected" value="({cardChosen: item.group})">{{ item.group }}</option>
-				</select>	
+				</select>
 			</form>
 		</div>-->
 	</div>
 	<div ng-show="show_end_turn_button">
 		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button">End turn</button>
 	</div>
-	
+
 </div>
