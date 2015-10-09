@@ -38,10 +38,10 @@ body{
 .statbar .money{
   padding: .5em;
   margin-left: .5em;
-  
+
 }
 /*.p1{
-  
+
 }*/
 
 
@@ -204,10 +204,6 @@ body{
   text-align: center;
 }
 
-.square32 .right-cost{
-  background-color: red;
-}
-
 .right-name{
   transform: rotate(270deg);
   position: absolute;
@@ -290,7 +286,7 @@ body{
 .square38 .img{
   flex: 1;
   transform: rotate(270deg);
-  background-image: url(../img/donut.jpg);
+  background-image: url(../img/donut2.jpg);
   background-size: cover;
   position: absolute;
   height: 5em;
@@ -751,5 +747,5 @@ player action section (playerTurn
   margin-right: 5em;
   margin-top: 4em;
   padding: 2em;
-  
+
 }
