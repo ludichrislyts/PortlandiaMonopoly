@@ -4,7 +4,44 @@
 		<h3>{{ currentPlayer.name}}, it's your turn. Roll!</h3>
 		<button ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
 	</div>
-
+	<!--if player lands on a no-buy space-->
+	<div ng-show="rolled && !isInMarket">
+		<div ng-show="deeedOwned">
+			<!--need a 'playerToPay' object from the controller here-->
+			
+		</div>
+		
+		<!--this div should handle comm chest and/or chance cards-->
+		<!--need $scope.draw = true from controller-->
+		<!--need $scope.cardToRead from controller (the card selected)-->
+		<!--if its a community chest card, make a $scope.community_chest = true in controller-->
+		<!--if its a chance card, $scope.chance = true in controller-->
+		<div ng-show="draw">
+			<span ng-model="drawActions" ng-hide="drawAction">
+				<h4 ng-show="community_chest">You landed on Community Chest!</h4>
+				<h4 ng-show="chance">You landed on Chance!</h4>
+				<h5>Click to pick a card</h5>
+				<button ng-click="drawCard(cardToRead.group); drawAction = true"></button>
+			</span>		
+			<read-card ng-show="drawAction"></read-card>
+		</div>
+	
+		<div ng-show="visiting">
+			
+		</div>
+		<div ng-show="roseGarden">
+			
+		</div>
+		<div ng-show="goToMarket">
+			
+		</div>
+		<div ng-show="voodoo">
+			
+		</div>
+		
+	</div>
+	
+	<!--if a player lands on an available piece-->
 	<div class="row free" ng-show="rolled && !isInMarket">
 		<label for="turn_options">Post roll options:</label>
 		<select name="turn_options" id="turn_options">
@@ -13,6 +50,8 @@
 			<option ng-model="turn_options" ng-click="continueTurn(player)">Mortgage</option>
 		</select>
 	</div>
+	<!--end land on available piece-->
+	
 	<!--stuck in market actions-->
 	<div class="row in-market" ng-show="isInMarket">
 		<h3>You're stuck at Saturday Market!!</h3>
