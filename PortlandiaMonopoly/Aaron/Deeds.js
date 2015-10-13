@@ -80,3 +80,4 @@ var deeds = [
     //Boardwalk
     new Deed("FREE GEEK", 400, 200, 200, [50, 200, 600, 1400, 1700, 2000], 10, "company")
 ];
+//# sourceMappingURL=Deeds.js.map
