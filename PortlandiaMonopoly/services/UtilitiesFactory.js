@@ -16,11 +16,15 @@ portlandiaMonopoly.factory('UtilitiesFactory', function () {
             var die1 = chance.integer({ min: 1, max: 6 });
             var die2 = chance.integer({ min: 1, max: 6 });
             var total = die1 + die2;
+
+            return [total, die1 === die2];
+            /*
             if (die1 === die2) {
                 return [total, true]; // doubles
             } else {
                 return [total, false];
             }
+            */
         }
     }//end return
 });
