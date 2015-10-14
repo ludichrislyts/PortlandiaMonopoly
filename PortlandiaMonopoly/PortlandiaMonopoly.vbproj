@@ -99,8 +99,6 @@
     <Content Include="app.js" />
     <Content Include="board_names.txt" />
     <Content Include="services\community_chest_and_chance_card_data.js" />
-    <Content Include="controllers\FunctionController.js" />
-    <Content Include="controllers\GameBoardController.js" />
     <Content Include="controllers\PlayerSelectController.js" />
     <Content Include="controllers\PlayerStatController.js" />
     <Content Include="controllers\PlayerTurnController.js" />

@@ -21,3 +21,17 @@ C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.dll
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.xml
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.pdb
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.vbprojResolveAssemblyReference.cache
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.Resources.resources
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.vbproj.GenerateResource.Cache
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.xml
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\PortlandiaMonopoly.dll
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\PortlandiaMonopoly.pdb
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\PortlandiaMonopoly.xml
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.dll
+C:\Users\ludichrislyts\Desktop\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.pdb
