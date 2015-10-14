@@ -68,7 +68,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Aaron\" />
+    <Folder Include="_Obsolete\" />
+  </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
     <Import Include="System" />
@@ -95,7 +98,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="board_names.txt" />
-    <Content Include="_Obsolete\community_chest_and_chance_card_data.js" />
+    <Content Include="services\community_chest_and_chance_card_data.js" />
     <Content Include="controllers\FunctionController.js" />
     <Content Include="controllers\GameBoardController.js" />
     <Content Include="controllers\PlayerSelectController.js" />
@@ -132,8 +135,6 @@
     <Content Include="partials\playerTurn.html" />
     <Content Include="partials\selectPlayers.html" />
     <Content Include="services\Community_ChanceFactory.js" />
-    <Content Include="_Obsolete\DeedsFactory.js" />
-    <Content Include="services\DiceFactory.js" />
     <Content Include="services\GameFactory.js" />
     <Content Include="services\UtilitiesFactory.js" />
     <Content Include="testFunctions.html" />
@@ -189,9 +190,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Aaron\Cards.ts" />
-    <TypeScriptCompile Include="Aaron\Classes.ts" />
-    <TypeScriptCompile Include="Aaron\Deeds.ts" />
+    <TypeScriptCompile Include="lib\Classes.ts" />
+    <TypeScriptCompile Include="lib\Data.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

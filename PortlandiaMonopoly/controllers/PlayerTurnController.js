@@ -1,9 +1,10 @@
-portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, CommChanceFactory, DeedsFactory, UtilitiesFactory) {
-	// var actionCard = UtilitiesFactory.findById(CommChanceFactory, spaceId);
+/// <reference path="../Aaron/Classes.js" />
+/// <reference path="../Aaron/Data.js" />
 
+portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
 	// toggles purchase/pass on property display, not really used now
 	$scope.turn_options = "true";
-	$scope.deeds = DeedsFactory.deeds;
+	$scope.deeds = Data.deeds;
 	$scope.result = "roll";
 	$scope.players = GameFactory.players;
 	$scope.factory = GameFactory;
@@ -12,9 +13,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.player3 = GameFactory.players[2];
 	$scope.player4 = GameFactory.players[3];
 	$scope.player5 = GameFactory.players[4];
-	$scope.community_chest_cards = CommChanceFactory.community_chest_data;
-	$scope.chanceCards = CommChanceFactory.chance_data;
-	var deeds = DeedsFactory.deeds;
+	$scope.community_chest_cards = Data.community_chest_data;
+	$scope.chanceCards = Data.chance_data;
+	var deeds = Data.deeds;
 	var chance = new Chance();
 	var index = 0;
 	var lastRoller;
@@ -286,8 +287,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 	//****************CHECKFORMONOPOLY FUNCTION****************//
 	$scope.checkForMonopoly = function (deed_number) {
-	    var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
-                           [21, 23, 24], [26, 27, 29], [31, 32, 34], [37, 39]];
+		var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
+						   [21, 23, 24], [26, 27, 29], [31, 32, 34], [37, 39]];
 		var deed_group = deed_groups[deeds[deed_number].group_id];
 
 		if (deed_group.length == 2) {
