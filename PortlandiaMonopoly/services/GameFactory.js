@@ -1,10 +1,11 @@
+/// <reference path="../lib/Classes.js" />
 /// <reference path="../lib/Data.js" />
 
 
 portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     var factory = {};
     // elements of the game
-    factory.players = [];
+    Data.players = [];
 
     /////////////////////////////////////////////////////////////////////////////
     //////////////////////// player/piece  selection ////////////////////////////
@@ -13,14 +14,18 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     // array to hold pieces in piece selection process
     //factory.remainingGamePieces = [];
 
-    Data.gamePeices.forEach(function (x) {
+
+    Data.remainingGamePieces.push
+    Data.GamePieces.forEach(function (x) {
         Data.remainingGamePieces.push(x);
     });
 
     // returns true if enough players reached (5 player max), nothing if not
+
+    /*
     factory.addPlayer = function () {
-        factory.players.push({
-            id: factory.players.length + 1,
+        Data.players.push({
+            id: Data.players.length + 1,
             name: factory.playerName,
             piece: factory.playerPiece,
             money: 1500,
@@ -31,14 +36,16 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
             houses: 0,
             num_of_doubles: 0,
             hotels: 0
-        });
+    });
+    */
+
+    factory.addPlayer = function () {
+        Data.players.push(new Player(Data.players.length + 1, factory.playerName, factory.playerPiece));
         factory.playerName = null;
-        // get last player added
-        var lastAdded = factory.players.length - 1;
         // take piece out of display array and toggle taken in piece object
-        factory.selectPiece(factory.players[lastAdded].piece);
+        factory.selectPiece(Data.players[Data.players.length - 1].piece);
         // return true to toggle play in html
-        if (factory.players.length >= 5) return true;
+        if (Data.players.length >= 5) return true;
     },
 
     // when a player selects a piece, make other pieces unavailable
@@ -48,9 +55,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	        if (Data.remainingGamePieces[i].id === piece.id) {
 	            // make sure to match piece in original array to toggle taken
 	            Data.remainingGamePieces.splice(i, 1);
-	            for (var j = 0; j < Data.gamePeices.length; j++) {
-	                if (Data.gamePeices[j] === piece) {
-	                    Data.gamePeices[j].taken = true;
+	            for (var j = 0; j < Data.GamePieces.length; j++) {
+	                if (Data.GamePieces[j] === piece) {
+	                    Data.GamePieces[j].taken = true;
 	                }
 	            }
 	        }
@@ -64,9 +71,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	factory.fixPlayerOrder = function (id) {
 	    var arrayPos = id - 1;
 	    for (var i = 0; i < arrayPos; i++) {
-	        factory.players.push(factory.players.shift());
+	        Data.players.push(Data.players.shift());
 	    }
-	    return factory.players;
+	    return Data.players;
 	}
 
     /*

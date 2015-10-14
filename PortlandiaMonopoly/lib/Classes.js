@@ -1,19 +1,22 @@
 var Player = (function () {
-    function Player(id, name) {
+    function Player(id, name, piece) {
         this.money = 1500;
+        this.inMarket = false;
+        this.position = 0;
         this.getOutFree = [];
         this.id = id;
         this.name = name;
+        this.piece = piece;
     }
     return Player;
 })();
-var GamePeice = (function () {
-    function GamePeice(id, pieceName) {
+var GamePiece = (function () {
+    function GamePiece(id, pieceName) {
         this.taken = false;
         this.id = id;
         this.pieceName = pieceName;
     }
-    return GamePeice;
+    return GamePiece;
 })();
 var CardKind;
 (function (CardKind) {

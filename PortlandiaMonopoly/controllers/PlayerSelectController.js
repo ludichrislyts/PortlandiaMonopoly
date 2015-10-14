@@ -3,7 +3,7 @@
 
 portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory) {
     $scope.factory = GameFactory;
-    $scope.players = GameFactory.players;
+    $scope.players = Data.players;
     $scope.pieces = Data.gamePieces;
     // initial startGame value to be false. Toggled true in partial when user selects
     // to start game
@@ -21,7 +21,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
         var chance = new Chance();
         var index = chance.integer({ min: 1, max: $scope.players.length });
         $scope.playersInOrder = GameFactory.fixPlayerOrder(index);
-        $scope.playerToStart = GameFactory.players[0];
+        $scope.playerToStart = Data.players[0];
         $("#p" + $scope.playerToStart.id).css("color", "yellow");
         $scope.startGameMessage = true;
         return;
@@ -42,13 +42,13 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 // var numberOfRolls = 0; 
 // var numberRolled = 0;
 // var firstInTieBreak = true; // for testing ties
-// numOfRollers = GameFactory.players.length;
+// numOfRollers = Data.players.length;
 
 // assigns playerId to highestRoller player_id
 // returns true if there is a tie
 // $scope.rollForFirst = function(playerId){
 
-// 		var numOfRollers = GameFactory.players.length;
+// 		var numOfRollers = Data.players.length;
 // 	// logic to determine if its a tie break round
 // 	if($scope.break_tie && firstInTieBreak){
 // 		numberOfRolls = 0;
@@ -58,7 +58,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 // 	}
 // 	numberOfRolls++;
 // 	$scope.show_roll_results = true;
-// 	player = UtilitiesFactory.findById(GameFactory.players, playerId);
+// 	player = UtilitiesFactory.findById(Data.players, playerId);
 // 	var chance = new Chance(); // module loaded in index.html
 // 	var die1 = chance.integer({min:1, max:6}); 
 // 	var die2 = chance.integer({min:1, max:6});
@@ -103,7 +103,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 // 		console.log("rolls not first in tie, === " + numberOfRolls + ", players:" + numOfRollers);
 // 	}
 // 	else if(numberOfRolls === numOfRollers){
-// 		var playerToStart = UtilitiesFactory.findById(GameFactory.players,highestRoller[0].id);
+// 		var playerToStart = UtilitiesFactory.findById(Data.players,highestRoller[0].id);
 // 		$scope.firstPlayer = playerToStart;
 // 		$scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
 // 		console.log("HERE" + "end, === " + numberOfRolls + ", players:" + numOfRollers);

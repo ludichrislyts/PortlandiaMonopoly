@@ -4,13 +4,13 @@
 portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory) {
 	// toggles purchase/pass on property display, not really used now
 	$scope.result = "roll";
-	var players = GameFactory.players;
-	var factory = GameFactory;
-	var player1 = GameFactory.players[0];
-	var player2 = GameFactory.players[1];
-	var player3 = GameFactory.players[2];
-	var player4 = GameFactory.players[3];
-	var player5 = GameFactory.players[4];
+	var players = Data.players;
+	//var factory = GameFactory;
+	var player1 = Data.players[0];
+	var player2 = Data.players[1];
+	var player3 = Data.players[2];
+	var player4 = Data.players[3];
+	var player5 = Data.players[4];
 	var community_chest_cards = Data.community_chest_data;
 	var chanceCards = Data.chance_data;
 	var deeds = Data.deeds;
@@ -42,14 +42,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	    var die1 = chance.integer({ min: 1, max: 6 });
 	    var die2 = chance.integer({ min: 1, max: 6 });
 	    var total = die1 + die2;
-	    if (die1 === die2) {
-	        var doubles = true;
-	    }
-	    else {
-	        doubles = false;
-	    }
 	    $scope.option_clicked = false; // variable to display 'move' button
-	    return { total: total, die1: die1, die2: die2, doubles: doubles };
+	    return { total: total, die1: die1, die2: die2, doubles: die1 === die2 };
 	} //end roll()
 
 
@@ -64,12 +58,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	} //end move()
 
 	$scope.ask_to_buy_deed = function (deed) {
-	    var buy = confirm("Do you want to buy " + deed.name + "?");
-	    if (buy) {
+	    if (confirm("Do you want to buy " + deed.name + "?")) {
 	        $scope.buyDeed(deed);
-	    }
-	    else {
-
 	    }
 	}
 
@@ -201,11 +191,11 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	        if (card.value[0] = 0) {
 	            player.getOutFree.push(card.group); // player might get more than 1
 	        } else { // player must pay each player $, or player receives $ from other players
-	            for (var i = 0; i < factory.players; i++) {
-	                if (player.id === factory.players[i].id) {
+	            for (var i = 0; i < Data.players; i++) {
+	                if (player.id === Data.players[i].id) {
 	                    continue;
 	                } else {
-	                    factory.players[i].money += card.value[0];
+	                    Data.players[i].money += card.value[0];
 	                    player.money += card.value[0];
 	                }
 	            }
@@ -427,7 +417,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	        // do nothing, same player will roll
 	    } else {
 	        index++;
-	        if (index === GameFactory.players.length) {
+	        if (index === Data.players.length) {
 	            index = 0;
 	        }
 	        if (index === 0) {
