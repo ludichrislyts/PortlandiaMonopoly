@@ -3,7 +3,7 @@ var Player = (function () {
         this.money = 1500;
         this.inMarket = false;
         this.position = 0;
-        this.getOutFree = [];
+        this.getOutFree = []; //TODO: Convert into number! All I care about is how many are left
         this.id = id;
         this.name = name;
         this.piece = piece;
@@ -52,4 +52,3 @@ var Deed = (function () {
     }
     return Deed;
 })();
-//# sourceMappingURL=Classes.js.map

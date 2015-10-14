@@ -5,7 +5,7 @@
     public inMarket: boolean = false
     public freedomRolls: number
     public position: number = 0
-    public getOutFree = []
+    public getOutFree = [] //TODO: Convert into number! All I care about is how many are left
     public houses: number
     public num_of_doubles: number
     public hotels: number

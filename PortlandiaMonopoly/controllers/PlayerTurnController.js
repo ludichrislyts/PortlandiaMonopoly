@@ -329,7 +329,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     //****************MARKETACTION FUNCTION****************//
     // for player options when in jail (market)
     $scope.marketAction = function () {
-        var freeCards = GameFactory.hasGetOut($scope.currentPlayer);
+        //var freeCards = GameFactory.hasGetOut($scope.currentPlayer);
+        var freeCards = $scope.currentPlayer.getOutFree
         if (freeCards.length > 0) {
             $scope.has_card = true;
             $scope.getOutFreeCards = freeCards;
