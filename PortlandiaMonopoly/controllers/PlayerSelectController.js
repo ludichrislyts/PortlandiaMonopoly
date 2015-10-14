@@ -1,31 +1,39 @@
 portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
 	
 	$scope.factory = GameFactory;
-	// $scope.deeds = DeedsFactory.deeds;
-	
-	// TESTING ONLY!! Comment out and un-comment next $scope.players line when game is live
-	//$scope.players = GameFactory.seedPlayerArray();
 	$scope.players = GameFactory.players;
 	$scope.pieces = GameFactory.gamePieces;
 	// initial startGame value to be false. Toggled true in partial when user selects
 	// to start game
 	$scope.startGame = false;	
-/////////////////////////////////////////////////////////////////////
-/////////////////// select player controls //////////////////////////
-/////////////////////////////////////////////////////////////////////
 	$scope.update = function(){
 		$scope.remainingPieces = GameFactory.remainingGamePieces;
 	// changes the selected piece in the drop down to show top available piece
 		$scope.factory.playerPiece = GameFactory.remainingGamePieces[0];
 	};
 	$scope.remainingPieces = GameFactory.remainingGamePieces;
-/////////////////////////////////////////////////////////////////////
-/////////////////// end select player controls //////////////////////
-/////////////////////////////////////////////////////////////////////
+
+    // at this point, just picks a random player from the player array
+	$scope.rollForFirst = function () { 
+	    var chance = new Chance();
+	    var index = chance.integer({min:1, max:$scope.players.length});
+	    $scope.playersInOrder = GameFactory.fixPlayerOrder(index);
+	    $scope.playerToStart = GameFactory.players[0];
+	    $("#p" + $scope.playerToStart.id).css("color", "yellow");
+	    $scope.startGameMessage = true;
+	    return;
+	};
+}); // end playerSelect controller
+
+
+
 
 /////////////////////////////////////////////////////////////////////
 /////////////////// highest roller controls /////////////////////////
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////	
+
+/* Want to keep this code in case there is ever a cool "roll to see who goes first" animation or something */
+
 	// var highestRoller = [{playerName: "", roll: 0, tie: false, id: 0}];
 	// var player = null;
 	// var numberOfRolls = 0; 
@@ -36,12 +44,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	// assigns playerId to highestRoller player_id
 	// returns true if there is a tie
 	// $scope.rollForFirst = function(playerId){
-	 $scope.rollForFirst = function () {
-		var chance = new Chance();
-		var index = chance.integer({min:1, max:$scope.players.length});
-		$scope.playersInOrder = GameFactory.fixPlayerOrder(index);
-		$scope.playerToStart = GameFactory.players[0];
-		$("#p" + $scope.playerToStart.id).css("color", "yellow");
+
 	// 		var numOfRollers = GameFactory.players.length;
 	// 	// logic to determine if its a tie break round
 	// 	if($scope.break_tie && firstInTieBreak){
@@ -98,16 +101,12 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 	// 	}
 	// 	else if(numberOfRolls === numOfRollers){
 	// 		var playerToStart = UtilitiesFactory.findById(GameFactory.players,highestRoller[0].id);
-	 		$scope.startGameMessage = true;
 	// 		$scope.firstPlayer = playerToStart;
 	// 		$scope.playersInOrder = GameFactory.fixPlayerOrder(playerToStart.id);
 	// 		console.log("HERE" + "end, === " + numberOfRolls + ", players:" + numOfRollers);
 	// 	}
-	 	return;
-	 };
 /////////////////////////////////////////////////////////////////////
 /////////////////// end highest roller controls /////////////////////
 /////////////////////////////////////////////////////////////////////
 	
 		
-});

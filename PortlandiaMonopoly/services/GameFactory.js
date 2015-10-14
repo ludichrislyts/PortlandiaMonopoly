@@ -7,58 +7,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     factory.players = [];
 
     /////////////////////////////////////////////////////////////////////////////
-    //////////////////// seed player array for testing //////////////////////////
-    /////////////////////////////////////////////////////////////////////////////
-    // only seed 4 so 'play' page can be tested still
-    factory.seedPlayerArray = function () {
-        for (var i = 0; i < 4; i++) { // changed to 2 for tie testing
-            factory.players.push({
-                id: i + 1,
-                name: Data.gamePieces[i].pieceName,
-                piece: {
-                    pieceName: Data.gamePieces[i].pieceName,
-                    id: i + 1,
-                    taken: true
-                },
-                money: 1500,
-                inMarket: false,
-                freedomRolls: 0,
-                position: 0,
-                getOutFree: [],
-                houses: 0,
-                num_of_doubles: 0,
-                hotels: 0
-            });
-        }
-
-        // add a player with a couple get out free cards for testing
-        // getOutFree array contains the group type from the card:
-        // "CC" for community chest and "C" for chance.
-        var pieceIndex = Data.gamePieces.length - 1;
-        factory.players.push({ id: factory.players.length + 1, name: Data.gamePeices[pieceIndex].pieceName, piece: { pieceName: Data.gamePeices[pieceIndex].pieceName, id: pieceIndex + 1, taken: true }, money: 1500, inMarket: true, freedomRolls: 0, position: 0, num_of_doubles: 0, getOutFree: ["CC", "C"], houses: 3, hotels: 2 });
-        return factory.players;
-    },
-    /////////////////////////////////////////////////////////////////////////////
-    //////////////////////// end seed player array //////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////        
-    //                ----------------------------------------
-    //                ----------------------------------------
-    /////////////////////////////////////////////////////////////////////////////
     //////////////////////// player/piece  selection ////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
+
     // array to hold pieces in piece selection process
-	factory.remainingGamePieces = [];
-
-    /*
-    for (var i = 0; i < Data.gamePeices.length; i++) {
-        factory.remainingGamePieces.push(Data.gamePeices[i]);
-    }
-
-    for (var i in Data.gamePeices) {
-        factory.remainingGamePieces.push(Data.gamePeices[i]);
-    }
-    */
-
+    factory.remainingGamePieces = [];
     Data.gamePeices.forEach(function (x) {
         factory.remainingGamePieces.push(x);
     });
@@ -73,9 +26,6 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
             money: 1500,
             inMarket: false,
             freedomRolls: 0,
-            //  monopolies: [],// array of completed card group #s
-            //  propertyGroupsOwned:[], // array of card
-            //  propertyCardsOwned: [],
             position: 0,
             getOutFree: [],
             houses: 0,
@@ -109,8 +59,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     /////////////////////////////////////////////////////////////////////////////
     //////////////////// end player/piece  selection ////////////////////////////
     /////////////////////////////////////////////////////////////////////////////
-    // gets result of roll for first garbage, arranges gameflow array of players
-    // basically, take winning roller id as 1st, next highest as 2nd, etc
+    // Arranges gameflow array of players
+    // basically, take winning roller id as 1st, next id as 2nd, etc
 	factory.fixPlayerOrder = function (id) {
 	    var arrayPos = id - 1;
 	    for (var i = 0; i < arrayPos; i++) {
@@ -198,49 +148,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     //                            Pay or collect money from every player
     //                     money - collect or pay money
     //                     assess- pay money per upgrade on properties
-    factory.actionCard = function (player, card) {
-        if (card.kind === 'card') { // get outta jail card
-            if (card.value[0] = 0) {
-                player.getOutFree += 1; // player might get more than 1
-            } else { // player must pay each player $, or player receives $ from other players
-                for (var i = 0; i < factory.players; i++) {
-                    if (player.id === factory.players[i].id) {
-                        continue;
-                    } else {
-                        factory.players[i].money += card.value[0];
-                        player.money += card.value[0];
-                    }
-                }
-            }
-        } else if (card.kind === 'money') {
-            player.money = +card.value[0];
-        } else if (card.kind === 'assess') {
-            player.money -= ((player.houses * card.value[0]) + (player.hotels * card.value[1]));
-        } else {// it's a move card
-            if (card.value < 0) {
-                player.position -= 3; // go back 3 spaces card
-            } else {
-                player.position = card.value;
-            }
-        }
-    };
-
-    // returns 0 if not owned, or player ID if owned
 
 
-    // returns 0
-    factory.addDeedCard = function (player, deed) {
-        if (deed.type === 'company') {
-            if (this.owned(deed) === 0) {//
-                if (true) {
-                    return;
-                }
-                return;
-            }
-        }
-        player.money - +deed.price;
-
-    };
     ///////////////////// MOVED TO PLAYER TURN CTRL ///////////////
     // adjust Player money
     // returns new amount
@@ -250,7 +159,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     // };
     ///////////////////////////////////////////////////////////////
 
-    //FOR TESTING ONLY
+    //FOR TESTING ONLY - just sends an alert to the screen with player stats
     factory.playerStatsAlert = function (player) {
         var name = player.name
         var piece = player.piece.pieceName;
