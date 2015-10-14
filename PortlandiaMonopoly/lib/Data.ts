@@ -170,6 +170,10 @@ module Data {
         new GamePeice(5, "Black")
     ]
 
+    export var remainingGamePieces: Array<Card> = []
+
+
+
     //export var players: Array<Player> = []
 
 }

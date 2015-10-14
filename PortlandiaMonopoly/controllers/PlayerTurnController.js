@@ -1,7 +1,7 @@
 /// <reference path="../Aaron/Classes.js" />
 /// <reference path="../Aaron/Data.js" />
 
-portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
+portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory) {
 	// toggles purchase/pass on property display, not really used now
 	$scope.result = "roll";
 	var players = GameFactory.players;
@@ -30,7 +30,8 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 	$scope.samePlayer = $scope.currentPlayer.inMarket;
 
 	// SETUP TURN
-	$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
+    //$scope.isInMarket = GameFactory.inMarket($scope.currentPlayer);
+	$scope.isInMarket = $scope.currentPlayer.inMarket;
 	$scope.rolled = false;
 	$scope.submit = false;
 	$scope.drawAction = false;

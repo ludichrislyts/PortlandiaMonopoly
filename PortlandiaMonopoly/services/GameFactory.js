@@ -11,11 +11,11 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     /////////////////////////////////////////////////////////////////////////////
 
     // array to hold pieces in piece selection process
-    factory.remainingGamePieces = [];
-    Data.gamePeices.forEach(function (x) {
-        factory.remainingGamePieces.push(x);
-    });
+    //factory.remainingGamePieces = [];
 
+    Data.gamePeices.forEach(function (x) {
+        Data.remainingGamePieces.push(x);
+    });
 
     // returns true if enough players reached (5 player max), nothing if not
     factory.addPlayer = function () {
@@ -44,10 +44,10 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     // when a player selects a piece, make other pieces unavailable
 	factory.selectPiece = function (piece) {
 	    // only go through remaining pieces
-	    for (var i = 0; i < factory.remainingGamePieces.length; i++) {
-	        if (factory.remainingGamePieces[i].id === piece.id) {
+	    for (var i = 0; i < Data.remainingGamePieces.length; i++) {
+	        if (Data.remainingGamePieces[i].id === piece.id) {
 	            // make sure to match piece in original array to toggle taken
-	            factory.remainingGamePieces.splice(i, 1);
+	            Data.remainingGamePieces.splice(i, 1);
 	            for (var j = 0; j < Data.gamePeices.length; j++) {
 	                if (Data.gamePeices[j] === piece) {
 	                    Data.gamePeices[j].taken = true;
@@ -68,11 +68,19 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	    }
 	    return factory.players;
 	}
+
+    /*
     //determine if a player is at the market or not
     factory.inMarket = function (player) {
-        if (player.inMarket) { return true; }
-        else { return false; }
+        if (player.inMarket) {
+            return true;
+        }
+        else {
+            return false;
+        }
     },
+    */
+
 	factory.roll = function () {
 	    require(['../lib/chance.js'], function (Chance) {
 	        var chance = new Chance();

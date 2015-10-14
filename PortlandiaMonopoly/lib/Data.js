@@ -127,6 +127,7 @@ var Data;
         new GamePeice(4, "Orange"),
         new GamePeice(5, "Black")
     ];
+    Data.remainingGamePieces = [];
 })(Data || (Data = {}));
 //******************OBJECT VALUES******************//
 //text: words on card displayed with a bigger font size
@@ -152,3 +153,4 @@ var Data;
 // railroad - kind: "go", value: [5, 15, 25, 35]
 // bank pays $50 - kind: "money", value: [50]
 // go back three spaces: kind: "go", value: [-3]
+//# sourceMappingURL=Data.js.map
