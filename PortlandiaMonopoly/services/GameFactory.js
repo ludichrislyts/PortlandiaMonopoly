@@ -14,8 +14,6 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     // array to hold pieces in piece selection process
     //factory.remainingGamePieces = [];
 
-
-    Data.remainingGamePieces.push
     Data.GamePieces.forEach(function (x) {
         Data.remainingGamePieces.push(x);
     });
