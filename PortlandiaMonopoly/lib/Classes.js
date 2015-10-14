@@ -1,27 +1,22 @@
 var Player = (function () {
-    function Player(id, name) {
+    function Player(id, name, piece) {
         this.money = 1500;
-        this.getOutFree = [];
-        this.hasGetOut = function (player) {
-            if (player.getOutFree.length === 0) {
-                return [];
-            }
-            else {
-                return player.getOutFree;
-            }
-        };
+        this.inMarket = false;
+        this.position = 0;
+        this.getOutFree = []; //TODO: Convert into number! All I care about is how many are left
         this.id = id;
         this.name = name;
+        this.piece = piece;
     }
     return Player;
 })();
-var GamePeice = (function () {
-    function GamePeice(id, pieceName) {
+var GamePiece = (function () {
+    function GamePiece(id, pieceName) {
         this.taken = false;
         this.id = id;
         this.pieceName = pieceName;
     }
-    return GamePeice;
+    return GamePiece;
 })();
 var CardKind;
 (function (CardKind) {
@@ -57,3 +52,4 @@ var Deed = (function () {
     }
     return Deed;
 })();
+//# sourceMappingURL=Classes.js.map

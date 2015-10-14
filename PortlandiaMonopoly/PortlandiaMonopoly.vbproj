@@ -98,7 +98,6 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="board_names.txt" />
-    <Content Include="services\community_chest_and_chance_card_data.js" />
     <Content Include="controllers\PlayerSelectController.js" />
     <Content Include="controllers\PlayerStatController.js" />
     <Content Include="controllers\PlayerTurnController.js" />
@@ -132,9 +131,7 @@
     <Content Include="partials\playerStats.html" />
     <Content Include="partials\playerTurn.html" />
     <Content Include="partials\selectPlayers.html" />
-    <Content Include="services\Community_ChanceFactory.js" />
     <Content Include="services\GameFactory.js" />
-    <Content Include="services\UtilitiesFactory.js" />
     <Content Include="testFunctions.html" />
     <Content Include="testTurn.js" />
     <Content Include="Web.config" />
@@ -190,6 +187,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="lib\Classes.ts" />
     <TypeScriptCompile Include="lib\Data.ts" />
+    <TypeScriptCompile Include="lib\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

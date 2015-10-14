@@ -2,29 +2,24 @@
     public id: number
     public name: string
     public money: number = 1500
-    public inMarket: boolean
+    public inMarket: boolean = false
     public freedomRolls: number
-    public position: number
-    public getOutFree = []
+    public position: number = 0
+    public getOutFree = [] //TODO: Convert into number! All I care about is how many are left
     public houses: number
     public num_of_doubles: number
     public hotels: number
 
-    constructor(id: number, name: string) {
+    public piece: GamePiece
+
+    constructor(id: number, name: string, piece: GamePiece) {
         this.id = id;
         this.name = name;
-    }
-
-    public hasGetOut = function (player) {
-        if (player.getOutFree.length === 0) {
-            return [];
-        } else {
-            return player.getOutFree;
-        }
+        this.piece = piece;
     }
 }
 
-class GamePeice {
+class GamePiece {
     //TODO: Rename [pieceName] to [Name]
 
     public id: number

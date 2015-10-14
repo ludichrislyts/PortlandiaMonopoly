@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="typings/jquery/jquery.d.ts" />
+
 module Data {
     export var deeds = [
         //Go
@@ -162,16 +163,17 @@ module Data {
         new Card("WIN SECOND PLACE IN PORTLAND'S BEARD COMPETITION", "COLLECT $100", "money", [100])
     ]
 
-    export var gamePeices = [
-        new GamePeice(1, "Blue"),
-        new GamePeice(2, "Red"),
-        new GamePeice(3, "Green"),
-        new GamePeice(4, "Orange"),
-        new GamePeice(5, "Black")
+    export var GamePieces = [
+        new GamePiece(1, "Blue"),
+        new GamePiece(2, "Red"),
+        new GamePiece(3, "Green"),
+        new GamePiece(4, "Orange"),
+        new GamePiece(5, "Black")
     ]
 
-    //export var players: Array<Player> = []
+    export var remainingGamePieces: Array<Card> = []
 
+    export var players: Array<Player> = []   
 }
 
 
@@ -205,5 +207,3 @@ module Data {
 // railroad - kind: "go", value: [5, 15, 25, 35]
 // bank pays $50 - kind: "money", value: [50]
 // go back three spaces: kind: "go", value: [-3]
-
-

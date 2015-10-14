@@ -1,3 +1,4 @@
+/// <reference path="typings/jquery/jquery.d.ts" />
 var Data;
 (function (Data) {
     Data.deeds = [
@@ -120,13 +121,15 @@ var Data;
         new Card("SELL LOCALLY GROWN VEGETABLES AT THE PORTLAND FARMERS MARKET", "COLLECT $150", "money", [150]),
         new Card("WIN SECOND PLACE IN PORTLAND'S BEARD COMPETITION", "COLLECT $100", "money", [100])
     ];
-    Data.gamePeices = [
-        new GamePeice(1, "Blue"),
-        new GamePeice(2, "Red"),
-        new GamePeice(3, "Green"),
-        new GamePeice(4, "Orange"),
-        new GamePeice(5, "Black")
+    Data.GamePieces = [
+        new GamePiece(1, "Blue"),
+        new GamePiece(2, "Red"),
+        new GamePiece(3, "Green"),
+        new GamePiece(4, "Orange"),
+        new GamePiece(5, "Black")
     ];
+    Data.remainingGamePieces = [];
+    Data.players = [];
 })(Data || (Data = {}));
 //******************OBJECT VALUES******************//
 //text: words on card displayed with a bigger font size
@@ -151,4 +154,5 @@ var Data;
 // utility - kind: "go", value: [12, 28]
 // railroad - kind: "go", value: [5, 15, 25, 35]
 // bank pays $50 - kind: "money", value: [50]
-// go back three spaces: kind: "go", value: [-3]
+// go back three spaces: kind: "go", value: [-3] 
+//# sourceMappingURL=Data.js.map
