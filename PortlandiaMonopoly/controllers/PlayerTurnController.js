@@ -406,44 +406,43 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     // toggles the drop-down of available get out of market cards to use when in market
     $scope.showCards = function () {
         // if drop down is displayed, and another option is selected, hide it
-        if ($scope.market_choice === "card") {
+        if ($scope.market_choice === "card")
             $scope.choose_card = true;
-        } else { $scope.choose_card = false; }
+        else
+            $scope.choose_card = false;
     } //end showCards()
 
     $scope.endTurn = function () {
         $scope.draw = false;
-        $scope.rolled = false; // resets roll button
-        $scope.submit = false; // resets show roll button display
-        $scope.samePlayer = false; // resets if same player (doubles related)
+        $scope.rolled = false;      // resets roll button
+        $scope.submit = false;      // resets show roll button display
+        $scope.samePlayer = false;  // resets if same player (doubles related)
         $scope.option_clicked = false;
-        $scope.drawAction = false; // draw card and display result reset
+        $scope.drawAction = false;  // draw card and display result reset
         //reset
         if ($scope.currentPlayer.num_of_doubles > 0) {
             // do nothing, same player will roll
         } else {
             index++;
-            if (index === Data.players.length) {
-                index = 0;
-            }
-            if (index === 0) {
+            if (index === Data.players.length) index = 0;
+
+            if (index === 0)
                 $scope.currentPlayer = player1;
-            } else if (index === 1) {
+            else if (index === 1)
                 $scope.currentPlayer = player2;
-            } else if (index === 2) {
+            else if (index === 2)
                 $scope.currentPlayer = player3;
-            } else if (index === 3) {
+            else if (index === 3)
                 $scope.currentPlayer = player4;
-            } else {
+            else
                 $scope.currentPlayer = player5;
-            }
         }
+
         for (var i = 0; i < players.length; i++) {
-            if (players[i].id == $scope.currentPlayer.id) {
+            if (players[i].id == $scope.currentPlayer.id)
                 $("#p" + $scope.currentPlayer.id).css("margin-top", "5px");
-            } else {
+            else
                 $("#p" + players[i].id).css("margin-top", "0px");
-            }
         }
     };// end endTurn()
 });

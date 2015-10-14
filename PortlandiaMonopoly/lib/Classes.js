@@ -52,3 +52,4 @@ var Deed = (function () {
     }
     return Deed;
 })();
+//# sourceMappingURL=Classes.js.map

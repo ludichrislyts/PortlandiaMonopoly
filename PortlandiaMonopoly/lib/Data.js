@@ -154,4 +154,5 @@ var Data;
 // utility - kind: "go", value: [12, 28]
 // railroad - kind: "go", value: [5, 15, 25, 35]
 // bank pays $50 - kind: "money", value: [50]
-// go back three spaces: kind: "go", value: [-3]
+// go back three spaces: kind: "go", value: [-3] 
+//# sourceMappingURL=Data.js.map
