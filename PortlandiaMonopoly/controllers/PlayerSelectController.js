@@ -1,4 +1,4 @@
-portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
+portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory) {
 	
 	$scope.factory = GameFactory;
 	$scope.players = GameFactory.players;

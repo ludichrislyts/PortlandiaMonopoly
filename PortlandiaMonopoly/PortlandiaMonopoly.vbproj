@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Aaron\" />
-    <Folder Include="_Obsolete\" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -98,7 +97,7 @@
   <ItemGroup>
     <Content Include="app.js" />
     <Content Include="board_names.txt" />
-    <Content Include="services\community_chest_and_chance_card_data.js" />
+    <Content Include="_Obsolete\community_chest_and_chance_card_data.js" />
     <Content Include="controllers\PlayerSelectController.js" />
     <Content Include="controllers\PlayerStatController.js" />
     <Content Include="controllers\PlayerTurnController.js" />
@@ -132,9 +131,9 @@
     <Content Include="partials\playerStats.html" />
     <Content Include="partials\playerTurn.html" />
     <Content Include="partials\selectPlayers.html" />
-    <Content Include="services\Community_ChanceFactory.js" />
+    <Content Include="_Obsolete\Community_ChanceFactory.js" />
     <Content Include="services\GameFactory.js" />
-    <Content Include="services\UtilitiesFactory.js" />
+    <Content Include="_Obsolete\UtilitiesFactory.js" />
     <Content Include="testFunctions.html" />
     <Content Include="testTurn.js" />
     <Content Include="Web.config" />

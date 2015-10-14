@@ -2,14 +2,6 @@ var Player = (function () {
     function Player(id, name) {
         this.money = 1500;
         this.getOutFree = [];
-        this.hasGetOut = function (player) {
-            if (player.getOutFree.length === 0) {
-                return [];
-            }
-            else {
-                return player.getOutFree;
-            }
-        };
         this.id = id;
         this.name = name;
     }

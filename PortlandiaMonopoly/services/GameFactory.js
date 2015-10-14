@@ -123,6 +123,7 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	    } return null;
 	},
 
+    /*
     // check if a property is owned
 	factory.isOwned = function (deed) {
 	    if (deed.owned === 0) {
@@ -131,6 +132,9 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	        return deed.owned;
 	    }
 	},
+    */
+
+    /*
     // returns true if player has enough money to buy a deed,
     // false if not
 	factory.canBuy = function (player, deed) {
@@ -140,10 +144,14 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	        return true;
 	    }
 	};
+    */
 
+    /*
     factory.useLeaveMarketCard = function (player) {
 
     }
+    */
+
     // action card - kind: card- get out of jail free
     //                            Pay or collect money from every player
     //                     money - collect or pay money
@@ -181,5 +189,4 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     }
 
     return factory;
-
 });

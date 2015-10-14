@@ -14,14 +14,6 @@
         this.id = id;
         this.name = name;
     }
-
-    public hasGetOut = function (player) {
-        if (player.getOutFree.length === 0) {
-            return [];
-        } else {
-            return player.getOutFree;
-        }
-    }
 }
 
 class GamePeice {
