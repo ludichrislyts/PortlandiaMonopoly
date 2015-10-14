@@ -103,8 +103,6 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 	                    Data.gamePeices[j].taken = true;
 	                }
 	            }
-
-
 	        }
 	    }
 	},
@@ -138,6 +136,8 @@ portlandiaMonopoly.factory('GameFactory', function GameFactory() {
 
     // check if player had a get out of market card
     // returns empty array if no card, getOutFree array if has card
+
+    //TODO: Remove .hasGetOut
     factory.hasGetOut = function (player) {
         if (player.getOutFree.length === 0) {
             return [];

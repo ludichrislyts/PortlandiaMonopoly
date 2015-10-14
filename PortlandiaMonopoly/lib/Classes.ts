@@ -10,10 +10,17 @@
     public num_of_doubles: number
     public hotels: number
 
-       
     constructor(id: number, name: string) {
         this.id = id;
         this.name = name;
+    }
+
+    public hasGetOut = function (player) {
+        if (player.getOutFree.length === 0) {
+            return [];
+        } else {
+            return player.getOutFree;
+        }
     }
 }
 
@@ -37,7 +44,7 @@ class Card {
     public text: string
     public subtext: string
     //public kind: CardKind   
-    public kind: string 
+    public kind: string
     public value: Array<number>
 
     constructor(text: string, subtext: string, kind: string, value: Array<number>) {
@@ -52,8 +59,8 @@ class Card {
 enum DeedType { Train };
 class Deed {
     //TODO: Make type a DeedType
-    public name:string
-    public price:number
+    public name: string
+    public price: number
     public mortgage_value: number
     public house_cost: number
     public rent: Array<number> //IF (rent = []) THEN rent = 4 times dice roll if one owned or 10 times if both are owned
@@ -64,7 +71,7 @@ class Deed {
     public multiplier: number
     public type: string
 
-    constructor(name: string, price: number, mortgage_value: number, house_cost: number, rent: Array<number>, group_id: number,  type: string) {
+    constructor(name: string, price: number, mortgage_value: number, house_cost: number, rent: Array<number>, group_id: number, type: string) {
         this.name = name
         this.price = price
         this.mortgage_value = mortgage_value

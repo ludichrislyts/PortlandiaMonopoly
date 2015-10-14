@@ -170,17 +170,8 @@ module Data {
         new GamePeice(5, "Black")
     ]
 
-    for (var x in gamePeices) {
-        x.toString()
-    }
+    //export var players: Array<Player> = []
 
-    gamePeices.forEach(function (x) {
-        x.toString();
-    });
-
-    for (var i = 0; i < gamePeices.length; i++) {
-        gamePeices[i].toString();
-    }
 }
 
 

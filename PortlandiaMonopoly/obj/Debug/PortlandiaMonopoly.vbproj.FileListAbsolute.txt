@@ -16,7 +16,6 @@ C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\bin\
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\bin\PortlandiaMonopoly.xml
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.vbprojResolveAssemblyReference.cache
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.Resources.resources
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.vbproj.GenerateResource.Cache
 C:\Users\Aaron Campf\Documents\GitHub\PortlandiaMonopoly\PortlandiaMonopoly\obj\Debug\PortlandiaMonopoly.dll
