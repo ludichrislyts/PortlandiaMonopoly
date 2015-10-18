@@ -24,7 +24,6 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
         $scope.playerToStart = Data.players[0];
         $("#p" + $scope.playerToStart.id).css("color", "yellow");
         $scope.startGameMessage = true;
-        return;
     };
 }); // end playerSelect controller
 

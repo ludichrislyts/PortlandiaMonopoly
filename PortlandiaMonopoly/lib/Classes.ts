@@ -26,7 +26,6 @@ class GamePiece {
     public pieceName: string
     public taken: boolean = false
 
-
     constructor(id: number, pieceName: string) {
         this.id = id;
         this.pieceName = pieceName;
@@ -66,6 +65,7 @@ class Deed {
     public multiplier: number
     public type: string
 
+
     constructor(name: string, price: number, mortgage_value: number, house_cost: number, rent: Array<number>, group_id: number, type: string) {
         this.name = name
         this.price = price
@@ -73,6 +73,6 @@ class Deed {
         this.house_cost = house_cost
         this.rent = rent
         this.group_id = group_id
-        this.type = type
+        this.type = type      
     }
 }

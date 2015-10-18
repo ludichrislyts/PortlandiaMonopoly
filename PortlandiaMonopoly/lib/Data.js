@@ -128,7 +128,7 @@ var Data;
         new GamePiece(4, "Orange"),
         new GamePiece(5, "Black")
     ];
-    Data.remainingGamePieces = [];
+    Data.remainingGamePieces = []; //Obsolete!!!!! Try to trash this one day!!!
     Data.players = [];
 })(Data || (Data = {}));
 //******************OBJECT VALUES******************//

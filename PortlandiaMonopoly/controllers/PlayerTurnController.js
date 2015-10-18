@@ -4,7 +4,7 @@
 portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory) {
     // toggles purchase/pass on property display, not really used now
     $scope.result = "roll";
-    var players = Data.players;
+
     //var factory = GameFactory;
     var player1 = Data.players[0];
     var player2 = Data.players[1];
@@ -438,7 +438,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.currentPlayer = player5;
         }
 
-        for (var i = 0; i < players.length; i++) {
+        for (var i = 0; i < Data.players.length; i++) {
             if (players[i].id == $scope.currentPlayer.id)
                 $("#p" + $scope.currentPlayer.id).css("margin-top", "5px");
             else

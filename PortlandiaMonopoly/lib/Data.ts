@@ -171,9 +171,12 @@ module Data {
         new GamePiece(5, "Black")
     ]
 
-    export var remainingGamePieces: Array<Card> = []
+
+    
+    export var remainingGamePieces: Array<GamePiece> = [] //Obsolete!!!!! Try to trash this one day!!!
 
     export var players: Array<Player> = []   
+
 }
 
 
