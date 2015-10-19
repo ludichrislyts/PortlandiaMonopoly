@@ -26,7 +26,7 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
         views: {
             'playerStats': {
                 templateUrl: "partials/playerStats.html",
-                controller: "PlayerTurnCtrl"
+                controller: "PlayerStatCtrl"
             },
             'gameBoard': {
                 templateUrl: "partials/gameboard.html",
