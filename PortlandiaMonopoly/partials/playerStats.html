@@ -1,6 +1,7 @@
 <div class="containerStatbar">
-	<div ng-repeat="item in players" style="background-color:{{ item.piece.pieceName }};" class="statbar p{{ item.id }}" id="p{{ item.id }}">
+	<div ng-repeat="item in players" class="statbar p{{ item.id }}" style="background-color:{{ item.piece.pieceName }}" id="p{{ item.id }}">
 		<p>{{ item.name }}</p>
 		<p class="money" style="background-color: dark{{ item.piece.pieceName }}">{{ item.money }}</p>
 	</div>	
 </div>
+

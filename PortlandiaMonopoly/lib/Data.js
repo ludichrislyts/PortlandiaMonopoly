@@ -17,7 +17,7 @@ var Data;
         //Oriental Avenue
         new Deed("ZAPPROVED", 100, 50, 50, [6, 30, 90, 270, 400, 550], 3, "company"),
         //Chance
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Chance7", 0, 0, 0, [], 0, ""),
         //Vermont Avenue
         new Deed("GLOBESHERPA", 100, 50, 50, [6, 30, 90, 270, 400, 550], 3, "company"),
         //Connecticut Avenue
@@ -37,7 +37,7 @@ var Data;
         //St. James Place
         new Deed("NOTION", 180, 90, 100, [14, 70, 200, 550, 750, 950], 6, "company"),
         //Community Chest
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Cc17", 0, 0, 0, [], 0, ""),
         //Tennessee Avenue
         new Deed("ARUBA NETWORKS", 180, 90, 100, [14, 70, 200, 550, 750, 950], 6, "company"),
         //New York
@@ -47,7 +47,7 @@ var Data;
         //Kentucky Avenue
         new Deed("RADAR", 220, 110, 150, [18, 90, 250, 700, 875, 1050], 7, "company"),
         //Chance
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Chance22", 0, 0, 0, [], 0, ""),
         //Indiana Avenue
         new Deed("CHIRPIFY", 220, 110, 150, [18, 90, 250, 700, 875, 1050], 7, "company"),
         //Illinois Avenue
@@ -69,13 +69,13 @@ var Data;
         //North Carolina Avenue
         new Deed("JIVE SOFTWARE", 300, 150, 200, [26, 130, 390, 900, 1100, 1275], 9, "company"),
         //Community Chest
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Cc33", 0, 0, 0, [], 0, ""),
         //Pennsylvania Avenue
         new Deed("PUPPET LABS", 320, 160, 200, [28, 150, 450, 1000, 1200], 9, "company"),
         //Short Line Railroad
         new Deed("WASHINGTON PARK AND ZOO RAILWAY", 200, 100, 0, [25, 50, 100, 200], 2, ""),
         //Chance
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Chance36", 0, 0, 0, [], 0, ""),
         //Park Place
         new Deed("NEW RELIC", 350, 175, 200, [35, 175, 500, 1100, 1300, 1500], 10, "company"),
         //Luxury Tax
@@ -113,7 +113,7 @@ var Data;
         new Card("GET OUT OF PORTLAND SATURDAY MARKET, FREE", "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", "card", [0]),
         new Card("GET ON THE WRONG BUS", "GO BACK 3 SPACES", "card", [-3]),
         new Card("GO DIRECTLY TO PORTLAND SATURDAY MARKET", "DO NOT PASS GO - DO NOT COLLECT $200", "go", [10]),
-        new Card("PAY PORTLAND'S LEAF CLEANING FEE", "FOR EACH HOUSE PAY $25 - FOR EACH HOTEL $100", "ASSESS", [-25, -100]),
+        new Card("PAY PORTLAND'S LEAF CLEANING FEE", "FOR EACH HOUSE PAY $25 - FOR EACH HOTEL $100", "assess", [-25, -100]),
         new Card("EXPERIENCE THE HAWTHORNE DISTRICT", "PAY $15 FOR COFFEE", "money", [-15]),
         new Card("TAKE A TRIP ON THE MAX", "IF YOU PASS GO COLLECT $200", "go", [5]),
         new Card("LEARN TO BUILD COMPUTERS", "ADVANCE TOKEN TO FREE GEEK", "go", [39]),
@@ -137,7 +137,9 @@ var Data;
 //kind: "card"   - if the object, value, is zero, then the player is retaining the card
 //               - if the object, value, is not zero, then the player will collect (or pay if value is negative) each player the amount of value
 //      "money"  - the player will collect the amount of value (or pay if value is negative)
-//      "go"     - the player will move to a certain spot of the board. If value is negative, then player will move back those spaces, if value is positive, then player will move to that position on the board(i.e. position 0 is "Go").
+//      "go"     - the player will move to a certain spot of the board. 
+//                 If first value is negative, then player will move back those spaces, if first value is positive, then player will move to that position on the board(i.e.position 0 is "Go").
+//                 Second value is amount player gains or looses (+200 for advance to Go)
 //      "assess" - the player will have to pay the amount of value, passed in as negative numbers, the amount of the first element in value per house owned plus the amount of the second element in value per hotel owned.
 //value: value can equal the amount of money player needs to pay or receive, the board position the player is to move to, etc, depending on the value of the object, kind.
 // TYPE

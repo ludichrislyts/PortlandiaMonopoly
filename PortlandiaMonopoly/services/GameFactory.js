@@ -1,11 +1,11 @@
 /// <reference path="../lib/Classes.js" />
 /// <reference path="../lib/Data.js" />
 
-
+debugger;
 portlandiaMonopoly.factory('GameFactory', function GameFactory() {
     var factory = {};
     Data.players = [];
-
+    debugger;
     Data.GamePieces.forEach(function (x) {
         Data.remainingGamePieces.push(x);
     });
