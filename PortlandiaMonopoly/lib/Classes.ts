@@ -3,7 +3,7 @@
     public name: string
     public money: number = 1500
     public inMarket: boolean = false
-    public freedomRolls: number
+    public freedomRolls: number = 0
     public position: number = 0
     public getOutFree = [] //TODO: Convert into number! All I care about is how many are left
     public houses: number

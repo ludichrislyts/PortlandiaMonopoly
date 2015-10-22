@@ -86,9 +86,9 @@ var Data;
     Data.community_chest_data = [
         new Card("WIN DANCE CONTEST AT THE CRYSTAL BALLROOM", "COLLECT $50 FROM EACH PLAYER", "card", [50]),
         new Card("GATHER SIGNATURES AT TOM MCCALL WATERFRONT PARK", "COLLECT $25", "money", [25]),
-        new Card("ADVANCE TO GO", "(COLLECT $200)", "go", [0]),
         new Card("TOUR PORTLAND'S CRAFT BREWERIES", "PAY $100 FOR BEER", "money", [-100]),
         new Card("PORTLAND ARTS TAX", "PAY $50", "money", [-50]),
+        new Card("ADVANCE TO GO", "(COLLECT $200)", "go", [0]),
         new Card("GET OUT OF PORTLAND SATURDAY MARKET, FREE", "THIS CARD MAY BE KEPT UNTIL NEEDED OR SOLD", "card", [0]),
         new Card("WIN A SOCCERT TOURNAMENT AT DELTA PARK", "COLLECT $45", "money", [45]),
         new Card("SELL YOUR FAMILY PASS TO THE OREGON ZOO", "COLLECT $100", "money", [100]),

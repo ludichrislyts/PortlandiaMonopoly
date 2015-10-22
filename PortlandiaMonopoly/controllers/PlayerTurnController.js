@@ -25,6 +25,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     $scope.currentPlayer = player1;
     $scope.checkPlayer = function(){
       $scope.samePlayer = ($scope.currentPlayer.num_of_doubles > 0) ? true : false;
+      $scope.isInMarket = $scope.currentPlayer.inMarket;
     }
 
     // SETUP TURN
@@ -50,7 +51,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         player.position += total;
         if (player.position > 39) { //player passed or landed on go
             player.position -= 40;
-            if(player.position != 0){
+            if(player.position === 0){
               player.money += 200;
               alert("Congrats, " + player.piece.pieceName + ", your startup is paying off again. Collect $200!");
             }
@@ -136,6 +137,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 alert("I guess you don't own enough tie-dye cargo shorts. Go to Saturday Market\n and don't come out until you get some!"); //Goto Jail
                 player.position = 10;
                 player.inMarket = true;
+                player.num_of_doubles = 0;
                 $(".player" + player.id).appendTo(".square" + player.position);
             }
             else if (player.position == 38) { //VooDoo Donuts
@@ -163,25 +165,27 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         $scope.drawAction = false;
         return;
     } //end playerOption()
-    $scope.getCard = function () {
-        $scope.cardToRead = drawCard(card_type);
-    };
+    $scope.getCard = function(){
+      drawCard(card_type);
+    }
 
-    //****************DRAWCARD FUNCTION****************//
-    var drawCard = function (card_type) {
+    //****************GETCARD FUNCTION****************//
+    var drawCard = function (kind) {
         var card;
-        var card_number = chance.integer({ min: 0, max: 16 });
-        if (card_type == "community chest") {
+        var card_number = 4;//chance.integer({ min: 0, max: 16 }); comment out for text
+        if (kind == "community chest") {
             card = community_chest_cards[card_number];
+            $scope.cardToRead = card;
             actionCard($scope.currentPlayer, card);
             $scope.show_end_turn_button = true;
-            return card;
+            return;
         }
-        else if (card_type == "chance") {
+        else if (kind == "chance") {
             card = chanceCards[card_number];
+            $scope.cardToRead = card;
             actionCard($scope.currentPlayer, card);
             $scope.show_end_turn_button = true;
-            return card;
+            return;
         }
         else {
             alert("This should not print");
@@ -222,15 +226,20 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             } else {
                 if (card.value[0] === 10) {// go to market
                     // amount to move is 10 - current position
-                    shift.total = card.value[0] - player.position;
-                    move(player, shift.total);
-                    player.inMarket = true;
-                    alert(player.inMarket + ", player in Market in actionCard()");
+                    gotoJail(player, true);                    
+                    alert(player.inMarket + ", FOR TEST player in Market in actionCard()");
                 } else if (card.value[0] == 0) { // advance to go
                     shift.total = 40 - player.position;
                     move(player, shift.total);
-                } else { // random other places
-                    shift.total = card.value[0] - player.position;
+                } else { // random other places, might have multiple values
+                    for(var i = 0; i < card.value.length; i++){
+                      if(player.position < card.value[i]){
+                        shift.total = card.value[i] - player.position;
+                        break;
+                      }else if(player.position > card.value[i] && i === card.value.length - 1){
+                        shift.total = (card.value[i] - player.position) + 40;
+                      }
+                    }                    
                     $scope.playerOption(player, shift);
                 }
             }
@@ -328,11 +337,14 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
 
     //****************GOTOJAIL FUNCTION****************//
-    $scope.gotoJail = function (player) {
+    var gotoJail = function (player, card) {
+        card = card | 0;
         player.position = 10;
         player.num_of_doubles = 0;
         player.inMarket = true;
-        alert('Sorry, ' + player.piece.pieceName + ', but your luck just ran out!\nThat was your third roll of doubles in a row! Now you\n must spend your time browsing junk at Saturday Market!');
+        if(card === 0){
+          alert('Sorry, ' + player.piece.pieceName + ', but your luck just ran out!\nThat was your third roll of doubles in a row! Now you\n must spend your time browsing junk at Saturday Market!');
+        }
         $(".player" + player.id).appendTo(".square" + player.position);
     } //end gotoJail()
 
