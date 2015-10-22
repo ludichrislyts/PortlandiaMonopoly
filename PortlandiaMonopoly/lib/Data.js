@@ -7,7 +7,7 @@ var Data;
         //Mediterranean Avenue
         new Deed("JAMA SOFTWARE", 60, 30, 50, [2, 10, 30, 90, 160], 1, "company"),
         //Community Chest
-        new Deed("", 0, 0, 0, [], 0, ""),
+        new Deed("Cc3", 0, 0, 0, [], 0, ""),
         //Baltic Avenue
         new Deed("ALTSOURCE", 60, 30, 50, [4, 20, 60, 180, 320, 450], 1, "company"),
         //Income Tax

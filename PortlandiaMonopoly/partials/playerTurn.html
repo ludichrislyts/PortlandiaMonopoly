@@ -1,9 +1,11 @@
 <div class="container player-control" style="font-size: 16px">
 	<!--no stuck in market actions - roll button and post roll options-->
 	<div ng-show="rolled === false && isInMarket === false && submit === false">
-		<h3 ng-show="samePlayer == false">{{ currentPlayer.name}}, it's your turn. Roll!</h3>
-		<h3 ng-show="samePlayer == true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>
-		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true">Shake 'Em!</button>
+		<h3>{{ currentPlayer.piece.pieceName}}, it's your turn. Roll<span ng-show="samePlayer === true"> again</span>!</h3><br/>
+	
+		<!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>-->
+		
+		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Shake 'Em!</button>
 	</div>
 	<!--if player lands on a no-buy space-->
 	<div ng-show="rolled && !isInMarket">
@@ -11,8 +13,8 @@
 			<!--need a 'playerToPay' object from the controller here-->
 			
 		</div>
-		<roll-results ng-show="rolled"></roll-results>
-		<button ng-hide="option_clicked === true" ng-click="playerOption(currentPlayer, rollResult); option_clicked = true">Move</button>
+		<roll-results ng-show="showRoll === true"></roll-results>
+		<button ng-hide="option_clicked === true || isInMarket === true" ng-click="playerOption(currentPlayer, rollResult); option_clicked = true; showRoll = false">Move</button>
 	
 		
 		<!--this div should handle comm chest and/or chance cards-->
@@ -85,7 +87,7 @@
 		</div>-->
 	</div>
 	<div ng-show="show_end_turn_button">
-		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false">End turn</button>
+		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
 	</div>
 
 </div>

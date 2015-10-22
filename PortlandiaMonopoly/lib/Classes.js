@@ -4,6 +4,8 @@ var Player = (function () {
         this.inMarket = false;
         this.position = 0;
         this.getOutFree = []; //TODO: Convert into number! All I care about is how many are left
+        // not true!! I want to display the kind of card it is (Chance or Community Chest) I have code for this! Chris
+        this.num_of_doubles = 0;
         this.id = id;
         this.name = name;
         this.piece = piece;

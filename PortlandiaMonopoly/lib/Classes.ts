@@ -7,7 +7,7 @@
     public position: number = 0
     public getOutFree = [] //TODO: Convert into number! All I care about is how many are left
     public houses: number
-    public num_of_doubles: number
+    public num_of_doubles: number = 0
     public hotels: number
 
     public piece: GamePiece
