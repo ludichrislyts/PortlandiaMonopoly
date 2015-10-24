@@ -3,12 +3,12 @@
     public name: string
     public money: number = 1500
     public inMarket: boolean = false
-    public freedomRolls: number = 0
-    public position: number = 0
+    public freedomRolls = 0
+    public position = 0
     public getOutFree = [] //TODO: Convert into number! All I care about is how many are left
-    public houses: number
-    public num_of_doubles: number = 0
-    public hotels: number
+    public houses = 0
+    public num_of_doubles = 0
+    public hotels = 0
 
     public piece: GamePiece
 
@@ -62,7 +62,7 @@ class Deed {
     public owned: number = 0
     public monopoly: boolean = false
     public mortgaged: boolean = false
-    public multiplier: number
+    public multiplier: number = 0
     public type: string
 
 

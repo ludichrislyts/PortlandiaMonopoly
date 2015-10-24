@@ -1,10 +1,10 @@
 /// <reference path="../Aaron/Classes.js" />
 /// <reference path="../Aaron/Data.js" />
 
-portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory) {
+portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, $stateParams, GameFactory, UtilitiesFactory) {
     // toggles purchase/pass on property display, not really used now
     $scope.result = "roll";
-
+    var factory = UtilitiesFactory;
     //var factory = GameFactory;
     var player1 = Data.players[0];
     var player2 = Data.players[1];
@@ -155,10 +155,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             return;
         }
         else if (deed.owned != player.id) {
-            // player needs to pay another player rent
+            //payPlayer(player, deed.owned, deed.);
         }
         else {
-            // player already owns this deed
+            alert('Nice work! You own this property!');
             return;
         }
         $scope.show_end_turn_button = true;
@@ -167,6 +167,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     } //end playerOption()
     $scope.getCard = function(){
       drawCard(card_type);
+    }
+    var payPlayer = function(payer, payee, amount){
+      var playerToPay = factory.findById(payee);
+      payer.money 
     }
 
     //****************GETCARD FUNCTION****************//
@@ -253,14 +257,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         }
             //else if (!$scope.enoughMoney(deed.price, $scope.currentPlayer.money)) {
         else if ($scope.currentPlayer.money < deed.price) {
-            return "Not Enough Money";
+            echo("Not Enough Money");
+            return;
         }
 
 
         $scope.currentPlayer.money -= deed.price;
         deed.owned = $scope.currentPlayer.id;
         var deed_number = deeds.indexOf(deed);
-        var new_monopoly = $scope.checkForMonopoly(deed_number);
+        var new_monopoly = checkForMonopoly(deed_number);
         alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price);
         if (new_monopoly) {
             alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price + "\nYou have a new Monopoly!");
@@ -275,7 +280,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             $(".square" + $scope.currentPlayer.position + " .right-cost").css("background-color", $scope.currentPlayer.piece.pieceName);
         }
         return;
-    }, //end buyDeed()
+    } //end buyDeed()
 
 
 
@@ -292,7 +297,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     */
 
     //****************CHECKFORMONOPOLY FUNCTION****************//
-    $scope.checkForMonopoly = function (deed_number) {
+    var checkForMonopoly = function (deed_number) {
         var deed_groups = [[], [1, 3], [5, 15, 25, 35], [6, 8, 9], [11, 13, 14], [12, 28], [16, 18, 19],
                            [21, 23, 24], [26, 27, 29], [31, 32, 34], [37, 39]];
         var deed_group = deed_groups[deeds[deed_number].group_id];
@@ -428,10 +433,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     // toggles the drop-down of available get out of market cards to use when in market
     $scope.showCards = function () {
         // if drop down is displayed, and another option is selected, hide it
-        if ($scope.market_choice === "card")
-            $scope.choose_card = true;
-        else
-            $scope.choose_card = false;
+        $scope.choose_card = $scope.market_choice === "card"        
     } //end showCards()
 
     $scope.endTurn = function () {
