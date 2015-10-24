@@ -126,14 +126,12 @@
     <Content Include="lib\angular-ui-router.js" />
     <Content Include="lib\angular.js" />
     <Content Include="lib\chance.js" />
-    <Content Include="lib\require.js" />
     <Content Include="partials\gameboard.html" />
     <Content Include="partials\playerStats.html" />
     <Content Include="partials\playerTurn.html" />
     <Content Include="partials\selectPlayers.html" />
     <Content Include="services\GameFactory.js" />
     <Content Include="testFunctions.html" />
-    <Content Include="testTurn.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

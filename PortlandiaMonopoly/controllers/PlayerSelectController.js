@@ -1,10 +1,11 @@
-/// <reference path="../lib/Data.js" />
-/// <reference path="../lib/Classes.js" />
+/// <reference path="../lib/classes.ts" />
+/// <reference path="../lib/data.ts" />
+
 
 portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams, GameFactory) {
     $scope.factory = GameFactory;
     $scope.players = Data.players;
-    $scope.pieces = Data.gamePieces;
+    $scope.pieces = (<any>Data).gamePieces;
     // initial startGame value to be false. Toggled true in partial when user selects
     // to start game
     $scope.startGame = false;
