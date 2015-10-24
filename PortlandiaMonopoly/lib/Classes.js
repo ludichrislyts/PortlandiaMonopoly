@@ -1,5 +1,6 @@
 var Player = (function () {
     function Player(id, name, piece) {
+        var _this = this;
         this.money = 1500;
         this.inMarket = false;
         this.freedomRolls = 0;
@@ -8,6 +9,7 @@ var Player = (function () {
         this.houses = 0;
         this.num_of_doubles = 0;
         this.hotels = 0;
+        this.Location = function () { return Data.deeds[_this.position]; };
         this.id = id;
         this.name = name;
         this.piece = piece;

@@ -2,3 +2,4 @@ collect money when passing go with chance card (Brandlive)
 change "Shake 'em"
 make directive fire before alerts
 get out of jail card not added to player cards
+take get out of jail cards unavailable if taken

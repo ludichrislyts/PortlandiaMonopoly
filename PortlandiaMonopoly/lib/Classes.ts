@@ -17,6 +17,8 @@
         this.name = name;
         this.piece = piece;
     }
+
+    public Location = () => Data.deeds[this.position]
 }
 
 class GamePiece {
