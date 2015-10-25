@@ -14,11 +14,15 @@ After the project was over, Chris worked with Aaron to move much of the project'
 * Develop properties
 * Implement a cool visual dice roll
 * If above gets done, let players roll to see who goes first
+* Implement square by square player movement, rather than instant transport.
 * Probably more stuff/work out bugs
+* Oh, and probably should be able to detect if a player wins or loses at some point
 
 ## Setup
 ```
-If you want to open the project in Visual Studio, the project should load up if you open up the _PortlandiaMonopoly.sln_ file in the top level project folder.
+If you want to open the project in Visual Studio, create a new project in VS. Select 'ASP.NET Empty Web Application'
+Using a file explorer, navigate to the top level project PortlandiaMonopoly folder, then drag the PortlandiaMonopoly file inside into VS and drop on the project name in the Solution Explorer
+Run the program from the index.html file. In Chrome, the player colors appear in the header, in IE they don't.
 ```
 
 ```
