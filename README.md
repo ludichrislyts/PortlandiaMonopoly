@@ -1,6 +1,6 @@
 # Portlandia Monopoly
 
-##### _Monopoly game based on Portland tech business and local themes_
+##### _Monopoly game based on Portland tech business and local themes. There is no rhyme or reason to the placement of companies on the board, in case one is wondering._
 
 #### Chris Lytsell, Jason Creighton, Kenny Grage, Aaron Campf.
 
