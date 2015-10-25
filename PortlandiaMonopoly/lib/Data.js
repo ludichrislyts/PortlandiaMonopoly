@@ -1,6 +1,6 @@
-/// <reference path="typings/jquery/jquery.d.ts" />
 var Data;
 (function (Data) {
+    Data.Factory_Games = new GameFactory1();
     Data.deeds = [
         //Go
         new Deed("G0", 0, 0, 0, [], 0, ""),
@@ -130,6 +130,10 @@ var Data;
     ];
     Data.remainingGamePieces = []; //Obsolete!!!!! Try to trash this one day!!!
     Data.players = [];
+    //TODO: Move...maybe
+    for (var i = 0; i < Data.GamePieces.length; i++) {
+        Data.remainingGamePieces.push(Data.GamePieces[i]);
+    }
 })(Data || (Data = {}));
 //******************OBJECT VALUES******************//
 //text: words on card displayed with a bigger font size
@@ -157,3 +161,4 @@ var Data;
 // railroad - kind: "go", value: [5, 15, 25, 35]
 // bank pays $50 - kind: "money", value: [50]
 // go back three spaces: kind: "go", value: [-3] 
+//# sourceMappingURL=data.js.map

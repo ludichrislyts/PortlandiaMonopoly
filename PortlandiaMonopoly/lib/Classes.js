@@ -59,3 +59,51 @@ var Deed = (function () {
     }
     return Deed;
 })();
+var GameFactory1 = (function () {
+    function GameFactory1() {
+        var _this = this;
+        this.selectPiece = function (piece) {
+            for (var i = 0; i < Data.remainingGamePieces.length; i++) {
+                if (Data.remainingGamePieces[i].id === piece.id) {
+                    Data.remainingGamePieces.splice(i, 1);
+                    break;
+                }
+            }
+        };
+        this.addPlayer = function () {
+            Data.players.push(new Player(Data.players.length + 1, _this.playerName, _this.playerPiece));
+            _this.playerName = null;
+            // take piece out of display array and toggle taken in piece object
+            _this.selectPiece(Data.players[Data.players.length - 1].piece);
+            // return true to toggle play in html
+            if (Data.players.length >= 5)
+                return true;
+        };
+        this.fixPlayerOrder = function (id) {
+            for (var i = 0; i < id - 1; i++) {
+                Data.players.push(Data.players.shift());
+            }
+            return Data.players;
+        };
+        this.playerStatsAlert = function (player) {
+            var name = player.name;
+            var piece = player.piece.pieceName;
+            var money = ("$" + player.money);
+            var inMarket = player.inMarket;
+            var freedomRolls = player.freedomRolls;
+            var position = player.position;
+            var getOutFreeCards = player.getOutFree.length;
+            var houses = player.houses;
+            var hotels = player.hotels;
+            alert("Player name: " + name + "\n" +
+                "Piece: " + piece + "\n" +
+                "Money: " + money + "\n" +
+                "inMarket: " + inMarket + "\n" +
+                "freedomRolls:" + freedomRolls + "\n" +
+                "position: " + position + "\n" +
+                "getOutFreeCards: " + getOutFreeCards + "\n");
+        };
+    }
+    return GameFactory1;
+})();
+//# sourceMappingURL=classes.js.map

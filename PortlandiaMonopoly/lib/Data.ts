@@ -1,6 +1,7 @@
-﻿/// <reference path="typings/jquery/jquery.d.ts" />
-
+﻿
 module Data {
+    export var Factory_Games = new GameFactory1();
+
     export var deeds = [
         //Go
         new Deed("G0", 0, 0, 0, [], 0, ""), //company, sport, train),
@@ -177,6 +178,11 @@ module Data {
 
     export var players: Array<Player> = []   
 
+
+    //TODO: Move...maybe
+    for (var i = 0; i < Data.GamePieces.length; i++) {
+        Data.remainingGamePieces.push(Data.GamePieces[i]);
+    }
 }
 
 
