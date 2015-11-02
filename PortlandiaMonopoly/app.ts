@@ -12,10 +12,6 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {
         url: "",
         views: {
-            'test': {
-                templateUrl: "testFunctions.html",
-                // controller: "FunctionCtrl"
-            },
             'setup': {
                 templateUrl: "partials/selectPlayers.html",
                 controller: "PlayerSelectCtrl"

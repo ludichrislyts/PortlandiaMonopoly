@@ -25,11 +25,11 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 }); // end playerSelect controller
 /////////////////////////////////////////////////////////////////////
 /////////////////// highest roller controls /////////////////////////
-/////////////////////////////////////////////////////////////////////	
+/////////////////////////////////////////////////////////////////////
 /* Want to keep this code in case there is ever a cool "roll to see who goes first" animation or something */
 // var highestRoller = [{playerName: "", roll: 0, tie: false, id: 0}];
 // var player = null;
-// var numberOfRolls = 0; 
+// var numberOfRolls = 0;
 // var numberRolled = 0;
 // var firstInTieBreak = true; // for testing ties
 // numOfRollers = Data.players.length;
@@ -48,26 +48,26 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
 // 	$scope.show_roll_results = true;
 // 	player = UtilitiesFactory.findById(Data.players, playerId);
 // 	var chance = new Chance(); // module loaded in index.html
-// 	var die1 = chance.integer({min:1, max:6}); 
+// 	var die1 = chance.integer({min:1, max:6});
 // 	var die2 = chance.integer({min:1, max:6});
 // 	numberRolled = die1 + die2;
 // 	if (numberRolled === highestRoller[0].roll) {
 // 		highestRoller[0].tie = true;
 // 		highestRoller.push({ playerName: player.name, roll: numberRolled, tie: true, id: player.id });
 // 		alert(player.name + ' tied with the highest roller at ' + numberRolled + '!');
-// 		if (numberOfRolls < numOfRollers) { 
+// 		if (numberOfRolls < numOfRollers) {
 // 			console.log("rolls in tie, less than number of rollers. " + numberOfRolls + ", players:" + numOfRollers);
-// 			return; 
+// 			return;
 // 		}
 // 	}
 // 	else if (numberRolled > highestRoller[0].roll) {
 // 		highestRoller = [];
 // 		highestRoller.push({ playerName: player.name, roll: numberRolled, tie: false, id: player.id });
 // 		alert(player.name + ' has the highest roll at ' + numberRolled + '!');
-// 		if (numberOfRolls < numOfRollers) { 
+// 		if (numberOfRolls < numOfRollers) {
 // 			console.log("rolls in high roll, less than number of rollers. " + numberOfRolls + ", players:" + numOfRollers);
-// 			return; 
-// 		}	
+// 			return;
+// 		}
 // 		// HIGH ROLLER
 // 		// below are unused until I can get angular to display to html the results
 // 		// of the first roll -- selectPlayers.html HIGH ROLLER snippet

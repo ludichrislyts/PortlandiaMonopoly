@@ -1,3 +1,4 @@
+//#endregion
 var Player = (function () {
     function Player(id, name, piece) {
         var _this = this;
@@ -105,5 +106,87 @@ var GameFactory1 = (function () {
         };
     }
     return GameFactory1;
+})();
+var Transactions = (function () {
+    function Transactions() {
+        /**
+        * this function assigns a playerId to a deed and subtracts money from player
+        * @param player player buying the property
+        * @param deed property player wants to buy
+        * @return true if transaction completed, false if not (player doesn't have enough money)
+        */
+        this.buyProperty = function (player, deed) {
+            if (player.money < deed.price) {
+                return false;
+            }
+            else {
+                player.money -= deed.price;
+                deed.owned = player.id;
+                return true;
+            }
+        };
+        /**
+        * determine what actions a player can take depending on position(deed)
+        * @param player player involved in the transaction
+        * @param deed the deed at the position the player landed on
+        */
+        this.onLandOnDeed = function (player, deed) {
+            if (deed.group_id == 0) {
+                if (player.position == 0) {
+                    player.money += 200;
+                    alert('You landed on Startup! Your investors gave you $200!');
+                }
+                else if ((player.position == 2) || (player.position == 17) || (player.position == 33)) {
+                    card_type = "community chest";
+                    $scope.community_chestCard = true;
+                    $scope.chanceCard = false;
+                    $scope.draw = true;
+                }
+                else if (player.position == 4) {
+                    alert("Pay Portland Art Tax, Lose 200 Dollars");
+                    player.money -= 200;
+                }
+                else if (player.position == 7 || player.position == 22 || player.position == 36) {
+                    card_type = "chance";
+                    $scope.chanceCard = true;
+                    $scope.community_chestCard = false;
+                    $scope.draw = true;
+                }
+                else if (player.position == 10) {
+                    alert("You've decided to brave Saturday Market!\nMake sure to tip the buskers.");
+                }
+                else if (player.position == 20) {
+                    alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
+                }
+                else if (player.position == 30) {
+                    alert("I guess you don't own enough tie-dye cargo shorts. Go to Saturday Market\n and don't come out until you get some!"); //Goto Jail
+                    player.position = 10;
+                    player.inMarket = true;
+                    player.num_of_doubles = 0;
+                    $(".player" + player.id).appendTo(".square" + player.position);
+                }
+                else if (player.position == 38) {
+                    alert("Pay for Voodoo Donuts, Lose 175 Dollars");
+                    player.money -= 175;
+                }
+                else {
+                    alert("This should never print");
+                }
+            }
+            else if (deed.owned == 0) {
+                // player option to buy or not to buy
+                if (confirm("Do you want to buy " + deed.name + " for $" + deed.price + "?")) {
+                    buyDeed(deed);
+                }
+                $scope.show_end_turn_button = true;
+            }
+            else if (deed.owned != player.id) {
+            }
+            else {
+                alert('Nice work! You own this property!');
+            }
+        };
+    }
+    return Transactions;
 })();
 //# sourceMappingURL=classes.js.map

@@ -141,7 +141,7 @@ var Data;
 //kind: "card"   - if the object, value, is zero, then the player is retaining the card
 //               - if the object, value, is not zero, then the player will collect (or pay if value is negative) each player the amount of value
 //      "money"  - the player will collect the amount of value (or pay if value is negative)
-//      "go"     - the player will move to a certain spot of the board. 
+//      "go"     - the player will move to a certain spot of the board.
 //                 If first value is negative, then player will move back those spaces, if first value is positive, then player will move to that position on the board(i.e.position 0 is "Go").
 //                 Second value is amount player gains or looses (+200 for advance to Go)
 //      "assess" - the player will have to pay the amount of value, passed in as negative numbers, the amount of the first element in value per house owned plus the amount of the second element in value per hotel owned.

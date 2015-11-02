@@ -1,4 +1,10 @@
-﻿class Player {
+﻿//#region :(
+declare var $scope: any;
+declare var card_type: any;
+declare var buyDeed: any;
+//#endregion
+
+class Player {
     public id: number
     public name: string
     public money: number = 1500
@@ -39,7 +45,7 @@ class Card {
     //TODO: Make kind a CardKind
     public text: string
     public subtext: string
-    //public kind: CardKind   
+    //public kind: CardKind
     public kind: string
     public value: Array<number>
 
@@ -50,7 +56,6 @@ class Card {
         this.value = value
     }
 }
-
 
 enum DeedType { Train };
 class Deed {
@@ -66,7 +71,6 @@ class Deed {
     public mortgaged: boolean = false
     public multiplier: number = 0
     public type: string
-
 
     constructor(name: string, price: number, mortgage_value: number, house_cost: number, rent: Array<number>, group_id: number, type: string) {
         this.name = name
@@ -107,9 +111,9 @@ class GameFactory1 {
         }
 
         return Data.players;
-    }    
+    }
 
-    public playerStatsAlert =  (player)  => {
+    public playerStatsAlert = (player) => {
         var name = player.name
         var piece = player.piece.pieceName;
         var money = ("$" + player.money);
@@ -127,5 +131,88 @@ class GameFactory1 {
             "position: " + position + "\n" +
             "getOutFreeCards: " + getOutFreeCards + "\n"
         );
+    }
+}
+class Transactions {
+    /**
+    * this function assigns a playerId to a deed and subtracts money from player
+    * @param player player buying the property
+    * @param deed property player wants to buy
+    * @return true if transaction completed, false if not (player doesn't have enough money)
+    */
+    public buyProperty = (player: Player, deed: Deed): boolean => {
+        if (player.money < deed.price) {
+            return false;
+        } else {
+            player.money -= deed.price;
+            deed.owned = player.id;
+            return true;
+        }
+    }
+    /**
+    * determine what actions a player can take depending on position(deed)
+    * @param player player involved in the transaction
+    * @param deed the deed at the position the player landed on
+    */
+    public onLandOnDeed = (player: Player, deed: Deed) => {
+        if (deed.group_id == 0) { // player is not able to buy this deed
+            if (player.position == 0) { //Go
+                player.money += 200;
+                alert('You landed on Startup! Your investors gave you $200!');
+            }
+            //Community Chest
+            else if ((player.position == 2) || (player.position == 17) || (player.position == 33)) {
+                card_type = "community chest";
+                $scope.community_chestCard = true;
+                $scope.chanceCard = false;
+                $scope.draw = true;
+            }
+            //Portland Art Tax
+            else if (player.position == 4) {
+                alert("Pay Portland Art Tax, Lose 200 Dollars");
+                player.money -= 200;
+            }
+            //Chance
+            else if (player.position == 7 || player.position == 22 || player.position == 36) {
+                card_type = "chance";
+                $scope.chanceCard = true;
+                $scope.community_chestCard = false;
+                $scope.draw = true;
+            }
+            else if (player.position == 10) {
+                alert("You've decided to brave Saturday Market!\nMake sure to tip the buskers.");
+                //Portland Saturday Market
+            }
+            else if (player.position == 20) { //Rose Garden
+                alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
+            }
+            else if (player.position == 30) {
+                alert("I guess you don't own enough tie-dye cargo shorts. Go to Saturday Market\n and don't come out until you get some!"); //Goto Jail
+                player.position = 10;
+                player.inMarket = true;
+                player.num_of_doubles = 0;
+                $(".player" + player.id).appendTo(".square" + player.position);
+            }
+            else if (player.position == 38) { //VooDoo Donuts
+                alert("Pay for Voodoo Donuts, Lose 175 Dollars");
+                player.money -= 175;
+            }
+            else {
+                alert("This should never print");
+            }
+        }
+        else if (deed.owned == 0) {
+            // player option to buy or not to buy
+            if (confirm("Do you want to buy " + deed.name + " for $" + deed.price + "?")) {
+                buyDeed(deed);
+            }
+            $scope.show_end_turn_button = true;
+        }
+        else if (deed.owned != player.id) {
+            //payPlayer(player, deed.owned, deed.);
+        }
+        else {
+            alert('Nice work! You own this property!');
+        }
     }
 }

@@ -1,93 +1,92 @@
 <div class="container player-control" style="font-size: 16px">
-	<!--no stuck in market actions - roll button and post roll options-->
-	<div ng-show="rolled === false && isInMarket === false && submit === false">
-		<h3>{{ currentPlayer.piece.pieceName }}, it's your turn. Roll<span ng-show="samePlayer === true"> again</span>!</h3><br/>
-	
-		<!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>-->
-		
-		<button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Shake 'Em!</button>
-	</div>
-	<!--if player lands on a no-buy space-->
-	<div ng-show="rolled && !isInMarket">
-		<div ng-show="deedOwned">
-			<!--need a 'playerToPay' object from the controller here-->
-			
-		</div>
-		<roll-results ng-show="showRoll === true"></roll-results>
-		<button ng-hide="option_clicked === true || isInMarket === true" ng-click="playerOption(currentPlayer, rollResult); option_clicked = true; showRoll = false">Move</button>
-	
-		
-		<!--this div should handle comm chest and/or chance cards-->
-		<!--need $scope.draw = true from controller-->
-		<!--need $scope.cardToRead from controller (the card selected)-->
-		<!--if its a community chest card, make a $scope.community_chest = true in controller-->
-		<!--if its a chance card, $scope.chance = true in controller-->
-		<div ng-show="draw">
-			<span ng-model="drawActions" ng-hide="drawAction">
-				<h4 ng-show="community_chestCard && chanceCard != true">You landed on Community Chest!</h4>
-				<h4 ng-show="chanceCard && community_chestCard != true">You landed on Chance!</h4>
-				<h5>Click to pick a card</h5>
-				<button ng-click="drawAction = true; getCard()">Draw</button>
-			</span>		
-			<read-card ng-show="drawAction"></read-card>
-		</div>
-	
-		<div ng-show="visiting">
-			
-		</div>
-		<div ng-show="roseGarden">
-			
-		</div>
-		<div ng-show="goToMarket">
-			
-		</div>
-		<div ng-show="voodoo">
-			
-		</div>
-		
-	</div>
-		
-	<!--stuck in market actions-->
-	<div class="row in-market" ng-show="isInMarket">
-		<h3>You're stuck at Saturday Market!!</h3>
-		<!--show if player has another turn to stay in market-->
-		<label for="market_choices">{{ currentPlayer.name }}, select your options. You can:<br/>
-		* Pay $50.<br/>
-		* Use an available "Leave Saturday Market Free" card<br/>
-		* Roll for doubles<br/>
-		<button ng-model="show_rules" ng-click="show_rules = !show_rules">Click here to view rules</button>
-		<div ng-show="show_rules" sytle="float:right">
-			<p>If you choose to pay $50 or spend a "Leave Saturday Market Free" card at the start of your turn, you may roll as normal.</p><br/>
-			<p>If you choose to roll for doubles and do not get doubles, you will stay at Saturday Market for another turn (3 turns max).</p><br/>
-			<p>If upon your third unsuccessful attempt at rolling for doubles, the $50 fine will be leveed anyway, and you leave Saturday Market, moving the number of spaces as indicated by the roll</p>
-		</div>
-		</label>
-		<h4>How do you want to leave Saturday Market?</h4>
-		<form ng-submit="marketAction()">
-			<div class="row form-group" >
-				<ul class="no_style_li" name="market" required single>
-					<li id="card" ng-model="market_choice"  ng-show="has_card"><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = true" value="card"> Use a get out of market free card</input>
-						<span ng-show="choose_card" >
-							<show-cards></show-cards></span>
-					</li>
-					<li><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="pay"> Pay $50</input>
-					</li>
-					<li><input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input>
-					</li>
-				</ul>
-			</div>
-			<button type="submit" ng-model="market_choice" ng-click="isInMarket = false; submit = true">Submit </button>
-		</form>
-		<!--<div ng-show="choose_card">
-			<form ng-model="cardSelected">
-				<select name="cards" ng-model="cardSelected">
-					<option ng-repeat="item in getOutFreeCards" ng-model="cardSelected" value="({cardChosen: item.group})">{{ item.group }}</option>
-				</select>
-			</form>
-		</div>-->
-	</div>
-	<div ng-show="show_end_turn_button">
-		<button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
-	</div>
+    <!--no stuck in market actions - roll button and post roll options-->
+    <div ng-show="rolled === false && isInMarket === false && submit === false">
+        <h3>{{ currentPlayer.piece.pieceName }}, it's your turn. Roll<span ng-show="samePlayer === true"> again</span>!</h3><br />
 
+        <!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>-->
+
+        <button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Shake 'Em!</button>
+    </div>
+    <action-message ng-show="showMessage === true"></action-message>
+
+    <!--if player lands on a no-buy space-->
+    <div ng-show="rolled && !isInMarket">
+        <div ng-show="deedOwned">
+            <!--need a 'playerToPay' object from the controller here-->
+        </div>
+        <roll-results ng-show="showRoll === true"></roll-results>
+        <button ng-hide="option_clicked === true || isInMarket === true" ng-click="playerOption(currentPlayer, rollResult); option_clicked = true; showRoll = false">Move</button>
+
+        <!--this div should handle comm chest and/or chance cards-->
+        <!--need $scope.draw = true from controller-->
+        <!--need $scope.cardToRead from controller (the card selected)-->
+        <!--if its a community chest card, make a $scope.community_chest = true in controller-->
+        <!--if its a chance card, $scope.chance = true in controller-->
+        <div ng-show="draw">
+            <span ng-model="drawActions" ng-hide="drawAction">
+                <p id="larger-text" ng-show="community_chestCard && chanceCard != true">You landed on Community Chest!</p>
+                <p ng-show="chanceCard && community_chestCard != true">You landed on Chance!</p>
+                <p>Click to pick a card</p>
+                <button ng-click="drawAction = true; getCard()">Draw</button>
+            </span>
+            <read-card ng-show="drawAction"></read-card>
+        </div>
+
+        <div ng-show="visiting">
+        </div>
+        <div ng-show="roseGarden">
+        </div>
+        <div ng-show="goToMarket">
+        </div>
+        <div ng-show="voodoo">
+        </div>
+    </div>
+
+    <!--stuck in market actions-->
+    <div class="row in-market" ng-show="isInMarket">
+        <h3>You're stuck at Saturday Market!!</h3>
+        <!--show if player has another turn to stay in market-->
+        <label for="market_choices">
+            {{ currentPlayer.name }}, select your options. You can:<br />
+            * Pay $50.<br />
+            * Use an available "Leave Saturday Market Free" card<br />
+            * Roll for doubles<br />
+            <button ng-model="show_rules" ng-click="show_rules = !show_rules">Click here to view rules</button>
+            <div ng-show="show_rules" sytle="float:right">
+                <p>If you choose to pay $50 or spend a "Leave Saturday Market Free" card at the start of your turn, you may roll as normal.</p><br />
+                <p>If you choose to roll for doubles and do not get doubles, you will stay at Saturday Market for another turn (3 turns max).</p><br />
+                <p>If upon your third unsuccessful attempt at rolling for doubles, the $50 fine will be leveed anyway, and you leave Saturday Market, moving the number of spaces as indicated by the roll</p>
+            </div>
+        </label>
+        <h4>How do you want to leave Saturday Market?</h4>
+        <form ng-submit="marketAction()">
+            <div class="row form-group">
+                <ul class="no_style_li" name="market" required single>
+                    <li id="card" ng-model="market_choice" ng-show="has_card">
+                        <input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = true" value="card"> Use a get out of market free card</input>
+                        <span ng-show="choose_card">
+                            <show-cards></show-cards>
+                        </span>
+                    </li>
+                    <li>
+                        <input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="pay"> Pay $50</input>
+                    </li>
+                    <li>
+                        <input name="market" type="radio" ng-model="market_choice" ng-change="showCards(); useCardChosen = false" value="roll"> I don't wanna buy ANYTHING in this place. I'm gonna make a ROLL for it!</input>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" ng-model="market_choice" ng-click="isInMarket = false; submit = true">Submit </button>
+        </form>
+        <!--<div ng-show="choose_card">
+            <form ng-model="cardSelected">
+                <select name="cards" ng-model="cardSelected">
+                    <option ng-repeat="item in getOutFreeCards" ng-model="cardSelected" value="({cardChosen: item.group})">{{ item.group }}</option>
+                </select>
+            </form>
+        </div>-->
+    </div>
+    <div ng-show="show_end_turn_button">
+        <button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
+    </div>
 </div>

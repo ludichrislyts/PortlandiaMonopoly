@@ -1,5 +1,4 @@
-﻿
-module Data {
+﻿module Data {
     export var Factory_Games = new GameFactory1();
 
     export var deeds = [
@@ -172,12 +171,9 @@ module Data {
         new GamePiece(5, "Black")
     ]
 
-
-    
     export var remainingGamePieces: Array<GamePiece> = [] //Obsolete!!!!! Try to trash this one day!!!
 
-    export var players: Array<Player> = []   
-
+    export var players: Array<Player> = []
 
     //TODO: Move...maybe
     for (var i = 0; i < Data.GamePieces.length; i++) {
@@ -185,23 +181,17 @@ module Data {
     }
 }
 
-
-
-
 //******************OBJECT VALUES******************//
 //text: words on card displayed with a bigger font size
 //subtext: words on card displayed with a smaller font size
 //kind: "card"   - if the object, value, is zero, then the player is retaining the card
 //               - if the object, value, is not zero, then the player will collect (or pay if value is negative) each player the amount of value
 //      "money"  - the player will collect the amount of value (or pay if value is negative)
-//      "go"     - the player will move to a certain spot of the board. 
+//      "go"     - the player will move to a certain spot of the board.
 //                 If first value is negative, then player will move back those spaces, if first value is positive, then player will move to that position on the board(i.e.position 0 is "Go").
 //                 Second value is amount player gains or looses (+200 for advance to Go)
 //      "assess" - the player will have to pay the amount of value, passed in as negative numbers, the amount of the first element in value per house owned plus the amount of the second element in value per hotel owned.
 //value: value can equal the amount of money player needs to pay or receive, the board position the player is to move to, etc, depending on the value of the object, kind.
-
-
-
 
 // TYPE
 // VALUE
