@@ -13,7 +13,7 @@ After the project was over, Chris worked with Aaron to move much of the project'
 * Mortgage a property
 * Develop properties
 * Implement a cool visual dice roll
-* If above gets done, let players roll to see who goes first
+* If above gets done, activate function for players to roll to see who goes first
 * Implement square by square player movement, rather than instant transport.
 * Probably more stuff/work out bugs
 * Oh, and probably should be able to detect if a player wins or loses at some point
