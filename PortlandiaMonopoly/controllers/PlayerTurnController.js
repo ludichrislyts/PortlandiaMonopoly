@@ -156,7 +156,10 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 //Portland Saturday Market
             }
             else if (player.position == 20) { //Rose Garden
-                alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
+                $scope.message.text = "Take a walk up to Washington Park.";
+                $scope.message.subText = "Check out Portland's Rose Test Garden!";
+                $scope.showMessage = true;
+                //alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
             }
             else if (player.position == 30) {
                 $scope.message.text = "Go to Saturday Market!";
@@ -208,6 +211,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             //$scope.show_end_turn_button = true;
         }
         else if (deed.owned != player.id) {
+            $scope.message.text = "This property is owned!";
+            $scope.message.subText = "Lucky for you, the bank is closed. You don't have to pay!";
+            $scope.showMessage = true;
             //payPlayer(player, deed.owned, deed.);
         }
         else {
@@ -306,7 +312,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             alert("Not Enough Money");
             return;
         } else {
-            player.money -= deed.price;
+            //player.money -= deed.price;
             deed.owned = player.id;
             var purchaseComplete = transactions.buyProperty(player, deed);
             if (purchaseComplete) {
@@ -492,6 +498,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     } //end showCards()
 
     $scope.endTurn = function () {
+        $scope.buyChoice = "";
         $scope.askToBuy = false;
         $scope.draw = false;
         $scope.rolled = false;      // resets roll button
