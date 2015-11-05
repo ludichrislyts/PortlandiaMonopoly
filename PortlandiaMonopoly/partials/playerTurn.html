@@ -31,6 +31,17 @@
             </span>
             <read-card ng-show="drawAction"></read-card>
         </div>
+        <!--ask to buy property actions-->
+        <div ng-show="askToBuy">
+            <form>
+                <label name="buyQuestion">Would you like to buy {{deeds[currentPlayer.position].name}} for {{deeds[currentPlayer.position].price}}?</label>
+                <select id="buy-option" ng-model="buyChoice">
+                    <option ng-model="buyChoice" ng-value="true">I'll take it!</option>
+                    <option ng-model="buyChoice" ng-value="false">No thanks</option>
+                </select>
+                <button ng-click="askToBuy = false; getPlayerChoice()">Submit</button>
+            </form>
+        </div>
 
         <div ng-show="visiting">
         </div>
@@ -86,7 +97,7 @@
             </form>
         </div>-->
     </div>
-    <div ng-show="show_end_turn_button">
+    <div id="end-button" ng-show="show_end_turn_button">
         <button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
     </div>
 </div>

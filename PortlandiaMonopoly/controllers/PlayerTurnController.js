@@ -13,12 +13,16 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     var community_chest_cards = Data.community_chest_data;
     var chanceCards = Data.chance_data;
     var deeds = Data.deeds;
+    var transactions = new Transactions();
     var chance = new Chance();
     var index = 0;
 
     var card_type = null;
     $scope.deeds = Data.deeds;
     // flag toggle to display game messages, resets to false in endTurn()
+    $scope.buyChoice = false;
+
+    $scope.askToBuy = false;
     $scope.showMessage = false;
     $scope.message = [];
     $scope.chanceCard = false;
@@ -93,6 +97,22 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         }
         return;
     }
+    $scope.choiceMade = function () {
+        if ($scope.buyChoice) {
+            return true;
+        } else { return false; }
+    }
+    //function to see if player wants to buy a property
+    $scope.getPlayerChoice = function () {
+        var playerWantsToBuy = $scope.choiceMade();
+        if (playerWantsToBuy) {
+            buyDeed($scope.currentPlayer, deeds[$scope.currentPlayer.position]);
+        } else {
+            $scope.message.text = "Ok, maybe next time.";
+            $scope.message.subText = "But remember, you gotta spend money to make money!";
+            $scope.showMessage = true;
+        }
+    }
 
     //****************PLAYEROPTION FUNCTION****************//
     $scope.playerOption = function (player, roll) {
@@ -159,19 +179,42 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 alert("This should never print");
             }
         }
+            //deed is not owned, ask player to buy
         else if (deed.owned == 0) {
-            // player option to buy or not to buy
+            var canBuy = transactions.checkFunds(player, deed);
+            if (canBuy) {
+                $scope.askToBuy = true;
+                //getPlayerChoice();
+                //$scope.show_end_turn_button = true;
 
+                //var playerWantsToBuy = $scope.choiceMade();
+                //if (playerWantsToBuy) {
+                //    buyDeed(player, deed);
+                //} else {
+                //    $scope.message.text = "Ok, maybe next time.";
+                //    $scope.message.subText = "But remember, you gotta spend money to make money!";
+                //    $scope.showMessage = true;
+                //}
+            } else {
+                $scope.message.text = "Sorry, you don't have enough money to buy this property.";
+                $scope.message.subText = "Maybe your startup will make a ton of money soon.";
+                $scope.showMessage = true;
+            }
+            // player option to buy or not to buy
+            // don't want to use alerts anymore
             //if (confirm("Do you want to buy " + deed.name + " for $" + deed.price + "?")) {
             //    buyDeed(deed);
             //}
-            $scope.show_end_turn_button = true;
+            //$scope.show_end_turn_button = true;
         }
         else if (deed.owned != player.id) {
             //payPlayer(player, deed.owned, deed.);
         }
         else {
-            alert('Nice work! You own this property!');
+            $scope.message.text = "You own this property.";
+            $scope.message.subText = "Nice Work!!";
+            $scope.showMessage = true;
+            //alert('Nice work! You own this property!');
         }
         $scope.show_end_turn_button = true;
         $scope.drawAction = false;
@@ -252,32 +295,43 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     };
 
     //****************BUYDEED FUNCTION****************//
-    var buyDeed = function (deed) {
+    var buyDeed = function (player, deed) {
+        // this condition should already have been met
         if (deed.owned > 0) {
             alert("Deed Already Owned");
             return;
         }
-            //else if (!$scope.enoughMoney(deed.price, $scope.currentPlayer.money)) {
-        else if ($scope.currentPlayer.money < deed.price) {
+            // this condition should have also already been checked for
+        else if (player.money < deed.price) {
             alert("Not Enough Money");
             return;
-        }
+        } else {
+            player.money -= deed.price;
+            deed.owned = player.id;
+            var purchaseComplete = transactions.buyProperty(player, deed);
+            if (purchaseComplete) {
+                $scope.message.text = "Congratulations! You now own " + deed.name;
+                $scope.message.subText = "You spent $" + deed.price;
+                //$scope.showMessage = true;
+                if (checkForMonopoly(deeds.indexOf(deed))) {
+                    $scope.message.text += ". You have a Portlandia Monopoly!";
+                    $scope.showMessage = true;
+                } else { $scope.showMessage = true; }
+            }
+            //alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price);
+            //if (checkForMonopoly(deeds.indexOf(deed))) {
+            //    alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price + "\nYou have a new Monopoly!");
+            //}
 
-        $scope.currentPlayer.money -= deed.price;
-        deed.owned = $scope.currentPlayer.id;
-        alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price);
-        if (checkForMonopoly(deeds.indexOf(deed))) {
-            alert("Congratulations! You now own " + deed.name + ".\nYou spent $" + deed.price + "\nYou have a new Monopoly!");
-        }
-
-        if ($scope.currentPlayer.position < 10) {
-            $(".square" + $scope.currentPlayer.position + " .bottom-cost").css("background-color", $scope.currentPlayer.piece.pieceName);
-        } else if (($scope.currentPlayer.position < 20) && ($scope.currentPlayer.position > 10)) {
-            $(".square" + $scope.currentPlayer.position + " .left-cost").css("background-color", $scope.currentPlayer.piece.pieceName);
-        } else if (($scope.currentPlayer.position < 30) && ($scope.currentPlayer.position > 20)) {
-            $(".square" + $scope.currentPlayer.position + " .top-cost").css("background-color", $scope.currentPlayer.piece.pieceName);
-        } else if (($scope.currentPlayer.position < 40) && ($scope.currentPlayer.position > 20)) {
-            $(".square" + $scope.currentPlayer.position + " .right-cost").css("background-color", $scope.currentPlayer.piece.pieceName);
+            if (player.position < 10) {
+                $(".square" + player.position + " .bottom-cost").css("background-color", player.piece.pieceName);
+            } else if ((player.position < 20) && (player.position > 10)) {
+                $(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
+            } else if ((player.position < 30) && (player.position > 20)) {
+                $(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
+            } else if ((player.position < 40) && (player.position > 20)) {
+                $(".square" + player.position + " .right-cost").css("background-color", player.piece.pieceName);
+            }
         }
     } //end buyDeed()
 
@@ -438,13 +492,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     } //end showCards()
 
     $scope.endTurn = function () {
+        $scope.askToBuy = false;
         $scope.draw = false;
         $scope.rolled = false;      // resets roll button
         $scope.submit = false;      // resets show roll button display
         $scope.samePlayer = false;  // resets if same player (doubles related)
         $scope.option_clicked = false;
         $scope.showMessage = false;
-        $scope.message = '';
+        $scope.message.text = "";
+        $scope.message.subText = "";
         $scope.drawAction = false;  // draw card and display result reset
         var prevPlayerId = $scope.currentPlayer.id;
         //reset

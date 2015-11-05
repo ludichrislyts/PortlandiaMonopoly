@@ -135,13 +135,26 @@ class GameFactory1 {
 }
 class Transactions {
     /**
+    * this function checks if a player has enough money to buy a property
+    * @param player player buying the property
+    * @param deed property player wants to buy
+    * @return true if player has enough money, false if not
+    */
+    public checkFunds = (player: Player, deed: Deed): boolean => {
+        if (player.money < deed.price) {
+            return false;
+        } else { return true; }
+    }
+    /**
     * this function assigns a playerId to a deed and subtracts money from player
     * @param player player buying the property
     * @param deed property player wants to buy
     * @return true if transaction completed, false if not (player doesn't have enough money)
     */
     public buyProperty = (player: Player, deed: Deed): boolean => {
+        // this should have been checked for already, just making sure
         if (player.money < deed.price) {
+            alert("not enough money double check");
             return false;
         } else {
             player.money -= deed.price;
