@@ -5,7 +5,7 @@
 
         <!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>-->
 
-        <button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Shake 'Em!</button>
+        <button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Roll!</button>
     </div>
     <action-message ng-show="showMessage === true"></action-message>
 
@@ -23,7 +23,7 @@
         <!--if its a community chest card, make a $scope.community_chest = true in controller-->
         <!--if its a chance card, $scope.chance = true in controller-->
         <div ng-show="draw">
-            <span ng-model="drawActions" ng-hide="drawAction">
+            <span ng-model="drawActions" ng-hide="drawAction === true">
                 <p id="larger-text" ng-show="community_chestCard && chanceCard != true">You landed on Community Chest!</p>
                 <p ng-show="chanceCard && community_chestCard != true">You landed on Chance!</p>
                 <p>Click to pick a card</p>

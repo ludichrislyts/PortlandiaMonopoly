@@ -27,7 +27,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     $scope.message = [];
     $scope.chanceCard = false;
     $scope.community_chestCard = false;
-
+    $scope.cardToRead = null;
     $scope.players = Data.players;
     $scope.currentPlayer = player1;
     $scope.checkPlayer = function () {
@@ -49,7 +49,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         var die2 = chance.integer({ min: 1, max: 6 });
         var total = die1 + die2;
         // FOR TESTING
-        total = 4;
+        //total = 4;
         $scope.option_clicked = false; // variable to display 'move' button
         return { total: total, die1: die1, die2: die2, doubles: die1 === die2 };
     } //end roll()
@@ -60,9 +60,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         if (player.position > 39) { //player passed or landed on go
             player.position -= 40;
             if (player.position === 0) {
-                player.money += 200;
-                //alert("Congrats, " + player.piece.pieceName + ", your startup is paying off again. Collect $200!");
             }
+            player.money += 200;
+            alert("Congrats, " + player.piece.pieceName + ", your startup is paying off again. Collect $200!");
         }
         $(".player" + player.id).appendTo(".square" + player.position);
     } //end move()
@@ -98,7 +98,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         return;
     }
     $scope.choiceMade = function () {
-        if ($scope.buyChoice) {
+        if ($scope.buyChoice === "true") {
             return true;
         } else { return false; }
     }
@@ -112,6 +112,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             $scope.message.subText = "But remember, you gotta spend money to make money!";
             $scope.showMessage = true;
         }
+        $scope.show_end_turn_button = true;
     }
 
     //****************PLAYEROPTION FUNCTION****************//
@@ -124,25 +125,27 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.message.subText = "Your investors gave you $200!";
                 $scope.showMessage = true;
                 player.money += 200;
+                $scope.show_end_turn_button = true;
                 //alert('You landed on Startup! Your investors gave you $200!');
             }
                 //Community Chest
-            else if ((player.position == 2) || (player.position == 17) || (player.position == 33)) {
+            else if ((player.position === 2) || (player.position === 17) || (player.position === 33)) {
                 card_type = "community chest";
                 $scope.community_chestCard = true;
                 $scope.chanceCard = false;
                 $scope.draw = true;
             }
                 //Portland Art Tax
-            else if (player.position == 4) {
+            else if (player.position === 4) {
                 $scope.message.text = "Pay the Portland Art Tax";
                 $scope.message.subText = "Spend $200 and help kids learn art";
                 $scope.showMessage = true;
                 //alert("Pay Portland Art Tax, Lose 200 Dollars");
                 player.money -= 200;
+                $scope.show_end_turn_button = true;
             }
                 //Chance
-            else if (player.position == 7 || player.position == 22 || player.position == 36) {
+            else if (player.position === 7 || player.position === 22 || player.position === 36) {
                 card_type = "chance";
                 $scope.chanceCard = true;
                 $scope.community_chestCard = false;
@@ -152,6 +155,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.message.text = "You've decided to brave Saturday Market!";
                 $scope.message.subText = "Make sure to tip the buskers.";
                 $scope.showMessage = true;
+                $scope.show_end_turn_button = true;
                 //alert("You've decided to brave Saturday Market!\nMake sure to tip the buskers.");
                 //Portland Saturday Market
             }
@@ -159,6 +163,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.message.text = "Take a walk up to Washington Park.";
                 $scope.message.subText = "Check out Portland's Rose Test Garden!";
                 $scope.showMessage = true;
+                $scope.show_end_turn_button = true;
                 //alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
             }
             else if (player.position == 30) {
@@ -170,6 +175,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 player.inMarket = true;
                 player.num_of_doubles = 0;
                 $(".player" + player.id).appendTo(".square" + player.position);
+                $scope.show_end_turn_button = true;
             }
             else if (player.position == 38) { //VooDoo Donuts
                 $scope.message.text = "Pay for VooDoo Donuts";
@@ -177,9 +183,11 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.showMessage = true;
                 //alert("Pay for Voodoo Donuts, Lose 175 Dollars");
                 player.money -= 175;
+                $scope.show_end_turn_button = true;
             }
             else {
                 alert("This should never print");
+                $scope.show_end_turn_button = true;
             }
         }
             //deed is not owned, ask player to buy
@@ -202,6 +210,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $scope.message.text = "Sorry, you don't have enough money to buy this property.";
                 $scope.message.subText = "Maybe your startup will make a ton of money soon.";
                 $scope.showMessage = true;
+                $scope.show_end_turn_button = true;
             }
             // player option to buy or not to buy
             // don't want to use alerts anymore
@@ -214,15 +223,17 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             $scope.message.text = "This property is owned!";
             $scope.message.subText = "Lucky for you, the bank is closed. You don't have to pay!";
             $scope.showMessage = true;
+            $scope.show_end_turn_button = true;
             //payPlayer(player, deed.owned, deed.);
         }
         else {
             $scope.message.text = "You own this property.";
             $scope.message.subText = "Nice Work!!";
             $scope.showMessage = true;
+            $scope.show_end_turn_button = true;
             //alert('Nice work! You own this property!');
         }
-        $scope.show_end_turn_button = true;
+        //$scope.show_end_turn_button = true;
         $scope.drawAction = false;
     } //end playerOption()
     $scope.getCard = function () {
@@ -232,20 +243,21 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     //****************GETCARD FUNCTION****************//
     var drawCard = function (kind) {
         var card;
-        var card_number = 4;//chance.integer({ min: 0, max: 16 }); comment out for text
+        //var card_number = 4;
+        card_number = chance.integer({ min: 0, max: 16 }); //comment out for text
         if (kind == "community chest") {
             card = community_chest_cards[card_number];
             $scope.cardToRead = card;
             actionCard($scope.currentPlayer, card);
             $scope.show_end_turn_button = true;
-            return;
+            //return;
         }
         else if (kind == "chance") {
             card = chanceCards[card_number];
             $scope.cardToRead = card;
             actionCard($scope.currentPlayer, card);
             $scope.show_end_turn_button = true;
-            return;
+            //return;
         }
         else {
             alert("This should not print");
@@ -280,7 +292,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 if (card.value[0] === 10) {// go to market
                     // amount to move is 10 - current position
                     gotoJail(player, true);
-                    alert(player.inMarket + ", FOR TEST player in Market in actionCard()");
+                    //alert(player.inMarket + ", FOR TEST player in Market in actionCard()");
                 } else if (card.value[0] == 0) { // advance to go
                     move(player, 40 - player.position);
                 } else { // random other places, might have multiple values

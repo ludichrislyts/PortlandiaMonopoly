@@ -31,4 +31,3 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
         }
     });
 });
-//# sourceMappingURL=app.js.map
