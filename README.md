@@ -6,7 +6,7 @@
 
 ## Description
 
-_It's Monopoly. Currently a work in progress...the game does not have full monopoly play functionality quite yet. The program was initially an AngularJS class group project at Epicodus for Chris, Jason, and Kenny.
+_It's Monopoly. Currently a work in progress...the game does not have full monopoly play functionality quite yet. The program was initially a week long AngularJS class group project at Epicodus for Chris, Jason, and Kenny.
 After the project was over, Chris worked with Aaron to move much of the project's JavaScript files to TypeScript. Functionality yet to be completed as of Oct 24, 2015:_
 * Exchange money between players (I know, I know, this should have been one of the first items of business)
 * Make an auction function for when a player lands on a property but doesn't/can't buy it.
