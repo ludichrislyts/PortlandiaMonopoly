@@ -60,7 +60,7 @@ body {
     width: 78.0em;
     background-color: #ecfcf4;
     outline: .3em solid black;
-    transform: rotateX(45deg);
+    transform: rotateX(35deg);
     box-shadow: 7px 14px 14px 8px rgba(0,0,0,0.75);
 }
 
@@ -220,6 +220,11 @@ body {
     bottom: 40%;
 }
 
+#right-rail {
+    margin-left: 60%;
+    text-align: center;
+}
+
 .square31 .right-name {
     width: 5.6em;
     margin-left: -15%;
@@ -242,6 +247,10 @@ body {
     bottom: 40%;
 }
 
+#rail {
+    margin-left: -6%;
+}
+
 .square18 .left-name {
     bottom: 34%;
 }
@@ -256,12 +265,21 @@ body {
     margin-top: 15%;
 }
 
+#top-rail-utility {
+    text-align: center;
+}
+
 .bottom-name {
     margin-top: 10%;
 }
 
 .bottom-cost {
     margin-top: 5em;
+}
+
+#bottom-middle-cost {
+    margin-top: 1em;
+    text-align: center;
 }
 
 .square1 .bottom-cost {
@@ -663,7 +681,7 @@ body {
     transform: rotate(90deg);
     text-align: center;
     bottom: 40%;
-    margin-left: 6%;
+    /*margin-left: 6%;*/
 }
 
 .square28 .content {
