@@ -3,7 +3,7 @@
 
     export var deeds = [
         //Go
-        new Deed("G0", 0, 0, 0, [], 0, ""), //company, sport, train),
+        new Deed("G0", 200, 0, 0, [], 0, ""), //company, sport, train),
 
         //Mediterranean Avenue
         new Deed("JAMA SOFTWARE", 60, 30, 50, [2, 10, 30, 90, 160], 1, "company"),
@@ -15,7 +15,7 @@
         new Deed("ALTSOURCE", 60, 30, 50, [4, 20, 60, 180, 320, 450], 1, "company"),
 
         //Income Tax
-        new Deed("PORTLAND ART TAX", 0, 0, 0, [], 0, ""),
+        new Deed("PORTLAND ART TAX", -200, 0, 0, [], 0, ""),
 
         //Reading Railroad
         new Deed("MAX", 200, 100, 0, [25, 50, 100, 200], 2, "train"),
@@ -117,7 +117,7 @@
         new Deed("NEW RELIC", 350, 175, 200, [35, 175, 500, 1100, 1300, 1500], 10, "company"),
 
         //Luxury Tax
-        new Deed("VOODOO DOUGHNUTS", 0, 0, 0, [], 0, ""),
+        new Deed("VOODOO DOUGHNUTS", -175, 0, 0, [], 0, ""),
 
         //Boardwalk
         new Deed("FREE GEEK", 400, 200, 200, [50, 200, 600, 1400, 1700, 2000], 10, "company")

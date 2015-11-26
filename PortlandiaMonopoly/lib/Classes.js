@@ -109,14 +109,48 @@ var GameFactory1 = (function () {
 })();
 var Transactions = (function () {
     function Transactions() {
+        var _this = this;
+        /**
+        * this function adds or subracts from player bank
+        * @param player , the current player
+        * @param amount , the amount to add or subtract(by adding a neg num)
+        * @param posOrNeg , -1 if number should be subtracted, 1 if added.
+        * @return , the new player total, in case we want it
+        */
+        this.exchangeMoney = function (player, amount, posOrNeg) {
+            player.money += (amount * posOrNeg);
+            return player.money;
+        };
+        /**
+        * function to exchange money between players
+        * @param player , the current player
+        * @param amount , the amount of the transaction. The amount reflects the amount that
+        *               should affect the current player.
+        * @param playerId , the player affected. If 0, all players are affected
+        */
+        this.payBetweenPlayers = function (player, amount, playerId) {
+            for (var i = 0; i < Data.players.length; i++) {
+                if (Data.players[i].id === player.id) {
+                    _this.exchangeMoney(player, amount, 1);
+                }
+                else if (!playerId) {
+                    _this.exchangeMoney(Data.players[i], amount, -1);
+                }
+                else {
+                    if (Data.players[i].id === playerId) {
+                        _this.exchangeMoney(Data.players[i], amount, -1);
+                    }
+                }
+            }
+        };
         /**
         * this function checks if a player has enough money to buy a property
         * @param player player buying the property
-        * @param deed property player wants to buy
+        * @param amount player needs to spend
         * @return true if player has enough money, false if not
         */
-        this.checkFunds = function (player, deed) {
-            if (player.money < deed.price) {
+        this.checkFunds = function (player, amount) {
+            if (player.money < amount) {
                 return false;
             }
             else {
@@ -131,77 +165,62 @@ var Transactions = (function () {
         */
         this.buyProperty = function (player, deed) {
             // this should have been checked for already, just making sure
-            if (player.money < deed.price) {
-                alert("not enough money double check");
+            if (!_this.checkFunds(player, deed.price)) {
+                alert("not enough money!!");
                 return false;
             }
             else {
-                player.money -= deed.price;
+                _this.exchangeMoney(player, deed.price, -1);
                 deed.owned = player.id;
                 return true;
             }
         };
         /**
-        * determine what actions a player can take depending on position(deed)
-        * @param player player involved in the transaction
-        * @param deed the deed at the position the player landed on
+       * function to increase the multiplier for rent based on monopoly status
+       *   and development status
+       * @param group , the group of deeds to alter
+       */
+        this.increaseMultipliers = function (group) {
+            for (var i = 0; i < group.length; i++) {
+                group[i].multiplier++;
+            }
+        };
+        /**
+        * function to check for rail monopoly/partial monopoly
+        * @param railDeed , deed to check against
+        * @return , the new multiplier value
         */
-        this.onLandOnDeed = function (player, deed) {
-            if (deed.group_id == 0) {
-                if (player.position == 0) {
-                    player.money += 200;
-                    alert('You landed on Startup! Your investors gave you $200!');
-                }
-                else if ((player.position == 2) || (player.position == 17) || (player.position == 33)) {
-                    card_type = "community chest";
-                    $scope.community_chestCard = true;
-                    $scope.chanceCard = false;
-                    $scope.draw = true;
-                }
-                else if (player.position == 4) {
-                    alert("Pay Portland Art Tax, Lose 200 Dollars");
-                    player.money -= 200;
-                }
-                else if (player.position == 7 || player.position == 22 || player.position == 36) {
-                    card_type = "chance";
-                    $scope.chanceCard = true;
-                    $scope.community_chestCard = false;
-                    $scope.draw = true;
-                }
-                else if (player.position == 10) {
-                    alert("You've decided to brave Saturday Market!\nMake sure to tip the buskers.");
-                }
-                else if (player.position == 20) {
-                    alert("Take a walk up to Washington Park to visit\nPortland's Rose Test Garden!");
-                }
-                else if (player.position == 30) {
-                    alert("I guess you don't own enough tie-dye cargo shorts. Go to Saturday Market\n and don't come out until you get some!"); //Goto Jail
-                    player.position = 10;
-                    player.inMarket = true;
-                    player.num_of_doubles = 0;
-                    $(".player" + player.id).appendTo(".square" + player.position);
-                }
-                else if (player.position == 38) {
-                    alert("Pay for Voodoo Donuts, Lose 175 Dollars");
-                    player.money -= 175;
-                }
-                else {
-                    alert("This should never print");
-                }
-            }
-            else if (deed.owned == 0) {
-                // player option to buy or not to buy
-                if (confirm("Do you want to buy " + deed.name + " for $" + deed.price + "?")) {
-                    buyDeed(deed);
-                }
-                $scope.show_end_turn_button = true;
-            }
-            else if (deed.owned != player.id) {
-            }
+        this.increaseRailMultiplier = function (railDeed) {
+            if (railDeed === Data.deeds[5]) { } //skip
             else {
-                alert('Nice work! You own this property!');
+                if (railDeed.owned === Data.deeds[5].owned) {
+                    railDeed.multiplier++;
+                    Data.deeds[5].multiplier++;
+                }
+            }
+            if (railDeed === Data.deeds[15]) { } //skip
+            else {
+                if (railDeed.owned === Data.deeds[15].owned) {
+                    railDeed.multiplier++;
+                    Data.deeds[15].multiplier++;
+                }
+            }
+            if (railDeed === Data.deeds[25]) { } //skip
+            else {
+                if (railDeed.owned === Data.deeds[25].owned) {
+                    railDeed.multiplier++;
+                    Data.deeds[25].multiplier++;
+                }
+            }
+            if (railDeed === Data.deeds[35]) { } //skip
+            else {
+                if (railDeed.owned === Data.deeds[35].owned) {
+                    railDeed.multiplier++;
+                    Data.deeds[35].multiplier++;
+                }
             }
         };
     }
     return Transactions;
 })();
+//# sourceMappingURL=classes.js.map
