@@ -71,11 +71,12 @@ body {
 .board-container {
     margin: 50px;
     margin-left: 100px;
-    perspective: 1000px;
+    perspective: 750px;
 }
 
 .column-container {
     margin-top: -15em;
+    margin-left: 4em;
     display: flex;
     flex-direction: column;
     height: 78.0em;
@@ -83,7 +84,8 @@ body {
     background-color: #ecfcf4;
     outline: .3em solid black;
     transform: rotateX(40deg);
-    box-shadow: 7px 14px 14px 8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 10px 10px;
+    transition: all 1s linear;
 }
 
 .top-row {
@@ -230,8 +232,8 @@ body {
     transform: rotate(270deg);
     position: absolute;
     width: 5.6em;
-    margin-left: -15%;
-    bottom: 40%;
+    margin-left: -8%;
+    bottom: 30%;
 }
 
 .right-cost {
@@ -467,7 +469,7 @@ body {
     position: absolute;
     text-align: center;
     transform: rotate(270deg);
-    bottom: 30%;
+    bottom: 20%;
     margin-left: -10%;
     width: 5.8em;
 }
@@ -823,6 +825,33 @@ body {
     float: right;
 }
 
+.rotate {
+    width: 100%;
+    height: 10em;
+    padding-left: 7em;
+    padding-right: 12.5em;
+}
+
+#left-control {
+    float: left;
+    width: 49%;
+    height: 100%;
+    margin-top: 4.5em;
+}
+
+#right-control {
+    float: right;
+    width: 49%;
+    height: 100%;
+    margin-top: 4.5em;
+}
+
+    #right-control button {
+        color: #00a5ff;
+        background-color: aliceblue;
+        border-color: #80ccff;
+    }
+
 /*
 player action section (playerTurn
 */
@@ -834,7 +863,7 @@ player action section (playerTurn
     border: 7px outset #80CCFF;
     margin-left: 3em;
     margin-right: 5em;
-    margin-top: 4em;
+    margin-top: 1.5em;
     padding: 2em;
 }
 

@@ -1,3 +1,12 @@
+<div class="rotate">
+    <div id="left-control">
+        <button class="btn btn-large btn-primary" ng-click="advanceView()">Advance Board View</button>
+    </div>
+    <div id="right-control">
+        <button class="btn btn-large" ng-click="reverseView()">Reverse Board View</button>
+    </div>
+</div>
+
 <div ng-mouseenter="setColors()" ng-keydown="setColors()" class="container player-control" style="font-size: 16px">
     <!--<div class="fade-screen" ng-show="start" ng-click="start = false; setColors(); rolled = false">Click to Start!</div>-->
     <!--no stuck in market actions - roll button and post roll options-->

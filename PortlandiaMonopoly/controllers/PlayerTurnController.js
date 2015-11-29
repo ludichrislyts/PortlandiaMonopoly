@@ -39,7 +39,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         $scope.samePlayer = ($scope.currentPlayer.num_of_doubles > 0) ? true : false;
         $scope.isInMarket = $scope.currentPlayer.inMarket;
     }
-    // silly logic to set player tab colors. mouseenter or keydown triggers
+    // silly logic to set player tab colors. mouseenter or keydown in each of the three partials triggers
     // $scope.setColors checks for existence of colorCount. If false, set colors and call setColorToTrue(),
     // which gives colorCount a value for next time. Hopefully then setColors() wont run every time the user breathes.
     var colorCount = [];
@@ -71,7 +71,26 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         }
         $("#p" + $scope.currentPlayer.id).css("height", "12.5em");
     }
-
+    $scope.advanceView = function () {
+        if ($(".column-container").css("transform")[9] === "1") {
+            // rotate counter clockwise to show 10-20 side
+            $(".column-container").css("transform", "rotateX(40deg) rotate(-90deg)");
+            $(".column-container").css("box-shadow", "-10px 10px 10px 10px");
+        } else if ($(".column-container").css("transform")[9] === "-") {
+            // rotate counter clockwise to show 30-40 side
+            $(".column-container").css("transform", "rotateX(40deg) rotate(-270deg)");
+            $(".column-container").css("box-shadow", "10px -10px 10px 10px");
+        } else if ($(".column-container").css("transform")[9] === "0") {
+            if ($(".column-container").css("transform")[12] === "-") {
+                $(".column-container").css("transform", "rotateX(40deg) rotate(-180deg)");
+                $(".column-container").css("box-shadow", "-10px -10px 10px 10px");
+            } else {
+                // need next line to reset degrees otherwise next -90 will spin out of control
+                $(".column-container").css("transform", "matrix3d(1,0,0,0,0,.766044,.642788,0,0,-.642788,.766044,0,0,0,0,1)");
+                $(".column-container").css("box-shadow", "10px 10px 10px 10px");
+            }
+        }
+    }
     // SETUP TURN
     //$scope.isInMarket = Data.Factory_Games.inMarket($scope.currentPlayer);
     $scope.isInMarket = $scope.currentPlayer.inMarket;
