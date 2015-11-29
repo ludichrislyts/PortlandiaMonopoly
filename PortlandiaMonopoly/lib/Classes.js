@@ -1,6 +1,6 @@
 //#endregion
 var Player = (function () {
-    function Player(id, name, piece) {
+    function Player(id, name, piece, pieceObject) {
         var _this = this;
         this.money = 1500;
         this.inMarket = false;
@@ -14,6 +14,7 @@ var Player = (function () {
         this.id = id;
         this.name = name;
         this.piece = piece;
+        this.pieceObject = pieceObject;
     }
     return Player;
 })();
@@ -24,6 +25,13 @@ var GamePiece = (function () {
         this.pieceName = pieceName;
     }
     return GamePiece;
+})();
+var GameObject = (function () {
+    function GameObject(boardId, name) {
+        this.boardId = boardId;
+        this.name = name;
+    }
+    return GameObject;
 })();
 var CardKind;
 (function (CardKind) {
@@ -45,6 +53,10 @@ var DeedType;
 })(DeedType || (DeedType = {}));
 ;
 var Deed = (function () {
+    /*
+    TODO: Move Monopoly logic from deed_groups into here
+    Public Count_Needed_For_Monopoly: number
+    */
     function Deed(name, price, mortgage_value, house_cost, rent, group_id, type) {
         this.owned = 0;
         this.monopoly = false;
@@ -71,13 +83,22 @@ var GameFactory1 = (function () {
                 }
             }
         };
+        this.selectObject = function (object) {
+            for (var i = 0; i < Data.remainingObjects.length; i++) {
+                if (Data.remainingObjects[i].name === object.name) {
+                    Data.remainingObjects.splice(i, 1);
+                    break;
+                }
+            }
+        };
         this.addPlayer = function () {
-            Data.players.push(new Player(Data.players.length + 1, _this.playerName, _this.playerPiece));
+            Data.players.push(new Player(Data.players.length + 1, _this.playerName, _this.playerPiece, _this.playerObject));
             _this.playerName = null;
             // take piece out of display array and toggle taken in piece object
             _this.selectPiece(Data.players[Data.players.length - 1].piece);
+            _this.selectObject(Data.players[Data.players.length - 1].pieceObject);
             // return true to toggle play in html
-            if (Data.players.length >= 5)
+            if (Data.players.length >= 4)
                 return true;
         };
         this.fixPlayerOrder = function (id) {
@@ -130,6 +151,7 @@ var Transactions = (function () {
         */
         this.payBetweenPlayers = function (player, amount, playerId) {
             for (var i = 0; i < Data.players.length; i++) {
+                // current player pays/get paid
                 if (Data.players[i].id === player.id) {
                     _this.exchangeMoney(player, amount, 1);
                 }
@@ -191,6 +213,9 @@ var Transactions = (function () {
         * @return , the new multiplier value
         */
         this.increaseRailMultiplier = function (railDeed) {
+            //if (railDeed != Data.deeds[5] && railDeed.owned === Data.deeds[5].owned) {
+            //}
+            //todo: clean ifs...see above code
             if (railDeed === Data.deeds[5]) { } //skip
             else {
                 if (railDeed.owned === Data.deeds[5].owned) {

@@ -3,12 +3,11 @@ declare var angular: any
 var portlandiaMonopoly = angular.module('portlandiaMonopoly', ['ui.router']);
 
 portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
-
     // $stateProvider.state('home', {
     // 	url: "",
     // 	templateUrl: "partials/home.html"
     // });
-   
+
     $stateProvider.state('home', {
         url: "",
         views: {
@@ -18,9 +17,19 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     });
+
+    $stateProvider.state('click_to_start', {
+        url: "/click",
+        views: {
+            'startButton': {
+                template: '<div class="fade-screen"><a ui-sref="play" style="text-decoration:none; width: 100%; height:100%">Click to Start!</a></div>',
+                controller: "PlayerTurnCtrl"
+            },
+        }
+    });
+
     $stateProvider.state('play', {
         url: "/play",
-
         views: {
             'playerStats': {
                 templateUrl: "partials/playerStats.html",
@@ -37,4 +46,3 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
         }
     });
 });
-

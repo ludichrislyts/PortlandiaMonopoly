@@ -11,17 +11,19 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
     $scope.factory = Data.Factory_Games;
     $scope.players = Data.players;
     $scope.pieces = Data.GamePieces;
+    $scope.objects = Data.GameObjects;
     // initial startGame value to be false. Toggled true in partial when user selects
     // to start game
     $scope.startGame = false;
     $scope.update = function () {
         $scope.remainingPieces = Data.remainingGamePieces;
+        $scope.remainingObjects = Data.remainingObjects;
         // changes the selected piece in the drop down to show top available piece
         $scope.factory.playerPiece = Data.remainingGamePieces[0];
+        $scope.factory.playerObject = Data.remainingObjects[0];
     };
-
     $scope.remainingPieces = Data.remainingGamePieces;
-
+    $scope.remainingObjects = Data.remainingObjects;
     // at this point, just picks a random player from the player array
     $scope.rollForFirst = function () {
         var chance = new Chance();

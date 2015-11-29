@@ -19,6 +19,28 @@ body {
     color: white;
 }
 
+.fade-screen {
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    opacity: .6;
+    visibility: visible;
+    z-index: 1000;
+    text-align: center;
+    font-size: 10em;
+    padding-top: 20%;
+}
+
+    .fade-screen .isHidden {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .fade-screen p {
+        font-size: 7em;
+        margin-top: 40%;
+    }
+
 .statbar {
     padding: 1em;
     margin-left: 5em;
@@ -60,7 +82,7 @@ body {
     width: 78.0em;
     background-color: #ecfcf4;
     outline: .3em solid black;
-    transform: rotateX(35deg);
+    transform: rotateX(40deg);
     box-shadow: 7px 14px 14px 8px rgba(0,0,0,0.75);
 }
 
@@ -705,11 +727,24 @@ body {
     text-align: center;
     margin-top: 1em;
 }
-
-/* Player display pieces */
-
-.player1 {
+/*initial display of pieces*/
+.player-pieces {
+    display: inline-flex;
+    bottom: 0;
+    height: 5em;
+    width: 70%;
     position: absolute;
+    margin-left: -6%;
+    margin-bottom: .6em;
+}
+
+    .player-pieces div.player1, div.player2, div.player3, div.player4 {
+        position: relative;
+    }
+/* Player display pieces */
+/*player1 is the dog*/
+.player1 {
+    position: relative;
     background-image: url(../img/dog.png);
     background-size: cover;
     z-index: 2;
@@ -719,11 +754,17 @@ body {
     left: 0;
 }
 
-    .player1:parent {
-    }
-
+.player1statbar {
+    background-image: url(../img/dog.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 6.25em;
+    width: 6.25em;
+    float: right;
+}
+/*player2 is the hat*/
 .player2 {
-    position: absolute;
+    position: relative;
     background-image: url(../img/hat.png);
     background-size: cover;
     z-index: 2;
@@ -733,8 +774,17 @@ body {
     right: 0;
 }
 
+.player2statbar {
+    background-image: url(../img/hat.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 5em;
+    width: 6.25em;
+    float: right;
+}
+/*player3 is the iron*/
 .player3 {
-    position: absolute;
+    position: relative;
     background-image: url(../img/iron.png);
     background-size: cover;
     z-index: 2;
@@ -744,8 +794,17 @@ body {
     left: 0;
 }
 
+.player3statbar {
+    background-image: url(../img/iron.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 5em;
+    width: 6.25em;
+    float: right;
+}
+/*player4 is the elephant*/
 .player4 {
-    position: absolute;
+    position: relative;
     background-image: url(../img/elephant.png);
     background-size: cover;
     z-index: 2;
@@ -755,15 +814,31 @@ body {
     right: 0;
 }
 
+.player4statbar {
+    background-image: url(../img/elephant.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 6.25em;
+    width: 6.25em;
+    float: right;
+}
+
 /*
 player action section (playerTurn
 */
 .player-control {
+    background-color: aliceblue;
+    background-size: cover;
     min-height: 30em;
-    max-width: 20em;
-    border: 3px solid darkslategray;
+    max-width: 22em;
+    border: 7px outset #80CCFF;
     margin-left: 3em;
     margin-right: 5em;
     margin-top: 4em;
     padding: 2em;
+}
+
+.showPosition {
+    outline: 2px solid;
+    z-index: 99;
 }

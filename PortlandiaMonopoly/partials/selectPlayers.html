@@ -1,53 +1,56 @@
-<!-- test for player piece selection. default available piece reflects 'next in line' piece 
+<!-- test for player piece selection. default available piece reflects 'next in line' piece
 
 5 player max. 'startGame' variable hold value true if player max is reached when
 factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
 <div class="container header-type" style="font-size: 2em">
-	<form ng-submit="showStartButton = factory.addPlayer(); update()" class="form-inline" role="form">
-		<div ng-hide="showStartButton || startGame" class="form-group">
-			<label for="player">Enter name here:</label>
-			<input class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
-			<br />
-			<div class="form-group" ng-model="factory.playerPiece">
-				<label for="piece">Select a piece for your player:</label>
-				<select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
-				ng-init="factory.playerPiece = remainingPieces[0]" selected required>
-					<option ng-model="factory.playerPiece" class="form-control" id="piece" ng-repeat="item in remainingPieces" selected required>{{ item.pieceName }}</option>
-				</select>
-			</div>
-			<br />
-			<button type="submit" class="btn btn-warning btn-large">Submit</button>
-		</div>
-	</form>
-	<!--displays players, start roll-for-first actions-->
-	<div ng-show="showStartButton || players.length > 1">
-		<a ng-click="getFirstPlayer = true; startGame = true; rollForFirst()" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
-	</div>
-	<div class="row">
-		<div ng-show="players.length > 0">Number of Players = {{players.length}}
-			<p ng-repeat="item in players">{{ item.name }} has selected the {{ item.piece.pieceName }} piece</p>
-			<!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
-			
-				<!--<button ng-show="startGame" ng-click="rollForFirst(); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>-->
-
-		</div>
-		<!-- HIGH ROLLER
-		<!-- 
-				maybe someday will be able to use this little section to display
-				high roller results. For now, just sending alerts to the screen
-				--PlayerSelectController.js HIGH ROLLER section 
-		-->
-		<!--<div ng-model="highestRoller" ng-show="show_roll_results">
-			<h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
-		</div>-->
-		<!--<div ng-model="tie" ng-show="break_tie">
-			<div>
-				<button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button>
-				<br/>
-			</div>-->
-		</div>
-		<div ng-show="startGameMessage" ng-click="startGameMessage = false">
-			<a ui-sref="play" class="button btn btn-primary btn-large">{{ playerToStart.name }}, Start the Game!</a>
-		</div>
-	</div>
+    <form ng-submit="showStartButton = factory.addPlayer(); update()" class="form-inline" role="form">
+        <div ng-hide="showStartButton || startGame" class="form-group">
+            <label for="player">Enter name here:</label>
+            <input class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
+            <br />
+            <div class="form-group" ng-model="factory.playerPiece">
+                <label for="piece">Select a piece for your player:</label>
+                <select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
+                        ng-init="factory.playerPiece = remainingPieces[0]" selected required>
+                    <option ng-model="factory.playerPiece" class="form-control" id="piece" selected required>{{ item.pieceName }}</option>
+                </select>
+                <select ng-options="object.name for object in remainingObjects" class="form-control" ng-model="factory.playerObject" id="pieceObject"
+                        ng-init="factory.playerObject = remainingObjects[0]" selected required>
+                    <option ng-model="factory.playerObject" class="form-control" id="object" selected required>{{ object.name }}</option>
+                </select>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-warning btn-large">Submit</button>
+        </div>
+    </form>
+    <!--displays players, start roll-for-first actions-->
+    <div ng-show="showStartButton || players.length > 1">
+        <a ng-click="getFirstPlayer = true; startGame = true; rollForFirst()" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
+    </div>
+    <div class="well" ng-show="players.length > 0">
+        <div>
+            Number of Players = {{players.length}}
+            <p ng-repeat="item in players">{{ item.name }} has selected the {{ item.pieceObject.name }} and {{ item.piece.pieceName }} color</p>
+            <!--ng-click="runAndUpdate(item.id); rolled_for_first = true"-->
+            <!--<button ng-show="startGame" ng-click="rollForFirst(); rolled_for_first = true" ng-hide="rolled_for_first">Roll for First!</button>-->
+        </div>
+        <!-- HIGH ROLLER
+        <!--
+                maybe someday will be able to use this little section to display
+                high roller results. For now, just sending alerts to the screen
+                --PlayerSelectController.js HIGH ROLLER section
+        -->
+        <!--<div ng-model="highestRoller" ng-show="show_roll_results">
+            <h2 ng-model="highestRoller">{{ highRollerName}} has the highest roll at {{ highRollerNum }}!</h2>
+        </div>-->
+        <!--<div ng
+        -model="tie" ng-show="break_tie">
+                <div>
+                    <button ng-repeat="item in playersInTie" ng-click="rollForFirst(item.id); rolled_for_tiebreak = true" ng-hide="rolled_for_tiebreak">{{ item.playerName }}, break the Tie!</button>
+                    <br />
+                </div>-->
+    </div>
+</div>
+<div ng-show="startGameMessage" ng-click="startGameMessage = false">
+    <a ui-sref="click_to_start" class="button btn btn-primary btn-large">{{ playerToStart.name }}, Start the Game!</a>
 </div>

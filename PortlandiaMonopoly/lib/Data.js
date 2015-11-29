@@ -128,11 +128,21 @@ var Data;
         new GamePiece(4, "Orange"),
         new GamePiece(5, "Black")
     ];
+    Data.GameObjects = [
+        new GameObject("player1", "Dog"),
+        new GameObject("player2", "Hat"),
+        new GameObject("player3", "Iron"),
+        new GameObject("player4", "Elephant")
+    ];
     Data.remainingGamePieces = []; //Obsolete!!!!! Try to trash this one day!!!
+    Data.remainingObjects = [];
     Data.players = [];
     //TODO: Move...maybe
     for (var i = 0; i < Data.GamePieces.length; i++) {
         Data.remainingGamePieces.push(Data.GamePieces[i]);
+    }
+    for (var i = 0; i < Data.GameObjects.length; i++) {
+        Data.remainingObjects.push(Data.GameObjects[i]);
     }
 })(Data || (Data = {}));
 //******************OBJECT VALUES******************//

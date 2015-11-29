@@ -13,6 +13,15 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     });
+    $stateProvider.state('click_to_start', {
+        url: "/click",
+        views: {
+            'startButton': {
+                template: '<div class="fade-screen"><a ui-sref="play" style="text-decoration:none; width: 100%; height:100%">Click to Start!</a></div>',
+                controller: "PlayerTurnCtrl"
+            },
+        }
+    });
     $stateProvider.state('play', {
         url: "/play",
         views: {

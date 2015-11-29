@@ -17,11 +17,13 @@ class Player {
     public hotels = 0
 
     public piece: GamePiece
+    public pieceObject: GameObject // variable to hold the piect object (dog, hat, iron, etc.)
 
-    constructor(id: number, name: string, piece: GamePiece) {
+    constructor(id: number, name: string, piece: GamePiece, pieceObject: GameObject) {
         this.id = id;
         this.name = name;
         this.piece = piece;
+        this.pieceObject = pieceObject;
     }
 
     public Location = () => Data.deeds[this.position]
@@ -32,11 +34,21 @@ class GamePiece {
 
     public id: number
     public pieceName: string
+    public pieceObject: GameObject
     public taken: boolean = false
 
     constructor(id: number, pieceName: string) {
         this.id = id;
         this.pieceName = pieceName;
+    }
+}
+class GameObject {
+    public boardId: string
+    public name: string
+
+    constructor(boardId: string, name: string) {
+        this.boardId = boardId;
+        this.name = name;
     }
 }
 
@@ -72,6 +84,11 @@ class Deed {
     public multiplier: number = 0
     public type: string
 
+    /*
+    TODO: Move Monopoly logic from deed_groups into here
+    Public Count_Needed_For_Monopoly: number
+    */
+
     constructor(name: string, price: number, mortgage_value: number, house_cost: number, rent: Array<number>, group_id: number, type: string) {
         this.name = name
         this.price = price
@@ -86,6 +103,7 @@ class Deed {
 class GameFactory1 {
     public playerName: string
     public playerPiece: GamePiece
+    public playerObject: GameObject
 
     public selectPiece = (piece) => {
         for (var i = 0; i < Data.remainingGamePieces.length; i++) {
@@ -95,14 +113,23 @@ class GameFactory1 {
             }
         }
     }
+    public selectObject = (object: GameObject) => {
+        for (var i = 0; i < Data.remainingObjects.length; i++) {
+            if (Data.remainingObjects[i].name === object.name) {
+                Data.remainingObjects.splice(i, 1);
+                break;
+            }
+        }
+    }
 
     public addPlayer = () => {
-        Data.players.push(new Player(Data.players.length + 1, this.playerName, this.playerPiece));
+        Data.players.push(new Player(Data.players.length + 1, this.playerName, this.playerPiece, this.playerObject));
         this.playerName = null;
         // take piece out of display array and toggle taken in piece object
         this.selectPiece(Data.players[Data.players.length - 1].piece);
+        this.selectObject(Data.players[Data.players.length - 1].pieceObject);
         // return true to toggle play in html
-        if (Data.players.length >= 5) return true;
+        if (Data.players.length >= 4) return true;
     }
 
     public fixPlayerOrder = (id) => {
@@ -154,11 +181,12 @@ class Transactions {
     */
     public payBetweenPlayers = (player: Player, amount: number, playerId: number) => {
         for (var i = 0; i < Data.players.length; i++) {
+            // current player pays/get paid
             if (Data.players[i].id === player.id) {
                 this.exchangeMoney(player, amount, 1);
-            } else if (!playerId) {
+            } else if (!playerId) { // pay/receive from all other players
                 this.exchangeMoney(Data.players[i], amount, -1);
-            } else {
+            } else { // only pay/receive from one player
                 if (Data.players[i].id === playerId) {
                     this.exchangeMoney(Data.players[i], amount, -1);
                 }
@@ -209,6 +237,11 @@ class Transactions {
     * @return , the new multiplier value
     */
     public increaseRailMultiplier = (railDeed: Deed) => {
+        //if (railDeed != Data.deeds[5] && railDeed.owned === Data.deeds[5].owned) {
+        //}
+
+
+        //todo: clean ifs...see above code
         if (railDeed === Data.deeds[5]) { }//skip
         else {
             if (railDeed.owned === Data.deeds[5].owned) {

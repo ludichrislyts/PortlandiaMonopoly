@@ -1,13 +1,13 @@
-<div class="container player-control" style="font-size: 16px">
+<div ng-mouseenter="setColors()" ng-keydown="setColors()" class="container player-control" style="font-size: 16px">
+    <!--<div class="fade-screen" ng-show="start" ng-click="start = false; setColors(); rolled = false">Click to Start!</div>-->
     <!--no stuck in market actions - roll button and post roll options-->
     <div ng-show="rolled === false && isInMarket === false && submit === false">
-        <h3>{{ currentPlayer.piece.pieceName }}, it's your turn. Roll<span ng-show="samePlayer === true"> again</span>!</h3><br />
+        <h3>{{ currentPlayer.piece.pieceName }} {{ currentPlayer.pieceObject.name}}, it's your turn. Roll<span ng-show="samePlayer === true"> again</span>!</h3><br />
 
-        <!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.name}}, Roll Again!</h3>-->
+        <!--<h3 ng-show="samePlayer === true && currentPlayer.num_of_doubles > 0">{{ currentPlayer.piece.pieceName }} {{ currentPlayer.pieceObject.name}}, Roll Again!</h3>-->
 
         <button ng-hide="rolled" ng-model="result" ng-click="turn(currentPlayer); rolled = true; showRoll = true">Roll!</button>
     </div>
-    <action-message ng-show="showMessage === true"></action-message>
 
     <!--if player lands on a no-buy space-->
     <div ng-show="rolled && !isInMarket">
@@ -23,15 +23,17 @@
         <!--if its a community chest card, make a $scope.community_chest = true in controller-->
         <!--if its a chance card, $scope.chance = true in controller-->
         <div ng-show="draw">
-            <span ng-model="drawActions" ng-hide="drawAction === true">
+            <div ng-hide="drawAction === true">
                 <p id="larger-text" ng-show="community_chestCard && chanceCard != true">You landed on Community Chest!</p>
                 <p ng-show="chanceCard && community_chestCard != true">You landed on Chance!</p>
                 <p>Click to pick a card</p>
-                <button ng-click="drawAction = true; getCard()">Draw</button>
-            </span>
-            <read-card ng-show="drawAction"></read-card>
+                <button ng-click="drawAction = true; getCard(); read_contents = true">Draw</button>
+            </div>
+            <read-card ng-show="read_contents"></read-card>
+            <button ng-show="goCard" ng-click="draw = false; goCard = false">Go!</button>
         </div>
         <!--ask to buy property actions-->
+        <action-message ng-show="showMessage === true"></action-message>
         <div ng-show="askToBuy">
             <form>
                 <label name="buyQuestion">Would you like to buy {{deeds[currentPlayer.position].name}} for {{deeds[currentPlayer.position].price}}?</label>
@@ -39,7 +41,7 @@
                     <option ng-model="buyChoice" ng-value="true">I'll take it!</option>
                     <option ng-model="buyChoice" ng-value="false">No thanks</option>
                 </select>
-                <button ng-click="askToBuy = false; getPlayerChoice()">Submit</button>
+                <button ng-click="askToBuy = false; getPlayerChoice(); read_contents = false">Submit</button>
             </form>
         </div>
 
@@ -58,7 +60,7 @@
         <h3>You're stuck at Saturday Market!!</h3>
         <!--show if player has another turn to stay in market-->
         <label for="market_choices">
-            {{ currentPlayer.name }}, select your options. You can:<br />
+            {{ currentPlayer.piece.pieceName }} {{ currentPlayer.pieceObject.name}}, select your options. You can:<br />
             * Pay $50.<br />
             * Use an available "Leave Saturday Market Free" card<br />
             * Roll for doubles<br />
@@ -100,4 +102,5 @@
     <div id="end-button" ng-show="show_end_turn_button">
         <button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
     </div>
+    <div class="player-pieces"><div class="player1"></div><div class="player2"></div><div class="player3"></div><div class="player4"></div></div>
 </div>
