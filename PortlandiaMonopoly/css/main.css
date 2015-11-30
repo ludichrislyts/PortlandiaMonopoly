@@ -71,7 +71,7 @@ body {
 .board-container {
     margin: 50px;
     margin-left: 100px;
-    perspective: 750px;
+    perspective: 800px;
 }
 
 .column-container {
@@ -251,7 +251,7 @@ body {
 
 .square31 .right-name {
     width: 5.6em;
-    margin-left: -15%;
+    margin-left: -9%;
     bottom: 30%;
 }
 
@@ -266,9 +266,9 @@ body {
 .left-cost {
     transform: rotate(90deg);
     position: absolute;
-    width: 5.6em;
+    width: 5.8em;
     margin-left: -8%;
-    bottom: 40%;
+    bottom: 38%;
 }
 
 #rail {
@@ -469,8 +469,8 @@ body {
     position: absolute;
     text-align: center;
     transform: rotate(270deg);
-    bottom: 20%;
-    margin-left: -10%;
+    bottom: 15%;
+    margin-left: -7%;
     width: 5.8em;
 }
 
@@ -481,7 +481,7 @@ body {
     height: 5.5em;
     width: 5.5em;
     transform: rotate(270deg);
-    margin-left: 25%;
+    margin-left: 32%;
     bottom: 0;
 }
 
@@ -826,24 +826,40 @@ body {
 }
 
 .rotate {
+    font-size: 16px;
+    text-align: center;
     width: 100%;
-    height: 10em;
-    padding-left: 7em;
-    padding-right: 12.5em;
+    max-width: 22em;
+    height: 5em;
+    margin-left: 3em;
+    margin-right: 5em;
+    margin-top: 1em;
+    padding: 3em 0 0 0;
+
 }
 
 #left-control {
-    float: left;
-    width: 49%;
-    height: 100%;
-    margin-top: 4.5em;
+    width: 100%;
+    margin-top: 1em;
 }
+/*@media all and (min-width:1500px) {*/
+#view-button {
+    width: 100%;
+}
+/*}*/
+/*@media all and (min-width:1200px) {
+    #view-button {
+        width: 77%;
+    }
+}*/
 
 #right-control {
     float: right;
     width: 49%;
     height: 100%;
     margin-top: 4.5em;
+    /*maybe display this when the rotate function isn't wacky*/
+    display: none;
 }
 
     #right-control button {
@@ -870,4 +886,14 @@ player action section (playerTurn
 .showPosition {
     outline: 2px solid;
     z-index: 99;
+}
+/*code to alter message output in actionMessage directive*/
+.messageDirective h5{
+    text-align:right;
+}
+.messageDirective h5.moneyTotals{
+    visibility: hidden;
+}
+.showMoneyMessage{
+    visibility: visible;
 }

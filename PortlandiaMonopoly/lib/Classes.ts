@@ -271,4 +271,13 @@ class Transactions {
             }
         }
     }
+    public getShift = (player: Player, newPosition: number) => {
+        var shift = 0;
+        if (player.position < newPosition) {
+            shift = newPosition - player.position;
+            return shift;
+        } else {
+            shift = (newPosition - player.position) + 40;
+        }        
+    }
 }

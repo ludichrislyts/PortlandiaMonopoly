@@ -39,7 +39,7 @@ var Data;
         //Community Chest
         new Deed("Cc17", 0, 0, 0, [], 0, ""),
         //Tennessee Avenue
-        new Deed("ARUBA NETWORKS", 180, 90, 100, [14, 70, 200, 550, 750, 950], 6, "company"),
+        new Deed("OPEN SESAME", 180, 90, 100, [14, 70, 200, 550, 750, 950], 6, "company"),
         //New York
         new Deed("RENTRAK", 200, 100, 100, [16, 80, 220, 600, 800, 1000], 6, "company"),
         //Free Parking
@@ -101,6 +101,7 @@ var Data;
         new Card("PLAN AN EVENT AT OAKS AMUSEMENT PARK", "COLLECT $10 FROM EACH PLAYER", "card", [10]),
         new Card("VISIT PORTLAND ART MUSEUM", "PAY $50", "money", [50]),
         new Card("HOST A TOUR THRU WASHINGTON PARK", "COLLECT $200", "money", [200]),
+        new Card("WIN DANCE CONTEST AT THE CRYSTAL BALLROOM", "COLLECT $50 FROM EACH PLAYER", "card", [50]),
     ];
     Data.chance_data = [
         new Card("ADVANCE TO GO", "(COLLECT $200)", "go", [0]),
@@ -120,6 +121,7 @@ var Data;
         new Card("SELL LOCALLY GROWN VEGETABLES AT THE PORTLAND FARMERS MARKET", "COLLECT $150", "money", [150]),
         new Card("WIN SECOND PLACE IN PORTLAND'S BEARD COMPETITION", "COLLECT $100", "money", [100]),
         new Card("EXPERIENCE THE HAWTHORNE DISTRICT", "PAY $15 FOR COFFEE", "money", [-15]),
+        new Card("HOST AN EVENT AT POWELL'S CITY OF BOOKS", "PAY EACH PLAYER $50", "card", [-50]),
     ];
     Data.GamePieces = [
         new GamePiece(1, "Blue"),

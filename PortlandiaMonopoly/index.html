@@ -22,12 +22,13 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-    <div ui-view="test"></div>
-    <div class="container" ui-view="setup"></div>
-    <div ui-view="playerStats"></div>
-    <div ui-view="startButton"></div>
-    <div class="col-md-8" style="padding-top: 50px; padding-right: 50px" ui-view="gameBoard"></div>
-    <div class="col-md-4" ui-view="playerActions"></div>
+    <div class="row">
+        <div ui-view="test"></div>
+        <div class="container" ui-view="setup"></div>
+        <div ui-view="playerStats"></div>
+        <div ui-view="startButton"></div>
+        <div class="col-md-8" style="padding-top: 50px; padding-right: 50px" ui-view="gameBoard"></div>
+        <div class="col-md-4" ui-view="playerActions"></div>
+    </div>
 </body>
 </html>
