@@ -1,20 +1,32 @@
 # Portlandia Monopoly
 
-##### _Monopoly game based on Portland tech businesses and local themes. There is no rhyme or reason to the placement of companies on the board, in case one is wondering. To experience the game as it is now, please navigate to [my hosted github page.](http://ludichrislyts.github.io/PortlandiaMonopolyGH)_
+##### _Monopoly game based on Portland tech businesses and local themes. There is no rhyme or reason to the appearance or order of companies on the board, in case one is wondering. To experience the game as it is now, please navigate to [my hosted github page.](http://ludichrislyts.github.io/PortlandiaMonopolyGH)_
 
 #### Chris Lytsell, Jason Creighton, Kenny Grage, Aaron Campf.
 
 ## Description
 
 _It's Monopoly. Currently a work in progress...the game does not have full monopoly play functionality quite yet. The program was initially a week long AngularJS class group project at Epicodus for Chris, Jason, and Kenny.
-After the project was over, Chris worked with Aaron to move much of the project's JavaScript files to TypeScript. Functionality yet to be completed as of Oct 24, 2015:_
-* Exchange money between players (I know, I know, this should have been one of the first items of business)
-* Make an auction function for when a player lands on a property but doesn't/can't buy it.
+After the project was over, Chris worked with Aaron to move much of the project's JavaScript files to TypeScript.
+
+Features implemented since the project was first presented in Oct 2015:_
+
+* Remove all Javascript alerts from gameplay and use Angular to show and hide current turn info
+* Add a board movement feature to swivel board view to current player, along with a button to click for player to swivel board if needed
+* Improve player stat header to more clearly show current player by increasing dropdown movement of current player tab
+* Add a color coordinated position indicator on the board for current player
+* Add function to exchange money between players
+* Add notification that shows the money transaction for current player (former, +/-change, current)
+* Fix many random buggy issues
+
+_Functionality yet to be completed as of Dec 1st, 2015:_
+
+* Make an auction function for when a player lands on a property but doesn't/can't buy it
 * Mortgage a property
 * Develop properties
 * Implement a cool visual dice roll
 * If above gets done, activate function for players to roll to see who goes first
-* Implement square by square player movement, rather than instant transport.
+* Implement square by square player movement, rather than instant transport
 * Probably more stuff/work out bugs
 * Oh, and probably should be able to detect if a player wins or loses at some point
 
@@ -33,7 +45,7 @@ run a python server. Either _python -m http.server [port]_ or _python -m SimpleH
 
 ## Technologies Used
 
-_AngularJS, JavaScript, Jquery, CSS_
+_AngularJS, JavaScript, Jquery, CSS, TypeScript, Visual Studio_
 
 ### Legal
 
