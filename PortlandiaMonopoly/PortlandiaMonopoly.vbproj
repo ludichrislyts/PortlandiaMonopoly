@@ -116,11 +116,13 @@
     <Content Include="controllers\PlayerSelectController.js" />
     <Content Include="controllers\PlayerStatController.js" />
     <Content Include="controllers\PlayerTurnController.js" />
+    <Content Include="css\animate.css" />
     <Content Include="css\main.css" />
     <Content Include="directives\gameDirectives.js" />
     <Content Include="gameboardtest.html" />
     <Content Include="img\arrow.jpg" />
     <Content Include="img\arttax.png" />
+    <Content Include="img\bird.png" />
     <Content Include="img\chance.png" />
     <Content Include="img\communitychest.gif" />
     <Content Include="img\dog.png" />
@@ -129,10 +131,15 @@
     <Content Include="img\elephant.png" />
     <Content Include="img\free_parking.jpg" />
     <Content Include="img\gotojail.gif" />
+    <Content Include="img\notepad_page.png" />
+    <Content Include="img\playPortlandia.png" />
     <Content Include="img\iron.png" />
+    <Content Include="img\MonopolyLogo.png" />
+    <Content Include="img\PortlandiaBoard.png" />
     <Content Include="img\psm.jpg" />
     <Content Include="img\railroad.gif" />
     <Content Include="img\rose.jpg" />
+    <Content Include="img\table.jpg" />
     <Content Include="img\tb.png" />
     <Content Include="img\thimble.png" />
     <Content Include="img\timbers.png" />
@@ -148,6 +155,7 @@
     <Content Include="obj\Debug\PortlandiaMonopoly.xml" />
     <Content Include="obj\Debug\TempPE\My Project.Resources.Designer.vb.dll" />
     <Content Include="partials\gameboard.html" />
+    <Content Include="partials\startPage.html" />
     <Content Include="partials\playerStats.html" />
     <Content Include="partials\playerTurn.html" />
     <Content Include="partials\selectPlayers.html" />
@@ -956,7 +964,6 @@
     <Content Include="app.js.map" />
     <Content Include="lib\Data.js.map" />
     <Content Include="lib\classes.js.map" />
-    <Content Include="controllers\PlayerStatController.js.map" />
     <Content Include="controllers\PlayerSelectController.js.map" />
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />

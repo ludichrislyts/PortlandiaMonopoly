@@ -20,9 +20,10 @@ declare class Player {
 declare class GamePiece {
     id: number;
     pieceName: string;
-    pieceObject: GameObject;
+    rgb: string;
+    rgbDark: string;
     taken: boolean;
-    constructor(id: number, pieceName: string);
+    constructor(id: number, pieceName: string, rgb: string, rgbDark: string);
 }
 declare class GameObject {
     boardId: string;

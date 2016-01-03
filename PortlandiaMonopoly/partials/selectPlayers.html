@@ -3,13 +3,16 @@
 5 player max. 'startGame' variable hold value true if player max is reached when
 factory.addPlayer is called upon submit. 'startGame' must also be toggled to true if user selects start game option-->
 <div class="container header-type" style="font-size: 2em">
+    <div class="row" id="select-header-text">
+        <h2>--Game Setup--</h2>
+    </div>
     <form ng-submit="showStartButton = factory.addPlayer(); update()" class="form-inline" role="form">
-        <div ng-hide="showStartButton || startGame" class="form-group">
+        <div class="row form-group1" ng-hide="showStartButton || startGame">
             <label for="player">Enter name here:</label>
             <input class="form-control" id="player" ng-model="factory.playerName" placeholder="Enter Name" required>
             <br />
-            <div class="form-group" ng-model="factory.playerPiece">
-                <label for="piece">Select a piece for your player:</label>
+            <div class="form-group" id="color-piece-select" ng-model="factory.playerPiece">
+                <label for="piece">Select a player piece:</label>
                 <select ng-options="item.pieceName for item in remainingPieces" class="form-control" ng-model="factory.playerPiece" id="piece"
                         ng-init="factory.playerPiece = remainingPieces[0]" selected required>
                     <option ng-model="factory.playerPiece" class="form-control" id="piece" selected required>{{ item.pieceName }}</option>
@@ -20,14 +23,15 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
                 </select>
             </div>
             <br />
-            <button type="submit" class="btn btn-warning btn-large">Submit</button>
+            <button type="submit" class="btn btn-large" id="player-submit-button">Submit</button>
         </div>
     </form>
     <!--displays players, start roll-for-first actions-->
-    <div ng-show="showStartButton || players.length > 1">
-        <a ng-click="getFirstPlayer = true; startGame = true; rollForFirst()" ng-hide="getFirstPlayer" class="button btn btn-large btn-primary">All set? Click to determine first player!</a>
+    <div class="row" id="click-for-first" ng-show="showStartButton || players.length > 1">
+        <a id="first-player-button" ng-click="getFirstPlayer = true; startGame = true; rollForFirst()" ng-hide="getFirstPlayer" class="button btn btn-large">All set? Click to determine first player!</a>
     </div>
-    <div class="well" ng-show="players.length > 0">
+    <div class="well row" id="start-stats" ng-show="players.length>
+        0">
         <div>
             Number of Players = {{players.length}}
             <p ng-repeat="item in players">{{ item.name }} has selected the {{ item.pieceObject.name }} and {{ item.piece.pieceName }} color</p>
@@ -50,7 +54,8 @@ factory.addPlayer is called upon submit. 'startGame' must also be toggled to tru
                     <br />
                 </div>-->
     </div>
-    <div ng-show="startGameMessage" ng-click="startGameMessage = false">
-        <a ui-sref="click_to_start" class="button btn btn-primary btn-large">{{ playerToStart.name }}, Start the Game!</a>
+    <div class="row" ng-show="startGameMessage" ng-click="startGameMessage = false">
+        <a ui-sref="play" class="button btn btn-large" id="click-to-continue">{{ playerToStart.name }} will go first! Click to continue.</a>
+        <p>Note: This is a single page AngularJS app. If you navigate back from the game page, you will have to start the game over.</p>
     </div>
 </div>

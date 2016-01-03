@@ -30,7 +30,7 @@ portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($sco
         var index = chance.integer({ min: 1, max: $scope.players.length });
         $scope.playersInOrder = Data.Factory_Games.fixPlayerOrder(index);
         $scope.playerToStart = Data.players[0];
-        $("#p" + $scope.playerToStart.id).css("color", "yellow");
+        $("#p" + $scope.playerToStart.id).css("color", "#FAB900");
         $scope.startGameMessage = true;
     };
 }); // end playerSelect controller

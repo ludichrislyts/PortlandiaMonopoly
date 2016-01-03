@@ -7,18 +7,18 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {
         url: "",
         views: {
-            'setup': {
-                templateUrl: "partials/selectPlayers.html",
-                controller: "PlayerSelectCtrl"
-            }
+            'startButton': {
+                templateUrl: 'partials/startPage.html',
+                controller: "PlayerStatCtrl"
+            },
         }
     });
     $stateProvider.state('click_to_start', {
-        url: "/click",
+        url: "/setup",
         views: {
-            'startButton': {
-                template: '<div class="fade-screen"><a ui-sref="play" style="text-decoration:none; width: 100%; height:100%">Click to Start!</a></div>',
-                controller: "PlayerTurnCtrl"
+            'setup': {
+                templateUrl: "partials/selectPlayers.html",
+                controller: "PlayerSelectCtrl"
             },
         }
     });

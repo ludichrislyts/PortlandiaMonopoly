@@ -19,10 +19,12 @@ var Player = (function () {
     return Player;
 })();
 var GamePiece = (function () {
-    function GamePiece(id, pieceName) {
+    function GamePiece(id, pieceName, rgb, rgbDark) {
         this.taken = false;
         this.id = id;
         this.pieceName = pieceName;
+        this.rgb = rgb;
+        this.rgbDark = rgbDark;
     }
     return GamePiece;
 })();
@@ -78,7 +80,7 @@ var GameFactory1 = (function () {
         this.selectPiece = function (piece) {
             for (var i = 0; i < Data.remainingGamePieces.length; i++) {
                 if (Data.remainingGamePieces[i].id === piece.id) {
-                    Data.remainingGamePieces.splice(i, 1);
+                    var color = Data.remainingGamePieces.splice(i, 1);
                     break;
                 }
             }

@@ -19,11 +19,9 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     var chance = new Chance();
     var index = 0;
     var card_type = null;
-
-    // getting the color for the player tabs (for some reason the
-    // colors don't display in IE with data in the {{ }}. Lame
-    //var colors = [];
-
+    var board = [];
+    board.currentPos = 0;
+    //$("#background").toggleClass('background');// need a better background for this
     $scope.deeds = Data.deeds;
     // flag toggle to display game messages, resets to false in endTurn()
     $scope.buyChoice = false;
@@ -55,169 +53,122 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     }
     var setColors = function () {
         if (player1) {
-            $("#p" + player1.id).css("background-color", player1.piece.pieceName.toLowerCase());
-            $("#p" + player1.id + " p.money").css("background-color", "dark" + player1.piece.pieceName.toLowerCase());
+            $("#p" + player1.id).css("background-color", player1.piece.rgb);
+            $("#p" + player1.id + " p.money").css("background-color", player1.piece.rgbDark);
         }
         if (player2) {
-            $("#p" + player2.id).css("background-color", player2.piece.pieceName.toLowerCase());
-            $("#p" + player2.id + " p.money").css("background-color", "dark" + player2.piece.pieceName.toLowerCase());
+            $("#p" + player2.id).css("background-color", player2.piece.rgb);
+            $("#p" + player2.id + " p.money").css("background-color", player2.piece.rgbDark);
         }
         if (player3) {
-            $("#p" + player3.id).css("background-color", player3.piece.pieceName.toLowerCase());
-            $("#p" + player3.id + " p.money").css("background-color", "dark" + player3.piece.pieceName.toLowerCase());
+            $("#p" + player3.id).css("background-color", player3.piece.rgb);
+            $("#p" + player3.id + " p.money").css("background-color", player3.piece.rgbDark);
         }
         if (player4) {
-            $("#p" + player4.id).css("background-color", player4.piece.pieceName.toLowerCase());
-            $("#p" + player4.id + " p.money").css("background-color", "dark" + player4.piece.pieceName.toLowerCase());
+            $("#p" + player4.id).css("background-color", player4.piece.rgb);
+            $("#p" + player4.id + " p.money").css("background-color", player4.piece.rgbDark);
         }
         $("#p" + $scope.currentPlayer.id).css("height", "12.5em");
     }
-    var rotateNeg90 = function () {
+    var rotateNeg90 = function (pos) {
         $(".column-container").css("transform", "rotateX(40deg) rotate(-90deg)");
         $(".column-container").css("box-shadow", "-10px 10px 14px 8px rgba(0,0,0,0.7)");
         for (var i = 0; i < Data.players.length; i++) {
             $(".player" + Data.players[i].id).css({ "transform": "rotateZ(90deg)", "transition": "all 1s linear" });
         }
+        pos.currentPos = 1;
     }
-    var rotate180 = function () {
+    var rotate180 = function (pos) {
         $(".column-container").css("transform", "rotateX(40deg) rotate(-180deg)");
         $(".column-container").css("box-shadow", "-10px -10px 14px 8px rgba(0,0,0,0.7)");
         for (var i = 0; i < Data.players.length; i++) {
             $(".player" + Data.players[i].id).css({ "transform": "rotateZ(180deg)", "transition": "all 1s linear" });
         }
+        pos.currentPos = 2;
     }
-    var rotateNeg270 = function () {
+    var rotateNeg270 = function (pos) {
         $(".column-container").css("transform", "rotateX(40deg) rotate(-270deg)");
         $(".column-container").css("box-shadow", "10px -10px 14px 8px rgba(0,0,0,0.7)");
         for (var i = 0; i < Data.players.length; i++) {
             $(".player" + Data.players[i].id).css({ "transform": "rotateZ(-90deg)", "transition": "all 1s linear" });
         }
+        pos.currentPos = 3;
     }
-    var rotateZero = function () {
+    var rotateZero = function (pos) {
         $(".column-container").css("transform", "matrix3d(1,0,0,0,0,.766044,.642788,0,0,-.642788,.766044,0,0,0,0,1)");
         $(".column-container").css("box-shadow", "10px 10px 14px 8px rgba(0,0,0,0.7)");
         for (var i = 0; i < Data.players.length; i++) {
             $(".player" + Data.players[i].id).css({ "transform": "rotateZ(0deg)", "transition": "all 1s linear" });
         }
+        pos.currentPos = 0;
     }
     var rotateToPlayer = function (pos, dif) {
         if (pos >= 0 && pos <= 10) {
             if (dif > 10 && pos < 2) {
-                rotateNeg270();
+                rotateNeg270(board);
                 setTimeout(function () {
-                    rotateZero();
+                    rotateZero(board);
                 }, 1000);
             } else {
-                rotateZero();
+                rotateZero(board);
             }
         } else if (pos >= 10 && pos <= 20) {
             if (dif > 10 && pos < 12) {
-                rotateZero();
+                rotateZero(board);
                 setTimeout(function () {
-                    rotateNeg90();
+                    rotateNeg90(board);
                 }, 1000);
             } else {
-                rotateNeg90()
+                rotateNeg90(board)
             }
         } else if (pos >= 20 && pos <= 30) {
             if (dif > 10 && pos < 22) {
-                rotateNeg90();
+                rotateNeg90(board);
                 setTimeout(function () {
-                    rotate180();
+                    rotate180(board);
                 }, 1000);
             } else {
-                rotate180();
+                rotate180(board);
             }
         } else {
             if (dif > 10 && pos < 32) {
-                rotate180();
+                rotate180(board);
                 setTimeout(function () {
-                    rotateNeg270();
+                    rotateNeg270(board);
                 }, 1000);
             } else {
-                rotateNeg270();
+                rotateNeg270(board);
             }
         }
     }
-
+    advanceView = function (pos) {
+        if (pos.currentPos === 0) { // matrix3d(1, 0, .... IE, Chrome, Firefox board is at 0 deg rotation
+            rotateNeg90(pos);
+        } else if (pos.currentPos === 1) {
+            rotate180(pos);
+        } else if (pos.currentPos === 2) {
+            rotateNeg270(pos);
+        } else {
+            rotateZero(pos);
+        }
+    }
+    reverseView = function (pos) {
+        if (pos.currentPos === 0) { // matrix3d(1, 0, .... IE, Chrome, Firefox board is at 0 deg rotation
+            rotateNeg270(pos);
+        } else if (pos.currentPos === 1) {
+            rotateZero(pos);
+        } else if (pos.currentPos === 2) {
+            rotateNeg90(pos);
+        } else {
+            rotate180(pos);
+        }
+    }
     $scope.advanceView = function () {
-        if ($(".column-container").css("transform")[9] === "1") {
-            //set view to squares 10 - 20
-            $(".column-container").css("transform", "rotateX(40deg) rotate(-90deg)");
-            //$(".column-container").css("transform", "matrix3d(0,-.766044,-.642788,0,1,0,0,0,0,-.642788,.766044,0,0,0,0,1)");
-            $(".column-container").css("box-shadow", "-10px 10px 14px 8px rgba(0,0,0,0.7)");
-            // alter player piece view to look more upright
-            for (var i = 0; i < Data.players.length; i++) {
-                $(".player" + Data.players[i].id).css({ "transform": "rotateZ(90deg)", "transition": "all 1s linear" });
-            }
-        } else if ($(".column-container").css("transform")[9] === "-") {
-            // set view to squares 30-40
-            $(".column-container").css("transform", "rotateX(40deg) rotate(-270deg)");
-            //$(".column-container").css("transform", "matrix3d(0,.766044,.642788,0,-1,0,0,0,0,-.642788,.766044,0,0,0,0,1)");
-            $(".column-container").css("box-shadow", "10px -10px 14px 8px rgba(0,0,0,0.7)");
-            for (var i = 0; i < Data.players.length; i++) {
-                $(".player" + Data.players[i].id).css({ "transform": "rotateZ(-90deg)", "transition": "all 1s linear" });
-            }
-        } else if ($(".column-container").css("transform")[9] === "0") {
-            if ($(".column-container").css("transform")[12] === "-") {
-                //set view to squares 20-30
-                //$(".column-container").css("transform", "matrix3d(-1,0,0,0,0,-.766044,-.642788,0,0,-.642788,.766044,0,0,0,0,1)");
-                $(".column-container").css("transform", "rotateX(40deg) rotate(-180deg)");
-                $(".column-container").css("box-shadow", "-10px -10px 14px 8px rgba(0,0,0,0.7)");
-                for (var i = 0; i < Data.players.length; i++) {
-                    $(".player" + Data.players[i].id).css({ "transform": "rotateZ(180deg)", "transition": "all 1s linear" });
-                }
-            } else {
-                // set view to start
-                // need next line to reset degrees otherwise next -90 will spin out of control
-                $(".column-container").css("transform", "matrix3d(1,0,0,0,0,.766044,.642788,0,0,-.642788,.766044,0,0,0,0,1)");
-                $(".column-container").css("box-shadow", "10px 10px 14px 8px rgba(0,0,0,0.7)");
-                for (var i = 0; i < Data.players.length; i++) {
-                    $(".player" + Data.players[i].id).css({ "transform": "rotateZ(0deg)", "transition": "all 1s linear" });
-                }
-            }
-        }
+        advanceView(board);
     }
-    /*
-    // just using advanceView for now...incoporating both made for some weird transitsions.
     $scope.reverseView = function () {
-        if ($(".column-container").css("transform")[9] === "1") {
-            $(".column-container").css("transform", "matrix3d(0,0.766044,0.642788,0,-1,0,0,0,0,-0.642788,0.766044,0,0,0,0,1)");
-            //$(".column-container").css("transform", "rotateX(40deg) rotate(90deg)");
-            $(".column-container").css("box-shadow", "10px -10px 14px 8px rgba(0,0,0,0.7)");
-            // alter player piece view to look more upright
-            for (var i = 0; i < Data.players.length; i++) {
-                $(".player" + Data.players[i].id).css({ "transform": "rotateZ(-90deg)", "transition": "all 1s linear" });
-            }
-        } else if ($(".column-container").css("transform")[9] === "-") {
-            //$(".column-container").css("transform", "rotateX(40deg) rotate(270deg)");
-            $(".column-container").css("transform", "matrix3d(0,-0.766044,-0.642788,0,1,0,0,0,0,-0.642788,0.766044,0,0,0,0,1)");
-            $(".column-container").css("box-shadow", "-10px 10px 14px 8px rgba(0,0,0,0.7)");
-            for (var i = 0; i < Data.players.length; i++) {
-                $(".player" + Data.players[i].id).css({ "transform": "rotateZ(90deg)", "transition": "all 1s linear" });
-            }
-        } else if ($(".column-container").css("transform")[9] === "0") {
-            if ($(".column-container").css("transform")[12] === "-") {
-                //$(".column-container").css("transform", "rotateX(40deg) rotate(180deg)");
-                $(".column-container").css("transform", "matrix3d(1,0,0,0,0,0.766044,0.642788,0,0,-0.642788,0.766044,0,0,0,0,1)");
-                $(".column-container").css("box-shadow", "10px 10px 14px 8px rgba(0,0,0,0.7)");
-                // alter player piece view to look more upright
-                for (var i = 0; i < Data.players.length; i++) {
-                    $(".player" + Data.players[i].id).css({ "transform": "rotateZ(0deg)", "transition": "all 1s linear" });
-                }
-            } else {
-                // need next line to reset degrees otherwise next -90 will spin out of control
-                $(".column-container").css("transform", "matrix3d(-1,0,0,0,0,-0.766044,-0.642788,0,0,-0.642788,0.766044,0,0,0,0,1)");
-                //$(".column-container").css("transform", "rotateX(40deg) rotate(180deg)");
-                $(".column-container").css("box-shadow", "-10px -10px 14px 8px rgba(0,0,0,0.7)");
-                // alter player piece view to look more upright
-                for (var i = 0; i < Data.players.length; i++) {
-                    $(".player" + Data.players[i].id).css({ "transform": "rotateZ(180deg)", "transition": "all 1s linear" });
-                }
-            }
-        }
+        reverseView(board);
     }
-    */
 
     // SETUP TURN
     //$scope.isInMarket = Data.Factory_Games.inMarket($scope.currentPlayer);
@@ -234,13 +185,15 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         var die2 = chance.integer({ min: 1, max: 6 });
         var total = die1 + die2;
         // FOR TESTING
-        //total = 7;
+        total = 7;
         $scope.option_clicked = false; // variable to display 'move' button
         return { total: total, die1: die1, die2: die2, doubles: die1 === die2 };
     } //end roll()
 
     //****************MOVE FUNCTION****************//
     var move = function (player, total) {
+        $(".square" + player.position).toggleClass("showPostion", (player.postion === 2 || player.postion === 7 || player.postion === 17
+                                                                || player.postion === 22 || player.postion === 33 || player.position === 37 && $scope.drawAction === true));
         var rotateBoard = true;
         var oldSide = Math.floor(player.position / 10);
         player.position += total;
@@ -264,7 +217,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         }
         $("." + player.pieceObject.boardId).appendTo(".square" + player.position);
         $("." + player.pieceObject.boardId).css("position", "absolute");
-        $(".square" + player.position).css("outline-color", player.piece.pieceName);
+        $(".square" + player.position).css("outline-color", player.piece.rgb);
         $(".square" + player.position).toggleClass("showPosition");
         if (rotateBoard) {
             rotateToPlayer(player.position, total);
@@ -348,7 +301,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 transactions.exchangeMoney(player, deed.price, 1);
                 $scope.message.newTotal = player.money;
                 $scope.message.change = "-$" + deed.price;
-                $("#change").css("color", "red");
+                $("#change").css("color", "C20319");
                 $(".messageDirective h5.moneyTotals").css("visibility", "visible");
                 $scope.showMessage = true;
                 $scope.show_end_turn_button = true;
@@ -389,7 +342,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 transactions.exchangeMoney(player, deed.price, 1);
                 $scope.message.newTotal = player.money;
                 $scope.message.change = "-$" + deed.price;
-                $("#change").css("color", "red");
+                $("#change").css("color", "C20319");
                 $(".messageDirective h5.moneyTotals").css("visibility", "visible");
                 $scope.showMessage = true;
                 $scope.show_end_turn_button = true;
@@ -451,7 +404,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             transactions.payBetweenPlayers(player, rentToPay, deed.owned);
             $scope.message.newTotal = player.money;
             $scope.showMessage = true;
-            $("#change").css("color", "red");
+            $("#change").css("color", "C20319");
             $(".messageDirective h5.moneyTotals").css("visibility", "visible");
             $scope.show_end_turn_button = true;
         }
@@ -471,7 +424,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
     //****************GETCARD FUNCTION****************//
     var drawCard = function (kind) {
         var card;
-        //var card_number = 4;
+        var card_number = 1;
         var card_number = chance.integer({ min: 0, max: 16 }); //comment out for test
         if (kind == "community chest") {
             card = community_chest_cards[card_number];
@@ -506,7 +459,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             transactions.payBetweenPlayers(player, card.value[0], 0);
             $scope.message.newTotal = player.money;
             if (card.value[0] < 0) {
-                $("#change").css("color", "red");
+                $("#change").css("color", "C20319");
                 $scope.message.change = "-$" + (card.value[0] * -1);
             } else {
                 $scope.message.change = "$" + card.value[0];
@@ -521,7 +474,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             $scope.message.newTotal = player.money;
             $scope.showMessage = true;
             if (card.value[0] < 0) {
-                $("#change").css("color", "red");
+                $("#change").css("color", "C20319");
                 $scope.message.change = "-$" + (card.value[0] * -1);
             } else {
                 $scope.message.change = "$" + card.value[0];
@@ -594,7 +547,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
                 $scope.message.change = "-$" + deed.price;
                 $scope.message.newTotal = player.money;
-                $("#change").css("color", "red");
+                $("#change").css("color", "C20319");
                 $(".messageDirective h5.moneyTotals").css("visibility", "visible");
                 if (checkForMonopoly(deeds.indexOf(deed))) {
                     $scope.message.text += ". You have a Portlandia Monopoly!";
@@ -608,14 +561,14 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
             if (player.position < 10) {
                 //account for rail spacing issue, need to target id and class separately
-                $(".square" + player.position + " #bottom-middle-cost").css("background-color", player.piece.pieceName);
-                $(".square" + player.position + " .bottom-cost").css("background-color", player.piece.pieceName);
+                $(".square" + player.position + " #bottom-middle-cost").css("background-color", player.piece.rgb);
+                $(".square" + player.position + " .bottom-cost").css("background-color", player.piece.rgb);
             } else if ((player.position < 20) && (player.position > 10)) {
-                $(".square" + player.position + " .left-cost").css("background-color", player.piece.pieceName);
+                $(".square" + player.position + " .left-cost").css("background-color", player.piece.rgb);
             } else if ((player.position < 30) && (player.position > 20)) {
-                $(".square" + player.position + " .top-cost").css("background-color", player.piece.pieceName);
+                $(".square" + player.position + " .top-cost").css("background-color", player.piece.rgb);
             } else if ((player.position < 40) && (player.position > 20)) {
-                $(".square" + player.position + " .right-cost").css("background-color", player.piece.pieceName);
+                $(".square" + player.position + " .right-cost").css("background-color", player.piece.rgb);
             }
         }
     } //end buyDeed()
@@ -681,24 +634,28 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
 
     //****************GOTOJAIL FUNCTION****************//
     var gotoJail = function (player, card) {
-        var negShift = (transactions.getShift(player, 10) - 40);
-        move(player, negShift);
-        player.num_of_doubles = 0;
-        player.inMarket = true;
+        if (player.position < 10) {
+            move(player, (10 - player.position));
+        } else {
+            var negShift = (transactions.getShift(player, 10) - 40);
+            move(player, negShift);
+            player.num_of_doubles = 0;
+            player.inMarket = true;
+        }
         if ((card | 0) === 0) {
             $scope.message.text = "Go to Saturday Market!!!";
             $scope.message.subText = "Sorry, your luck just ran out. You're stuck perusing Portland's finest selection of tye-dye shirts.";
             $scope.showMessage = true;
-            //alert('Sorry, ' + player.piece.pieceName + ', but your luck just ran out!\nThat was your third roll of doubles in a row! Now you\n must spend your time browsing junk at Saturday Market!');
+            //alert('Sorry, ' + player.piece.Data.Factory_Games + ', but your luck just ran out!\nThat was your third roll of doubles in a row! Now you\n must spend your time browsing junk at Saturday Market!');
         }
         //$(".player" + player.id).appendTo(".square" + player.position);
     } //end gotoJail()
 
     //****************MARKETACTION FUNCTION****************//
     // for player options when in jail (market)
-    $scope.marketAction = function () {
-        //var freeCards = Data.Factory_Games.hasGetOut($scope.currentPlayer);
-        var freeCards = $scope.currentPlayer.getOutFree
+    $scope.marketAction = function (player) {
+        //var freeCards = Data.Factory_Games.hasGetOut(player);
+        var freeCards = player.getOutFree
         if (freeCards.length > 0) {
             $scope.has_card = true;
             $scope.getOutFreeCards = freeCards;
@@ -709,23 +666,23 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
         if ($scope.market_choice === "card") {
             var index = $scope.getOutFreeCards.indexOf($scope.cardSelected);
             $scope.choose_card = false;
-            $scope.currentPlayer.getOutFree.splice(index, 1);
-            $scope.currentPlayer.inMarket = false;
+            player.getOutFree.splice(index, 1);
+            player.inMarket = false;
             $scope.isInMarket = false;
             $scope.rolled = false;
             $scope.submit = false;
             $scope.samePlayer = false;
-            //$scope.turn($scope.currentPlayer)
+            //$scope.turn(player)
             // pay option, first case player doesn't have enough money,
             // provide option to mortgage/sell
         } else if ($scope.market_choice === "pay") {
-            if (!transactions.checkFunds($scope.currentPlayer, 50)) {
+            if (!transactions.checkFunds(player, 50)) {
                 var performMortgageOption = function () { };// needs a function
                 //player does have enough, pay the fine
             } else {
                 // if player decides to pay first, subtract money and start their turn
                 $scope.message.originalAmount = player.money;
-                transactions.exchangeMoney($scope.currentPlayer, 50, -1);
+                transactions.exchangeMoney(player, 50, -1);
                 $scope.message.text = "You bought your way out of Saturday Market!";
                 $scope.message.subText = "Hope you had a tasty Elephant Ear during your stay.";
                 $scope.message.change = "-$" + 50;
@@ -734,7 +691,7 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 $(".messageDirective h5.moneyTotals").css("visibility", "visible");
                 $("#change").css("color", "green");
                 $scope.isInMarket = false;
-                $scope.currentPlayer.inMarket = false;
+                player.inMarket = false;
                 $scope.submit = false;
                 $scope.samePlayer = false;
                 $scope.rolled = false;
@@ -748,27 +705,27 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
                 //alert("You rolled doubles! You can leave Saturday Market!");
                 $scope.rollAgain = false; // doubles are void when getting out of Market
                 $scope.isInMarket = false;
-                $scope.currentPlayer.inMarket = false;
+                player.inMarket = false;
                 $scope.rolled = true;
                 $scope.samePlayer = false;
-                $scope.turn($scope.currentPlayer, marketRoll.total);
-            } else if ($scope.currentPlayer.freedomRolls === 2) {
+                $scope.turn(player, marketRoll.total);
+            } else if (player.freedomRolls === 2) {
                 $scope.message.text = "You did not roll doubles!";
                 $scope.message.subText = "You must pay the $50 fine.";
                 $scope.showMessage = true;
                 //alert("You did not roll doubles! You must pay the $50 fine!");
-                adjustMoney($scope.currentPlayer, -50);
-                $scope.currentPlayer.freedomRolls = 0;
+                adjustMoney(player, -50);
+                player.freedomRolls = 0;
                 $scope.isInMarket = false;
-                $scope.currentPlayer.inMarket = false;
+                player.inMarket = false;
                 $scope.samePlayer = false;
-                $scope.turn($scope.currentPlayer, marketRoll.total);
+                $scope.turn(player, marketRoll.total);
             } else {
                 $scope.message.text = "You did not roll doubles!";
                 $scope.message.subText = "Walk around Saturday Markey for another turn.";
                 $scope.showMessage = true;
                 //alert("You did not roll doubles! Walk around Saturday Market for another turn. Maybe you'll find that tie-dye nighty you've always wanted!");
-                $scope.currentPlayer.freedomRolls++;
+                player.freedomRolls++;
                 $scope.samePlayer = false;
                 $scope.show_end_turn_button = true;
             }// end else not doubles
@@ -833,4 +790,21 @@ portlandiaMonopoly.controller('PlayerTurnCtrl', function PlayerTurnCtrl($scope, 
             rotateToPlayer($scope.currentPlayer.position, 0);
         }
     };// end endTurn()
+    String.prototype.noExponents = function () {
+        var data = String(this).split(/[eE]/);
+        if (data.length == 1) return data[0];
+
+        var z = '', sign = this < 0 ? '-' : '',
+        str = data[0].replace('.', ''),
+        mag = Number(data[1]) + 1;
+
+        if (mag < 0) {
+            z = sign + '0.';
+            while (mag++) z += '0';
+            return z + str.replace(/^\-/, '');
+        }
+        mag -= str.length;
+        while (mag--) z += '0';
+        return str + z;
+    }
 });

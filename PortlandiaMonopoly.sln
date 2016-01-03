@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PortlandiaMonopoly", "PortlandiaMonopoly\PortlandiaMonopoly.vbproj", "{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SaveMonopoly", "SaveMonopoly\SaveMonopoly.vbproj", "{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +18,10 @@ Global
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

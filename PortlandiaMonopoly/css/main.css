@@ -2,6 +2,10 @@ aside, article, section, header, footer, nav {
     display: block;
 }
 
+html {
+    background-color: #333;
+}
+
 html, body, div, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
@@ -9,26 +13,34 @@ html, body, div, h1, h2, h3, p, ul, li {
 
 body {
     font-size: 8px;
+    background-color: #333;
 }
 
 .containerStatbar {
+    font-family: "Sigmar One", "Lucida Sans", sans-serif;
     width: 100%;
     height: 5em;
-    background-color: #80CCFF;
     display: inline-block;
     color: white;
+}
+
+#click-for-first {
+    margin-top: 1em;
+}
+
+#click-to-continue {
+    margin-bottom: 1em;
 }
 
 .fade-screen {
     height: 100vh;
     width: 100vw;
     background: black;
-    opacity: .6;
+    opacity: .9;
     visibility: visible;
     z-index: 1000;
     text-align: center;
     font-size: 10em;
-    padding-top: 20%;
 }
 
     .fade-screen .isHidden {
@@ -40,6 +52,21 @@ body {
         font-size: 7em;
         margin-top: 40%;
     }
+
+#play-div {
+    z-index: 9999;
+    padding-top: 5%;
+    text-align: right;
+    padding-right: 20vw;
+}
+
+#monopoly {
+    height: 100%;
+}
+
+#start-logo {
+    max-width: 60vw;
+}
 
 .statbar {
     padding: 1em;
@@ -54,6 +81,7 @@ body {
     -webkit-box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
     -moz-box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
     box-shadow: 12px 6px 20px 0px rgba(0,0,0,0.86);
+    opacity: 0.9;
 }
 
     .statbar p {
@@ -64,27 +92,90 @@ body {
     .statbar .money {
         padding: .5em;
         margin-left: .5em;
+        border: 2px solid;
+        border-radius: 11px;
     }
-/*.p1{
-}*/
+
+.set-up {
+    background: none;
+}
+
+#color-piece-select label {
+    font-size: 32px;
+    margin-right: 1.1em;
+    margin-top: .5em;
+    margin-bottom: 1em;
+}
+
+.form-group, .form-group1 {
+    color: #4d2d2d;
+}
+
+    .form-group1 label {
+        font-size: 32px;
+        margin-right: 3.8em;
+    }
 
 .board-container {
     margin: 50px;
     margin-left: 100px;
-    perspective: 800px;
+    perspective: 900px;
+}
+/*need a better image*/
+/*.background {
+    background-image: url('../img/table.jpg');
+    background-size: auto;
+}*/
+
+.header-type {
+    font-family: "Sigmar One", "Lucida Sans", sans-serif;
+    height: 100vh;
+    width: 70%;
+    background-color: #3A5060;
+    box-shadow: 2px -2px 12px 10px #3A5060, -2px 2px 12px 10px #3A5060;
+    padding: 3em;
+}
+
+#select-header-text {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+    #select-header-text h2 {
+        font-size: 3em;
+    }
+
+#player-submit-button, #first-player-button, #click-to-continue {
+    width: 100%;
+    font-size: 1.5em;
+    background-color: #555;
+    border-color: #333;
+    color: #337ab7;
+}
+
+#player {
+    margin-bottom: 1.3em;
+    width: 17.8em;
+}
+
+#piece, #pieceObject {
+    margin-bottom: 1.5em;
 }
 
 .column-container {
+    color: #000;
     margin-top: -15em;
     margin-left: 4em;
     display: flex;
     flex-direction: column;
     height: 78.0em;
     width: 78.0em;
-    background-color: #ecfcf4;
+    background-color: #eda;
     outline: .3em solid black;
     transform: rotateX(40deg);
-    box-shadow: 10px 10px 10px 10px;
+    box-shadow: 10px 10px 10px 10px #000;
     transition: all 1s linear;
 }
 
@@ -136,6 +227,33 @@ body {
 .middle-row-middle {
     position: relative;
     flex: 9;
+}
+
+.center-image {
+    flex: 1;
+    transform: rotate(45deg);
+    background-image: url(../img/MonopolyLogo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    height: 25em;
+    width: 52em;
+    margin-left: -7em;
+    margin-top: 22em;
+}
+
+.center-image-portlandia {
+    flex: 1;
+    transform: rotate(45deg);
+    background-image: url(../img/PortlandiaBoard.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    height: 25em;
+    width: 27em;
+    margin-left: 22em;
+    margin-top: 20em;
+    z-index: 999;
 }
 
 .middle-row-right {
@@ -233,8 +351,13 @@ body {
     position: absolute;
     width: 5.6em;
     margin-left: -8%;
-    bottom: 30%;
+    bottom: 37%;
 }
+
+    .right-name#jive {
+        bottom: 30%;
+        padding: 1px;
+    }
 
 .right-cost {
     transform: rotate(270deg);
@@ -247,6 +370,7 @@ body {
 #right-rail {
     margin-left: 60%;
     text-align: center;
+    right: -0.75em;
 }
 
 .square31 .right-name {
@@ -271,9 +395,9 @@ body {
     bottom: 38%;
 }
 
-#rail {
-    margin-left: -6%;
-}
+    .left-cost#rail {
+        margin-left: -0.9em;
+    }
 
 .square18 .left-name {
     bottom: 34%;
@@ -302,7 +426,7 @@ body {
 }
 
 #bottom-middle-cost {
-    margin-top: 1em;
+    margin-top: 1.2em;
     text-align: center;
 }
 
@@ -323,17 +447,18 @@ body {
         margin-left: -2%;
         bottom: 20%;
         width: 5em;
+        padding: 3px;
     }
 
     .square38 .img {
         flex: 1;
         transform: rotate(270deg);
-        background-image: url(../img/donut2.jpg);
+        background-image: url(../img/donut2.png);
         background-size: cover;
         position: absolute;
         height: 5em;
         width: 4.5em;
-        margin-left: 42%;
+        margin-left: 35%;
         bottom: 0;
     }
 
@@ -349,52 +474,52 @@ body {
 .color1 {
     height: 2.7em;
     border-bottom: 1px solid black;
-    background-color: #803399;
+    background-color: #664361;
 }
 
 .color2 {
     height: 2.7em;
     width: 100%;
     border-bottom: 1px solid black;
-    background-color: #80CCFF;
+    background-color: #9FBCC0;
 }
 
 .color3 {
     width: 2.7em;
     border-left: 1px solid black;
-    background-color: #FF00FF;
+    background-color: #DE5855;
     flex: 1;
 }
 
 .color4 {
     width: 2.7em;
     border-left: 1px solid black;
-    background-color: #FF8000;
+    background-color: #FB7116;
 }
 
 .color5 {
     height: 2.7em;
     border-top: 1px solid black;
-    background-color: #FF0000;
+    background-color: #6D0F03;
 }
 
 .color6 {
     height: 2.7em;
     border-top: 1px solid black;
-    background-color: #FFFF00;
+    background-color: #FAB900;
 }
 
 .color7 {
     width: 2.7em;
     border-right: 1px solid black;
-    background-color: #338033;
+    background-color: #5F6C4E;
     flex: 1;
 }
 
 .color8 {
     width: 2.7em;
     border-right: 1px solid black;
-    background-color: #2020CC;
+    background-color: #547098;
     flex: 1;
 }
 
@@ -469,7 +594,7 @@ body {
     position: absolute;
     text-align: center;
     transform: rotate(270deg);
-    bottom: 15%;
+    bottom: 25%;
     margin-left: -7%;
     width: 5.8em;
 }
@@ -731,13 +856,10 @@ body {
 }
 /*initial display of pieces*/
 .player-pieces {
-    display: inline-flex;
-    bottom: 0;
-    height: 5em;
+    height: 10em;
     width: 70%;
-    position: absolute;
-    margin-left: -6%;
-    margin-bottom: .6em;
+    margin-left: 6%;
+    padding: 1em;
 }
 
     .player-pieces div.player1, div.player2, div.player3, div.player4 {
@@ -826,6 +948,7 @@ body {
 }
 
 .rotate {
+    font-family: "Sigmar One", "Lucida Sans", sans-serif;
     font-size: 16px;
     text-align: center;
     width: 100%;
@@ -834,53 +957,69 @@ body {
     margin-left: 3em;
     margin-right: 5em;
     margin-top: 1em;
-    padding: 3em 0 0 0;
-
+    padding-top: 2em;
 }
 
 #left-control {
     width: 100%;
-    margin-top: 1em;
+    margin-top: -2em;
+    margin-left: -.6em;
 }
-/*@media all and (min-width:1500px) {*/
-#view-button {
-    width: 100%;
-}
-/*}*/
-/*@media all and (min-width:1200px) {
-    #view-button {
-        width: 77%;
-    }
-}*/
 
 #right-control {
-    float: right;
-    width: 49%;
-    height: 100%;
-    margin-top: 4.5em;
-    /*maybe display this when the rotate function isn't wacky*/
-    display: none;
+    width: 100%;
+    margin-top: .5em;
+    margin-left: -.6em;
 }
 
     #right-control button {
-        color: #00a5ff;
-        background-color: aliceblue;
-        border-color: #80ccff;
+        color: #555;
+        background-color: #4d2d2d;
+        border-color: #555;
     }
 
 /*
 player action section (playerTurn
 */
 .player-control {
-    background-color: aliceblue;
+    font-family: "Sigmar One", "Lucida Sans", sans-serif;
+    color: #4d2d2d;
+    background-color: #555;
     background-size: cover;
     min-height: 30em;
     max-width: 22em;
-    border: 7px outset #80CCFF;
+    border: 7px outset #444;
     margin-left: 3em;
     margin-right: 5em;
-    margin-top: 1.5em;
+    margin-top: .5em;
     padding: 2em;
+    box-shadow: 22px 14px 10px #000, 30px 14px 10px #000, 10px -10px 100px #000;
+}
+
+#view-button-advance {
+    width: 105%;
+    color: #555;
+    background-color: #4d2d2d;
+    border-color: #555;
+}
+
+#view-button-reverse {
+    width: 105%;
+    color: #555;
+    background-color: #4d2d2d;
+    border-color: #555;
+}
+
+#view-button-advance:hover {
+    color: #4d2d2d;
+    background-color: #555;
+    border-color: #4d2d2d;
+}
+
+#view-button-reverse:hover {
+    color: #4d2d2d;
+    background-color: #555;
+    border-color: #4d2d2d;
 }
 
 .showPosition {
@@ -888,12 +1027,89 @@ player action section (playerTurn
     z-index: 99;
 }
 /*code to alter message output in actionMessage directive*/
-.messageDirective h5{
-    text-align:right;
+.messageDirective h5 {
+    text-align: right;
 }
-.messageDirective h5.moneyTotals{
-    visibility: hidden;
-}
-.showMoneyMessage{
+
+    .messageDirective h5.moneyTotals {
+        visibility: hidden;
+    }
+
+.showMoneyMessage {
     visibility: visible;
 }
+
+.shiver {
+    position: absolute;
+    padding-bottom: 15%;
+    -moz-animation: shiver .5s; /* Firefox */
+    -webkit-animation: shiver .5s; /* Safari and Chrome */
+    -o-animation: shiver .5s; /* Opera */
+    animation: shiver .5s margin-top: -20px;
+    width: 10%;
+}
+
+.zoom {
+    /*transform:scale 1s;
+animation: scale 1s;*/
+    position: absolute;
+    padding-bottom: 15%;
+    -moz-animation: scale 1.5s; /* Firefox */
+    -webkit-animation: scale 1.5s; /* Safari and Chrome */
+    -o-animation: scale 1.5s; /* Opera */
+    animation: scale 1.5s margin-top: -20px;
+    transform: translate(-30%, -20%);
+    animation-fill-mode: forwards;
+    width: 10%;
+}
+
+@keyframes scale {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 10%;
+    }
+}
+
+@-moz-keyframes scale { /* Firefox */
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 10%;
+    }
+}
+
+@-webkit-keyframes scale { /* Safari and Chrome */
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 10%;
+    }
+}
+
+@-o-keyframes scale { /* Opera */
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 10%;
+    }
+}
+
+#start-stats {
+    color: #4d2d2d;
+    font-size: 2.5em;
+    margin-top: .5em;
+}
+
+    #start-stats p {
+        font-size: .6em;
+        padding-left: 2em;
+    }

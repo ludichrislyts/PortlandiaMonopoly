@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" id="message-center">
     <div class="container rotate">
-        <div id="left-control">
-            <button class="btn btn-large btn-primary" id="view-button" ng-click="advanceView()">Advance Board View</button>
+        <div class="row" id="left-control">
+            <button class="btn btn-large" id="view-button-advance" ng-click="advanceView()">Advance Board View</button>
         </div>
-        <div id="right-control">
-            <button class="btn btn-large" ng-click="reverseView()">Reverse Board View</button>
+        <div class="row" id="right-control">
+            <button class="btn btn-large" id="view-button-reverse" ng-click="reverseView()">Reverse Board View</button>
         </div>
     </div>
 </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <h4>How do you want to leave Saturday Market?</h4>
-            <form ng-submit="marketAction()">
+            <form ng-submit="marketAction(currentPlayer)">
                 <div class="row form-group">
                     <ul class="no_style_li" name="market" required single>
                         <li id="card" ng-model="market_choice" ng-show="has_card">
@@ -112,6 +112,8 @@
         <div id="end-button" ng-show="show_end_turn_button">
             <button ng-click="endTurn(); show_end_turn_button = !show_end_turn_button; rolled = false; checkPlayer()">End turn</button>
         </div>
-        <div class="player-pieces"><div class="player1"></div><div class="player2"></div><div class="player3"></div><div class="player4"></div></div>
     </div>
+</div>
+<div class="row player-pieces">
+    <span ng-repeat="player in players" class={{player.pieceObject.boardId}} id="display-pieces" style="height: 7em; width: 8em; display: inline-block; background-size: contain; background-repeat: no-repeat;"></span>
 </div>
