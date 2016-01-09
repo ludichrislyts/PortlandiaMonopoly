@@ -73,7 +73,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -242,6 +244,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Models\Database.edmx.sql" />
     <Content Include="Models\Database.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Database.vb</LastGenOutput>
@@ -251,6 +254,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Player\Index.vbhtml" />
+    <Content Include="Views\Player\Details.vbhtml" />
+    <Content Include="Views\Player\Create.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

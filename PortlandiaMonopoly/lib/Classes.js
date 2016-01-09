@@ -80,7 +80,7 @@ var GameFactory1 = (function () {
         this.selectPiece = function (piece) {
             for (var i = 0; i < Data.remainingGamePieces.length; i++) {
                 if (Data.remainingGamePieces[i].id === piece.id) {
-                    var color = Data.remainingGamePieces.splice(i, 1);
+                    Data.remainingGamePieces.splice(i, 1);
                     break;
                 }
             }

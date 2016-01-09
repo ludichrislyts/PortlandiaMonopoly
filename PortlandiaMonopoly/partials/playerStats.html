@@ -1,7 +1,7 @@
 <div class="containerStatbar" ng-mouseenter="setColors()" ng-keydown="setColors()">
-    <div ng-repeat="item in players" class="statbar p{{ item.id }}" style="background-color: {{ item.color }};" id="p{{ item.id }}">
+    <div ng-repeat="item in players" class="statbar p{{ item.id }}" id="p{{ item.id }}">
         <p>{{ item.name }}</p>
-        <p class="money" style="background-color: dark{{ item.color }}">{{ item.money }}</p>
+        <p class="money" style="opacity: .7">{{ item.money }}</p>
         <div class="{{item.pieceObject.boardId}}statbar"></div>
     </div>
 </div>

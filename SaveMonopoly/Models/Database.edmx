@@ -4,11 +4,68 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Database.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="DatabaseTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="Database.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseStoreContainer">
+    <EntitySet Name="Games" EntityType="Database.Store.Games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="Database.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Game_Player" EntityType="Database.Store.Game_Player" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="GameGame_Player" Association="Database.Store.GameGame_Player">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Game_Player" EntitySet="Game_Player" />
+    </AssociationSet>
+    <AssociationSet Name="PlayerGame_Player" Association="Database.Store.PlayerGame_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="Game_Player" EntitySet="Game_Player" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="json" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Game_Player">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Game_Id" Type="int" Nullable="false" />
+    <Property Name="Player_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GameGame_Player">
+    <End Role="Game" Type="Database.Store.Games" Multiplicity="1" />
+    <End Role="Game_Player" Type="Database.Store.Game_Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game_Player">
+        <PropertyRef Name="Game_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlayerGame_Player">
+    <End Role="Player" Type="Database.Store.Players" Multiplicity="1" />
+    <End Role="Game_Player" Type="Database.Store.Game_Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game_Player">
+        <PropertyRef Name="Player_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Database" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -62,13 +119,50 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="Database" />
-        <Alias Key="Target" Value="Database.Store" />
-        <EntityContainerMapping CdmEntityContainer="DatabaseContainer" StorageEntityContainer="DatabaseTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseStoreContainer" CdmEntityContainer="DatabaseContainer">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="json" ColumnName="json" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Game_Player">
+      <EntityTypeMapping TypeName="IsTypeOf(Database.Game_Player)">
+        <MappingFragment StoreEntitySet="Game_Player">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GameGame_Player" TypeName="Database.GameGame_Player" StoreEntitySet="Game_Player">
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Game_Id" />
+      </EndProperty>
+      <EndProperty Name="Game_Player">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PlayerGame_Player" TypeName="Database.PlayerGame_Player" StoreEntitySet="Game_Player">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="Player_Id" />
+      </EndProperty>
+      <EndProperty Name="Game_Player">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -82,6 +176,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

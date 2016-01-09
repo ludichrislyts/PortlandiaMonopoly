@@ -22,6 +22,7 @@ declare class GamePiece {
     pieceName: string;
     rgb: string;
     rgbDark: string;
+    pieceObject: GameObject;
     taken: boolean;
     constructor(id: number, pieceName: string, rgb: string, rgbDark: string);
 }

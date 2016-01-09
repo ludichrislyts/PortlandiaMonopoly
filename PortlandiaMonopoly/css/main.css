@@ -135,18 +135,15 @@ body {
     box-shadow: 2px -2px 12px 10px #3A5060, -2px 2px 12px 10px #3A5060;
     padding: 3em;
 }
-
-#select-header-text {
+#select-header-text{
     position: relative;
     width: 100%;
     text-align: center;
     margin-bottom: 2em;
 }
-
-    #select-header-text h2 {
-        font-size: 3em;
-    }
-
+#select-header-text h2{
+    font-size: 3em;
+}
 #player-submit-button, #first-player-button, #click-to-continue {
     width: 100%;
     font-size: 1.5em;
@@ -856,10 +853,13 @@ body {
 }
 /*initial display of pieces*/
 .player-pieces {
-    height: 10em;
+    display: inline-flex;
+    bottom: 0;
+    height: 5em;
     width: 70%;
-    margin-left: 6%;
-    padding: 1em;
+    position: absolute;
+    margin-left: -6%;
+    margin-bottom: .6em;
 }
 
     .player-pieces div.player1, div.player2, div.player3, div.player4 {
@@ -984,11 +984,11 @@ player action section (playerTurn
 .player-control {
     font-family: "Sigmar One", "Lucida Sans", sans-serif;
     color: #4d2d2d;
-    background-color: #555;
+    background-color: #eda;
     background-size: cover;
     min-height: 30em;
     max-width: 22em;
-    border: 7px outset #444;
+    border: 7px outset #feb;
     margin-left: 3em;
     margin-right: 5em;
     margin-top: .5em;
@@ -1009,14 +1009,12 @@ player action section (playerTurn
     background-color: #4d2d2d;
     border-color: #555;
 }
-
-#view-button-advance:hover {
+#view-button-advance:hover{
     color: #4d2d2d;
     background-color: #555;
     border-color: #4d2d2d;
 }
-
-#view-button-reverse:hover {
+#view-button-reverse:hover{
     color: #4d2d2d;
     background-color: #555;
     border-color: #4d2d2d;
@@ -1039,17 +1037,7 @@ player action section (playerTurn
     visibility: visible;
 }
 
-.shiver {
-    position: absolute;
-    padding-bottom: 15%;
-    -moz-animation: shiver .5s; /* Firefox */
-    -webkit-animation: shiver .5s; /* Safari and Chrome */
-    -o-animation: shiver .5s; /* Opera */
-    animation: shiver .5s margin-top: -20px;
-    width: 10%;
-}
-
-.zoom {
+#zoom img {
     /*transform:scale 1s;
 animation: scale 1s;*/
     position: absolute;

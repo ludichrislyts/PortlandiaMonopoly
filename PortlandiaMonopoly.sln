@@ -5,7 +5,26 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PortlandiaMonopoly", "PortlandiaMonopoly\PortlandiaMonopoly.vbproj", "{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SaveMonopoly", "SaveMonopoly\SaveMonopoly.vbproj", "{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SaveMonopoly(1)", "SaveMonopoly\", "{D4ADD28A-6382-4C2B-914E-EDF807681E37}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55070"
+		Debug.AspNetCompiler.PhysicalPath = "SaveMonopoly\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55070\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55070"
+		Release.AspNetCompiler.PhysicalPath = "SaveMonopoly\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55070\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55070"
+		SlnRelativePath = "SaveMonopoly\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +37,10 @@ Global
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D68D3251-60B9-4B78-8A5C-BD80C9C350C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{432F5967-F9C4-41FA-B7F0-D03E8AD58FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4ADD28A-6382-4C2B-914E-EDF807681E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4ADD28A-6382-4C2B-914E-EDF807681E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4ADD28A-6382-4C2B-914E-EDF807681E37}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4ADD28A-6382-4C2B-914E-EDF807681E37}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

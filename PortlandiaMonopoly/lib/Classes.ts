@@ -17,7 +17,7 @@ class Player {
     public hotels = 0
 
     public piece: GamePiece
-    public pieceObject: GameObject // variable to hold the piece object (dog, hat, iron, etc.)
+    public pieceObject: GameObject // variable to hold the piect object (dog, hat, iron, etc.)
 
     constructor(id: number, name: string, piece: GamePiece, pieceObject: GameObject) {
         this.id = id;
@@ -36,6 +36,7 @@ class GamePiece {
     public pieceName: string
     public rgb: string
     public rgbDark: string
+    public pieceObject: GameObject
     public taken: boolean = false
 
     constructor(id: number, pieceName: string, rgb: string, rgbDark: string) {
@@ -111,7 +112,7 @@ class GameFactory1 {
     public selectPiece = (piece) => {
         for (var i = 0; i < Data.remainingGamePieces.length; i++) {
             if (Data.remainingGamePieces[i].id === piece.id) {
-                var color = Data.remainingGamePieces.splice(i, 1);
+                Data.remainingGamePieces.splice(i, 1);
                 break;
             }
         }
@@ -243,6 +244,7 @@ class Transactions {
         //if (railDeed != Data.deeds[5] && railDeed.owned === Data.deeds[5].owned) {
         //}
 
+
         //todo: clean ifs...see above code
         if (railDeed === Data.deeds[5]) { }//skip
         else {
@@ -280,6 +282,6 @@ class Transactions {
             return shift;
         } else {
             shift = (newPosition - player.position) + 40;
-        }
+        }        
     }
 }
