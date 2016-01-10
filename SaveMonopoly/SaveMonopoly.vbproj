@@ -162,6 +162,7 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\GameController.vb" />
     <Compile Include="Controllers\PlayerController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
@@ -256,6 +257,7 @@
     <Content Include="Views\Player\Index.vbhtml" />
     <Content Include="Views\Player\Details.vbhtml" />
     <Content Include="Views\Player\Create.vbhtml" />
+    <Content Include="Views\Player\List.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -289,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Game\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

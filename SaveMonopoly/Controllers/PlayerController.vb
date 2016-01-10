@@ -1,5 +1,4 @@
 ﻿Imports System.Web.Mvc
-Imports SaveMonopoly
 
 Namespace Controllers
     Public Class PlayerController
@@ -22,6 +21,14 @@ Namespace Controllers
             Return View()
         End Function
 
+        ' GET: Player/List
+        Function List() As ActionResult
+            Return View(db.Players.ToList)
+        End Function
+
+        'Function Save(player_id As Integer json As String) As ActionResult
+        '    Return View(db.Players.ToList)
+        'End Function
         ' POST: Player/Create
         '<HttpPost()>
         'Function Create(ByVal collection As FormCollection) As ActionResult
@@ -81,10 +88,20 @@ Namespace Controllers
         Function Login(ByVal player As String, password As String) As ActionResult
             Dim _Player = db.Players.FirstOrDefault(Function(x) x.name = player And x.password = password)
 
-            If _Player Is Nothing Then
-                Return RedirectToAction("Index")
+            If _Player IsNot Nothing Then
+                Return RedirectToAction("Details", "Player", _Player)
             Else
-                Return RedirectToAction("Details", New With {.id = _Player.Id})
+                _Player = db.Players.FirstOrDefault(Function(x) x.name = player)
+
+                If _Player IsNot Nothing Then
+                    Return RedirectToAction("Index")
+                Else
+                    Dim newplayer = New Player With {.name = player, .password = password}
+                    db.Players.Add(newplayer)
+                    db.SaveChanges()
+
+                    Return RedirectToAction("Details", "Player", newplayer)
+                End If
             End If
         End Function
     End Class

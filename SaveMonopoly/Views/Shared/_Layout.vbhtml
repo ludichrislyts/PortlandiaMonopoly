@@ -23,8 +23,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Players", "Index", "Player")</li>
-                </ul>
+                    <li>@Html.ActionLink("Players", "Index", "Player")
+                        <ul><li>@Html.ActionLink("Players", "List", "Player")</li></ul>   
+                     </li>
+            </ul>
             </div>
         </div>
     </div>

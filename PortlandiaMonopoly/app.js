@@ -9,6 +9,7 @@ portlandiaMonopoly.config(function ($stateProvider, $urlRouterProvider) {
         views: {
             'startButton': {
                 templateUrl: 'partials/startPage.html',
+                controller: "PlayerSelectCtrl"
             },
         }
     });

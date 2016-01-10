@@ -1,7 +1,6 @@
 ﻿@Code
     ViewData("Title") = "Index"
 End Code
-
 <h2>Login</h2>
 <div class="container">
     <h3>Enter your login info:</h3>
@@ -13,5 +12,6 @@ End Code
             <input type="text" id="player-password" name="password" />
             <button type="submit" class="btn btn-lg btn-primary">Find Your Games!</button>
         </form>
+        <button></button>
     </div>
 </div>

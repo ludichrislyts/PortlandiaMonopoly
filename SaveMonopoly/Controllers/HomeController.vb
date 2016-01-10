@@ -1,7 +1,4 @@
-﻿Imports System.Web.Mvc
-Imports SaveMonopoly
-
-Public Class HomeController
+﻿Public Class HomeController
     Inherits System.Web.Mvc.Controller
 
     Sub Cheat()
@@ -16,12 +13,16 @@ Public Class HomeController
             Dim PG As New Game_Player With {.Player = Player, .Game = Game}
             db.Game_Player.Add(PG)
 
+
             Game.Game_Players.Add(PG)
             Player.Games.Add(PG)
 
             db.SaveChanges()
         End If
     End Sub
+
+
+
 
     Function Index() As ActionResult
         Cheat()

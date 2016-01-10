@@ -1,6 +1,11 @@
 /// <reference path="../lib/classes.ts" />
 /// <reference path="../lib/data.ts" />
 portlandiaMonopoly.controller('PlayerSelectCtrl', function PlayerSelectCtrl($scope, $stateParams) {
+    //$('.class.infinite').on('change', function () {
+    //    if ($(this).css('width') == '10%' || $(this).css('width') == '158px') {
+    //        $(this).toggleClass('wobble');
+    //    }
+    //});
     $scope.factory = Data.Factory_Games;
     $scope.players = Data.players;
     $scope.pieces = Data.GamePieces;

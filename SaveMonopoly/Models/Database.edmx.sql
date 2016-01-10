@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/09/2016 02:08:32
--- Generated from EDMX file: C:\Users\ludichrislyts\Desktop\Aaron\PortlandiaMonopoly\SaveMonopoly\Models\Database.edmx
+-- Date Created: 01/02/2016 16:48:03
+-- Generated from EDMX file: C:\Users\Aaron Campf\Downloads\PortlandiaMonopoly-master\PortlandiaMonopoly-master\SaveMonopoly\Models\Database.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,26 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_GameGame_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Game_Player] DROP CONSTRAINT [FK_GameGame_Player];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PlayerGame_Player]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Game_Player] DROP CONSTRAINT [FK_PlayerGame_Player];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Games]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Games];
-GO
-IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Players];
-GO
-IF OBJECT_ID(N'[dbo].[Game_Player]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Game_Player];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
